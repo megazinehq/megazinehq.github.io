@@ -44,15 +44,26 @@ def main():
         with urllib.request.urlopen(req, timeout=30) as r:
             return json.load(r)
 
-    try:
-        total = get("/stats/total")
-        # The site has a few dozen paths at most (/, /issue/NN, /scan/..., /click/...).
-        hits = get("/stats/hits", daily="true", limit=100).get("hits") or []
-        lists = {k: (get(f"/stats/{k}", limit=12).get("stats") or [])
-                 for k in ["toprefs", "browsers", "systems", "sizes", "locations"]}
-    except Exception as e:  # never break the deploy over stats
-        print(f"pull_stats: GoatCounter request failed ({e}); leaving stats as they are", file=sys.stderr)
+    failed = []
+
+    def safe(path, fallback, **params):
+        """One request; on any error note it and carry on, so one bad view doesn't sink the rest."""
+        try:
+            return get(path, **params)
+        except Exception as e:
+            failed.append(f"{path} ({e})")
+            return fallback
+
+    total = safe("/stats/total", None)
+    if total is None:
+        print(f"pull_stats: GoatCounter unreachable or key refused: {failed[0]}; leaving stats as they are", file=sys.stderr)
         return
+    # The site has a few dozen paths at most (/, /issue/NN, /scan/..., /click/...).
+    hits = safe("/stats/hits", {}, daily="true", limit=100).get("hits") or []
+    lists = {k: (safe(f"/stats/{k}", {}, limit=12).get("stats") or [])
+             for k in ["toprefs", "browsers", "systems", "sizes", "locations"]}
+    for f in failed:
+        print(f"pull_stats: skipped {f}", file=sys.stderr)
 
     def daily(stats):
         return {s["day"]: s.get("daily", 0) for s in stats or [] if s.get("daily")}
