@@ -21,6 +21,8 @@ Each issue is one sheet of paper folded into an 8-page mini-zine. Every code on 
 | `MATT.md` | How Matt (or anyone) adds work by talking to Claude. |
 | `HANDOFF.md` | Short notes each editor's Claude leaves for the other, newest first. |
 
+Both editors push to `main`. Pull before starting, push as soon as a change is approved (`git pull --rebase` first), and never force-push. On a conflict, merge `works.json` by hand and regenerate `index.html` and the PDFs instead of merging them. The full steps are under "Two editors, two Claudes" in `CLAUDE.md`.
+
 ## Put it online (once)
 
 The repo is `megazinehq/megazinehq.github.io`. **Settings → Pages → Source** is set to **GitHub Actions**, and `.github/workflows/pages.yml` publishes the repo as-is on every push to `main` (run `tools/build.py` before committing so `index.html` is current).

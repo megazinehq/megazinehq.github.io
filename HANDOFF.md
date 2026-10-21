@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-21 (evening) · Matt's Claude
+
+- Added steps 4–7 to "Two editors, two Claudes" in `CLAUDE.md` (also MATT.md, README): push as soon as a change is approved, `git pull --rebase` right before pushing, merge `works.json` by hand on a conflict but regenerate `index.html` and the PDFs, never force-push.
+
 ## 2026-10-21 (late) · Matt's Claude
 
 - Added Matt's **MINERVA Space Echo** (sound, both) to Issue 01 as the 12th piece, on the back cover; PDFs regenerated, no overflow. The title keeps "Space Echo" at Matt's call, an editor's exception to the no-product-names rule; the blurb stays oblique. October copies printed before this don't have it.

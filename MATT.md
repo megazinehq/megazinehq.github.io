@@ -8,8 +8,12 @@
 
 ## Every time
 
-Your Claude pulls first, reads `HANDOFF.md` for anything Sam's side left in progress, and adds its own note there after pushing.
+Sam's Claude works in the same repo, so yours keeps the two in step:
 
+- It pulls before changing anything and reads `HANDOFF.md` for anything Sam's side left in progress.
+- Once you approve a change, it pushes straight away (pulling again just before), so nothing finished sits only on your laptop.
+- If both sides changed the same thing, it merges `works.json` by hand and regenerates the site and PDFs rather than merging them. It asks you if it can't tell which side is right.
+- After pushing, it adds a short note to `HANDOFF.md`.
 
 Paste this to Claude, then tell it what you want to do:
 

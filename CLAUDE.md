@@ -12,6 +12,13 @@ Sam and Matt each work here through their own Claude. Before changing anything:
 2. Read the editor's guide: `SAM.md` when working with Sam (if it exists), `MATT.md` when working with Matt.
 3. Read the top of `HANDOFF.md`.
 
+When the editor approves a change:
+
+4. Push it straight away. Don't leave finished work sitting uncommitted on one machine. If you stop partway, push what's done, or say in `HANDOFF.md` what's still in progress locally and where.
+5. Pull again right before pushing, with `git pull --rebase`, so the other side's commits go in first.
+6. If a pull collides: merge `works.json` and the docs by hand, keeping both sides' changes. Never merge the generated files (`index.html`, `print/*.pdf`); take either side, then rerun `tools/build.py` and `tools/make_sheet.py` and commit the results. If you can't tell which side is right, ask the editor.
+7. Never force-push to `main`.
+
 After pushing, add a dated line or two at the top of `HANDOFF.md`: who you worked with, what changed, and anything left unfinished or that the other Claude should know (a link still missing, a page that's tight on the paper). Keep it short; git history has the details.
 
 ## The one rule
