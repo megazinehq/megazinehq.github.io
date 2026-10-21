@@ -2,7 +2,7 @@
 
 ## Once
 
-1. Accept the GitHub invite to `samuelling/megazine` (it went to CrumpLab; check your email or github.com/notifications).
+1. Make sure you have access to `megazinehq/megazinehq.github.io` on GitHub.
 2. Make sure your Claude can reach your GitHub (in the Claude app, GitHub under Settings → Connectors, or use Claude Code on your Mac).
 3. Ask Sam to add you to the stats dashboard at megazine.goatcounter.com (or he'll make it public).
 
@@ -10,7 +10,7 @@
 
 Paste this to Claude, then tell it what you want to do:
 
-> I'm Matt Crump, co-editor of megaZINE with Sam Ling. The repo is github.com/samuelling/megazine. Please add it to this session, read CLAUDE.md in it, and follow it.
+> I'm Matt Crump, co-editor of megaZINE with Sam Ling. The repo is github.com/megazinehq/megazinehq.github.io. Please add it to this session, read CLAUDE.md in it, and follow it.
 
 Then just talk normally, e.g.:
 

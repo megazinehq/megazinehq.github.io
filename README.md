@@ -16,14 +16,14 @@ Each issue is one sheet of paper folded into an 8-page mini-zine. Every code on 
 | `tools/build.py` | Regenerates `index.html` from `tools/page.html`. |
 | `media/` | Images for works (paintings, screenshots). |
 | `CLAUDE.md` | Instructions Claude follows when working in this repo. |
+| `.github/workflows/pages.yml` | Publishes the site to GitHub Pages on every push to `main`. |
 | `MATT.md` | How Matt (or anyone) adds work by talking to Claude. |
 
 ## Put it online (once)
 
-1. Create a public repo named `megazine` under `samuelling`.
-2. Push this folder to it.
-3. Repo **Settings → Pages → Deploy from branch → main / root**.
-4. The site appears at `https://samuelling.github.io/megazine/`, which is the address already printed in the codes. If you pick a different name, change `base_url` in `works.json` and rerun `make_sheet.py` before printing.
+The repo is `megazinehq/megazinehq.github.io`. **Settings → Pages → Source** is set to **GitHub Actions**, and `.github/workflows/pages.yml` publishes the repo as-is on every push to `main` (run `tools/build.py` before committing so `index.html` is current).
+
+The site is at `https://megazinehq.github.io/`, which is `base_url` in `works.json` and the address printed in the codes. If the address ever changes, update `base_url` and rerun `make_sheet.py` before printing.
 
 ## Add a work
 

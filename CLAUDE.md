@@ -1,6 +1,6 @@
 # megaZINE: notes for Claude
 
-megaZINE is a collective run by two editors, **Sam Ling** (GitHub `samuelling`, owns this repo) and **Matt Crump**. It collects weird little things: apps, toys, tools, demos, music, paintings, stories. Some made with Claude, some by hand. Each issue is one sheet of paper folded into an 8-page mini-zine; every code on the paper points at this site (GitHub Pages, `https://samuelling.github.io/megazine/`), and the site points at the work.
+megaZINE is a collective run by two editors, **Sam Ling** (GitHub `samuelling`) and **Matt Crump**. It collects weird little things: apps, toys, tools, demos, music, paintings, stories. Some made with Claude, some by hand. Each issue is one sheet of paper folded into an 8-page mini-zine; every code on the paper points at this site (GitHub Pages, `https://megazinehq.github.io/`, repo `megazinehq/megazinehq.github.io`), and the site points at the work.
 
 Whoever you're talking to is one of the two editors. Ask which one if it matters (it does for `makers` and the seal).
 
@@ -59,7 +59,7 @@ pip install qrcode reportlab           # once
 python3 tools/make_sheet.py            # only if the current issue's lineup or text changed
 ```
 
-`make_sheet.py` prints a warning if a page overflows; shorten the first sentence of that work's blurb rather than shrinking type. Then commit with a plain message saying what changed and push to `main`; Pages redeploys in about a minute.
+`make_sheet.py` prints a warning if a page overflows; shorten the first sentence of that work's blurb rather than shrinking type. Then commit with a plain message saying what changed and push to `main`; the `Deploy to GitHub Pages` workflow (`.github/workflows/pages.yml`) redeploys in about a minute.
 
 ## Outside submissions
 

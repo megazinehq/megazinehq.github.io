@@ -10,7 +10,7 @@ Imposition (landscape, 4 x 2 panels):   top row, upside down:  5 4 3 2
                                         bottom row, upright:   6 7 8 1
 Fold in half lengthwise, then into quarters, cut the centre fold between panels 3/4 and 6/7... see README.
 """
-import argparse, io, json, math, random
+import argparse, io, json, math, os, random
 from pathlib import Path
 
 import qrcode
@@ -28,7 +28,14 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.fonts import addMapping
 
-FONT_DIR = Path("/usr/share/fonts/truetype/liberation")
+# Liberation fonts: Linux path first, then common Mac spots (Homebrew, R's fontLiberation). MEGAZINE_FONTS overrides.
+FONT_DIRS = [os.environ.get("MEGAZINE_FONTS", ""), "/usr/share/fonts/truetype/liberation",
+             str(Path.home() / "Library/Fonts"), "/Library/Fonts", "/opt/homebrew/share/fonts",
+             "/Library/Frameworks/R.framework/Resources/library/fontLiberation/fonts/liberation-fonts"]
+FONT_DIR = next((Path(d) for d in FONT_DIRS if d and (Path(d) / "LiberationSans-Regular.ttf").exists()), None)
+if FONT_DIR is None:
+    raise SystemExit("Liberation fonts not found. Install them (brew install --cask font-liberation) "
+                     "or set MEGAZINE_FONTS to the folder that has LiberationSans-Regular.ttf.")
 for name, f in [("Sans", "LiberationSans-Regular.ttf"), ("Sans-Bold", "LiberationSans-Bold.ttf"),
                 ("Sans-Italic", "LiberationSans-Italic.ttf"), ("Sans-BoldItalic", "LiberationSans-BoldItalic.ttf"),
                 ("Mono", "LiberationMono-Regular.ttf"), ("Mono-Bold", "LiberationMono-Bold.ttf")]:
