@@ -57,6 +57,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--pink); outline-
   display: flex; flex-wrap: wrap; gap: 6px 18px;
   color: var(--muted);
 }
+.kicker .theme { margin-left: auto; }
 .logo {
   position: relative; display: inline-block; max-width: 100%;
   font: 400 clamp(3.4rem, 15vw, 10.5rem)/.86 var(--display);
@@ -82,21 +83,18 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--pink); outline-
 .logo .mis .lc { color: var(--pink); }
 /* Eyeball QR left of the title, as tall as the title. Fixed light colours on its own
    paper sticker so it scans in both themes; drawn by the eyeqr script at the end. */
-.mast-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0 clamp(10px, 2.4vw, 28px); margin: 18px 0 14px; }
+.mast-row { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 0 clamp(10px, 2.4vw, 28px); margin: 18px 0 14px; }
 .mast-row .logo { margin: 0; min-width: 0; justify-self: start; }
-.mast-row .what { align-self: end; justify-self: end; margin-bottom: calc(clamp(3.4rem, 15vw, 10.5rem) * .07); }
-@media (max-width: 719px) {
-  .mast-row { grid-template-columns: auto minmax(0, 1fr); }
-  .mast-row .what { grid-column: 1 / -1; margin: 14px 0 0; }
-}
+/* the QR with "what?" centred underneath it */
+.qr-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .eyeqr { width: calc(clamp(3.4rem, 15vw, 10.5rem) * .86); aspect-ratio: 1; transform: rotate(-1.5deg); }
 .eyeqr svg { display: block; width: 100%; height: 100%; }
 .eyeqr .lid { transition: transform .08s ease-in; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .eyeqr { box-shadow: 0 6px 18px rgba(0,0,0,.45); } }
 :root[data-theme="dark"] .eyeqr { box-shadow: 0 6px 18px rgba(0,0,0,.45); }
 /* "what?" note: closed by default, the editors' own words inside */
-/* sits at the far right of the logo row; the note drops down under it, over the page */
-.what { position: relative; }
+/* sits centred under the QR; the note drops down under the logo row, over the page */
+.what { position: static; }
 .what summary {
   display: inline-flex; align-items: center; gap: 6px;
   list-style: none; cursor: pointer;
@@ -108,8 +106,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--pink); outline-
 .what summary:hover { background: var(--toner); color: var(--paper); }
 .what[open] summary { background: var(--toner); color: var(--paper); }
 .what .note {
-  position: absolute; right: 0; top: calc(100% + 12px); z-index: 20;
-  width: min(64ch, calc(100vw - 32px));
+  position: absolute; left: 0; top: calc(100% + 10px); z-index: 20;
+  width: min(64ch, 100%);
   padding: 16px 18px;
   background: var(--sheet); border: 1px solid var(--rule);
   box-shadow: 0 12px 32px rgba(0,0,0,.18);
@@ -226,10 +224,10 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
 </style>
 
 <header class="wrap mast">
-  <div class="kicker"><span id="issue-line">Issue 01 · October 2026</span><span>Free</span></div>
+  <div class="kicker"><span id="issue-line">Issue 01 · October 2026</span><span>Free</span><span class="theme" id="issue-theme">Between money and doom</span></div>
   <div class="mast-row">
-    <div class="eyeqr" id="eyeqr" role="img" aria-label="QR code for megazine.org, drawn as eyeballs that watch your pointer"></div
-    ><h1 class="logo" aria-label="megaZINE"><span class="ink">MEGA<span class="lc">zine</span></span><span class="mis" aria-hidden="true">MEGA<span class="lc">zine</span></span></h1>
+    <div class="qr-col">
+    <div class="eyeqr" id="eyeqr" role="img" aria-label="QR code for megazine.org, drawn as eyeballs that watch your pointer"></div>
     <details class="what" id="what">
       <summary>what?</summary>
       <div class="note">
@@ -240,6 +238,9 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         <p class="sig">Sam (and Matt)</p>
       </div>
     </details>
+    </div
+    ><h1 class="logo" aria-label="megaZINE"><span class="ink">MEGA<span class="lc">zine</span></span><span class="mis" aria-hidden="true">MEGA<span class="lc">zine</span></span></h1>
+
   </div>
   <div id="stamp" class="stamp" hidden></div>
 </header>
@@ -260,7 +261,6 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   <section class="wrap" aria-labelledby="issue-h">
     <div class="sect">
       <h2 id="issue-h">This issue</h2>
-      <p id="issue-theme">Between money and doom</p>
     </div>
     <div class="filters" id="filters" role="group" aria-label="Filter by kind"></div>
     <div class="board" id="board"><p class="err">Loading the issue…</p></div>
