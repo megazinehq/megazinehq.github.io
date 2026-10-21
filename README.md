@@ -23,7 +23,9 @@ Each issue is one sheet of paper folded into an 8-page mini-zine. Every code on 
 
 The repo is `megazinehq/megazinehq.github.io`. **Settings → Pages → Source** is set to **GitHub Actions**, and `.github/workflows/pages.yml` publishes the repo as-is on every push to `main` (run `tools/build.py` before committing so `index.html` is current).
 
-The site is at `https://megazinehq.github.io/`, which is `base_url` in `works.json` and the address printed in the codes. If the address ever changes, update `base_url` and rerun `make_sheet.py` before printing.
+The site is at `https://megazine.org/`, which is `base_url` in `works.json` and the address printed in the codes. The domain is registered at Namecheap and its DNS is in Namecheap's **Advanced DNS**: four `A` records on `@` to GitHub's Pages addresses (`185.199.108.153` to `185.199.111.153`) and a `CNAME` from `www` to `megazinehq.github.io`. The custom domain is set in **Settings → Pages**. `megazinehq.github.io` and `www.megazine.org` both redirect to `megazine.org`.
+
+If the address ever changes, update `base_url` and rerun `make_sheet.py` before printing. Stats only count on the host in `base_url`.
 
 ## Add a work
 
@@ -66,7 +68,7 @@ Anyone else submits through The Septic Tankz BBS (`samuelling.github.io/BBS`): m
 
 ## Visitor stats
 
-Counts go to [GoatCounter](https://www.goatcounter.com) (free for non-commercial sites, no cookies, no banner needed), only from the live site.
+Counts go to [GoatCounter](https://www.goatcounter.com) (free for non-commercial sites, no cookies, no banner needed), only from the live site (the host in `base_url`).
 
 **Set up once:** sign up at goatcounter.com/signup and choose the site code `megazine` (it's set as `zine.goatcounter` in `works.json`; if you pick another code, change it there). Then in GoatCounter's settings, add Matt as a user, and optionally make the dashboard public.
 

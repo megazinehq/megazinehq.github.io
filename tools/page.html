@@ -337,10 +337,10 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     return bits.length ? `<p class="credit">${bits.join(" · ")}</p>` : "";
   }
 
-  // Visitor counts go to GoatCounter (no cookies), only from the real site.
-  let GC = null;
+  // Visitor counts go to GoatCounter (no cookies), only from the real site (the host in base_url).
+  let GC = null, HOST = null;
   function track(path, title, event) {
-    if (!GC || !/\.github\.io$/.test(location.hostname)) return;
+    if (!GC || location.hostname !== HOST) return;
     const q = new URLSearchParams({
       p: path, t: title || document.title, r: event ? "" : document.referrer,
       s: [screen.width, screen.height, devicePixelRatio || 1].join(","), rnd: Math.random().toString(36).slice(2),
@@ -360,6 +360,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   function render(data) {
     const byId = Object.fromEntries(data.works.map((w) => [w.id, w]));
     GC = (data.zine && data.zine.goatcounter) || null;
+    try { HOST = new URL(data.zine.base_url).hostname; } catch (e) {}
 
     // ?go=id : the paper's short link. Count the scan, then jump straight to the work if it has a live link.
     if (go && byId[go]) {

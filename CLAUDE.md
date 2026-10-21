@@ -1,6 +1,6 @@
 # megaZINE: notes for Claude
 
-megaZINE is a collective run by two editors, **Sam Ling** (GitHub `samuelling`) and **Matt Crump**. It collects weird little things: apps, toys, tools, demos, music, paintings, stories. Some made with Claude, some by hand. Each issue is one sheet of paper folded into an 8-page mini-zine; every code on the paper points at this site (GitHub Pages, `https://megazinehq.github.io/`, repo `megazinehq/megazinehq.github.io`), and the site points at the work.
+megaZINE is a collective run by two editors, **Sam Ling** (GitHub `samuelling`) and **Matt Crump**. It collects weird little things: apps, toys, tools, demos, music, paintings, stories. Some made with Claude, some by hand. Each issue is one sheet of paper folded into an 8-page mini-zine; every code on the paper points at this site (`https://megazine.org/`, served by GitHub Pages from repo `megazinehq/megazinehq.github.io`), and the site points at the work.
 
 Whoever you're talking to is one of the two editors. Ask which one if it matters (it does for `makers` and the seal).
 
