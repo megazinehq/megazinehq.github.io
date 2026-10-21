@@ -330,7 +330,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   function sealSVG(w, i) {
     const who = (w.seal || (w.makers || []).join(" & ") || "?").toUpperCase();
     const how = SEAL_HOW[w.made] || String(w.made || "").toUpperCase();
-    const fs = who.length <= 4 ? 19 : who.length <= 7 ? 14 : who.length <= 11 ? 10 : 8;
+    const fs = Math.min(19, 52 / (who.length * 0.72));  // the name fits inside the inner ring
     const rot = [9, -7, 13, -11, 5, -4][(i || 0) % 6];
     return `<svg class="seal" viewBox="-50 -50 100 100" style="--seal-rot:${rot}deg" role="img" aria-label="Seal: made by ${esc(who.toLowerCase())}, ${esc(how.toLowerCase())}">
       <polygon points="${BURST}" fill="url(#seal-gold)" stroke="var(--gold-lo)" stroke-width=".8"/>

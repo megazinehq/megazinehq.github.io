@@ -156,10 +156,15 @@ def seal(c, w, cx, cy, r=21, rot=8):
     c.setFillColor(black)
     c.setFont("Mono-Bold", 3.6)
     c.drawCentredString(0, r * 0.38, "MADE BY")
-    fs = 9 if len(who) <= 4 else 7 if len(who) <= 7 else 5.2
+    fs = 9  # shrink the maker's name until it fits inside the inner ring
+    while fs > 3.4 and c.stringWidth(who, "Sans-Bold", fs) > r * 1.3:
+        fs -= 0.2
     c.setFont("Sans-Bold", fs)
     c.drawCentredString(0, -fs * 0.35, who)
-    c.setFont("Mono-Bold", 3.1 if len(how) > 9 else 3.6)
+    hs = 3.6
+    while hs > 2.4 and c.stringWidth(how, "Mono-Bold", hs) > r * 1.05:
+        hs -= 0.1
+    c.setFont("Mono-Bold", hs)
     c.drawCentredString(0, -r * 0.52, how)
     c.restoreState()
 

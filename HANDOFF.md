@@ -6,6 +6,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 - **Monthly issues:** each issue has a `month`; the site shows the latest one whose month has arrived, and older ones sit under **Back issues** (`?issue=NN`). **Issue 02 (November 2026) is an empty draft**: fill `theme` and `works`, remove `"draft"`, and it goes live Nov 1 by itself. `make_sheet.py --issue NN` prints a specific issue; back-cover codes now carry `?issue=NN&copy=N`.
 - Removed the **In the workshop** section; its entries are now `"hidden": true`. Removed the **Paper first** block.
+- Everett is on the seals: **Toilet Goalie** (EVERETT) and **Brick Ninja** (EVERETT & SAM, idea credit: Maya for the secret doors); both blurbs say a five-year-old vibe coded them. Seal names now shrink to fit the ring, on the site and the paper.
 
 ## 2026-10-21 · Sam's Claude
 

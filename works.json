@@ -158,11 +158,12 @@
       "kind": "game",
       "made": "both",
       "makers": [
+        "Everett",
         "Sam"
       ],
-      "idea": "Everett, with secret doors by Maya",
+      "idea": "Maya (the secret doors)",
       "platform": "Web",
-      "blurb": "A side-scrolling ninja made of bricks. Ninja stars, double jumps, and hidden doors into first-person bonus rooms where the overpowered weapons live.",
+      "blurb": "A side-scrolling ninja made of bricks, vibe coded with a five-year-old. Ninja stars, double jumps, and hidden doors into first-person bonus rooms where the overpowered weapons live.",
       "links": [
         {
           "label": "Play",
