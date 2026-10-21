@@ -220,11 +220,12 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
     $("range").textContent = `last ${st.range.days} days`;
     const titles = Object.fromEntries(data.works.map((w) => [w.id, w.title]));
     const run = (data.zine && data.zine.print_run) || 50;
-    const P = st.paths || [];
+    // GoatCounter stores event paths without the leading slash ("click/townies"); normalise them.
+    const P = (st.paths || []).map((p) => ({ ...p, path: "/" + String(p.path || "").replace(/^\/+/, "") }));
     const pages = P.filter((p) => !p.event && (p.path === "/" || p.path.startsWith("/issue/")));
     const scans = P.filter((p) => p.event && p.path.startsWith("/scan/") && !p.path.startsWith("/scan/copy-"));
     const copyScans = P.filter((p) => p.event && p.path.startsWith("/scan/copy-"));
-    const clicks = P.filter((p) => p.event && p.path.startsWith("/click/"));
+    const clicks = P.filter((p) => p.event && p.path.startsWith("/click/") && titles[p.path.slice(7)]);
     const visitsByDay = sumDays(pages), scansByDay = sumDays([...scans, ...copyScans]);
     // Start the day charts a couple of days before the first visit (at least two weeks shown),
     // so a young site isn't a long row of empty days.
