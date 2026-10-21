@@ -76,13 +76,16 @@ Anyone else submits through The Septic Tankz BBS (`samuelling.github.io/BBS`): m
 
 Counts go to [GoatCounter](https://www.goatcounter.com) (free for non-commercial sites, no cookies, no banner needed), only from the live site (the host in `base_url`).
 
-**Set up once:** sign up at goatcounter.com/signup and choose the site code `megazine` (it's set as `zine.goatcounter` in `works.json`; if you pick another code, change it there). Then in GoatCounter's settings, add Matt as a user, and optionally make the dashboard public.
+**Our dashboard:** `https://megazine.org/stats/` (unlisted, not indexed). Tiles for the headline numbers, visitors and paper scans per day, scans and clicks by piece, which numbered copies have been picked up, referrers, countries and devices. The deploy workflow refreshes it every hour: `tools/pull_stats.py` asks GoatCounter's API for the last 90 days and writes `stats/stats.json` into the deployed site (it's not committed). Only aggregate counts go in that file.
 
-**Dashboard:** `https://megazine.goatcounter.com`
+**Set up once:** the GoatCounter account is `megazine` (code in `zine.goatcounter` in `works.json`). In GoatCounter, your name menu → **API** → create a key that can read statistics, then add it to this repo as the Actions secret `GOATCOUNTER_TOKEN` (Settings → Secrets and variables → Actions). Until then `/stats/` says "Not connected yet".
+
+**GoatCounter's own dashboard:** `https://megazine.goatcounter.com` (log in; add Matt as a user in its settings).
 
 | Path | Means |
 | --- | --- |
 | `/` | A visit to the site. |
+| `/issue/<NN>` | A visit to a back issue. |
 | `/scan/<id>` | Someone scanned that work's code on the paper. |
 | `/scan/copy-<n>` | Someone scanned the back cover of copy *n*. |
 | `/click/<id>` | Someone clicked out to that work from the site. |

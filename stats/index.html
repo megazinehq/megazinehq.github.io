@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>megaZINE Readers</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Courier+Prime:wght@400;700&family=Spline+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: the zine's masthead language over a readers' ledger. Tiles for the headline counts,
+   one bar chart per measure (never two scales), ranked lists with inline bars, and a strip of
+   numbered copies lit when someone scanned them. Same riso tokens as megazine.org. */
+:root {
+  --paper: #ECEDE9; --sheet: #F8F8F5; --toner: #18181B; --muted: #595E66; --rule: #C6C9C4;
+  --blue: #0055B3; --blue-soft: #C9D8EE; --pink: #F2369B;
+  --display: "Bowlby One SC", "Arial Black", Impact, sans-serif;
+  --body: "Spline Sans", "Helvetica Neue", Arial, sans-serif;
+  --type: "Courier Prime", "Courier New", Courier, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #101217; --sheet: #171A21; --toner: #ECEBE5; --muted: #A0A6AF; --rule: #2B303A;
+    --blue: #7DB0FF; --blue-soft: #24324A; --pink: #FF68BA; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #101217; --sheet: #171A21; --toner: #ECEBE5; --muted: #A0A6AF; --rule: #2B303A;
+  --blue: #7DB0FF; --blue-soft: #24324A; --pink: #FF68BA; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--toner); font: 400 1rem/1.5 var(--body); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--blue); }
+a:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+
+header { padding-block: 32px 18px; border-bottom: 2px solid var(--toner); display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
+h1 { margin: 0; font: 400 clamp(2.2rem, 7vw, 3.6rem)/.9 var(--display); text-wrap: balance; }
+h1 small { font: 600 .5em/1 var(--body); color: var(--blue); letter-spacing: -.02em; }
+.meta { font: 700 .76rem/1.5 var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-align: right; }
+
+section { padding-block: 26px 4px; }
+h2 { margin: 0 0 14px; font: 400 1.35rem/1.1 var(--display); }
+h2 span { font: 400 .8rem/1 var(--type); color: var(--muted); letter-spacing: 0; margin-left: 8px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 14px; }
+.tile { background: var(--sheet); border: 1px solid var(--rule); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.tile .k { font: 700 .72rem/1.2 var(--type); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.tile .v { font: 400 2.2rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.tile .s { font: 400 .82rem/1.3 var(--type); color: var(--muted); }
+
+.chart { background: var(--sheet); border: 1px solid var(--rule); padding: 16px 16px 10px; }
+.cols { position: relative; margin-right: 34px; height: 150px; display: flex; align-items: flex-end; gap: 2px; border-bottom: 1px solid var(--rule); }
+.cols .gl { position: absolute; left: 0; right: 0; border-top: 1px dashed var(--rule); pointer-events: none; }
+.cols .gl span { position: absolute; left: calc(100% + 6px); top: -.5em; font: 400 .7rem/1 var(--type); color: var(--muted); font-variant-numeric: tabular-nums; }
+.cols .c { position: relative; z-index: 1; flex: 1 1 0; min-width: 0; height: 100%; display: flex; align-items: flex-end; cursor: default; }
+.cols .c i { display: block; width: 100%; background: var(--blue); border-radius: 3px 3px 0 0; min-height: 0; }
+.cols .c.zero i { background: transparent; }
+.cols .c:hover i, .cols .c:focus-visible i { background: var(--pink); }
+.cols.scans .c i { background: var(--toner); }
+.axis { margin-right: 34px; display: flex; justify-content: space-between; font: 400 .72rem/1 var(--type); color: var(--muted); padding-top: 6px; }
+.small-multiple { margin-top: 18px; }
+.small-multiple .lab { font: 700 .72rem/1 var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 22px; }
+.rank { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.rank li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: baseline; }
+.rank .n { min-width: 0; overflow-wrap: anywhere; }
+.rank .n small { font: 400 .76rem/1 var(--type); color: var(--muted); margin-left: 6px; }
+.rank .c { font: 700 .9rem/1 var(--type); font-variant-numeric: tabular-nums; }
+.rank .bar { grid-column: 1 / -1; height: 6px; background: var(--blue-soft); border-radius: 3px; overflow: hidden; }
+.rank .bar i { display: block; height: 100%; background: var(--blue); border-radius: 3px; }
+.rank.ink .bar i { background: var(--toner); }
+.empty-note { font: 400 .9rem/1.4 var(--type); color: var(--muted); margin: 0; }
+
+.copies { display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 6px; }
+.copy { aspect-ratio: 1; display: grid; place-items: center; border: 1.5px dashed var(--rule); font: 700 .8rem/1 var(--type); color: var(--muted); font-variant-numeric: tabular-nums; position: relative; }
+.copy.lit { border: 1.5px solid var(--toner); background: var(--toner); color: var(--paper); }
+.copy.lit b { position: absolute; top: -7px; right: -7px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--pink); color: #fff; font: 700 .66rem/18px var(--type); text-align: center; }
+
+.setup { margin-top: 26px; background: var(--sheet); border: 2px solid var(--blue); box-shadow: 7px 7px 0 var(--pink); padding: 18px 20px; max-width: 70ch; }
+.setup h2 { margin-bottom: 8px; }
+.setup ol { margin: 8px 0 0; padding-left: 1.3em; display: grid; gap: 6px; }
+.setup code { font: 400 .9em var(--type); background: var(--blue-soft); padding: 1px 5px; }
+
+#tip { position: fixed; z-index: 30; pointer-events: none; background: var(--toner); color: var(--paper); font: 700 .78rem/1.3 var(--type); padding: 6px 8px; transform: translate(-50%, calc(-100% - 10px)); white-space: nowrap; }
+footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(--muted); }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <h1>Readers <small>megaZINE</small></h1>
+  <div class="meta"><div id="updated">Loading…</div><div><a href="../">megazine.org</a></div></div>
+</header>
+
+<main class="wrap">
+  <div id="setup" class="setup" hidden>
+    <h2>Not connected yet</h2>
+    <p>This page fills itself in every hour from GoatCounter, once the deploy can read it:</p>
+    <ol>
+      <li>In GoatCounter (megazine.goatcounter.com), open your name menu → <b>API</b> and create a key that can <b>read statistics</b>.</li>
+      <li>On GitHub, in <b>megazinehq/megazinehq.github.io</b> → Settings → Secrets and variables → Actions, add it as <code>GOATCOUNTER_TOKEN</code>.</li>
+      <li>The next hourly deploy (or any push) brings the numbers in.</li>
+    </ol>
+  </div>
+
+  <div id="dash" hidden>
+    <section aria-labelledby="h-now">
+      <h2 id="h-now">At a glance <span id="range"></span></h2>
+      <div class="tiles" id="tiles"></div>
+    </section>
+
+    <section aria-labelledby="h-days">
+      <h2 id="h-days">Day by day <span>visitors to the site, and paper scans</span></h2>
+      <div class="chart">
+        <div class="lab" style="font:700 .72rem/1 var(--type);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Site visitors</div>
+        <div class="cols" id="visits" role="img"></div>
+        <div class="axis" id="axis1"></div>
+        <div class="small-multiple">
+          <div class="lab">Paper scans</div>
+          <div class="cols scans" id="scansd" role="img" style="height:80px"></div>
+          <div class="axis" id="axis2"></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-pieces">
+      <h2 id="h-pieces">The pieces</h2>
+      <div class="grid2">
+        <div><h3 class="sub">Scanned from the paper</h3><ul class="rank ink" id="scan-rank"></ul></div>
+        <div><h3 class="sub">Clicked through from the site</h3><ul class="rank" id="click-rank"></ul></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-copies">
+      <h2 id="h-copies">Copies picked up <span id="copies-note"></span></h2>
+      <div class="copies" id="copies"></div>
+    </section>
+
+    <section aria-labelledby="h-where">
+      <h2 id="h-where">Where they came from</h2>
+      <div class="grid2">
+        <div><h3 class="sub">Referrers</h3><ul class="rank" id="refs"></ul></div>
+        <div><h3 class="sub">Countries</h3><ul class="rank" id="locations"></ul></div>
+        <div><h3 class="sub">Issues read</h3><ul class="rank" id="issues"></ul></div>
+        <div><h3 class="sub">Devices</h3><ul class="rank" id="systems"></ul></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="wrap">Counts come from GoatCounter (no cookies) and refresh hourly. Visitors are counted once per page per day.</footer>
+<div id="tip" hidden></div>
+
+<style>.sub { margin: 0 0 12px; font: 700 .78rem/1.2 var(--type); letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }</style>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const fmt = (n) => Number(n || 0).toLocaleString("en-US");
+  const tip = $("tip");
+  document.addEventListener("pointermove", (e) => {
+    const t = e.target.closest("[data-tip]");
+    if (!t) { tip.hidden = true; return; }
+    tip.textContent = t.dataset.tip; tip.hidden = false;
+    tip.style.left = e.clientX + "px"; tip.style.top = e.clientY + "px";
+  });
+  document.addEventListener("focusin", (e) => {
+    const t = e.target.closest("[data-tip]");
+    if (!t) return; const r = t.getBoundingClientRect();
+    tip.textContent = t.dataset.tip; tip.hidden = false; tip.style.left = (r.left + r.width / 2) + "px"; tip.style.top = r.top + "px";
+  });
+  document.addEventListener("focusout", () => { tip.hidden = true; });
+
+  function ago(iso) {
+    const m = Math.round((Date.now() - Date.parse(iso)) / 60000);
+    if (m < 2) return "just now"; if (m < 90) return m + " minutes ago";
+    const h = Math.round(m / 60); if (h < 36) return h + " hours ago";
+    return Math.round(h / 24) + " days ago";
+  }
+  function dayList(start, end) {
+    const out = [], d = new Date(start + "T00:00:00Z"), e = new Date(end + "T00:00:00Z");
+    while (d <= e) { out.push(d.toISOString().slice(0, 10)); d.setUTCDate(d.getUTCDate() + 1); }
+    return out;
+  }
+  const short = (day) => new Date(day + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  function niceMax(m) { if (m <= 4) return 4; const p = Math.pow(10, Math.floor(Math.log10(m))); return Math.ceil(m / p * 2) / 2 * p; }
+
+  function columns(el, axis, days, series, label) {
+    const max = niceMax(Math.max(0, ...days.map((d) => series[d] || 0)));
+    el.setAttribute("aria-label", `${label} per day, ${short(days[0])} to ${short(days[days.length - 1])}`);
+    el.innerHTML = `<div class="gl" style="top:0"><span>${fmt(max)}</span></div><div class="gl" style="top:50%"><span>${fmt(max / 2)}</span></div>` +
+      days.map((d) => { const v = series[d] || 0;
+        return `<div class="c${v ? "" : " zero"}" tabindex="0" data-tip="${short(d)}: ${fmt(v)} ${label.toLowerCase()}"><i style="height:${(v / max * 100).toFixed(1)}%"></i></div>`; }).join("");
+    const mid = days[Math.floor(days.length / 2)];
+    axis.innerHTML = `<span>${short(days[0])}</span><span>${short(mid)}</span><span>${short(days[days.length - 1])}</span>`;
+  }
+  function rank(el, rows, empty) {
+    rows = rows.filter((r) => r.count > 0);
+    if (!rows.length) { el.innerHTML = `<li><p class="empty-note">${esc(empty)}</p></li>`; return; }
+    const max = Math.max(...rows.map((r) => r.count));
+    el.innerHTML = rows.map((r) => `<li data-tip="${esc(r.name)}: ${fmt(r.count)}"><span class="n">${esc(r.name)}${r.note ? `<small>${esc(r.note)}</small>` : ""}</span><span class="c">${fmt(r.count)}</span>
+      <span class="bar"><i style="width:${(r.count / max * 100).toFixed(1)}%"></i></span></li>`).join("");
+  }
+  function sumDays(paths) {
+    const out = {};
+    paths.forEach((p) => Object.entries(p.days || {}).forEach(([d, v]) => { out[d] = (out[d] || 0) + v; }));
+    return out;
+  }
+
+  Promise.all([
+    fetch("stats.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+    fetch("../works.json", { cache: "no-cache" }).then((r) => r.json()),
+  ]).then(([st, data]) => {
+    if (!st) { $("updated").textContent = "Not connected yet"; $("setup").hidden = false; return; }
+    $("dash").hidden = false;
+    $("updated").textContent = "Updated " + ago(st.generated);
+    $("range").textContent = `last ${st.range.days} days`;
+    const titles = Object.fromEntries(data.works.map((w) => [w.id, w.title]));
+    const run = (data.zine && data.zine.print_run) || 50;
+    const P = st.paths || [];
+    const pages = P.filter((p) => !p.event && (p.path === "/" || p.path.startsWith("/issue/")));
+    const scans = P.filter((p) => p.event && p.path.startsWith("/scan/") && !p.path.startsWith("/scan/copy-"));
+    const copyScans = P.filter((p) => p.event && p.path.startsWith("/scan/copy-"));
+    const clicks = P.filter((p) => p.event && p.path.startsWith("/click/"));
+    const visitsByDay = sumDays(pages), scansByDay = sumDays([...scans, ...copyScans]);
+    // Start the day charts a couple of days before the first visit (at least two weeks shown),
+    // so a young site isn't a long row of empty days.
+    const all = dayList(st.range.start, st.range.end);
+    const first = all.findIndex((d) => visitsByDay[d] || scansByDay[d]);
+    const days = all.slice(Math.max(0, Math.min(first < 0 ? all.length : first - 2, all.length - 14)));
+    const last7 = days.slice(-7).reduce((a, d) => a + (visitsByDay[d] || 0), 0);
+    const tot = (arr) => arr.reduce((a, p) => a + p.count, 0);
+    const copiesLit = copyScans.map((p) => parseInt(p.path.slice("/scan/copy-".length), 10)).filter((n) => n > 0);
+
+    $("tiles").innerHTML = [
+      ["Visitors, last 7 days", fmt(last7), "people on the site"],
+      [`Visitors, ${st.range.days} days`, fmt(tot(pages)), "site and back issues"],
+      ["Paper scans", fmt(tot(scans) + tot(copyScans)), `${fmt(tot(scans))} on pieces, ${fmt(tot(copyScans))} on back covers`],
+      ["Clicks out", fmt(tot(clicks)), "from the site to a piece"],
+      ["Copies picked up", `${copiesLit.length}<span style="font-size:.45em;color:var(--muted)"> / ${run}</span>`, "back covers scanned at least once"],
+    ].map(([k, v, s]) => `<div class="tile"><span class="k">${k}</span><span class="v">${v}</span><span class="s">${s}</span></div>`).join("");
+
+    columns($("visits"), $("axis1"), days, visitsByDay, "Visitors");
+    columns($("scansd"), $("axis2"), days, scansByDay, "Scans");
+
+    const byPiece = (arr, prefix) => arr.map((p) => { const id = p.path.slice(prefix.length);
+      return { name: titles[id] || id, count: p.count }; }).sort((a, b) => b.count - a.count);
+    rank($("scan-rank"), byPiece(scans, "/scan/"), "No paper scans yet. Leave some copies out.");
+    rank($("click-rank"), byPiece(clicks, "/click/"), "No clicks out yet.");
+
+    const copyCount = Object.fromEntries(copyScans.map((p) => [parseInt(p.path.slice(11), 10), p.count]));
+    $("copies-note").textContent = `numbered back covers scanned, 1 to ${run}`;
+    $("copies").innerHTML = Array.from({ length: run }, (_, i) => i + 1).map((n) => copyCount[n]
+      ? `<div class="copy lit" data-tip="Copy ${n}: scanned ${copyCount[n]}×" tabindex="0">${n}${copyCount[n] > 1 ? `<b>${copyCount[n]}</b>` : ""}</div>`
+      : `<div class="copy" data-tip="Copy ${n}: not yet" tabindex="0">${n}</div>`).join("");
+
+    const list = (k) => (st[k] || []).map((r) => ({ name: r.name, count: r.count }));
+    rank($("refs"), list("toprefs"), "Nothing yet. Paper scans and typed-in visits show no referrer.");
+    rank($("locations"), list("locations"), "Nothing yet.");
+    rank($("systems"), list("systems"), "Nothing yet.");
+    const issueRows = pages.map((p) => ({ name: p.path === "/" ? "Current issue" : "Issue " + p.path.slice(7), count: p.count,
+      note: p.path === "/" ? "megazine.org" : "back issue" })).sort((a, b) => b.count - a.count);
+    rank($("issues"), issueRows, "Nothing yet.");
+  }).catch(() => { $("updated").textContent = "Couldn't load the numbers. Refresh to try again."; });
+})();
+</script>
+</body>
+</html>

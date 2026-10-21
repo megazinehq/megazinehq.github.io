@@ -49,4 +49,4 @@ Outsiders submit through The Septic Tankz BBS: they dial in, make an account, Sa
 
 ## Stats
 
-The dashboard at **megazine.goatcounter.com** shows visits (`/`), paper scans per piece (`/scan/<id>`), back-cover scans per copy (`/scan/copy-<n>`), and clicks out to each piece (`/click/<id>`).
+**megazine.org/stats/** is our own readers dashboard, refreshed hourly: visitors per day, paper scans and clicks by piece, which numbered copies have been picked up, and where people came from. GoatCounter's dashboard (megazine.goatcounter.com) has the raw counts: visits (`/`), back issues (`/issue/NN`), paper scans per piece (`/scan/<id>`), back-cover scans per copy (`/scan/copy-<n>`), and clicks out (`/click/<id>`).

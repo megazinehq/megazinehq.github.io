@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"   # hourly, to refresh the readers dashboard (stats/stats.json)
 
 permissions:
   contents: read
@@ -23,6 +25,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Pull visitor counts for /stats/
+        env:
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+        run: python3 tools/pull_stats.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

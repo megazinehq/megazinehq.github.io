@@ -84,6 +84,7 @@ People other than the editors submit through the BBS (repo `samuelling/BBS`, The
 - The back-cover code is `?issue=NN&copy=N`, so a copy of an old issue opens that issue; work codes (`?go=<id>`) don't depend on the issue.
 - Back issues are counted in GoatCounter as `/issue/NN`.
 - Visits, paper scans (`/scan/<id>`, `/scan/copy-<n>`) and clicks out (`/click/<id>`) are counted in GoatCounter under the code in `zine.goatcounter`. Don't add other trackers or cookies.
+- `/stats/` is the editors' readers dashboard (`stats/index.html`). The deploy workflow runs hourly and on every push; its `tools/pull_stats.py` step reads GoatCounter's API with the `GOATCOUNTER_TOKEN` secret and writes `stats/stats.json` into the deployed site only. Never commit that file, and keep it to aggregate counts.
 
 ## Keep the docs in step
 

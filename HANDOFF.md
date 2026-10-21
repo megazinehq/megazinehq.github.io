@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-21 (late) · Sam's Claude
+
+- Added the **readers dashboard** at `megazine.org/stats/` (`stats/index.html`). The Pages workflow now also runs hourly and pulls GoatCounter numbers into `stats/stats.json` at deploy time via `tools/pull_stats.py` (not committed; `.gitignore`d). Needs the repo secret `GOATCOUNTER_TOKEN` (GoatCounter API key with read-stats permission); until it's set the page says "Not connected yet".
+
 ## 2026-10-21 (afternoon) · Sam's Claude
 
 - **Monthly issues:** each issue has a `month`; the site shows the latest one whose month has arrived, and older ones sit under **Back issues** (`?issue=NN`). **Issue 02 (November 2026) is an empty draft**: fill `theme` and `works`, remove `"draft"`, and it goes live Nov 1 by itself. `make_sheet.py --issue NN` prints a specific issue; back-cover codes now carry `?issue=NN&copy=N`.
