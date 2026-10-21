@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-21 (late) · Matt's Claude
+
+- Added Matt's **MINERVA Space Echo** (sound, both) to Issue 01 as the 12th piece, on the back cover; PDFs regenerated, no overflow. The title keeps "Space Echo" at Matt's call, an editor's exception to the no-product-names rule; the blurb stays oblique. October copies printed before this don't have it.
+
 ## 2026-10-21 (late) · Sam's Claude
 
 - Added the **readers dashboard** at `megazine.org/stats/` (`stats/index.html`). The Pages workflow now also runs hourly and pulls GoatCounter numbers into `stats/stats.json` at deploy time via `tools/pull_stats.py` (not committed; `.gitignore`d). Needs the repo secret `GOATCOUNTER_TOKEN` (GoatCounter API key with read-stats permission); until it's set the page says "Not connected yet". Sam added the secret at 13:21; dashboard connected.

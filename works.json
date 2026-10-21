@@ -27,7 +27,8 @@
         "toilet-goalie",
         "dialupsoundz",
         "rehearsal-loop",
-        "bell-weather"
+        "bell-weather",
+        "minerva-space-echo"
       ]
     },
     {
@@ -370,6 +371,23 @@
       "blurb": "A shooter about destroying your own sadness, and what you turn into once it's gone.",
       "links": [],
       "hidden": true
+    },
+    {
+      "id": "minerva-space-echo",
+      "title": "MINERVA Space Echo",
+      "kind": "sound",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Mac · plug-in for Ableton Live",
+      "blurb": "A tape echo that remembers every bar you play. Each bar is its own memory trace, and what comes back is a blend of all of them, weighted by how much each sounds like what you're playing now.",
+      "links": [
+        {
+          "label": "About the plug-in",
+          "url": "https://www.crumplab.com/MinervaSpaceEcho/"
+        }
+      ]
     }
   ]
 }
