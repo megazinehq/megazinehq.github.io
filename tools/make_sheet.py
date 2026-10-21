@@ -6,6 +6,10 @@
 Every code on the paper points at the hub (base_url?go=<id>), never straight at a work,
 so links can change later without reprinting. The back-cover code carries the copy number.
 
+The front folds into the booklet and holds 12 works. With more than 12, the sheet gets a back side:
+a poster you only see when the zine is unfolded, holding works 13-24 two to a panel. Its panels match
+the front's, so no code sits on a fold or the cut. Print duplex.
+
 Imposition (landscape, 4 x 2 panels):   top row, upside down:  5 4 3 2
                                         bottom row, upright:   6 7 8 1
 Fold in half lengthwise, then into quarters, cut the centre fold between panels 3/4 and 6/7... see README.
@@ -152,6 +156,13 @@ def folio(c, n):
     c.drawRightString(W - PAD, PAD * 0.55, str(n))
 
 
+def rule(c, y):
+    c.setDash(2, 2)
+    c.setLineWidth(0.6)
+    c.line(PAD, y, W - PAD, y)
+    c.setDash()
+
+
 def first_sentence(t):
     i = t.find(". ")
     return t if i < 0 else t[: i + 1]
@@ -255,10 +266,7 @@ def p_intro(c, copy, run):
                 "<i>Sam (and Matt)</i>", body, PAD, y - 16, W - 2 * PAD)
     label(c, "HOW TO READ IT", PAD, y - 14, size=7.4)
     y = para(c, "Point your phone at a code. The links live online, so they outlast this paper.", body, PAD, y - 22, W - 2 * PAD)
-    c.setDash(2, 2)
-    c.setLineWidth(0.6)
-    c.line(PAD, y - 10, W - PAD, y - 10)
-    c.setDash()
+    rule(c, y - 10)
     if len(ISSUE["works"]) > 10:
         y = work_block(c, ISSUE["works"][10], y - 16, 0.62 * inch)
     if y < PAD + 10 and not copy:
@@ -267,21 +275,48 @@ def p_intro(c, copy, run):
 
 
 def p_works(ids, n, big=False, qr=None):
+    """A panel of works. n is the page number, or a name like "inside 3" for a panel on the back."""
     def draw(c, copy, run):
         size = qr or (1.15 * inch if big else 0.7 * inch)
         y = H - PAD
         for i, wid in enumerate(ids):
             if i:
-                c.setDash(2, 2)
-                c.setLineWidth(0.6)
-                c.line(PAD, y - 8, W - PAD, y - 8)
-                c.setDash()
+                rule(c, y - 8)
                 y -= 18
             y = work_block(c, wid, y, size, big=big)
         if y < PAD + 10 and not copy:
-            print(f"warning: page {n} overflows by {PAD + 10 - y:.0f}pt")
-        folio(c, n)
+            print(f"warning: {'page ' if isinstance(n, int) else ''}{n} overflows by {PAD + 10 - y:.0f}pt")
+        if isinstance(n, int):
+            folio(c, n)
+        else:
+            label(c, f"megaZINE {ISSUE['id']} · INSIDE", PAD, PAD * 0.55, size=5.6)
     return draw
+
+
+def p_inside_head(c, copy, run):
+    """Top-left panel of the back: you've unfolded it."""
+    c.setFont("Sans-Bold", 40)
+    c.drawString(PAD, H - PAD - 38, "INSIDE")
+    c.setLineWidth(2)
+    c.line(PAD, H - PAD - 50, W - PAD, H - PAD - 50)
+    label(c, f"megaZINE {ISSUE['id']}", PAD, H - PAD - 64, size=8)
+    c.setFont("Mono-Bold", 8)
+    c.drawRightString(W - PAD, H - PAD - 64, ISSUE["date"].upper())
+    para(c, "You unfolded it. The rest of the issue is in here. Same deal: point your phone at a code. "
+            "Fold it back up when you're done and leave it somewhere for the next person.",
+         body, PAD, H - PAD - 76, W - 2 * PAD)
+
+
+def p_inside_foot(c, copy, run):
+    """Bottom-right panel of the back: how to get in the next one."""
+    label(c, "PUT SOMETHING IN", PAD, H - PAD - 8, size=8)
+    y = para(c, "An app, a song, a painting, a story, a thing that does nothing useful. "
+                "Dial The Septic Tankz BBS, get validated by the SysOp, and post in megaZINE Submissions. "
+                "Every piece gets a seal saying who made it and how.", body, PAD, H - PAD - 20, W - 2 * PAD)
+    s = 1.1 * inch
+    c.drawImage(qr_img(BASE), PAD, y - 14 - s, s, s)
+    c.setFont("Mono-Bold", 7.2)
+    c.drawString(PAD, y - 26 - s, BASE.replace("https://", "").rstrip("/"))
 
 
 def p_back(c, copy, run):
@@ -299,10 +334,7 @@ def p_back(c, copy, run):
         c.drawCentredString(W / 2, yq - 22, f"this code knows you hold copy {copy}")
         y = yq - 22
     if extra:
-        c.setDash(2, 2)
-        c.setLineWidth(0.6)
-        c.line(PAD, y - 10, W - PAD, y - 10)
-        c.setDash()
+        rule(c, y - 10)
         y = work_block(c, extra, y - 20, 0.7 * inch)
     else:
         y = para(c, "Want to put something in the next one? An app, a song, a painting, a story. "
@@ -313,7 +345,8 @@ def p_back(c, copy, run):
         print(f"warning: page 8 overflows by {PAD + 26 - y:.0f}pt")
     c.setLineWidth(1.6)
     c.line(PAD, PAD + 20, W - PAD, PAD + 20)
-    label(c, "FOLD IT · CUT IT · LEAVE IT SOMEWHERE", PAD, PAD + 8, size=5.9, spacing=0.6)
+    foot = "UNFOLD IT ALL THE WAY FOR THE REST" if len(ISSUE["works"]) > 12 else "FOLD IT · CUT IT · LEAVE IT SOMEWHERE"
+    label(c, foot, PAD, PAD + 8, size=5.9, spacing=0.6)
 
 
 # Pages 3-7 take the issue's first ten works in pairs; page 2 takes the 11th, the back cover the 12th.
@@ -325,6 +358,27 @@ for _n in range(3, 8):
     PANELS.setdefault(_n, lambda c, copy, run, _n=_n: folio(c, _n))
 LAYOUT = [[5, 4, 3, 2],  # top row, drawn upside down
           [6, 7, 8, 1]]  # bottom row
+
+# The back (only when the issue has more than 12): works 13-24 in pairs, read flat, everything upright.
+_inside = [ISSUE["works"][k:k + 2] for k in range(12, min(24, len(ISSUE["works"])), 2)]
+_cells = [(0, 1), (0, 2), (0, 3), (1, 0), (1, 1), (1, 2)]
+BACK = {(0, 0): p_inside_head, (1, 3): p_inside_foot}
+for _k, (_cell, _ids) in enumerate(zip(_cells, _inside)):
+    BACK[_cell] = p_works(_ids, f"inside panel {_k + 1}")
+if len(ISSUE["works"]) > 24:
+    print(f"note: {len(ISSUE['works']) - 24} works past 24 appear only on the site")
+
+
+def back(c):
+    for (r, col), draw in BACK.items():
+        c.saveState()
+        c.translate(col * W, PH - (r + 1) * H)
+        p = c.beginPath()
+        p.rect(0, 0, W, H)
+        c.clipPath(p, stroke=0, fill=0)
+        draw(c, None, None)
+        c.restoreState()
+    c.showPage()
 
 
 def sheet(c, copy=None, run=None):
@@ -357,6 +411,8 @@ def sheet(c, copy=None, run=None):
     c.line(W, H, 3 * W, H)  # the one cut
     c.restoreState()
     c.showPage()
+    if len(ISSUE["works"]) > 12:
+        back(c)
 
 
 def main():
@@ -377,7 +433,8 @@ def main():
     for n in range(1, a.copies + 1):
         sheet(c, n, a.copies)
     c.save()
-    print(f"wrote print/issue-{iid}.pdf and print/issue-{iid}-numbered.pdf ({a.copies} copies)")
+    sides = "double-sided, print duplex" if len(ISSUE["works"]) > 12 else "single-sided"
+    print(f"wrote print/issue-{iid}.pdf and print/issue-{iid}-numbered.pdf ({a.copies} copies, {sides})")
 
 
 if __name__ == "__main__":

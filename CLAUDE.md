@@ -49,7 +49,7 @@ Never guess `made`. Ask.
 
 ## Issues
 
-`issues[-1]` is the current issue; its `works` list is the lineup in order. The paper fits **12**: pages 3–7 take the first ten in pairs, page 2 takes the 11th, the back cover the 12th. More than 12 and the extras appear only on the site. Never change the `id` of a work that's in a printed issue: the paper's codes use it.
+`issues[-1]` is the current issue; its `works` list is the lineup in order. The paper fits **24**. The folded booklet takes the first 12: pages 3–7 take the first ten in pairs, page 2 takes the 11th, the back cover the 12th. With more than 12, the sheet gets a back side (print duplex): a poster seen only when the zine is unfolded, with works 13–24 two to a panel, and the back cover says to unfold it. More than 24 and the extras appear only on the site. Never change the `id` of a work that's in a printed issue: the paper's codes use it.
 
 ## After any change
 

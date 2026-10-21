@@ -10,7 +10,7 @@ Each issue is one sheet of paper folded into an 8-page mini-zine. Every code on 
 | --- | --- |
 | `index.html` | The site. Built from `tools/page.html`; don't edit it directly. |
 | `works.json` | Every work and every issue. This is the only file you edit to add things. |
-| `print/issue-01.pdf` | The sheet to photocopy (one master, unnumbered). |
+| `print/issue-01.pdf` | The sheet to photocopy (one master, unnumbered; two pages = front and back). |
 | `print/issue-01-numbered.pdf` | 50 numbered copies, each with its own back-cover code. |
 | `tools/make_sheet.py` | Regenerates the PDFs from `works.json`. |
 | `tools/build.py` | Regenerates `index.html` from `tools/page.html`. |
@@ -54,7 +54,7 @@ A link with `"url": null` shows as a dashed "coming" button. Fill the URL in lat
 
 `makers` and `made` print the gold seal: "MADE BY MATT · BY HAND". `image` is optional (paintings). Add `"status": "workshop"` with no links to list something as still being built.
 
-To feature it in an issue, add its `id` to that issue's `works` list (the paper fits 12). Workshop items show up under **In the workshop**.
+To feature it in an issue, add its `id` to that issue's `works` list (the paper fits 24: 12 in the folded booklet, 12 more on the back of the sheet). Workshop items show up under **In the workshop**.
 
 ## Outside submissions
 
@@ -89,7 +89,9 @@ python3 tools/make_sheet.py              # 50 numbered copies by default
 python3 tools/make_sheet.py --copies 100
 ```
 
-Print single-sided on letter paper, landscape, at 100% (no "fit to page"). Black only; it's designed for a photocopier.
+Print on letter paper, landscape, at 100% (no "fit to page"). Black only; it's designed for a photocopier. If the issue has more than 12 pieces the PDF has a back side for each sheet: print **double-sided**. Either flip setting works, because the back is only read with the sheet unfolded.
+
+**The back** is a poster you see when the zine is unfolded all the way: an INSIDE panel, pieces 13–24 two to a panel, and a panel on how to submit. Its panels line up with the front's, so no code lands on a fold or the cut. The back cover tells people to unfold it. Past 24, extra pieces appear only on the site.
 
 **Fold:** the top row prints upside down, which is correct.
 1. Fold in half the long way (top to bottom), then unfold.

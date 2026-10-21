@@ -38,7 +38,7 @@ Outsiders submit through The Septic Tankz BBS: they dial in, make an account, Sa
 
 ## The paper
 
-- One letter-size sheet folds into an 8-page mini-zine. It fits **12** pieces from the current issue; any beyond 12 appear only on the site.
+- One letter-size sheet folds into an 8-page mini-zine. The booklet fits **12** pieces from the current issue; with more, the back of the sheet becomes a poster you see when you unfold it, with room for **12 more** (24 in all). Past 24, pieces appear only on the site. An issue with more than 12 prints double-sided.
 - Every code on the paper goes through the site first, so links can change after printing.
 - If you change the current issue, Claude regenerates `print/issue-NN.pdf` (one master) and `print/issue-NN-numbered.pdf` (numbered copies, each with its own back-cover code).
 

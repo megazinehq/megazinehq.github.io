@@ -27,7 +27,8 @@
         "toilet-goalie",
         "bell-weather",
         "titanosaur",
-        "dialupsoundz"
+        "dialupsoundz",
+        "rehearsal-loop"
       ]
     }
   ],
@@ -343,6 +344,28 @@
       "blurb": "A shooter about destroying your own sadness, and what you turn into once it's gone.",
       "links": [],
       "status": "workshop"
+    },
+    {
+      "id": "rehearsal-loop",
+      "title": "Rehearsal Loop",
+      "kind": "tool",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "iPhone, iPad · Apple Music or your own songs",
+      "blurb": "Tap at the start and end of the part you're learning, and it plays that part over and over until you've got it. Songs you own slow down without changing pitch. A one-time Pro unlock shows the loop's notes and chords, and lets you play along with your part muted.",
+      "links": [
+        {
+          "label": "About the app",
+          "url": "https://tunedecho.com/apps/rehearsal-loop/"
+        },
+        {
+          "label": "App Store",
+          "url": null,
+          "status": "Coming soon"
+        }
+      ]
     }
   ]
 }
