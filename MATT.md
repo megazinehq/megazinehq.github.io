@@ -28,6 +28,7 @@ Descriptions stay oblique about influences: no names of other people's games, fi
 - **The address** is megazine.org (the old megazinehq.github.io address redirects there).
 - **The issue** is the current lineup. Its cards appear in a new random order on every visit, so nobody's piece is always first.
 - **In the workshop** lists things still being built: named and described, no links.
+- **Pulled for now:** a finished piece can be hidden from the site without deleting it ("pull X for now").
 - **Seals:** every piece gets a gold megaZINE seal: "MADE BY MATT" plus how it was made. It's the one rule.
 - **Paintings** show their photo on the card.
 - **Links can wait.** A link marked "soon" shows as a dashed button; fill it in later and every printed code for that piece starts working, no reprint.

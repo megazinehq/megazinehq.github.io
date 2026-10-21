@@ -21,14 +21,12 @@
         "big-apple-sam",
         "orders-of-magnitude",
         "septic-tankz",
-        "animal-sanctuary",
         "decay-envelope",
         "brick-ninja",
         "toilet-goalie",
-        "bell-weather",
-        "titanosaur",
         "dialupsoundz",
-        "rehearsal-loop"
+        "rehearsal-loop",
+        "bell-weather"
       ]
     }
   ],
@@ -129,24 +127,6 @@
       ]
     },
     {
-      "id": "animal-sanctuary",
-      "title": "Animal Sanctuary",
-      "kind": "game",
-      "made": "both",
-      "makers": [
-        "Sam"
-      ],
-      "idea": "Maya",
-      "platform": "Web",
-      "blurb": "Find glowing foxes and small dragons in a magical world, bring them home, and grow them a sanctuary.",
-      "links": [
-        {
-          "label": "Play",
-          "url": "https://samuelling.github.io/Animal-Sanctuary/"
-        }
-      ]
-    },
-    {
       "id": "decay-envelope",
       "title": "Decay Envelope",
       "kind": "game",
@@ -217,6 +197,64 @@
       ]
     },
     {
+      "id": "dialupsoundz",
+      "title": "DialUpSoundz",
+      "kind": "tool",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "iPhone · needs Apple Music",
+      "blurb": "Paste a chat assistant's playlist and it lands in Apple Music. It picks original studio versions over live and karaoke ones. A one-time unlock adds ratings, tags, liner notes and listening history, all kept on your phone, and its Operator lets your chat assistant recommend from your actual taste.",
+      "links": [
+        {
+          "label": "About the app",
+          "url": "https://tunedecho.com/apps/DialUpSoundz/"
+        },
+        {
+          "label": "App Store",
+          "url": null,
+          "status": "In beta"
+        }
+      ]
+    },
+    {
+      "id": "rehearsal-loop",
+      "title": "Rehearsal Loop",
+      "kind": "tool",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "iPhone, iPad · Apple Music or your own songs",
+      "blurb": "Tap at the start and end of the part you're learning, and it plays that part over and over until you've got it. Songs you own slow down without changing pitch. A one-time Pro unlock shows the loop's notes and chords, and lets you play along with your part muted.",
+      "links": [
+        {
+          "label": "About the app",
+          "url": "https://tunedecho.com/apps/rehearsal-loop/"
+        },
+        {
+          "label": "App Store",
+          "url": null,
+          "status": "Coming soon"
+        }
+      ]
+    },
+    {
+      "id": "animal-sanctuary",
+      "title": "Animal Sanctuary",
+      "kind": "game",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "idea": "Maya",
+      "platform": "Web",
+      "blurb": "Find glowing foxes and small dragons in a magical world, bring them home, and grow them a sanctuary.",
+      "links": [],
+      "status": "workshop"
+    },
+    {
       "id": "titanosaur",
       "title": "Titanosaur",
       "kind": "music",
@@ -243,29 +281,8 @@
       "go": {
         "label": "Listen anywhere",
         "url": "https://distrokid.com/hyperfollow/thunderblitz/titanosaur"
-      }
-    },
-    {
-      "id": "dialupsoundz",
-      "title": "DialUpSoundz",
-      "kind": "tool",
-      "made": "both",
-      "makers": [
-        "Matt"
-      ],
-      "platform": "iPhone · needs Apple Music",
-      "blurb": "Paste a chat assistant's playlist and it lands in Apple Music. It picks original studio versions over live and karaoke ones. A one-time unlock adds ratings, tags, liner notes and listening history, all kept on your phone, and its Operator lets your chat assistant recommend from your actual taste.",
-      "links": [
-        {
-          "label": "About the app",
-          "url": "https://tunedecho.com/apps/DialUpSoundz/"
-        },
-        {
-          "label": "App Store",
-          "url": null,
-          "status": "In beta"
-        }
-      ]
+      },
+      "hidden": true
     },
     {
       "id": "topple-house",
@@ -344,28 +361,6 @@
       "blurb": "A shooter about destroying your own sadness, and what you turn into once it's gone.",
       "links": [],
       "status": "workshop"
-    },
-    {
-      "id": "rehearsal-loop",
-      "title": "Rehearsal Loop",
-      "kind": "tool",
-      "made": "both",
-      "makers": [
-        "Matt"
-      ],
-      "platform": "iPhone, iPad · Apple Music or your own songs",
-      "blurb": "Tap at the start and end of the part you're learning, and it plays that part over and over until you've got it. Songs you own slow down without changing pitch. A one-time Pro unlock shows the loop's notes and chords, and lets you play along with your part muted.",
-      "links": [
-        {
-          "label": "About the app",
-          "url": "https://tunedecho.com/apps/rehearsal-loop/"
-        },
-        {
-          "label": "App Store",
-          "url": null,
-          "status": "Coming soon"
-        }
-      ]
     }
   ]
 }

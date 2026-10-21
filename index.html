@@ -384,7 +384,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
 
     const inIssue = issue.works.map((id) => byId[id]).filter(Boolean);
     const issued = new Set(inIssue.map((w) => w.id));
-    const rest = data.works.filter((w) => !issued.has(w.id));
+    const rest = data.works.filter((w) => !issued.has(w.id) && !w.hidden);
 
     // Copy stamp, with a starting point picked by copy number.
     if (copy) {

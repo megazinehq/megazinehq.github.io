@@ -52,7 +52,7 @@ Keep blurbs oblique about influences: don't name other people's games, films, br
 
 A link with `"url": null` shows as a dashed "coming" button. Fill the URL in later and every printed code for it starts working, no reprint needed.
 
-`makers` and `made` print the gold seal: "MADE BY MATT · BY HAND". `image` is optional (paintings). Add `"status": "workshop"` with no links to list something as still being built.
+`makers` and `made` print the gold seal: "MADE BY MATT · BY HAND". `image` is optional (paintings). Add `"status": "workshop"` with no links to list something as still being built, or `"hidden": true` to pull a finished piece off the site for now without deleting its entry.
 
 To feature it in an issue, add its `id` to that issue's `works` list (the paper fits 24: 12 in the folded booklet, 12 more on the back of the sheet). Workshop items show up under **In the workshop**.
 
