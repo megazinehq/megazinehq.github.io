@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-21 (night) · Matt's Claude
+
+- Added Matt's **PCASynth and PCAWave** (sound, both; one entry for the two synth plug-ins) to Issue 01 as the 12th piece, on the back cover. Issue 01 is full on the booklet now; a 13th piece turns the sheet double-sided. PDFs regenerated, no overflow.
+
 ## 2026-10-21 (afternoon, later) · Sam's Claude
 
 - **Big Apple Sam** now has a **Mac screen saver** download (second link, the signed and notarized `.dmg` from the repo's rolling `latest` release, so it always points at the newest build). Platform reads "Web · Mac screen saver"; the paper code still goes to the web version. Issue 01 PDFs regenerated, no overflow.

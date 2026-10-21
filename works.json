@@ -27,7 +27,8 @@
         "dialupsoundz",
         "rehearsal-loop",
         "minerva-space-echo",
-        "bell-weather"
+        "bell-weather",
+        "pcasynth"
       ]
     },
     {
@@ -390,6 +391,23 @@
         {
           "label": "About the plug-in",
           "url": "https://www.crumplab.com/MinervaSpaceEcho/"
+        }
+      ]
+    },
+    {
+      "id": "pcasynth",
+      "title": "PCASynth and PCAWave",
+      "kind": "sound",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Mac · synth plug-ins",
+      "blurb": "Two synths that turn one note, played by different instruments, into a space you can play. You get the originals, blends of them, and places no instrument has been. One rebuilds every point from its harmonics; its twin mixes the recordings themselves.",
+      "links": [
+        {
+          "label": "About the synths",
+          "url": "https://www.crumplab.com/PCASynth/"
         }
       ]
     }
