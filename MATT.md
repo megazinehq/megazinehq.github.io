@@ -8,6 +8,9 @@
 
 ## Every time
 
+Your Claude pulls first, reads `HANDOFF.md` for anything Sam's side left in progress, and adds its own note there after pushing.
+
+
 Paste this to Claude, then tell it what you want to do:
 
 > I'm Matt Crump, co-editor of megaZINE with Sam Ling. The repo is github.com/megazinehq/megazinehq.github.io. Please add it to this session, read CLAUDE.md in it, and follow it.

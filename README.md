@@ -18,6 +18,7 @@ Each issue is one sheet of paper folded into an 8-page mini-zine. Every code on 
 | `CLAUDE.md` | Instructions Claude follows when working in this repo. |
 | `.github/workflows/pages.yml` | Publishes the site to GitHub Pages on every push to `main`. |
 | `MATT.md` | How Matt (or anyone) adds work by talking to Claude. |
+| `HANDOFF.md` | Short notes each editor's Claude leaves for the other, newest first. |
 
 ## Put it online (once)
 

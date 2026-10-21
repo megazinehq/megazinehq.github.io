@@ -4,6 +4,16 @@ megaZINE is a collective run by two editors, **Sam Ling** (GitHub `samuelling`) 
 
 Whoever you're talking to is one of the two editors. Ask which one if it matters (it does for `makers` and the seal).
 
+## Two editors, two Claudes
+
+Sam and Matt each work here through their own Claude. Before changing anything:
+
+1. Pull. The other editor may have pushed minutes ago.
+2. Read the editor's guide: `SAM.md` when working with Sam (if it exists), `MATT.md` when working with Matt.
+3. Read the top of `HANDOFF.md`.
+
+After pushing, add a dated line or two at the top of `HANDOFF.md`: who you worked with, what changed, and anything left unfinished or that the other Claude should know (a link still missing, a page that's tight on the paper). Keep it short; git history has the details.
+
 ## The one rule
 
 Every work says who made it and how. `makers` and `made` in `works.json` drive the gold **megaZINE seal** on the site and the black-and-white seal on the paper:
