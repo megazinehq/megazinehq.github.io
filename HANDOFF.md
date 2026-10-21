@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-21 (afternoon) · Sam's Claude
+
+- **Monthly issues:** each issue has a `month`; the site shows the latest one whose month has arrived, and older ones sit under **Back issues** (`?issue=NN`). **Issue 02 (November 2026) is an empty draft**: fill `theme` and `works`, remove `"draft"`, and it goes live Nov 1 by itself. `make_sheet.py --issue NN` prints a specific issue; back-cover codes now carry `?issue=NN&copy=N`.
+- Removed the **In the workshop** section; its entries are now `"hidden": true`. Removed the **Paper first** block.
+
 ## 2026-10-21 · Sam's Claude
 
 - Masthead line now reads just "Issue 01 · October 2026  Free" (dropped "one sheet of paper · the rest is online").
