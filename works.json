@@ -18,7 +18,6 @@
       "theme": "Between money and doom",
       "works": [
         "townies",
-        "ambit",
         "big-apple-sam",
         "orders-of-magnitude",
         "septic-tankz",
@@ -27,8 +26,8 @@
         "toilet-goalie",
         "dialupsoundz",
         "rehearsal-loop",
-        "bell-weather",
-        "minerva-space-echo"
+        "minerva-space-echo",
+        "bell-weather"
       ]
     },
     {
@@ -83,7 +82,8 @@
           "label": "How Aether listens",
           "url": "https://samuelling.github.io/Aether/"
         }
-      ]
+      ],
+      "hidden": true
     },
     {
       "id": "big-apple-sam",

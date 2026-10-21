@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-21 (evening) · Sam's Claude
+
+- **Ambit: Quartet** is hidden and out of Issue 01 until it's on the App Store. To bring it back: remove `"hidden"`, set its App Store link, add `ambit` to the issue's `works`. Issue 01 is 11 pieces; **Bell Weather** moved last so it lands on page 2 (MINERVA Space Echo overflowed there by 9pt).
+
 ## 2026-10-21 (evening) · Matt's Claude
 
 - Added steps 4–7 to "Two editors, two Claudes" in `CLAUDE.md` (also MATT.md, README): push as soon as a change is approved, `git pull --rebase` right before pushing, merge `works.json` by hand on a conflict but regenerate `index.html` and the PDFs, never force-push.
