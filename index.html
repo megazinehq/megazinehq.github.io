@@ -112,10 +112,12 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--pink); outline-
 .what[open] summary { background: var(--toner); color: var(--paper); }
 .what .note {
   position: absolute; left: 0; top: calc(100% + 10px); z-index: 20;
-  width: min(64ch, 100%);
+  width: min(64ch, calc(100% - 7px));
   padding: 16px 18px;
-  background: var(--sheet); border: 1px solid var(--rule);
-  box-shadow: 0 12px 32px rgba(0,0,0,.18);
+  /* a blue-tinted window with a hard pink offset, so it reads as a pop-up, not a card below */
+  background: color-mix(in srgb, var(--blue) 12%, var(--paper));
+  border: 2px solid var(--blue);
+  box-shadow: 7px 7px 0 var(--pink);
   display: flex; flex-direction: column; gap: 10px;
 }
 .what .note p { margin: 0; }
@@ -242,7 +244,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         <p>So we've been making strange little apps and demos. Some are immediately useless, some are actual tools you could use, and some are just performance pieces.</p>
         <p>After hitting fever pitch on weird generative AI, we had the idea of a collective to bring these works together. Matt wanted a zine. I wanted a website collecting ideas and works: some made with an LLM, others just our own music or Matt's paintings. Sometimes people might just write stories. Anything goes.</p>
         <p>So we merged them. The zine is literally a piece of paper with a QR code, and the code brings you here.</p>
-        <p class="sig">Sam (and Matt)</p>
+        <p class="sig">– Sysops: Sam and Matt</p>
       </div>
     </details>
     </div
