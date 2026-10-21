@@ -14,6 +14,7 @@ Each issue is one sheet of paper folded into an 8-page mini-zine. Every code on 
 | `print/issue-01-numbered.pdf` | 50 numbered copies, each with its own back-cover code. |
 | `tools/make_sheet.py` | Regenerates the PDFs from `works.json`. |
 | `tools/build.py` | Regenerates `index.html` from `tools/page.html`. |
+| `tools/page.html` (`eyeqr` script) | The masthead's eyeball QR code for https://megazine.org/: the QR grid (`ROWS`, error correction H) is drawn as eyes that follow the pointer. Keep each finder square a plain dark frame; eyes on the frames stop it scanning. |
 | `media/` | Images for works (paintings, screenshots). |
 | `CLAUDE.md` | Instructions Claude follows when working in this repo. |
 | `.github/workflows/pages.yml` | Publishes the site to GitHub Pages on every push to `main`. |

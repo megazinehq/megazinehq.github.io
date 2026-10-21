@@ -29,6 +29,7 @@ Descriptions stay oblique about influences: no names of other people's games, fi
 ## How the site works
 
 - **The address** is megazine.org (the old megazinehq.github.io address redirects there).
+- **The eyeball QR** left of the title is a working code for megazine.org, drawn as eyes that follow the pointer and blink. It's generated in the page from the QR grid (the `eyeqr` script at the end of `tools/page.html`); if the address ever changes, regenerate the grid there.
 - **The issue** is the current lineup. Its cards appear in a new random order on every visit, so nobody's piece is always first.
 - **In the workshop** lists things still being built: named and described, no links.
 - **Pulled for now:** a finished piece can be hidden from the site without deleting it ("pull X for now").
