@@ -279,7 +279,7 @@ def p_cover(c, copy, run):
 def p_intro(c, copy, run):
     y = H - PAD - 4
     label(c, "WHAT?", PAD, y - 7, size=7.4)
-    y = para(c, "Matt and I have been using Claude to make weird stuff. AI chatter is all money-making or "
+    y = para(c, "Matt and Sam have been using Claude to make weird stuff. AI chatter is all money-making or "
                 "doom; the space in between seemed far less seen. So: strange little apps, some useless, "
                 "some real tools, some performance pieces, plus our own music and paintings. "
                 "<i>– Sysops: Sam and Matt</i>", body, PAD, y - 16, W - 2 * PAD)
