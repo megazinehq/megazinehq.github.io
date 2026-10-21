@@ -14,4 +14,5 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 - Pulled **Animal Sanctuary** into the workshop and hid **Titanosaur** with a new `"hidden": true` flag (finished piece, off the site for now; entry kept). Issue 01 is 11 pieces, single-sided.
 - Moved **Bell Weather** to the end of the lineup so it lands on page 2; Rehearsal Loop's text overflowed there.
 - Installed the Claude GitHub app on the megazinehq org so both Claudes can push.
+- The old repo `samuelling/megazine` is now only a redirect: `samuelling.github.io/megazine/…` forwards to the same path on megazine.org, keeping `?go=` and `?copy=`. Don't put site content there.
 - Still open: Ambit's App Store link (in review), Townies' TestFlight link. (The BBS README now links megazine.org.)
