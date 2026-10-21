@@ -6,6 +6,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 - Masthead line now reads just "Issue 01 · October 2026  Free" (dropped "one sheet of paper · the rest is online").
 - **what?** is back under the eyeball QR, centred (`.qr-col` in `tools/page.html`); its note opens under the logo row. The tagline now sits at the right end of the top line, level with the issue number; the This issue heading has no tagline.
+- The **what?** note is signed "– Sysops: Sam and Matt" (site and paper page 2) and opens as a blue-tinted window with a pink offset shadow.
 - Added an **eyeball QR code** for megazine.org to the left of the masthead title, as tall as the title. Every dark module is an eye that follows the pointer, wanders when idle and blinks (the three giant eyes every few seconds, a few small ones constantly, and a ripple or all-at-once blink every 6–11 s; blinks run even with reduced motion); it sits on its own paper sticker so it scans in dark mode too. Tested with two decoders at phone and desktop sizes, with eyes looking anywhere and all shut. Lives in `tools/page.html` (CSS under the logo, script at the end).
 - Moved **what?** to the far right of the logo row (drops under the title on phones). Its note now opens as a panel under the button, over the page, and closes on an outside click or Escape.
 
