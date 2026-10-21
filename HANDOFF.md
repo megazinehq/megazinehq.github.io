@@ -7,7 +7,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 - Moved the site to **megazinehq.github.io** with an Actions deploy (`.github/workflows/pages.yml`), then to **megazine.org** (DNS at Namecheap, see README). `base_url` and the paper's codes use megazine.org; stats now count on the host in `base_url`.
 - The paper can go **double-sided**: past 12 pieces, the back of the sheet becomes a poster seen when unfolded, holding 13–24. Print duplex then. `make_sheet.py` also finds the Liberation fonts on a Mac.
 - Added Matt's **Rehearsal Loop** to Issue 01 (App Store link still to come).
-- Still open: Enforce HTTPS in Settings → Pages once GitHub installs the certificate (approved, not live yet). Don't print the regenerated PDFs before then: the codes are `https://megazine.org`. Deploys were sticking at "waiting" on the `github-pages` environment this afternoon.
+- HTTPS is on and enforced for megazine.org, so the regenerated PDFs are fine to print. Deploys stuck at "waiting" on the `github-pages` environment this afternoon; cancelling the queue and running the workflow by hand (`gh workflow run pages.yml`) cleared it.
 
 ## 2026-10-21 · Sam's Claude
 
