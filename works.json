@@ -93,12 +93,16 @@
       "makers": [
         "Sam"
       ],
-      "platform": "Web",
-      "blurb": "A night skyline from an old screensaver you might half remember, rebuilt. Zoom into any lit window and someone is living their life in there.",
+      "platform": "Web · Mac screen saver",
+      "blurb": "A night skyline from an old screensaver you might half remember, rebuilt. Zoom into any lit window and someone is living their life in there. It also comes as a real Mac screen saver that runs the city across every display.",
       "links": [
         {
           "label": "Look out the window",
           "url": "https://samuelling.github.io/Big-Apple-Sam/"
+        },
+        {
+          "label": "Mac screen saver",
+          "url": "https://github.com/samuelling/Big-Apple-Sam/releases/download/latest/Big-Apple-Sam-Mac.dmg"
         }
       ]
     },

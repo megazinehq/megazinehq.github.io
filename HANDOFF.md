@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-21 (afternoon, later) · Sam's Claude
+
+- **Big Apple Sam** now has a **Mac screen saver** download (second link, the signed and notarized `.dmg` from the repo's rolling `latest` release, so it always points at the newest build). Platform reads "Web · Mac screen saver"; the paper code still goes to the web version. Issue 01 PDFs regenerated, no overflow.
+
 ## 2026-10-21 (evening) · Sam's Claude
 
 - **Ambit: Quartet** is hidden and out of Issue 01 until it's on the App Store. To bring it back: remove `"hidden"`, set its App Store link, add `ambit` to the issue's `works`. Issue 01 is 11 pieces; **Bell Weather** moved last so it lands on page 2 (MINERVA Space Echo overflowed there by 9pt).
