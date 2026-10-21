@@ -13,6 +13,7 @@
   "issues": [
     {
       "id": "01",
+      "month": "2026-10",
       "date": "October 2026",
       "theme": "Between money and doom",
       "works": [
@@ -28,6 +29,14 @@
         "rehearsal-loop",
         "bell-weather"
       ]
+    },
+    {
+      "id": "02",
+      "month": "2026-11",
+      "date": "November 2026",
+      "theme": "",
+      "draft": true,
+      "works": []
     }
   ],
   "works": [
@@ -252,7 +261,7 @@
       "platform": "Web",
       "blurb": "Find glowing foxes and small dragons in a magical world, bring them home, and grow them a sanctuary.",
       "links": [],
-      "status": "workshop"
+      "hidden": true
     },
     {
       "id": "titanosaur",
@@ -295,7 +304,7 @@
       "platform": "Web",
       "blurb": "Dominoes, where the levels are rooms of a house: bedroom, kitchen, hallway, stairs. Place them anywhere, preview the fall, then knock it down.",
       "links": [],
-      "status": "workshop"
+      "hidden": true
     },
     {
       "id": "solstice",
@@ -308,7 +317,7 @@
       "platform": "Web",
       "blurb": "Photograph a headstone at Mount Auburn Cemetery and it works out who is buried there, then lays out what the records actually say. Sourced facts stay apart from guesses.",
       "links": [],
-      "status": "workshop"
+      "hidden": true
     },
     {
       "id": "the-palace",
@@ -321,7 +330,7 @@
       "platform": "Web",
       "blurb": "A haunted-mansion survival game whose puzzles quietly measure spatial memory while you try to save the man who let the ghouls in.",
       "links": [],
-      "status": "workshop"
+      "hidden": true
     },
     {
       "id": "mind-arcade",
@@ -334,7 +343,7 @@
       "platform": "Web",
       "blurb": "A neuropsych test battery disguised as arcade games. It picks the next game based on how sure it is about you so far.",
       "links": [],
-      "status": "workshop"
+      "hidden": true
     },
     {
       "id": "mise-en-place",
@@ -347,7 +356,7 @@
       "platform": "Web",
       "blurb": "A frantic kitchen game that estimates your attentional capacity from how you juggle the orders.",
       "links": [],
-      "status": "workshop"
+      "hidden": true
     },
     {
       "id": "crush-commando",
@@ -360,7 +369,7 @@
       "platform": "Web",
       "blurb": "A shooter about destroying your own sadness, and what you turn into once it's gone.",
       "links": [],
-      "status": "workshop"
+      "hidden": true
     }
   ]
 }

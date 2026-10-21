@@ -54,20 +54,22 @@ Never guess `made`. Ask.
 
 - `image` is optional; it shows on the site's card (good for paintings). The paper is text-only.
 - A link with `"url": null` renders as a dashed "coming" button. The first link with a URL is where `?go=<id>` (the paper's code) sends people, unless the work has `"go": {"label": "...", "url": "..."}`, e.g. a page listing every streaming service for an album.
-- `"status": "workshop"` (and `"links": []`) lists it under **In the workshop**: mentioned, not out yet.
-- `"hidden": true` keeps a finished piece off the site entirely (pulled for now) without losing its entry. Take it out of the issue's `works` list too.
+- `"hidden": true` keeps a piece off the site entirely (still being built, or pulled for now) without losing its entry. Take it out of every issue's `works` list too. There is no workshop list any more.
 - Credit kids' ideas with `"idea": "Name"` (first names only).
 
 ## Issues
 
-`issues[-1]` is the current issue; its `works` list is the lineup in order. The paper fits **24**. The folded booklet takes the first 12: pages 3–7 take the first ten in pairs, page 2 takes the 11th, the back cover the 12th. With more than 12, the sheet gets a back side (print duplex): a poster seen only when the zine is unfolded, with works 13–24 two to a panel, and the back cover says to unfold it. More than 24 and the extras appear only on the site. Never change the `id` of a work that's in a printed issue: the paper's codes use it.
+Issues are monthly. Each has `id` ("02"), `month` ("2026-11"), `date` ("November 2026"), `theme`, and `works` (the lineup, in paper order). The site shows the **latest issue whose month has arrived** (viewer's local time), skipping any with `"draft": true` or no works; every earlier live issue appears under **Back issues** at `?issue=NN`. So the next issue can be built ahead of time: fill its `theme` and `works`, remove `"draft"`, and it goes live by itself on the 1st. A piece can appear in more than one issue.
+
+The paper fits **24**. The folded booklet takes the first 12: pages 3–7 take the first ten in pairs, page 2 takes the 11th, the back cover the 12th. With more than 12, the sheet gets a back side (print duplex): a poster seen only when the zine is unfolded, with works 13–24 two to a panel, and the back cover says to unfold it. More than 24 and the extras appear only on the site. Never change the `id` of a work that's in a printed issue: the paper's codes use it.
 
 ## After any change
 
 ```
 python3 tools/build.py                 # rebuild index.html
 pip install qrcode reportlab           # once
-python3 tools/make_sheet.py            # only if the current issue's lineup or text changed
+python3 tools/make_sheet.py            # only if an issue's lineup or text changed
+python3 tools/make_sheet.py --issue 02 # print a specific issue (default: the one live today)
 ```
 
 `make_sheet.py` prints a warning if a page overflows; shorten the first sentence of that work's blurb rather than shrinking type. Then commit with a plain message saying what changed and push to `main`; the `Deploy to GitHub Pages` workflow (`.github/workflows/pages.yml`) redeploys in about a minute.
@@ -78,7 +80,9 @@ People other than the editors submit through the BBS (repo `samuelling/BBS`, The
 
 ## Site behaviour worth knowing
 
-- The current issue's cards are shuffled on every visit; the order in `issues[-1].works` only matters for the paper.
+- An issue's cards are shuffled on every visit; the order in its `works` list only matters for the paper.
+- The back-cover code is `?issue=NN&copy=N`, so a copy of an old issue opens that issue; work codes (`?go=<id>`) don't depend on the issue.
+- Back issues are counted in GoatCounter as `/issue/NN`.
 - Visits, paper scans (`/scan/<id>`, `/scan/copy-<n>`) and clicks out (`/click/<id>`) are counted in GoatCounter under the code in `zine.goatcounter`. Don't add other trackers or cookies.
 
 ## Keep the docs in step

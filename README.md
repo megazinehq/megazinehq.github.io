@@ -54,9 +54,13 @@ Keep blurbs oblique about influences: don't name other people's games, films, br
 
 A link with `"url": null` shows as a dashed "coming" button. Fill the URL in later and every printed code for it starts working, no reprint needed.
 
-`makers` and `made` print the gold seal: "MADE BY MATT · BY HAND". `image` is optional (paintings). Add `"status": "workshop"` with no links to list something as still being built, or `"hidden": true` to pull a finished piece off the site for now without deleting its entry.
+`makers` and `made` print the gold seal: "MADE BY MATT · BY HAND". `image` is optional (paintings). Add `"hidden": true` to keep a piece off the site (still being built, or pulled for now) without deleting its entry.
 
-To feature it in an issue, add its `id` to that issue's `works` list (the paper fits 24: 12 in the folded booklet, 12 more on the back of the sheet). Workshop items show up under **In the workshop**.
+To feature it in an issue, add its `id` to that issue's `works` list (the paper fits 24: 12 in the folded booklet, 12 more on the back of the sheet).
+
+## Monthly issues and back issues
+
+Each issue in `works.json` has a `month` (`"2026-11"`). The site shows the latest issue whose month has arrived; older ones are listed under **Back issues** and open at `megazine.org/?issue=01`. To prepare next month's issue, fill in its `theme` and `works` and remove `"draft": true`; it goes live on the 1st on its own. Issue 02 (November) is already there as an empty draft.
 
 ## Outside submissions
 
@@ -89,6 +93,7 @@ Counts go to [GoatCounter](https://www.goatcounter.com) (free for non-commercial
 pip install qrcode reportlab
 python3 tools/make_sheet.py              # 50 numbered copies by default
 python3 tools/make_sheet.py --copies 100
+python3 tools/make_sheet.py --issue 02   # a specific issue; default is the one live today
 ```
 
 Print on letter paper, landscape, at 100% (no "fit to page"). Black only; it's designed for a photocopier. If the issue has more than 12 pieces the PDF has a back side for each sheet: print **double-sided**. Either flip setting works, because the back is only read with the sheet unfolded.

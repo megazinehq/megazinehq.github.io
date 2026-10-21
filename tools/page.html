@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Courier+Prime:wght@400;700&family=Spline+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: a photocopied masthead, then a pinboard of clippings (the issue), then a plain list (the workshop). Two-colour riso: toner + blue, with fluoro pink reserved for misregistration and the copy stamp. */
+/* Layout: a photocopied masthead, then a pinboard of clippings (the issue), then a plain list (back issues). Two-colour riso: toner + blue, with fluoro pink reserved for misregistration and the copy stamp. */
 :root {
   --paper: #ECEDE9;
   --sheet: #F8F8F5;
@@ -201,6 +201,8 @@ main { overflow-x: clip; }
   align-items: baseline; padding-block: 14px; border-bottom: 1px solid var(--rule);
 }
 .stacks .t { font: 400 1.15rem/1.1 var(--display); }
+.backs li.here .t::after { content: " · reading"; font: 700 .7rem/1 var(--type); letter-spacing: .1em; color: var(--pink); vertical-align: .2em; }
+#issue-note a { color: var(--blue); }
 .stacks .d { margin: 0; font-size: .93rem; min-width: 0; }
 .stacks .d .credit { display: block; margin-top: 2px; }
 .stacks .l { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -263,17 +265,17 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   <section class="wrap" aria-labelledby="issue-h">
     <div class="sect">
       <h2 id="issue-h">This issue</h2>
+      <p id="issue-note" hidden>A back issue. <a href="./">Go to the current issue →</a></p>
     </div>
     <div class="filters" id="filters" role="group" aria-label="Filter by kind"></div>
     <div class="board" id="board"><p class="err">Loading the issue…</p></div>
   </section>
-
-  <section class="wrap" aria-labelledby="stacks-h" id="stacks-sect">
+  <section class="wrap" aria-labelledby="back-h" id="back-sect" hidden>
     <div class="sect">
-      <h2 id="stacks-h">In the workshop</h2>
-      <p>Still being built. Not out yet.</p>
+      <h2 id="back-h">Back issues</h2>
+      <p>Every past sheet, still online.</p>
     </div>
-    <ul class="stacks" id="stacks"></ul>
+    <ul class="stacks backs" id="backs"></ul>
   </section>
 
   <section class="wrap" aria-labelledby="submit-h">
@@ -293,10 +295,6 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         <h3>Get your seal</h3>
         <p>Every piece gets a gold seal saying who made it and how. It is the one rule here.</p>
         <div class="legend" id="legend"></div>
-      </div>
-      <div>
-        <h3>Paper first</h3>
-        <p>Each issue is one folded sheet with codes on it, left on café tables and in bus shelters. Scan a code and it lands here. Links can change; the paper never has to.</p>
       </div>
     </div>
   </section>
@@ -391,16 +389,28 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
       const live = (byId[go].go && byId[go].go.url ? byId[go].go : null) || (byId[go].links || []).find((l) => l.url);
       if (live) { location.replace(live.url); return; }
     }
-    if (copy) track(`/scan/copy-${parseInt(copy, 10)}`, "Scan: back cover", true);
-    track("/", document.title, false);
+    // Issues go live on the first of their month (viewer's local time); drafts and empty issues never show.
+    const d = new Date();
+    const thisMonth = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+    const live = data.issues.filter((x) => !x.draft && (x.works || []).length && (!x.month || x.month <= thisMonth));
+    const current = live[live.length - 1] || data.issues[0];
+    const asked = live.find((x) => x.id === q.get("issue"));
+    const issue = asked || current;
+    const isBack = issue !== current;
 
-    const issue = data.issues[data.issues.length - 1];
+    if (copy) track(`/scan/copy-${parseInt(copy, 10)}`, `Scan: back cover${asked ? " · issue " + issue.id : ""}`, true);
+    track(isBack ? `/issue/${issue.id}` : "/", isBack ? `Back issue ${issue.id}` : document.title, false);
+
     $("issue-line").textContent = `Issue ${issue.id} · ${issue.date}`;
     $("issue-theme").textContent = issue.theme;
+    if (isBack) {
+      document.title = `megaZINE · Issue ${issue.id}`;
+      $("issue-h").textContent = `Issue ${issue.id}`;
+      $("issue-note").hidden = false;
+    }
 
     const inIssue = issue.works.map((id) => byId[id]).filter(Boolean);
     const issued = new Set(inIssue.map((w) => w.id));
-    const rest = data.works.filter((w) => !issued.has(w.id) && !w.hidden);
 
     // Copy stamp, with a starting point picked by copy number.
     if (copy) {
@@ -449,17 +459,20 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
 
     $("legend").innerHTML = ["hands", "claude", "both"].map((m, j) => sealSVG({ seal: "You", made: m }, j)).join("");
 
-    $("stacks-sect").hidden = !rest.length;
-    $("stacks").innerHTML = rest.map((w) => `<li id="${esc(w.id)}">
-        <span class="t">${esc(w.title)}</span>
-        <p class="d">${esc(w.blurb)}${creditHTML(w, true).replace("<p", "<span").replace("</p>", "</span>")}</p>
-        <span class="l">${(w.links || []).map((l) => linkHTML(l, false)).join("")}</span>
+    // Back issues: every live issue except the current one, newest first.
+    const backs = live.filter((x) => x !== current).reverse();
+    $("back-sect").hidden = !backs.length;
+    $("backs").innerHTML = backs.map((x) => `<li class="${x === issue ? "here" : ""}">
+        <span class="t">Issue ${esc(x.id)}</span>
+        <p class="d">${esc(x.date)}${x.theme ? " · " + esc(x.theme) : ""} · ${x.works.length} piece${x.works.length === 1 ? "" : "s"}</p>
+        <span class="l"><a class="btn" href="?issue=${encodeURIComponent(x.id)}">Read it →</a></span>
       </li>`).join("");
+
 
     // Count clicks out to each work.
     document.addEventListener("click", (e) => {
       const a = e.target.closest("a.btn, .stamp a");
-      if (!a) return;
+      if (!a || a.closest("#backs")) return;
       const card = a.closest("[id]");
       const id = card && byId[card.id] ? card.id : "copy-start";
       track(`/click/${id}`, `Click: ${(byId[id] || {}).title || "copy start"} · ${a.textContent.replace(" ↗", "").trim()}`, true);

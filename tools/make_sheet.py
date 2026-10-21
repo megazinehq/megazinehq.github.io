@@ -50,7 +50,21 @@ addMapping("Sans", 0, 1, "Sans-Italic"); addMapping("Sans", 1, 1, "Sans-BoldItal
 ROOT = Path(__file__).resolve().parent.parent
 DATA = json.loads((ROOT / "works.json").read_text())
 BASE = DATA["zine"]["base_url"].rstrip("/") + "/"
-ISSUE = DATA["issues"][-1]
+def _pick_issue():
+    """--issue NN prints that issue; otherwise the one the site shows today."""
+    import datetime, sys
+    want = next((sys.argv[i + 1] for i, x in enumerate(sys.argv) if x == "--issue" and i + 1 < len(sys.argv)), None)
+    if want:
+        for i in DATA["issues"]:
+            if i["id"] == want:
+                return i
+        raise SystemExit(f"No issue {want!r} in works.json.")
+    month = datetime.date.today().strftime("%Y-%m")
+    live = [i for i in DATA["issues"] if not i.get("draft") and i.get("works") and i.get("month", "") <= month]
+    return (live or DATA["issues"])[-1]
+
+
+ISSUE = _pick_issue()
 WORKS = {w["id"]: w for w in DATA["works"]}
 
 PW, PH = landscape(letter)
@@ -320,7 +334,7 @@ def p_inside_foot(c, copy, run):
 
 
 def p_back(c, copy, run):
-    url = BASE + (f"?copy={copy}" if copy else "")
+    url = BASE + f"?issue={ISSUE['id']}" + (f"&copy={copy}" if copy else "")
     extra = ISSUE["works"][11] if len(ISSUE["works"]) > 11 else None
     s = 1.3 * inch if extra else W - 2 * PAD - 0.3 * inch
     label(c, "THE REST LIVES HERE", PAD, H - PAD - 8, size=8)
@@ -418,6 +432,7 @@ def sheet(c, copy=None, run=None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--copies", type=int, default=DATA["zine"].get("print_run", 50))
+    ap.add_argument("--issue", help="issue id to print, e.g. 02 (default: the issue live on the site today)")
     a = ap.parse_args()
     out = ROOT / "print"
     out.mkdir(exist_ok=True)
