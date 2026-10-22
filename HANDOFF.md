@@ -4,6 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-10-21 (night) · Sam's Claude
 
+- The masthead logo **jitters** every 3.5–9 s (a 0.34 s copier-slip hop, sometimes twice): `@keyframes logo-jit-*` and a small script at the end of `tools/page.html`. Off with reduced motion.
 - **Bell Weather** now offers the norns script as a download: `downloads/bellweather-norns.zip` (from private repo `samuelling/bellweather`, v1.3.0). That version adds a **location** param (auto from the network, Watertown, or custom lat/lon) so a downloaded copy plays its own weather. To update the zip: zip the repo's `bellweather.lua`, `lib/`, `README.md`, `LICENSE` under a top folder `bellweather/`.
 
 ## 2026-10-21 (night) · Matt's Claude

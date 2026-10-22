@@ -86,6 +86,20 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--pink); outline-
   white-space: nowrap;
 }
 .logo .mis .lc { color: var(--pink); }
+/* Every few seconds the logo jitters like a sheet slipping in the copier:
+   the ink hops a hair and the pink pass jumps out of register, then settles. */
+@keyframes logo-jit-ink {
+  0% { transform: none; } 20% { transform: translate(-.014em, .006em); }
+  45% { transform: translate(.012em, -.01em) skewX(-1.2deg); } 70% { transform: translate(-.006em, .004em); }
+  100% { transform: none; }
+}
+@keyframes logo-jit-mis {
+  0% { transform: translate(.035em, .03em) rotate(-.6deg); } 20% { transform: translate(.075em, .012em) rotate(-1.3deg); }
+  45% { transform: translate(.008em, .055em) rotate(.25deg); } 70% { transform: translate(.055em, .038em) rotate(-.95deg); }
+  100% { transform: translate(.035em, .03em) rotate(-.6deg); }
+}
+.logo.jit .ink { animation: logo-jit-ink .34s steps(1, end); }
+.logo.jit .mis { animation: logo-jit-mis .34s steps(1, end); }
 /* Eyeball QR left of the title, as tall as the title. Fixed light colours on its own
    paper sticker so it scans in both themes; drawn by the eyeqr script at the end. */
 .mast-row { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 0 clamp(10px, 2.4vw, 28px); margin: 18px 0 14px; }
@@ -611,6 +625,23 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     var o = eyes[small[Math.floor(Math.random() * small.length)]], all = Math.random() < .3;
     eyes.forEach(function (e, i) { setTimeout(function () { shut(i, 150); }, all ? 0 : Math.hypot(e.x - o.x, e.y - o.y) * (still ? 0 : .9)); });
   });
+})();
+</script>
+<script>
+/* logo jitter: a short hop every 3.5–9 s, sometimes twice; off for reduced motion */
+(function () {
+  var logo = document.querySelector(".logo");
+  if (!logo || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  function hop() {
+    logo.classList.remove("jit"); void logo.offsetWidth; logo.classList.add("jit");
+  }
+  logo.addEventListener("animationend", function (e) { if (e.target.classList.contains("mis")) logo.classList.remove("jit"); });
+  (function next() {
+    setTimeout(function () {
+      if (!document.hidden) { hop(); if (Math.random() < .25) setTimeout(hop, 420); }
+      next();
+    }, 3500 + Math.random() * 5500);
+  })();
 })();
 </script>
 
