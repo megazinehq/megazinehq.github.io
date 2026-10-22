@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-22 (morning, 3) · Sam's Claude
+
+- Added **Titanosaur** (Thunderblitz album, made by hands) to Issue 02 and unhid it. Issue 02 is now Metamers, Ambit, Animal Sanctuary, Titanosaur. PDFs regenerated.
+
 ## 2026-10-22 (morning, 2) · Sam's Claude
 
 - Issue 02 (Nov) now: Metamers, Ambit: Quartet, Animal Sanctuary (both unhidden). Animal Sanctuary links to its Pages build; Ambit's App Store button is still "In review": swap in the real link when approved. PDFs regenerated.

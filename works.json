@@ -39,7 +39,8 @@
       "works": [
         "metamers",
         "ambit",
-        "animal-sanctuary"
+        "animal-sanctuary",
+        "titanosaur"
       ]
     }
   ],
@@ -306,8 +307,7 @@
       "go": {
         "label": "Listen anywhere",
         "url": "https://distrokid.com/hyperfollow/thunderblitz/titanosaur"
-      },
-      "hidden": true
+      }
     },
     {
       "id": "topple-house",
