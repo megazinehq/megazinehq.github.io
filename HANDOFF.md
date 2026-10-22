@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-22 (morning, 4) · Sam's Claude
+
+- The BBS is now **MEGAzine BBS** (was The Septic Tankz; its elite side is now the Septic Tank). Updated the work's title and blurb in `works.json` (id `septic-tankz` unchanged, it's on printed Issue 01), the submissions text on the site, and CLAUDE/MATT/README. The board has open enrollment on for now, so submitters don't wait for validation. Issue 01 PDFs regenerated.
+
 ## 2026-10-22 (morning, 3) · Sam's Claude
 
 - Added **Titanosaur** (Thunderblitz album, made by hands) to Issue 02 and unhid it. Issue 02 is now Metamers, Ambit, Animal Sanctuary, Titanosaur. PDFs regenerated.

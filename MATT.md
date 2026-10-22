@@ -43,7 +43,7 @@ Descriptions stay oblique about influences: no names of other people's games, fi
 
 ## Other people's work
 
-Outsiders submit through The Septic Tankz BBS: they dial in, make an account, Sam validates them as SysOp, and they post in the **megaZINE Submissions** message base (its first post has the template). To accept one, tell Claude "add <title> from <handle>'s BBS submission" and paste or summarize the post; it goes in with their name on the seal.
+Outsiders submit through MEGAzine BBS (formerly The Septic Tankz): they dial in, make an account (open enrollment is on for now, so no wait; Sam can switch validation back on), and they post in the **megaZINE Submissions** message base (its first post has the template). To accept one, tell Claude "add <title> from <handle>'s BBS submission" and paste or summarize the post; it goes in with their name on the seal.
 
 ## The paper
 

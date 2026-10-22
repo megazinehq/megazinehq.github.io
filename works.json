@@ -129,14 +129,14 @@
     },
     {
       "id": "septic-tankz",
-      "title": "The Septic Tankz",
+      "title": "MEGAzine BBS",
       "kind": "toy",
       "made": "both",
       "makers": [
         "Sam"
       ],
       "platform": "Web",
-      "blurb": "A dial-up BBS that takes one caller at a time unless the sysop adds phone lines. ASCII art, a text adventure, upload/download ratios, and rumors of a secret login.",
+      "blurb": "The collective's own dial-up BBS, and where outside submissions come in. One caller at a time unless the sysop adds phone lines; message boards, files with upload/download ratios, door games, and rumors of a secret login.",
       "links": [
         {
           "label": "Dial in",

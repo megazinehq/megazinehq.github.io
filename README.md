@@ -66,7 +66,7 @@ Each issue in `works.json` has a `month` (`"2026-11"`). The site shows the lates
 
 ## Outside submissions
 
-Anyone else submits through The Septic Tankz BBS (`samuelling.github.io/BBS`): make an account, wait for the SysOp to validate it, then post in the **megaZINE Submissions** base using the template in its first post. The SysOp is pinged for each submission. Accepted pieces go into `works.json` with the submitter's name on the seal.
+Anyone else submits through MEGAzine BBS (`samuelling.github.io/BBS`, formerly The Septic Tankz): make an account (open enrollment for now; otherwise wait for the SysOp to validate it), then post in the **megaZINE Submissions** base using the template in its first post. The SysOp is pinged for each submission. Accepted pieces go into `works.json` with the submitter's name on the seal.
 
 ## Links the site understands
 

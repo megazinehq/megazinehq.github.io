@@ -83,7 +83,7 @@ python3 tools/make_sheet.py --issue 02 # print a specific issue (default: the on
 
 ## Outside submissions
 
-People other than the editors submit through the BBS (repo `samuelling/BBS`, The Septic Tankz): they make an account, the SysOp (Sam) validates them, and they post in the **megaZINE Submissions** message base using the template in its first post (title, what, link, how it was made, seal name). The SysOp gets a Slack/Telegram ping for each one. When an editor accepts one, add it to `works.json` with the submitter's seal name in `makers`, and tell them by board e-mail. Don't take submissions any other way.
+People other than the editors submit through the BBS (repo `samuelling/BBS`, MEGAzine BBS, formerly The Septic Tankz; work id `septic-tankz` stays because it's in printed Issue 01): they make an account (open enrollment for now; the SysOp can require validation again), and they post in the **megaZINE Submissions** message base using the template in its first post (title, what, link, how it was made, seal name). The SysOp gets a Slack/Telegram ping for each one. When an editor accepts one, add it to `works.json` with the submitter's seal name in `makers`, and tell them by board e-mail. Don't take submissions any other way.
 
 ## Site behaviour worth knowing
 
