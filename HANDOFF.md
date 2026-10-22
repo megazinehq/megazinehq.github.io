@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-22 (morning, 2) · Sam's Claude
+
+- Issue 02 (Nov) now: Metamers, Ambit: Quartet, Animal Sanctuary (both unhidden). Animal Sanctuary links to its Pages build; Ambit's App Store button is still "In review": swap in the real link when approved. PDFs regenerated.
+
 ## 2026-10-22 (morning) · Sam's Claude
 
 - Issue 02 (November) is no longer a draft: it holds just **Metamers** so far and goes live by itself on 1 Nov. Theme still empty; add more pieces and a theme before then. Print PDFs for 02 regenerated.

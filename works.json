@@ -37,7 +37,9 @@
       "date": "November 2026",
       "theme": "",
       "works": [
-        "metamers"
+        "metamers",
+        "ambit",
+        "animal-sanctuary"
       ]
     }
   ],
@@ -84,8 +86,7 @@
           "label": "How Aether listens",
           "url": "https://samuelling.github.io/Aether/"
         }
-      ],
-      "hidden": true
+      ]
     },
     {
       "id": "big-apple-sam",
@@ -271,8 +272,12 @@
       "idea": "Maya",
       "platform": "Web",
       "blurb": "Find glowing foxes and small dragons in a magical world, bring them home, and grow them a sanctuary.",
-      "links": [],
-      "hidden": true
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://samuelling.github.io/Animal-Sanctuary/"
+        }
+      ]
     },
     {
       "id": "titanosaur",
