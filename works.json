@@ -202,12 +202,16 @@
       "makers": [
         "Sam"
       ],
-      "platform": "Web",
+      "platform": "Web · norns",
       "blurb": "A drone-and-bell machine played by today's weather and the hour where you are. It started life as a script for a small music computer.",
       "links": [
         {
           "label": "Listen",
           "url": "https://samuelling.github.io/Bell-weathered/"
+        },
+        {
+          "label": "norns script (.zip)",
+          "url": "https://megazine.org/downloads/bellweather-norns.zip"
         }
       ]
     },

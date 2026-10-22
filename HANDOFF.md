@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-21 (night) · Sam's Claude
+
+- **Bell Weather** now offers the norns script as a download: `downloads/bellweather-norns.zip` (from private repo `samuelling/bellweather`, v1.3.0). That version adds a **location** param (auto from the network, Watertown, or custom lat/lon) so a downloaded copy plays its own weather. To update the zip: zip the repo's `bellweather.lua`, `lib/`, `README.md`, `LICENSE` under a top folder `bellweather/`.
+
 ## 2026-10-21 (night) · Matt's Claude
 
 - Added Matt's **PCASynth and PCAWave** (sound, both; one entry for the two synth plug-ins) to Issue 01 as the 12th piece, on the back cover. Issue 01 is full on the booklet now; a 13th piece turns the sheet double-sided. PDFs regenerated, no overflow.
