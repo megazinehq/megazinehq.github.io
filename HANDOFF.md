@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-22 (morning) · Sam's Claude
+
+- Issue 02 (November) is no longer a draft: it holds just **Metamers** so far and goes live by itself on 1 Nov. Theme still empty; add more pieces and a theme before then. Print PDFs for 02 regenerated.
+
 ## 2026-10-22 · Sam's Claude
 
 - Added **Metamers** (Sam's paper generator, toy, both) to `works.json` and to draft Issue 02 only; Issue 01 untouched. `made: both` assumed, as for Sam's other pieces: confirm.
