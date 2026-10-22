@@ -37,7 +37,9 @@
       "date": "November 2026",
       "theme": "",
       "draft": true,
-      "works": []
+      "works": [
+        "metamers"
+      ]
     }
   ],
   "works": [
@@ -412,6 +414,23 @@
         {
           "label": "About the synths",
           "url": "https://www.crumplab.com/PCASynth/"
+        }
+      ]
+    },
+    {
+      "id": "metamers",
+      "title": "Metamers",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "A button that writes a scientific paper that was never written, with figures, observers and statistics that agree with one another. It is built from twenty-two years of one vision lab's papers, in about the weight of a single one of them.",
+      "links": [
+        {
+          "label": "Press the button",
+          "url": "https://samuelling.github.io/LargeLingModel/"
         }
       ]
     }

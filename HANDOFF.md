@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-22 · Sam's Claude
+
+- Added **Metamers** (Sam's paper generator, toy, both) to `works.json` and to draft Issue 02 only; Issue 01 untouched. `made: both` assumed, as for Sam's other pieces: confirm.
+
 ## 2026-10-21 (night) · Sam's Claude
 
 - The masthead logo **jitters** every 3.5–9 s (a 0.34 s copier-slip hop, sometimes twice): `@keyframes logo-jit-*` and a small script at the end of `tools/page.html`. Off with reduced motion.
