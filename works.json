@@ -54,7 +54,7 @@
         "Sam"
       ],
       "platform": "Web · iPhone · iPad",
-      "blurb": "A city sim of the real Watertown, MA, built to scale from assessor records, with scenarios lifted from local news comment sections and a real traffic model under the hood. Ask any problem \"Why?\" and it shows you the chain of causes.",
+      "blurb": "A city sim of the real Watertown, MA, built to scale from assessor records, with scenarios lifted from local news comment sections and a real traffic model under the hood. Ask any problem \"Why?\" and it shows you the chain of causes. To see its innards, open Help → Behind the Scenes.",
       "links": [
         {
           "label": "Play in browser",

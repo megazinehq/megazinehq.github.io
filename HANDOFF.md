@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-22 (night) · Sam's Claude
+
+- **Townies** blurb now ends "To see its innards, open Help → Behind the Scenes." Paper unchanged (first sentence only).
+
 ## 2026-10-22 (morning, 4) · Sam's Claude
 
 - The BBS is now **MEGAzine BBS** (was The Septic Tankz; its elite side is now the Septic Tank). Updated the work's title and blurb in `works.json` (id `septic-tankz` unchanged, it's on printed Issue 01), the submissions text on the site, and CLAUDE/MATT/README. The board has open enrollment on for now, so submitters don't wait for validation. Issue 01 PDFs regenerated. The blurb now also mentions Matt's ChairQuest, which is a door game on the board (first sentence unchanged, so the paper didn't change).
