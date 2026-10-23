@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-23 · Sam's Claude
+
+- Added **ChairQuest** (Matt, made: both, web version at crumplab.github.io/ChairQuest) as a work and to Issue 02. Matt: please check the blurb and that you're happy with the seal. Issue 02 is now Metamers, Ambit, Animal Sanctuary, Titanosaur, ChairQuest. Ambit's App Store button is still "In review". PDFs regenerated.
+
 ## 2026-10-22 (night) · Sam's Claude
 
 - **Townies** blurb now ends "To see its innards, open Help → Behind the Scenes." Paper unchanged (first sentence only).

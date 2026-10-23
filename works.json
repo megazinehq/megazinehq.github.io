@@ -40,7 +40,8 @@
         "metamers",
         "ambit",
         "animal-sanctuary",
-        "titanosaur"
+        "titanosaur",
+        "chairquest"
       ]
     }
   ],
@@ -435,6 +436,23 @@
         {
           "label": "Press the button",
           "url": "https://samuelling.github.io/LargeLingModel/"
+        }
+      ]
+    },
+    {
+      "id": "chairquest",
+      "title": "ChairQuest",
+      "kind": "game",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web",
+      "blurb": "A quest game in which you try to survive a year as a university department chair. It's silly, and mostly written by Claude.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://crumplab.github.io/ChairQuest/"
         }
       ]
     }
