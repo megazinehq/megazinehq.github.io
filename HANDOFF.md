@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-23 (3) · Sam's Claude
+
+- Added **Last Skip** (phone rock-skipper, Sam, made: both) to Issue 02, now 6 pieces. PDFs regenerated.
+
 ## 2026-10-23 (2) · Sam's Claude
 
 - "Between money and doom" is the zine's tagline, not an issue theme. The site header and the paper cover now always show `zine.tagline`; an issue's `theme` is optional (cleared on both issues). Printed Issue 01 looks the same. Docs updated.

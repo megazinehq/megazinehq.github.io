@@ -41,7 +41,8 @@
         "ambit",
         "animal-sanctuary",
         "titanosaur",
-        "chairquest"
+        "chairquest",
+        "last-skip"
       ]
     }
   ],
@@ -453,6 +454,23 @@
         {
           "label": "Play",
           "url": "https://crumplab.github.io/ChairQuest/"
+        }
+      ]
+    },
+    {
+      "id": "last-skip",
+      "title": "Last Skip",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web (on your phone)",
+      "blurb": "Your phone is the stone: throw it across a simulated pond and count the skips. Farewell mode counts the real bounces and sends them live to a friend, down to the last splash.",
+      "links": [
+        {
+          "label": "Open on your phone",
+          "url": "https://samuelling.github.io/skipper/"
         }
       ]
     }
