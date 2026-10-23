@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-23 (4) · Sam's Claude
+
+- Dashboard visitors now use GoatCounter's site-wide per-day counts (deduped across pages) and are labeled "visitor-days". Docs unchanged (no structural change).
+
 ## 2026-10-23 (3) · Sam's Claude
 
 - Added **Last Skip** (phone rock-skipper, Sam, made: both) to Issue 02, now 6 pieces. PDFs regenerated.

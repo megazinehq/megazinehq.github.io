@@ -151,7 +151,7 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
   </div>
 </main>
 
-<footer class="wrap">Counts come from GoatCounter (no cookies) and refresh hourly. Visitors are counted once per page per day.</footer>
+<footer class="wrap">Counts come from GoatCounter (no cookies) and refresh hourly. A visitor is counted once per day across the whole site, so repeat visits on other days count again (no cookies means no way to tell).</footer>
 <div id="tip" hidden></div>
 
 <style>.sub { margin: 0 0 12px; font: 700 .78rem/1.2 var(--type); letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }</style>
@@ -226,7 +226,10 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
     const scans = P.filter((p) => p.event && p.path.startsWith("/scan/") && !p.path.startsWith("/scan/copy-"));
     const copyScans = P.filter((p) => p.event && p.path.startsWith("/scan/copy-"));
     const clicks = P.filter((p) => p.event && p.path.startsWith("/click/") && titles[p.path.slice(7)]);
-    const visitsByDay = sumDays(pages), scansByDay = sumDays([...scans, ...copyScans]);
+    // Site-wide visitors per day from GoatCounter (a person who opens two pages counts once);
+    // fall back to summing pages if the file predates that field.
+    const siteDays = st.days && Object.keys(st.days).length ? st.days : null;
+    const visitsByDay = siteDays || sumDays(pages), scansByDay = sumDays([...scans, ...copyScans]);
     // Start the day charts a couple of days before the first visit (at least two weeks shown),
     // so a young site isn't a long row of empty days.
     const all = dayList(st.range.start, st.range.end);
@@ -237,8 +240,8 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
     const copiesLit = copyScans.map((p) => parseInt(p.path.slice("/scan/copy-".length), 10)).filter((n) => n > 0);
 
     $("tiles").innerHTML = [
-      ["Visitors, last 7 days", fmt(last7), "people on the site"],
-      [`Visitors, ${st.range.days} days`, fmt(tot(pages)), "site and back issues"],
+      ["Visitor-days, last 7 days", fmt(last7), "people on the site, once per day"],
+      [`Visitor-days, ${st.range.days} days`, fmt(siteDays ? Object.values(siteDays).reduce((a, v) => a + v, 0) : tot(pages)), "someone back on 3 days counts 3 times"],
       ["Paper scans", fmt(tot(scans) + tot(copyScans)), `${fmt(tot(scans))} on pieces, ${fmt(tot(copyScans))} on back covers`],
       ["Clicks out", fmt(tot(clicks)), "from the site to a piece"],
       ["Copies picked up", `${copiesLit.length}<span style="font-size:.45em;color:var(--muted)"> / ${run}</span>`, "back covers scanned at least once"],
