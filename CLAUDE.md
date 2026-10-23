@@ -66,7 +66,7 @@ Never guess `made`. Ask.
 
 ## Issues
 
-Issues are monthly. Each has `id` ("02"), `month` ("2026-11"), `date` ("November 2026"), `theme`, and `works` (the lineup, in paper order). The site shows the **latest issue whose month has arrived** (viewer's local time), skipping any with `"draft": true` or no works; every earlier live issue appears under **Back issues** at `?issue=NN`. So the next issue can be built ahead of time: fill its `theme` and `works`, remove `"draft"`, and it goes live by itself on the 1st. A piece can appear in more than one issue.
+Issues are monthly. Each has `id` ("02"), `month` ("2026-11"), `date` ("November 2026"), optional `theme` (a subject for the issue; the tagline in `zine.tagline` always shows up top), and `works` (the lineup, in paper order). The site shows the **latest issue whose month has arrived** (viewer's local time), skipping any with `"draft": true` or no works; every earlier live issue appears under **Back issues** at `?issue=NN`. So the next issue can be built ahead of time: fill its `works`, remove `"draft"`, and it goes live by itself on the 1st. A piece can appear in more than one issue.
 
 The paper fits **24**. The folded booklet takes the first 12: pages 3–7 take the first ten in pairs, page 2 takes the 11th, the back cover the 12th. With more than 12, the sheet gets a back side (print duplex): a poster seen only when the zine is unfolded, with works 13–24 two to a panel, and the back cover says to unfold it. More than 24 and the extras appear only on the site. Never change the `id` of a work that's in a printed issue: the paper's codes use it.
 

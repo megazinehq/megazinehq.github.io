@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-23 (2) · Sam's Claude
+
+- "Between money and doom" is the zine's tagline, not an issue theme. The site header and the paper cover now always show `zine.tagline`; an issue's `theme` is optional (cleared on both issues). Printed Issue 01 looks the same. Docs updated.
+
 ## 2026-10-23 · Sam's Claude
 
 - Added **ChairQuest** (Matt, made: both, web version at crumplab.github.io/ChairQuest) as a work and to Issue 02. Matt: please check the blurb and that you're happy with the seal. Issue 02 is now Metamers, Ambit, Animal Sanctuary, Titanosaur, ChairQuest. Ambit's App Store button is still "In review". PDFs regenerated.

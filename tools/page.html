@@ -416,7 +416,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     track(isBack ? `/issue/${issue.id}` : "/", isBack ? `Back issue ${issue.id}` : document.title, false);
 
     $("issue-line").textContent = `Issue ${issue.id} · ${issue.date}`;
-    $("issue-theme").textContent = issue.theme;
+    $("issue-theme").textContent = data.zine.tagline || "";
     if (isBack) {
       document.title = `megaZINE · Issue ${issue.id}`;
       $("issue-h").textContent = `Issue ${issue.id}`;

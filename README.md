@@ -62,7 +62,7 @@ To feature it in an issue, add its `id` to that issue's `works` list (the paper 
 
 ## Monthly issues and back issues
 
-Each issue in `works.json` has a `month` (`"2026-11"`). The site shows the latest issue whose month has arrived; older ones are listed under **Back issues** and open at `megazine.org/?issue=01`. To prepare next month's issue, fill in its `theme` and `works` and remove `"draft": true`; it goes live on the 1st on its own. Issue 02 (November) is already there as an empty draft.
+Each issue in `works.json` has a `month` (`"2026-11"`). The site shows the latest issue whose month has arrived; older ones are listed under **Back issues** and open at `megazine.org/?issue=01`. To prepare next month's issue, fill in its `works` and remove `"draft": true`; it goes live on the 1st on its own. Issue 02 (November) is already there as an empty draft.
 
 ## Outside submissions
 

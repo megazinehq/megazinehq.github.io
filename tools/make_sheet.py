@@ -268,7 +268,7 @@ def p_cover(c, copy, run):
     label(c, f"ISSUE {ISSUE['id']}", PAD, H - PAD - 104, size=8)
     c.setFont("Mono-Bold", 8)
     c.drawRightString(W - PAD, H - PAD - 104, ISSUE["date"].upper())
-    para(c, ISSUE["theme"].lower(), ParagraphStyle("th", fontName="Sans-Italic", fontSize=13, leading=15),
+    para(c, DATA["zine"]["tagline"].lower(), ParagraphStyle("th", fontName="Sans-Italic", fontSize=13, leading=15),
          PAD, H - PAD - 114, W - 2 * PAD)
     if copy:
         stamp(c, f"COPY {copy:03d} / {run}", W - PAD, PAD + 4, size=8)
