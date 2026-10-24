@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-24 · Sam's Claude
+
+- Added **HomeBlocks** (toy, both, Sam) to Issue 02 as the 6th piece: the standalone 90s-homepage site from Big Apple Sam, at samuelling.github.io/Big-Apple-Sam/web/ (each resident's page links to their window in the city and back). Issue 02 PDFs regenerated, no overflow.
+
 ## 2026-10-23 (6) · Sam's Claude
 
 - **Animal Sanctuary** credit is now makers Maya, Sam, Emmy (dropped the separate `idea` field). PDFs regenerated.

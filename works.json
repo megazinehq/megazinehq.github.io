@@ -41,7 +41,8 @@
         "ambit",
         "animal-sanctuary",
         "chairquest",
-        "last-skip"
+        "last-skip",
+        "homeblocks"
       ]
     }
   ],
@@ -108,6 +109,27 @@
         {
           "label": "Mac screen saver",
           "url": "https://github.com/samuelling/Big-Apple-Sam/releases/download/latest/Big-Apple-Sam-Mac.dmg"
+        }
+      ]
+    },
+    {
+      "id": "homeblocks",
+      "title": "HomeBlocks",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web · from Big Apple Sam",
+      "blurb": "Every resident of Big Apple Sam has a homepage the way people made them in 1998: tiled backgrounds, guestbooks, webrings, a MIDI tune and an Under Construction sign that never comes down. Each page is written from that person's life in the city, so it changes when their life does. Click through to see their window in the skyline, then back to their page.",
+      "links": [
+        {
+          "label": "Start surfing",
+          "url": "https://samuelling.github.io/Big-Apple-Sam/web/"
+        },
+        {
+          "label": "See the city",
+          "url": "https://samuelling.github.io/Big-Apple-Sam/"
         }
       ]
     },
