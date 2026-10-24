@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-23 (5) · Sam's Claude
+
+- Took **Titanosaur** out of Issue 02 for now (entry kept, not hidden). Issue 02 is Metamers, Ambit, Animal Sanctuary, ChairQuest, Last Skip. PDFs regenerated.
+
 ## 2026-10-23 (4) · Sam's Claude
 
 - Dashboard visitors now use GoatCounter's site-wide per-day counts (deduped across pages) and are labeled "visitor-days". Docs unchanged (no structural change).
