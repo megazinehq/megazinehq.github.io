@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-23 (6) · Sam's Claude
+
+- **Animal Sanctuary** credit is now makers Maya, Sam, Emmy (dropped the separate `idea` field). PDFs regenerated.
+
 ## 2026-10-23 (5) · Sam's Claude
 
 - Took **Titanosaur** out of Issue 02 for now (entry kept, not hidden). Issue 02 is Metamers, Ambit, Animal Sanctuary, ChairQuest, Last Skip. PDFs regenerated.

@@ -330,7 +330,7 @@ def p_inside_foot(c, copy, run):
     """Bottom-right panel of the back: how to get in the next one."""
     label(c, "PUT SOMETHING IN", PAD, H - PAD - 8, size=8)
     y = para(c, "An app, a song, a painting, a story, a thing that does nothing useful. "
-                "Dial The Septic Tankz BBS, get validated by the SysOp, and post in megaZINE Submissions. "
+                "Dial the MEGAzine BBS, make an account, and post in megaZINE Submissions. "
                 "Every piece gets a seal saying who made it and how.", body, PAD, H - PAD - 20, W - 2 * PAD)
     s = 1.1 * inch
     c.drawImage(qr_img(BASE), PAD, y - 14 - s, s, s)
@@ -357,7 +357,7 @@ def p_back(c, copy, run):
         y = work_block(c, extra, y - 20, 0.7 * inch)
     else:
         y = para(c, "Want to put something in the next one? An app, a song, a painting, a story. "
-                    "Dial The Septic Tankz BBS, get validated, and post in megaZINE Submissions. "
+                    "Dial the MEGAzine BBS, make an account, and post in megaZINE Submissions. "
                     "The site has the number.", small,
                  PAD, yq - 32, W - 2 * PAD)
     if y < PAD + 26 and not copy:

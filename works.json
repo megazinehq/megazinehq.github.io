@@ -269,9 +269,10 @@
       "kind": "game",
       "made": "both",
       "makers": [
-        "Sam"
+        "Maya",
+        "Sam",
+        "Emmy"
       ],
-      "idea": "Maya",
       "platform": "Web",
       "blurb": "Find glowing foxes and small dragons in a magical world, bring them home, and grow them a sanctuary.",
       "links": [
