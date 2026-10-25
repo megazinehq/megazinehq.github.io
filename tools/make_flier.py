@@ -61,11 +61,14 @@ def eye(c, cx, cy, r, tilt=0, seed=0):
     c.rotate(tilt)
     globe = c.beginPath()
     globe.circle(0, 0, r)
-    c.setFillColor(Color(0, 0, 0, alpha=0.24))
+    c.setFillColor(Color(0, 0, 0, alpha=0.10))
     c.circle(0, 0, r, stroke=0, fill=1)
+    c.setStrokeColor(Color(0, 0, 0, alpha=0.9))
+    c.setLineWidth(max(0.5, r * 0.03))
+    c.circle(0, 0, r, stroke=1, fill=0)
     c.clipPath(globe, stroke=0, fill=0)
     if rnd.random() < 0.6:                              # a vein or two creeping in from the edge
-        c.setStrokeColor(Color(0, 0, 0, alpha=0.5))
+        c.setStrokeColor(Color(0, 0, 0, alpha=0.8))
         c.setLineWidth(max(0.5, r * 0.05))
         for _ in range(rnd.randint(2, 4)):
             t = rnd.uniform(0, 6.283)
@@ -78,32 +81,59 @@ def eye(c, cx, cy, r, tilt=0, seed=0):
     ix, iy = r * rnd.uniform(-0.15, 0.15), r * rnd.uniform(-0.15, 0.15)   # where it's looking
     ri = r * 0.62
     rp = ri * 0.6
-    c.setFillColor(Color(0, 0, 0, alpha=0.16))
-    c.setStrokeColor(Color(0, 0, 0, alpha=0.42))
+    c.setFillColor(Color(0, 0, 0, alpha=0.08))
+    c.setStrokeColor(Color(0, 0, 0, alpha=0.9))
     c.setLineWidth(max(0.5, r * 0.035))
     c.circle(ix, iy, ri, stroke=1, fill=1)
     for j in range(10):
         a = j * math.pi / 5 + rnd.uniform(-0.1, 0.1)
         c.line(ix + rp * 1.08 * math.cos(a), iy + rp * 1.08 * math.sin(a),
                ix + ri * 0.9 * math.cos(a), iy + ri * 0.9 * math.sin(a))
-    c.setFillColor(Color(0, 0, 0, alpha=0.36))
+    c.setFillColor(Color(0, 0, 0, alpha=0.7))
     c.circle(ix, iy, rp, stroke=0, fill=1)
     c.setFillColor(white)
     c.circle(ix - rp * 0.38, iy + rp * 0.42, max(rp * 0.3, 0.9), stroke=0, fill=1)
     c.restoreState()
 
 
-def draw_page(c):
-    # background watermark: a scatter of watching eyes
-    rnd = random.Random(11)
-    for cx, cy, r in [(0.80, 0.50, 105), (0.36, 0.31, 80), (0.66, 0.28, 52), (0.10, 0.33, 44),
-                      (0.92, 0.30, 36), (0.56, 0.42, 30), (0.80, 0.68, 30)]:
-        eye(c, cx * LW, cy * LH, r * 0.62, rnd.uniform(0, 360), rnd.randint(0, 999))
-
+def layout():
+    """Masthead size and baseline, shared by the page and the eye scatter."""
     big = 200
     while wordmark_width(big) > LW - 2 * M - 8:
         big -= 1
-    top = LH - M - big * 0.9
+    return big, LH - M - big * 0.9
+
+
+def scatter_eyes(n=30, seed=5):
+    """Eyeballs spread over the open page, never touching each other, the logo or the tabs."""
+    big, top = layout()
+    lo, hi = M + TAB_H + 26, top - big * 0.2 - 8
+    rnd = random.Random(seed)
+    placed = []
+    for _ in range(4000):
+        r = rnd.choice([16, 18, 22, 26, 30, 36, 44, 54, 70, 95])
+        x, y = rnd.uniform(M + r, LW - M - r), rnd.uniform(lo + r, hi - r)
+        if all(math.hypot(x - px, y - py) > r + pr + 7 for px, py, pr, *_ in placed):
+            placed.append((x, y, r, rnd.uniform(0, 360), rnd.randint(0, 9999)))
+        if len(placed) >= n:
+            break
+    return placed
+
+
+def draw_eyes(c):
+    for x, y, r, tilt, seed in scatter_eyes():
+        eye(c, x, y, r, tilt, seed)
+
+
+def draw_page(c, layer="all"):
+    """layer: 'all' (clean vector page), 'base' (no eyes) or 'eyes' (only the eyes)."""
+    if layer == "eyes":
+        draw_eyes(c)
+        return
+    if layer == "all":
+        draw_eyes(c)
+
+    big, top = layout()
     wordmark(c, M, top, big)
     c.setStrokeColor(black)
     c.setLineWidth(3)
@@ -145,7 +175,7 @@ def draw_page(c):
         label(c, "SCAN", cx - 9, M + 7, size=5.5, spacing=0.8)
 
 
-def photocopy(pdf_bytes, dpi=300, seed=7):
+def photocopy(pdf_bytes, eyes_bytes, dpi=300, seed=7):
     """Rasterise the clean page and degrade it like a tired copier. Returns a 1-bit PIL image."""
     import numpy as np, pypdfium2 as pdfium
     from PIL import Image
@@ -168,6 +198,12 @@ def photocopy(pdf_bytes, dpi=300, seed=7):
     grain = grain / (grain.std() + 1e-6)
     thr = 0.55 + (0.12 * low + 0.04 * band) * calm + 0.07 * grain * calm
     ink = g < thr
+
+    # the eyeball watermark: toner that barely took. Darkness becomes a thin random stipple.
+    e = np.asarray(pdfium.PdfDocument(eyes_bytes)[0].render(scale=dpi / 72).to_pil().convert("L"),
+                   dtype=np.float32) / 255.0
+    e = nd.gaussian_filter(e, 0.8)
+    ink |= rng.random((h, w)) < (1.0 - e) * 0.42 * (0.6 + 0.4 * (low * 0.5 + 0.5))
 
     # dust, hairs, and a few dropouts inside solid black
     for _ in range(260):
@@ -207,11 +243,13 @@ def main():
         clean.save()
         print("wrote print/flier.pdf (clean)")
         return
-    buf = io.BytesIO()
-    c = canvas.Canvas(buf, pagesize=letter)
-    draw_page(c)
-    c.save()
-    img = photocopy(buf.getvalue())
+    layers = {}
+    for name in ("base", "eyes"):
+        layers[name] = io.BytesIO()
+        c = canvas.Canvas(layers[name], pagesize=letter)
+        draw_page(c, name)
+        c.save()
+    img = photocopy(layers["base"].getvalue(), layers["eyes"].getvalue())
     png = io.BytesIO()
     img.save(png, format="PNG", optimize=True)
     png.seek(0)
