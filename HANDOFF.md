@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-25 (2) · Sam's Claude
+
+- New **`tools/make_flier.py`** → `print/flier.pdf`: a letter-page wall flier (big logo, four lines of mystery) with ten tear-off tabs, each the logo over a QR to megazine.org?ref=flier. Not tied to any issue. README updated; MATT.md doesn't cover print tools beyond the sheet, so unchanged.
+
 ## 2026-10-25 · Sam's Claude
 
 - Moved **Animal Sanctuary** from Issue 02 to a new **Issue 03** (December 2026, not draft, no theme yet). Issue 02 is Metamers, Ambit, ChairQuest, Last Skip, HomeBlocks. Issue 03 PDFs generated too. Anything else for December goes in its `works`.

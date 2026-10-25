@@ -13,6 +13,7 @@ Each issue is one sheet of paper folded into an 8-page mini-zine. Every code on 
 | `print/issue-01.pdf` | The sheet to photocopy (one master, unnumbered; two pages = front and back). |
 | `print/issue-01-numbered.pdf` | 50 numbered copies, each with its own back-cover code. |
 | `tools/make_sheet.py` | Regenerates the PDFs from `works.json`. |
+| `tools/make_flier.py` | Wall flier with ten tear-off QR tabs (`print/flier.pdf`). The codes carry `?ref=flier`, so GoatCounter lists "flier" under referrers. |
 | `tools/build.py` | Regenerates `index.html` from `tools/page.html`. |
 | `tools/page.html` (`eyeqr` script) | The masthead's eyeball QR code for https://megazine.org/: the QR grid (`ROWS`, error correction H) is drawn as eyes that follow the pointer. Keep each finder square a plain dark frame; eyes on the frames stop it scanning. |
 | `media/` | Images for works (paintings, screenshots). |
@@ -99,6 +100,7 @@ pip install qrcode reportlab
 python3 tools/make_sheet.py              # 50 numbered copies by default
 python3 tools/make_sheet.py --copies 100
 python3 tools/make_sheet.py --issue 02   # a specific issue; default is the one live today
+python3 tools/make_flier.py             # the tear-off flier
 ```
 
 Print on letter paper, landscape, at 100% (no "fit to page"). Black only; it's designed for a photocopier. If the issue has more than 12 pieces the PDF has a back side for each sheet: print **double-sided**. Either flip setting works, because the back is only read with the sheet unfolded.
