@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-25 (3) · Sam's Claude
+
+- Flier restyled: site logo face (Bowlby One SC, bundled in `tools/fonts/`), eyeball watermark, the tagline, and a photocopier pass (rasterised, so `flier.pdf` is an image; `--clean` gives vector). New deps for the flier only: pypdfium2, numpy, pillow, scipy.
+
 ## 2026-10-25 (2) · Sam's Claude
 
 - New **`tools/make_flier.py`** → `print/flier.pdf`: a letter-page wall flier (big logo, four lines of mystery) with ten tear-off tabs, each the logo over a QR to megazine.org?ref=flier. Not tied to any issue. README updated; MATT.md doesn't cover print tools beyond the sheet, so unchanged.
