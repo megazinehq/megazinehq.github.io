@@ -99,6 +99,55 @@ def eye(c, cx, cy, r, tilt=0, seed=0):
     c.restoreState()
 
 
+def eyeball(c, cx, cy, R, rnd, look=(0, 0)):
+    """One module of the eyeball code, in solid toner: black globe, a white-ringed iris with spokes,
+    a black pupil and a glint."""
+    c.setFillColor(black)
+    c.circle(cx, cy, R, stroke=0, fill=1)
+    ri = R * 0.62 * rnd.uniform(0.94, 1.06)
+    rp = ri * rnd.uniform(0.55, 0.64)
+    ix, iy = cx + look[0] * (R - ri) * 0.6, cy + look[1] * (R - ri) * 0.6
+    c.setStrokeColor(white)
+    c.setLineWidth(max(0.35, R * 0.07))
+    c.circle(ix, iy, ri, stroke=1, fill=0)
+    c.setLineWidth(max(0.25, R * 0.04))
+    for j in range(10):
+        a = j * math.pi / 5 + rnd.uniform(-0.1, 0.1)
+        c.line(ix + rp * 1.15 * math.cos(a), iy + rp * 1.15 * math.sin(a),
+               ix + ri * 0.85 * math.cos(a), iy + ri * 0.85 * math.sin(a))
+    c.setFillColor(black)
+    c.circle(ix, iy, rp, stroke=0, fill=1)
+    c.setFillColor(white)
+    c.circle(ix - rp * 0.38, iy + rp * 0.42, max(rp * 0.3, 0.7), stroke=0, fill=1)
+
+
+def eyeball_qr(c, x, y, size, url):
+    """The front page's code, redrawn for this url: every dark module is an eyeball, and the three
+    corner squares are rounded frames around one big eyeball each."""
+    q = qrcode.QRCode(error_correction=ERROR_CORRECT_M, box_size=1, border=0)
+    q.add_data(url)
+    q.make(fit=True)
+    m = q.get_matrix()
+    n = len(m)
+    sz = size / n
+    rnd = random.Random(7)
+    finders = [(0, 0), (0, n - 7), (n - 7, 0)]
+    def in_finder(r_, c_):
+        return any(fr <= r_ < fr + 7 and fc <= c_ < fc + 7 for fr, fc in finders)
+    for r_ in range(n):
+        for c_ in range(n):
+            if m[r_][c_] and not in_finder(r_, c_):
+                eyeball(c, x + (c_ + 0.5) * sz, y + size - (r_ + 0.5) * sz, sz * rnd.uniform(0.5, 0.56), rnd,
+                        (rnd.uniform(-1, 1), rnd.uniform(-1, 1)))
+    for fr, fc in finders:
+        fx, fy = x + fc * sz, y + size - (fr + 7) * sz
+        c.setFillColor(black)
+        c.roundRect(fx, fy, 7 * sz, 7 * sz, 0.9 * sz, stroke=0, fill=1)
+        c.setFillColor(white)
+        c.roundRect(fx + sz, fy + sz, 5 * sz, 5 * sz, 0.4 * sz, stroke=0, fill=1)
+        eyeball(c, fx + 3.5 * sz, fy + 3.5 * sz, sz * 1.55, rnd, (0.3, -0.2))
+
+
 def layout():
     """Masthead size and baseline, shared by the page and the eye scatter."""
     big = 200
@@ -161,7 +210,7 @@ def draw_page(c, layer="all"):
     c.setStrokeColor(black)
     c.setLineWidth(1.5)
     c.rect(BIG_X - 10, BIG_Y - 10, BIG + 20, BIG + 20, stroke=1, fill=1)
-    c.drawImage(qr_img(BIG_URL), BIG_X, BIG_Y, BIG, BIG)
+    eyeball_qr(c, BIG_X, BIG_Y, BIG, BIG_URL)
     c.setFillColor(black)
     label(c, "OR SCAN THIS", BIG_X - 10, BIG_Y + BIG + 18, size=8)
 

@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-25 (5) · Sam's Claude
+
+- The flier's big QR is now the eyeball code (every module an eyeball, same style as the front page), regenerated for `?ref=flier-main`. Decodes with ZXing after the photocopier pass. Tabs stay plain QRs.
+
 ## 2026-10-25 (4) · Sam's Claude
 
 - Flier: 30 faint stippled eyeballs as watermark, plus a big QR on the main page (`?ref=flier-main`, so GoatCounter's referrers tell the big code from the tabs, `?ref=flier`).
