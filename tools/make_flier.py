@@ -25,6 +25,9 @@ LW, LH = letter
 M = 0.25 * inch
 TAB_H = 1.6 * inch
 tab_w = (LW - 2 * M) / TABS
+BIG = 2.3 * inch                                     # the big code on the main page
+BIG_X, BIG_Y = LW - M - BIG - 10, M + TAB_H + 70       # its lower-left corner
+BIG_URL = S.BASE + "?ref=flier-main"
 MIS = Color(0, 0, 0, alpha=0.5)   # the "pink" misregistered pass, in black and white
 
 
@@ -113,7 +116,8 @@ def scatter_eyes(n=30, seed=5):
     for _ in range(4000):
         r = rnd.choice([16, 18, 22, 26, 30, 36, 44, 54, 70, 95])
         x, y = rnd.uniform(M + r, LW - M - r), rnd.uniform(lo + r, hi - r)
-        if all(math.hypot(x - px, y - py) > r + pr + 7 for px, py, pr, *_ in placed):
+        near_qr = BIG_X - 22 - r < x < BIG_X + BIG + 22 + r and BIG_Y - 30 - r < y < BIG_Y + BIG + 30 + r
+        if not near_qr and all(math.hypot(x - px, y - py) > r + pr + 7 for px, py, pr, *_ in placed):
             placed.append((x, y, r, rnd.uniform(0, 360), rnd.randint(0, 9999)))
         if len(placed) >= n:
             break
@@ -153,6 +157,14 @@ def draw_page(c, layer="all"):
     y -= 15
     label(c, "NEW ONES ON THE 1ST OF EVERY MONTH.", M, y, size=9)
 
+    c.setFillColor(white)
+    c.setStrokeColor(black)
+    c.setLineWidth(1.5)
+    c.rect(BIG_X - 10, BIG_Y - 10, BIG + 20, BIG + 20, stroke=1, fill=1)
+    c.drawImage(qr_img(BIG_URL), BIG_X, BIG_Y, BIG, BIG)
+    c.setFillColor(black)
+    label(c, "OR SCAN THIS", BIG_X - 10, BIG_Y + BIG + 18, size=8)
+
     ty = M + TAB_H
     label(c, "TAKE ONE", M, ty + 8, size=8)
     c.setStrokeColor(black)
@@ -187,7 +199,9 @@ def photocopy(pdf_bytes, eyes_bytes, dpi=300, seed=7):
     h, w = g.shape
     yy = np.arange(h)[:, None] / h
     tab_zone = (yy > 1 - (M + TAB_H + 0.5 * inch) / LH).astype(np.float32)   # keep the QR row gentler
-    calm = 1.0 - 0.7 * tab_zone
+    xx = np.arange(w)[None, :] / w
+    big_zone = ((xx > (BIG_X - 30) / LW) & (yy < 1 - (BIG_Y - 30) / LH) & (yy > 1 - (BIG_Y + BIG + 30) / LH)).astype(np.float32)
+    calm = 1.0 - 0.7 * np.maximum(tab_zone, big_zone)
 
     g = nd.gaussian_filter(g, 0.7)                                    # toner spread
     low = nd.gaussian_filter(rng.normal(size=(h, w)).astype(np.float32), 120)

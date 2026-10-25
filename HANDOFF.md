@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-25 (4) · Sam's Claude
+
+- Flier: 30 faint stippled eyeballs as watermark, plus a big QR on the main page (`?ref=flier-main`, so GoatCounter's referrers tell the big code from the tabs, `?ref=flier`).
+
 ## 2026-10-25 (3) · Sam's Claude
 
 - Flier restyled: site logo face (Bowlby One SC, bundled in `tools/fonts/`), eyeball watermark, the tagline, and a photocopier pass (rasterised, so `flier.pdf` is an image; `--clean` gives vector). New deps for the flier only: pypdfium2, numpy, pillow, scipy.
