@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-25 · Sam's Claude
+
+- Moved **Animal Sanctuary** from Issue 02 to a new **Issue 03** (December 2026, not draft, no theme yet). Issue 02 is Metamers, Ambit, ChairQuest, Last Skip, HomeBlocks. Issue 03 PDFs generated too. Anything else for December goes in its `works`.
+
 ## 2026-10-24 · Sam's Claude
 
 - Added **HomeBlocks** (toy, both, Sam) to Issue 02 as the 6th piece: the standalone 90s-homepage site from Big Apple Sam, at samuelling.github.io/Big-Apple-Sam/web/ (each resident's page links to their window in the city and back). Issue 02 PDFs regenerated, no overflow.

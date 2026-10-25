@@ -39,10 +39,18 @@
       "works": [
         "metamers",
         "ambit",
-        "animal-sanctuary",
         "chairquest",
         "last-skip",
         "homeblocks"
+      ]
+    },
+    {
+      "id": "03",
+      "month": "2026-12",
+      "date": "December 2026",
+      "theme": "",
+      "works": [
+        "animal-sanctuary"
       ]
     }
   ],
