@@ -10,7 +10,7 @@ sheet) so it looks like the hundredth copy of a copy.
 Print on paper, cut the dashed lines between tabs (not through the top line), tape up.
 The QR codes carry ?ref=flier, so GoatCounter lists "flier" under referrers.
 """
-import io, random, sys
+import io, math, random, sys
 CLEAN = "--clean" in sys.argv
 sys.argv = [sys.argv[0]]  # make_sheet reads --issue from argv at import; the flier has no issue
 import make_sheet as S
@@ -52,27 +52,44 @@ def wordmark(c, x, y, size):
     c.restoreState()
 
 
-def eye(c, cx, cy, r, tilt=0):
-    """A faint almond eye with iris, pupil and a glint; r is half its width."""
+def eye(c, cx, cy, r, tilt=0, seed=0):
+    """An eyeball like the ones in the front-page code: a round dark globe, an iris with spokes, a
+    pupil, a glint, sometimes a vein. No lids. Drawn faint so it stays a watermark."""
+    rnd = random.Random(seed)
     c.saveState()
     c.translate(cx, cy)
     c.rotate(tilt)
-    lens = c.beginPath()
-    lens.moveTo(-r, 0)
-    lens.curveTo(-r * 0.45, r * 0.78, r * 0.45, r * 0.78, r, 0)
-    lens.curveTo(r * 0.45, -r * 0.78, -r * 0.45, -r * 0.78, -r, 0)
-    c.setLineWidth(max(0.7, r / 40))
-    c.setStrokeColor(Color(0, 0, 0, alpha=0.55))
-    c.drawPath(lens, stroke=1, fill=0)
-    c.clipPath(lens, stroke=0, fill=0)
-    c.setFillColor(Color(0, 0, 0, alpha=0.22))
-    c.circle(0, 0, r * 0.42, stroke=0, fill=1)
-    c.setStrokeColor(Color(0, 0, 0, alpha=0.55))
-    c.circle(0, 0, r * 0.42, stroke=1, fill=0)
-    c.setFillColor(Color(0, 0, 0, alpha=0.6))
-    c.circle(0, 0, r * 0.18, stroke=0, fill=1)
+    globe = c.beginPath()
+    globe.circle(0, 0, r)
+    c.setFillColor(Color(0, 0, 0, alpha=0.24))
+    c.circle(0, 0, r, stroke=0, fill=1)
+    c.clipPath(globe, stroke=0, fill=0)
+    if rnd.random() < 0.6:                              # a vein or two creeping in from the edge
+        c.setStrokeColor(Color(0, 0, 0, alpha=0.5))
+        c.setLineWidth(max(0.5, r * 0.05))
+        for _ in range(rnd.randint(2, 4)):
+            t = rnd.uniform(0, 6.283)
+            p = c.beginPath()
+            p.moveTo(r * 0.98 * math.cos(t), r * 0.98 * math.sin(t))
+            p.curveTo(r * 0.8 * math.cos(t + 0.3), r * 0.8 * math.sin(t + 0.3),
+                      r * 0.7 * math.cos(t - 0.05), r * 0.7 * math.sin(t - 0.05),
+                      r * 0.6 * math.cos(t - 0.1), r * 0.6 * math.sin(t - 0.1))
+            c.drawPath(p, stroke=1, fill=0)
+    ix, iy = r * rnd.uniform(-0.15, 0.15), r * rnd.uniform(-0.15, 0.15)   # where it's looking
+    ri = r * 0.62
+    rp = ri * 0.6
+    c.setFillColor(Color(0, 0, 0, alpha=0.16))
+    c.setStrokeColor(Color(0, 0, 0, alpha=0.42))
+    c.setLineWidth(max(0.5, r * 0.035))
+    c.circle(ix, iy, ri, stroke=1, fill=1)
+    for j in range(10):
+        a = j * math.pi / 5 + rnd.uniform(-0.1, 0.1)
+        c.line(ix + rp * 1.08 * math.cos(a), iy + rp * 1.08 * math.sin(a),
+               ix + ri * 0.9 * math.cos(a), iy + ri * 0.9 * math.sin(a))
+    c.setFillColor(Color(0, 0, 0, alpha=0.36))
+    c.circle(ix, iy, rp, stroke=0, fill=1)
     c.setFillColor(white)
-    c.circle(-r * 0.1, r * 0.1, r * 0.06, stroke=0, fill=1)
+    c.circle(ix - rp * 0.38, iy + rp * 0.42, max(rp * 0.3, 0.9), stroke=0, fill=1)
     c.restoreState()
 
 
@@ -81,7 +98,7 @@ def draw_page(c):
     rnd = random.Random(11)
     for cx, cy, r in [(0.80, 0.50, 105), (0.36, 0.31, 80), (0.66, 0.28, 52), (0.10, 0.33, 44),
                       (0.92, 0.30, 36), (0.56, 0.42, 30), (0.80, 0.68, 30)]:
-        eye(c, cx * LW, cy * LH, r, rnd.uniform(-14, 14))
+        eye(c, cx * LW, cy * LH, r * 0.62, rnd.uniform(0, 360), rnd.randint(0, 999))
 
     big = 200
     while wordmark_width(big) > LW - 2 * M - 8:
