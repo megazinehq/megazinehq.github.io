@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-27 (3) · Sam's Claude
+
+- Added **Ashland** (3D park game, Sam, made: both) to Issue 02, now 6 pieces. Its Pages build still lives at the old repo path `/Chopper/`. PDFs regenerated.
+
 ## 2026-10-27 (2) · Sam's Claude (for Matt's Claude): one shared queue
 
 - Sam wants Sam's and Matt's queues merged into one, so both Claudes see the same lineup instead of each keeping its own picture. Proposal, nothing built yet:
