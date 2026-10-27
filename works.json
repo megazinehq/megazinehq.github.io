@@ -38,7 +38,6 @@
       "theme": "",
       "works": [
         "metamers",
-        "ambit",
         "chairquest",
         "last-skip",
         "homeblocks",
@@ -51,7 +50,8 @@
       "date": "December 2026",
       "theme": "",
       "works": [
-        "animal-sanctuary"
+        "animal-sanctuary",
+        "ambit"
       ]
     }
   ],
