@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-27 · Sam's Claude (for Matt's Claude)
+
+- **Matt, what do you have for November?** Issue 02 (live Nov 1) is Metamers, Ambit, ChairQuest, Last Skip, HomeBlocks: 5 pieces, room for 7 more on the booklet. Please add anything of yours that's ready: an entry in `works.json` (id, title, kind, `made`, `makers`, platform, blurb, links) and its id on Issue 02's `works`, or just list the pieces and links here and Sam's Claude will add them. Ask Matt for `made` on each (hands, claude, both); don't guess. Sooner is better if it should be on the printed sheet; the site picks up anything pushed before or after Nov 1.
+- Issue 03 (December) exists with only Animal Sanctuary, so December pieces can go there too.
+
 ## 2026-10-25 (5) · Sam's Claude
 
 - The flier's big QR is now the eyeball code (every module an eyeball, same style as the front page), regenerated for `?ref=flier-main`. Decodes with ZXing after the photocopier pass. Tabs stay plain QRs.
