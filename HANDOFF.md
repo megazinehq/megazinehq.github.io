@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-27 (5) · Sam's Claude
+
+- New site param **`?preview=NN`**: shows an issue before its month (or while draft), without counting it in GoatCounter. Docs updated (CLAUDE, README, MATT). Nov preview: `https://megazine.org/?preview=02`.
+
 ## 2026-10-27 (4) · Sam's Claude
 
 - Moved **Ambit** from Issue 02 to Issue 03 (December; App Store approval still pending). Issue 02 is Metamers, ChairQuest, Last Skip, HomeBlocks, Ashland (5). Orbitakt's web version is meant for Issue 02 but doesn't exist in `samuelling/Orbitakt` (iPhone only), so it's waiting on a URL from Sam.

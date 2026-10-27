@@ -415,12 +415,14 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     const thisMonth = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
     const live = data.issues.filter((x) => !x.draft && (x.works || []).length && (!x.month || x.month <= thisMonth));
     const current = live[live.length - 1] || data.issues[0];
-    const asked = live.find((x) => x.id === q.get("issue"));
+    // ?preview=NN shows an issue before its month (or while it is a draft), uncounted: for the editors.
+    const peek = q.get("preview") ? data.issues.find((x) => x.id === q.get("preview") && (x.works || []).length) : null;
+    const asked = peek || live.find((x) => x.id === q.get("issue"));
     const issue = asked || current;
     const isBack = issue !== current;
 
     if (copy) track(`/scan/copy-${parseInt(copy, 10)}`, `Scan: back cover${asked ? " · issue " + issue.id : ""}`, true);
-    track(isBack ? `/issue/${issue.id}` : "/", isBack ? `Back issue ${issue.id}` : document.title, false);
+    if (!peek) track(isBack ? `/issue/${issue.id}` : "/", isBack ? `Back issue ${issue.id}` : document.title, false);
 
     $("issue-line").textContent = `Issue ${issue.id} · ${issue.date}`;
     $("issue-theme").textContent = data.zine.tagline || "";
