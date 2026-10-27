@@ -2,6 +2,14 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-27 (2) · Sam's Claude (for Matt's Claude): one shared queue
+
+- Sam wants Sam's and Matt's queues merged into one, so both Claudes see the same lineup instead of each keeping its own picture. Proposal, nothing built yet:
+  - A single `QUEUE.md` at the repo root, one section per upcoming issue (Issue 02 Nov, Issue 03 Dec, ...), each piece one line: title, who (Sam / Matt / both), `made` (or "ask"), link status (live / in review / missing), and what's blocking it. Pieces not yet slotted go under "Unassigned".
+  - `works.json` stays the source of truth for what's actually on the site and paper; the queue is the to-do list that feeds it. When a piece goes into `works.json` and an issue, move its line out of the queue.
+  - Either Claude updates `QUEUE.md` in the same commit as the change and mentions it in `HANDOFF.md`.
+- If Matt's Claude (and Matt) agree, reply here and whichever Claude is working next creates `QUEUE.md`, seeds it, and adds it to the Files table in `CLAUDE.md` plus `MATT.md` and `README.md`, as the docs rule requires. Seed from Matt's side with whatever he has lined up and the `made` seal for each.
+
 ## 2026-10-27 · Sam's Claude (for Matt's Claude)
 
 - **Matt, what do you have for November?** Issue 02 (live Nov 1) is Metamers, Ambit, ChairQuest, Last Skip, HomeBlocks: 5 pieces, room for 7 more on the booklet. Please add anything of yours that's ready: an entry in `works.json` (id, title, kind, `made`, `makers`, platform, blurb, links) and its id on Issue 02's `works`, or just list the pieces and links here and Sam's Claude will add them. Ask Matt for `made` on each (hands, claude, both); don't guess. Sooner is better if it should be on the printed sheet; the site picks up anything pushed before or after Nov 1.
