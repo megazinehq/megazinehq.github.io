@@ -41,7 +41,8 @@
         "chairquest",
         "last-skip",
         "homeblocks",
-        "ashland"
+        "ashland",
+        "orbitakt"
       ]
     },
     {
@@ -519,6 +520,23 @@
         {
           "label": "Play",
           "url": "https://samuelling.github.io/Chopper/"
+        }
+      ]
+    },
+    {
+      "id": "orbitakt",
+      "title": "Orbitakt",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "A drum machine played by the satellites overhead. A radar beam sweeps round your sky, and every satellite it passes hits a drum, with a dub echo that opens whenever one crosses the zenith. Live orbits, worked out in your browser.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://samuelling.github.io/Orbitakt/docs/play/"
         }
       ]
     }

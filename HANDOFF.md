@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-27 (6) · Sam's Claude
+
+- Added **Orbitakt** (web satellite drum machine, Sam, made: both) to Issue 02, now 6 pieces. The iPhone app is separate; Ambit (Issue 03) still bundles it.
+
 ## 2026-10-27 (5) · Sam's Claude
 
 - New site param **`?preview=NN`**: shows an issue before its month (or while draft), without counting it in GoatCounter. Docs updated (CLAUDE, README, MATT). Nov preview: `https://megazine.org/?preview=02`.
