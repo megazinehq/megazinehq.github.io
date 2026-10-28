@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-28 · Sam's Claude
+
+- Stats dashboard was blank because one hourly pull got a GoatCounter 404 and the deploy (fresh checkout, `stats.json` is never committed) shipped without the file. `pull_stats.py` now retries 404/429/5xx, and if it still fails keeps the file the live site is serving. The next normal pull restored it (251 visitors / 90 days).
+
 ## 2026-10-27 (6) · Sam's Claude
 
 - Added **Orbitakt** (web satellite drum machine, Sam, made: both) to Issue 02, now 6 pieces. The iPhone app is separate; Ambit (Issue 03) still bundles it.

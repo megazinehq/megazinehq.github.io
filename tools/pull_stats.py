@@ -2,7 +2,7 @@
 
 Runs in the Pages deploy workflow (on every push and hourly). Needs a GoatCounter API key
 with permission to read statistics, stored as the repo secret GOATCOUNTER_TOKEN.
-Without the key, or if GoatCounter is unreachable, it leaves the previous file alone and
+Without the key, or if GoatCounter is unreachable, it retries, then keeps the last published file and
 exits cleanly so the deploy still goes out.
 
 Only aggregate counts are written: paths, days, referrer domains, browsers, screen sizes,
@@ -15,6 +15,7 @@ import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -24,12 +25,30 @@ OUT = ROOT / "stats" / "stats.json"
 DAYS = 90
 
 
+def keep_last_published(data):
+    """The deploy starts from a fresh checkout, so a failed pull would blank the dashboard until the
+    next good one. Carry over the file the live site is serving, if there is one."""
+    base = (data.get("zine") or {}).get("base_url", "").rstrip("/")
+    if not base or OUT.exists():
+        return
+    try:
+        with urllib.request.urlopen(f"{base}/stats/stats.json", timeout=20) as r:
+            body = r.read()
+        json.loads(body)
+        OUT.parent.mkdir(exist_ok=True)
+        OUT.write_bytes(body)
+        print("pull_stats: kept the stats file the live site already has", file=sys.stderr)
+    except Exception as e:
+        print(f"pull_stats: no earlier stats file to keep ({e})", file=sys.stderr)
+
+
 def main():
     token = os.environ.get("GOATCOUNTER_TOKEN", "").strip()
     data = json.loads((ROOT / "works.json").read_text())
     code = (data.get("zine") or {}).get("goatcounter")
     if not token or not code:
         print("pull_stats: no GOATCOUNTER_TOKEN or site code; leaving stats as they are")
+        keep_last_published(data)
         return
     base = f"https://{code}.goatcounter.com/api/v0"
     end = dt.datetime.now(dt.timezone.utc).replace(minute=0, second=0, microsecond=0) + dt.timedelta(hours=1)
@@ -40,9 +59,17 @@ def main():
         q = urllib.parse.urlencode({**rng, **params})
         req = urllib.request.Request(f"{base}{path}?{q}", headers={
             "Authorization": f"Bearer {token}", "Content-Type": "application/json"})
-        time.sleep(0.3)  # GoatCounter allows 4 requests a second
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return json.load(r)
+        for attempt in range(4):  # GoatCounter now and then answers 404/5xx for a moment; try again
+            time.sleep(0.3 + attempt * 2)  # it allows 4 requests a second
+            try:
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    return json.load(r)
+            except urllib.error.HTTPError as e:
+                if e.code not in (404, 429, 500, 502, 503, 504) or attempt == 3:
+                    raise
+            except urllib.error.URLError:
+                if attempt == 3:
+                    raise
 
     failed = []
 
@@ -62,7 +89,8 @@ def main():
 
     total = safe("/stats/total", None)
     if total is None:
-        print(f"pull_stats: GoatCounter unreachable or key refused: {failed[0]}; leaving stats as they are", file=sys.stderr)
+        print(f"pull_stats: GoatCounter unreachable or key refused: {failed[0]}", file=sys.stderr)
+        keep_last_published(data)
         return
     # The site has a few dozen paths at most (/, /issue/NN, /scan/..., /click/...).
     hits = safe("/stats/hits", {}, daily="true", limit=100).get("hits") or []
