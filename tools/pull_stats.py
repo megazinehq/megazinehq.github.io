@@ -51,7 +51,13 @@ def main():
         try:
             return get(path, **params)
         except Exception as e:
-            failed.append(f"{path} ({e})")
+            body = ""
+            if hasattr(e, "read"):
+                try:
+                    body = " " + e.read(300).decode("utf-8", "replace").strip().replace("\n", " ")
+                except Exception:
+                    pass
+            failed.append(f"{path} ({e}){body}")
             return fallback
 
     total = safe("/stats/total", None)
