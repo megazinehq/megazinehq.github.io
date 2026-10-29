@@ -52,7 +52,8 @@
       "theme": "",
       "works": [
         "animal-sanctuary",
-        "ambit"
+        "ambit",
+        "musicbox"
       ]
     }
   ],
@@ -537,6 +538,23 @@
         {
           "label": "Play",
           "url": "https://samuelling.github.io/Orbitakt/docs/play/"
+        }
+      ]
+    },
+    {
+      "id": "musicbox",
+      "title": "Musicbox",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "A music box built from its physics: wind it up or draw circles on the screen to turn the crank, and a pinned cylinder plucks a comb of tuned tines. Holiday tunes are in the box.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://samuelling.github.io/Musicbox/"
         }
       ]
     }
