@@ -568,7 +568,6 @@
         "Jan"
       ],
       "platform": "Web",
-      "image": "media/little-comics-1.jpg",
       "blurb": "Five comics made by hand, bound into a little picture book you page through on the site. One is a single panel, one is twelve, one is a pair of frames you can cross your eyes to fuse, and one is a caption on a photo.",
       "book": {
         "label": "Open the book",
