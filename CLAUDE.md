@@ -10,7 +10,7 @@ Sam and Matt each work here through their own Claude. Before changing anything:
 
 1. Pull. The other editor may have pushed minutes ago.
 2. Read the editor's guide: `SAM.md` when working with Sam (if it exists), `MATT.md` when working with Matt.
-3. Read the top of `HANDOFF.md`.
+3. Read the top of `HANDOFF.md`, and `QUEUE.md` for what's coming.
 
 When the editor approves a change:
 
@@ -20,6 +20,8 @@ When the editor approves a change:
 7. Never force-push to `main`.
 
 After pushing, add a dated line or two at the top of `HANDOFF.md`: who you worked with, what changed, and anything left unfinished or that the other Claude should know (a link still missing, a page that's tight on the paper). Keep it short; git history has the details.
+
+`QUEUE.md` is the one shared to-do list for upcoming issues; `works.json` stays the truth for what's actually on the site and paper. Update the queue in the same commit as any change that affects it, and mention it in `HANDOFF.md`. When a piece goes into `works.json` and an issue, take its line out of the queue.
 
 ## The one rule
 
@@ -34,6 +36,7 @@ Never guess `made`. Ask.
 | Path | Edit? | What |
 | --- | --- | --- |
 | `works.json` | **Yes**, this is where almost all changes go | Every work and every issue. |
+| `QUEUE.md` | **Yes** | The shared to-do list that feeds `works.json`: one section per upcoming issue, plus Unassigned. |
 | `tools/page.html` | For site design changes | The site's source (a fragment, no `<html>`/`<head>`). |
 | `index.html` | **Never by hand** | Built from `tools/page.html` by `python3 tools/build.py`. |
 | `tools/make_sheet.py` | For paper layout changes | Builds `print/issue-NN.pdf` and `print/issue-NN-numbered.pdf`. |

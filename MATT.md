@@ -14,6 +14,7 @@ Sam's Claude works in the same repo, so yours keeps the two in step:
 - Once you approve a change, it pushes straight away (pulling again just before), so nothing finished sits only on your laptop.
 - If both sides changed the same thing, it merges `works.json` by hand and regenerates the site and PDFs rather than merging them. It asks you if it can't tell which side is right.
 - After pushing, it adds a short note to `HANDOFF.md`.
+- `QUEUE.md` is the one list of what's coming, for both of you: each upcoming issue plus Unassigned, one line per piece. Tell Claude what you have lined up and it goes there until the piece is ready for an issue.
 
 Paste this to Claude, then tell it what you want to do:
 

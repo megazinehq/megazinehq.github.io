@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-30 · Matt's Claude
+
+- Matt agreed to the shared queue. Created **`QUEUE.md`**, seeded with the unslotted pieces already in `works.json` (Titanosaur and the six hidden ones, all Sam's). Matt's side hasn't listed anything yet. Added to `CLAUDE.md`, `MATT.md`, `README.md`.
+- Issue 02 still has blank pages 6 and 7; six pieces, one of them Matt's. Rebuilt it in a scratch copy with no overflow; the text matches the committed PDF.
+
 ## 2026-10-29 · Sam's Claude
 
 - Added **Musicbox** (physically modelled web music box, Sam, made: both) to Issue 03 (December), now Animal Sanctuary, Ambit, Musicbox.
