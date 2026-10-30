@@ -569,7 +569,7 @@
       ],
       "platform": "Web",
       "image": "media/little-comics-1.jpg",
-      "blurb": "Five comics drawn by hand, bound into a little picture book you page through on the site. Some are one panel, one is twelve, and one is a very long wait for something small.",
+      "blurb": "Four comics drawn by hand, bound into a little picture book you page through on the site. One is a single panel, one is twelve, and one is a pair of frames you can cross your eyes to fuse.",
       "book": {
         "label": "Open the book",
         "pages": [
@@ -587,11 +587,7 @@
           },
           {
             "src": "media/little-comics-4.jpg",
-            "alt": "A tiny walking figure in the middle of a huge empty page."
-          },
-          {
-            "src": "media/little-comics-5.jpg",
-            "alt": "The same tiny figure on the facing page, standing very still."
+            "alt": "Two side-by-side frames, each with a tiny figure alone on an empty page, meant to be fused by crossing your eyes."
           }
         ],
         "pdf": "media/little-comics.pdf"
