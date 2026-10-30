@@ -42,7 +42,8 @@
         "last-skip",
         "homeblocks",
         "ashland",
-        "orbitakt"
+        "orbitakt",
+        "little-comics"
       ]
     },
     {
@@ -557,6 +558,45 @@
           "url": "https://samuelling.github.io/Musicbox/"
         }
       ]
+    },
+    {
+      "id": "little-comics",
+      "title": "Little Comics",
+      "kind": "art",
+      "made": "hands",
+      "makers": [
+        "Jan"
+      ],
+      "platform": "Web",
+      "image": "media/little-comics-1.jpg",
+      "blurb": "Five comics drawn by hand, bound into a little picture book you page through on the site. Some are one panel, one is twelve, and one is a very long wait for something small.",
+      "book": {
+        "label": "Open the book",
+        "pages": [
+          {
+            "src": "media/little-comics-1.jpg",
+            "alt": "A cook in an apron eats a roasted leg while an angel lies on the counter: \"Yum! Tastes like chicken!\""
+          },
+          {
+            "src": "media/little-comics-2.jpg",
+            "alt": "A twelve-panel strip: a desert road, a boulder, and a very unlucky coyote, ending on a close-up of a worried face."
+          },
+          {
+            "src": "media/little-comics-3.jpg",
+            "alt": "A Dutch cartoon: a patient on a therapist's couch says nobody takes him seriously; the doctor asks who made a mess on his sofa."
+          },
+          {
+            "src": "media/little-comics-4.jpg",
+            "alt": "A tiny walking figure in the middle of a huge empty page."
+          },
+          {
+            "src": "media/little-comics-5.jpg",
+            "alt": "The same tiny figure on the facing page, standing very still."
+          }
+        ],
+        "pdf": "media/little-comics.pdf"
+      },
+      "links": []
     }
   ]
 }

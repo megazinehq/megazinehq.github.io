@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-30 · Sam's Claude
+
+- Built a **picture-book popup** (`book` field in `works.json`, page-turn viewer, PDF download) and added Jan's *Little Comics* (hands, makers Jan) to Issue 02. **On branch `jan-little-comics`, not main**: Sam is showing Jan first. Two of its comics draw other people's characters, which breaks the house rule; Sam chose to include them for now. Merge to main when Sam says go.
+
 ## 2026-10-30 · Matt's Claude
 
 - Matt agreed to the shared queue. Created **`QUEUE.md`**, seeded with the unslotted pieces already in `works.json` (Titanosaur and the six hidden ones, all Sam's). Matt's side hasn't listed anything yet. Added to `CLAUDE.md`, `MATT.md`, `README.md`.

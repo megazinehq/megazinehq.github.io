@@ -226,6 +226,35 @@ main { overflow-x: clip; }
   .stacks li { grid-template-columns: minmax(0, 1fr); }
 }
 
+
+/* Picture book: a popup you page through (works with a "book" in works.json) */
+dialog#book { border: 0; padding: 0; background: rgb(12 12 14 / .88); color: var(--paper); max-width: none; max-height: none; width: 100vw; height: 100dvh; overflow: hidden; }
+dialog#book::backdrop { background: rgb(12 12 14 / .82); }
+dialog#book[open] { display: grid; place-items: center; }
+.bk-wrap { width: min(94vw, 900px); display: grid; gap: 12px; }
+.bk-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; font: 400 1.3rem/1 var(--display); color: #ECEDE9; }
+.bk-x { font: 700 .8rem/1 var(--type); letter-spacing: .1em; text-transform: uppercase; background: transparent; color: #ECEDE9; border: 1.5px solid #ECEDE9; padding: 8px 11px; cursor: pointer; }
+.bk-x:hover, .bk-nav button:hover:not(:disabled) { background: var(--pink); border-color: var(--pink); color: #fff; }
+.bk-stage { perspective: 1800px; }
+.bk-book { position: relative; aspect-ratio: 1.3 / 1; max-height: 74dvh; margin-inline: auto; width: min(100%, 74dvh * 1.3);
+  background: #ECEDE9; border-radius: 3px 8px 8px 3px;
+  box-shadow: 0 1px 0 #cfd0cc, 2px 2px 0 #ECEDE9, 3px 3px 0 #bdbeb9, 5px 5px 0 #ECEDE9, 6px 6px 0 #a9aaa5, 0 22px 40px rgb(0 0 0 / .5); }
+.bk-book::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 26px; pointer-events: none; z-index: 5;
+  background: linear-gradient(90deg, rgb(0 0 0 / .28), rgb(0 0 0 / .06) 55%, transparent); border-radius: 3px 0 0 3px; }
+.bk-pg { position: absolute; inset: 0; margin: 0; border-radius: 3px 8px 8px 3px; overflow: hidden; background: #fbfbf8; display: grid; place-items: center; grid-template: minmax(0, 1fr) / minmax(0, 1fr); padding: 3.5% 4% 3.5% 6%; }
+.bk-pg img { max-width: 100%; max-height: 100%; min-height: 0; width: auto; height: auto; display: block; object-fit: contain; box-shadow: 0 0 0 1px rgb(0 0 0 / .18); }
+.bk-leaf { transform-origin: left center; backface-visibility: hidden; z-index: 3; transition: transform .7s cubic-bezier(.5, .05, .25, 1), box-shadow .7s; }
+.bk-leaf.turn { transform: rotateY(-178deg); box-shadow: -18px 0 30px rgb(0 0 0 / .35); }
+.bk-leaf.snap { transition: none; }
+.bk-foot { position: absolute; bottom: 1.2%; left: 0; right: 0; text-align: center; font: 400 .72rem/1 var(--type); color: #77786f; z-index: 4; pointer-events: none; }
+.bk-nav { display: flex; justify-content: center; align-items: center; gap: 16px; font: 700 .85rem/1 var(--type); color: #ECEDE9; }
+.bk-nav button { font: 700 .9rem/1 var(--type); background: transparent; color: #ECEDE9; border: 1.5px solid #ECEDE9; padding: 10px 16px; cursor: pointer; }
+.bk-nav button:disabled { opacity: .3; cursor: default; }
+.bk-pdf { font: 700 .8rem/1 var(--type); color: #ECEDE9; text-decoration: underline; }
+.bk-pdf[hidden] { display: none; }
+.bk-alt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (prefers-reduced-motion: reduce) { .bk-leaf { transition: none; } }
+
 /* Submit + footer */
 .submit { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px 32px; padding-block: 10px 30px; }
 .submit h3 { font: 700 .8rem/1 var(--type); letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin: 0 0 8px; }
@@ -319,6 +348,18 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   <span>Fold it, cut it, leave it somewhere.</span>
 </footer>
 
+<dialog id="book" aria-label="Picture book">
+  <div class="bk-wrap">
+    <div class="bk-bar"><span id="bk-title"></span><button type="button" class="bk-x" id="bk-x">Close</button></div>
+    <div class="bk-stage"><div class="bk-book" id="bk-book">
+      <figure class="bk-pg" id="bk-under"><img alt=""></figure>
+      <figure class="bk-pg bk-leaf" id="bk-leaf"><img alt=""></figure>
+      <div class="bk-foot" id="bk-foot"></div>
+    </div></div>
+    <div class="bk-nav"><button type="button" id="bk-prev">← Back</button><span id="bk-count"></span><a class="bk-pdf" id="bk-pdf" href="#" download hidden>PDF ↓</a><button type="button" id="bk-next">Next →</button></div>
+    <p class="bk-alt" id="bk-alt" aria-live="polite"></p>
+  </div>
+</dialog>
 <script>
 (function () {
   const KINDS = { game: "Game", sound: "Sound", tool: "Tool", toy: "Toy", art: "Art", story: "Story", painting: "Painting", music: "Music" };
@@ -359,7 +400,8 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   const hm = hash.match(/^copy-?(\d+)$/i);
   const copy = q.get("copy") || (hm ? hm[1] : null);
   const go = q.get("go");
-  const focusId = q.get("w") || (!hm && hash ? hash : null);
+  let openBookId = null;
+  let focusId = q.get("w") || (!hm && hash ? hash : null);
 
   function linkHTML(l, primary) {
     if (!l.url) return `<span class="btn pending" title="${esc(l.status || "Coming soon")}">${esc(l.label)} · ${esc(l.status || "soon")}</span>`;
@@ -402,6 +444,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
       track(`/scan/${go}`, `Scan: ${byId[go].title}`, true);
       const live = (byId[go].go && byId[go].go.url ? byId[go].go : null) || (byId[go].links || []).find((l) => l.url);
       if (live) { location.replace(live.url); return; }
+      if (byId[go].book) focusId = go, openBookId = go;
     }
     // Issues go live on the first of their month (viewer's local time); drafts and empty issues never show.
     const d = new Date();
@@ -467,7 +510,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
           ${w.image ? `<img class="art" src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy">` : ""}
           <p class="blurb">${esc(w.blurb)}</p>
           ${creditHTML(w)}
-          <div class="links">${(w.links || []).map((l, j) => linkHTML(l, j === 0)).join("")}</div>
+          <div class="links">${w.book ? `<button type="button" class="btn primary" data-book="${esc(w.id)}">${esc(w.book.label || "Open the book")} ▸</button>${w.book.pdf ? `<a class="btn" href="${esc(w.book.pdf)}" download>Download PDF ↓</a>` : ""}` : ""}${(w.links || []).map((l, j) => linkHTML(l, j === 0 && !w.book)).join("")}</div>
         </article>`;
       }).join("");
     }
@@ -484,6 +527,44 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         <span class="l"><a class="btn" href="?issue=${encodeURIComponent(x.id)}">Read it →</a></span>
       </li>`).join("");
 
+
+
+    // Picture books
+    function openBook(id) {
+      const w = byId[id]; if (!w || !w.book) return;
+      const pages = w.book.pages, dlg = $("book"), leaf = $("bk-leaf"), under = $("bk-under");
+      let n = 0, busy = false;
+      const set = (el, k) => { const im = el.querySelector("img"); im.src = pages[k].src; im.alt = pages[k].alt || ""; };
+      const label = () => { $("bk-count").textContent = `${n + 1} / ${pages.length}`; $("bk-foot").textContent = n + 1; $("bk-alt").textContent = pages[n].alt || ""; $("bk-prev").disabled = n === 0; $("bk-next").disabled = n === pages.length - 1; };
+      $("bk-title").textContent = w.title; $("bk-pdf").hidden = !w.book.pdf; if (w.book.pdf) $("bk-pdf").href = w.book.pdf;
+      leaf.classList.add("snap"); leaf.classList.remove("turn"); set(leaf, 0); set(under, Math.min(1, pages.length - 1)); void leaf.offsetWidth; leaf.classList.remove("snap");
+      label();
+      function go(to) {
+        if (busy || to < 0 || to >= pages.length || to === n) return;
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const fwd = to > n, from = n; n = to; label();
+        if (reduce) { leaf.classList.add("snap"); set(leaf, to); leaf.classList.remove("turn"); void leaf.offsetWidth; leaf.classList.remove("snap"); return; }
+        busy = true;
+        const done = () => { leaf.removeEventListener("transitionend", end); clearTimeout(t); leaf.classList.add("snap"); leaf.classList.remove("turn"); set(leaf, to); void leaf.offsetWidth; leaf.classList.remove("snap"); busy = false; };
+        const end = (e) => { if (e.target === leaf && e.propertyName === "transform") done(); };
+        const t = setTimeout(done, 900);
+        leaf.addEventListener("transitionend", end);
+        if (fwd) { set(under, to); leaf.classList.add("turn"); }
+        else { leaf.classList.add("snap"); set(leaf, to); leaf.classList.add("turn"); set(under, from); void leaf.offsetWidth; leaf.classList.remove("snap"); leaf.classList.remove("turn"); }
+      }
+      $("bk-prev").onclick = () => go(n - 1); $("bk-next").onclick = () => go(n + 1);
+      $("bk-x").onclick = () => dlg.close();
+      dlg.onkeydown = (e) => { if (e.key === "ArrowRight") go(n + 1); else if (e.key === "ArrowLeft") go(n - 1); };
+      let x0 = null;
+      dlg.ontouchstart = (e) => { x0 = e.touches[0].clientX; };
+      dlg.ontouchend = (e) => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 40) go(dx < 0 ? n + 1 : n - 1); };
+      $("bk-book").onclick = (e) => { const r = e.currentTarget.getBoundingClientRect(); go(e.clientX - r.left > r.width / 2 ? n + 1 : n - 1); };
+      dlg.onclick = (e) => { if (e.target === dlg) dlg.close(); };
+      dlg.showModal();
+      track(`/book/${id}`, `Book: ${w.title}`, true);
+    }
+    document.addEventListener("click", (e) => { const b = e.target.closest("[data-book]"); if (b) openBook(b.dataset.book); });
+    if (openBookId) setTimeout(() => openBook(openBookId), 0);
 
     // Count clicks out to each work.
     document.addEventListener("click", (e) => {
