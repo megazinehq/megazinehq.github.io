@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-10-30 · Sam's Claude
 
-- Built a **picture-book popup** (`book` field in `works.json`, page-turn viewer, PDF download) and added Jan's *Little Comics* (hands, makers Jan) to Issue 02. **On branch `jan-little-comics`, not main**: Sam is showing Jan first. Two of its comics draw other people's characters, which breaks the house rule; Sam chose to include them for now. Merge to main when Sam says go.
+- Built a **picture-book popup** (`book` field in `works.json`, page-turn viewer, PDF download) and added Jan's *Little Comics* (hands, makers Jan) to Issue 02. **On branch `jan-little-comics`, not main**: Sam is showing Jan first. Two of its comics draw other people's characters, which breaks the house rule; Sam chose to include them for now, plus a captioned photo of a real performer (someone else's photo; Sam bent the rule, Jan's call on rights). Merge to main when Sam says go.
 
 ## 2026-10-30 · Matt's Claude
 
