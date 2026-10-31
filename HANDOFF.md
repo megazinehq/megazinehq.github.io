@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-30 (4) · Matt's Claude
+
+- Added **Worldbuilder** (Matt, made: both) to Issue 02, now 10 pieces. PDFs regenerated, no overflow. Pages 3–7 are full; an 11th piece goes on page 2.
+
 ## 2026-10-30 (3) · Matt's Claude
 
 - Added **Cognitive Hands** and **thingsynth** (both Matt, made: both) to Issue 02, now 9 pieces. PDFs regenerated, no overflow. Page 7 of the paper has one piece, room for one more.

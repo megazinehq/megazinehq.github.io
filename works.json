@@ -45,7 +45,8 @@
         "orbitakt",
         "little-comics",
         "cognitive-hands",
-        "thingsynth"
+        "thingsynth",
+        "worldbuilder"
       ]
     },
     {
@@ -600,6 +601,23 @@
         {
           "label": "What is this?",
           "url": "https://www.crumplab.com/thingsynth/about.html"
+        }
+      ]
+    },
+    {
+      "id": "worldbuilder",
+      "title": "Worldbuilder",
+      "kind": "game",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web",
+      "blurb": "A little 3D planet you fly around and build on. Pick a spot, ask Claude in the chat for a dinosaur statue, and it goes up out of basic 3D shapes where everyone can see it. There's a giant computer on a mountain that dials in to our BBS, and more of this zine is moving in.",
+      "links": [
+        {
+          "label": "Fly around",
+          "url": "https://worlds.megazine.org"
         }
       ]
     },
