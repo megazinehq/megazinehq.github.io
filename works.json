@@ -43,7 +43,8 @@
         "homeblocks",
         "ashland",
         "orbitakt",
-        "little-comics"
+        "little-comics",
+        "cognitive-hands"
       ]
     },
     {
@@ -556,6 +557,27 @@
         {
           "label": "Play",
           "url": "https://samuelling.github.io/Musicbox/"
+        }
+      ]
+    },
+    {
+      "id": "cognitive-hands",
+      "title": "Cognitive Hands",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web",
+      "blurb": "Two virtual hands try to type a sentence, run by theories of how the mind orders its actions. Pick one of four models and watch it steer the same fingers, which have real joint limits, on a keyboard where a slip lands on the wrong key. It's a working prototype that asks whether these theories could run a body at all.",
+      "links": [
+        {
+          "label": "Run it",
+          "url": "https://crumplabsandbox.github.io/CognitiveHands/"
+        },
+        {
+          "label": "What is this?",
+          "url": "https://crumplabsandbox.github.io/CognitiveHands/about.html"
         }
       ]
     },

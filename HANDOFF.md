@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-30 (3) · Matt's Claude
+
+- Added **Cognitive Hands** (Matt, made: both) to Issue 02, now 8 pieces. PDFs regenerated, no overflow. Page 7 of the paper is still blank.
+
 ## 2026-10-30 (2) · Matt's Claude
 
 - Added **`print/stickers/`**: 10 letter sheets, 93 stickers, black and white plus colour versions, using Matt's creatures cut from his paintings. Codes go to `?ref=sticker`. Simulated scans pass; none printed or phone-tested yet. Matt's rule: never use his signature, and keep "Every one signed" off the stickers.
