@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-31 (6) · Matt's Claude
+
+- Added **`print/stickers/avery-5260/`**: three black-and-white sheets for Avery 5260 labels (90 labels), plus an alignment test. Built by `print/stickers/src/labels.py`. Simulated scans only, none printed or phone-tested. Not in the Street Team zips.
+
 ## 2026-10-31 (5) · Matt's Claude
 
 - Added **Ecphory** (Matt, made: both) to Issue 02, now 12 pieces, so the folded booklet is full. PDFs regenerated, no overflow. It sits on the back cover, which shrinks the megazine.org code and drops the "how to submit" text from the paper. A 13th piece means printing double-sided, and the back gets a submit panel again.
