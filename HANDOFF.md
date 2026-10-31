@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-31 (2) · Sam's Claude
+
+- Added **Street Team Pack** (id `street-team`, Sam + Matt, both) to Issue 02, now 11 pieces: download links for the flier and two zips of the sticker sheets (`print/street-team/`, rebuilt by `tools/make_street_team.py` whenever a sticker sheet changes). Page 2 of the paper was 4pt over until I shortened the blurb's first sentence; fits now.
+
 ## 2026-10-31 · Sam's Claude
 
 - Flier tear-off tabs are longer (1.6 to 2.1 in). Added sticker sheet 11, colour only: six logo-over-big-eyeball-code stickers in the site's colours (`tools/make_logo_stickers.py`, `?ref=sticker`). All six decode in a simulated scan; not printed yet.

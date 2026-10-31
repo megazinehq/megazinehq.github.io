@@ -14,6 +14,7 @@ Each issue is one sheet of paper folded into an 8-page mini-zine. Every code on 
 | `print/issue-01-numbered.pdf` | 50 numbered copies, each with its own back-cover code. |
 | `tools/make_sheet.py` | Regenerates the PDFs from `works.json`. |
 | `tools/make_flier.py` | Wall flier with ten tear-off QR tabs (`print/flier.pdf`), run through a fake photocopier (`--clean` skips that). Needs `pypdfium2 numpy pillow scipy` too. The codes carry `?ref=flier`, so GoatCounter lists "flier" under referrers. Uses the logo font in `tools/fonts/` (Bowlby One SC, OFL). |
+| `print/street-team/` | Two zips of the sticker sheets (black and white, colour) for the Street Team Pack's download links. Rebuild with `python3 tools/make_street_team.py` after any sticker sheet changes. |
 | `print/stickers/` | Ten letter-size sticker sheets for a laser printer, black and white, with colour versions in `color/`. Straight cuts only. The codes carry `?ref=sticker`. Scripts are in `src/`; they read Matt's art from his own machine. Sheet 11 (colour only, `color/stickers-11-logo-color.pdf`) is six logo-over-eyeball-code stickers, made by `tools/make_logo_stickers.py`. |
 | `tools/build.py` | Regenerates `index.html` from `tools/page.html`. |
 | `tools/page.html` (`eyeqr` script) | The masthead's eyeball QR code for https://megazine.org/: the QR grid (`ROWS`, error correction H) is drawn as eyes that follow the pointer. Keep each finder square a plain dark frame; eyes on the frames stop it scanning. |

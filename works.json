@@ -46,7 +46,8 @@
         "little-comics",
         "cognitive-hands",
         "thingsynth",
-        "worldbuilder"
+        "worldbuilder",
+        "street-team"
       ]
     },
     {
@@ -658,6 +659,32 @@
         "pdf": "media/little-comics.pdf"
       },
       "links": []
+    },
+    {
+      "id": "street-team",
+      "title": "Street Team Pack",
+      "kind": "tool",
+      "made": "both",
+      "makers": [
+        "Sam",
+        "Matt"
+      ],
+      "platform": "Print",
+      "blurb": "A kit for spreading the word: a flier with tear-off tabs and sheets of stickers. Every code points back here, so download them, print them and put them up around town.",
+      "links": [
+        {
+          "label": "Flier (PDF)",
+          "url": "print/flier.pdf"
+        },
+        {
+          "label": "Stickers, black and white (zip)",
+          "url": "print/street-team/megazine-stickers-black-and-white.zip"
+        },
+        {
+          "label": "Stickers, colour (zip)",
+          "url": "print/street-team/megazine-stickers-colour.zip"
+        }
+      ]
     }
   ]
 }
