@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-31 (5) · Matt's Claude
+
+- Added **Ecphory** (Matt, made: both) to Issue 02, now 12 pieces, so the folded booklet is full. PDFs regenerated, no overflow. It sits on the back cover, which shrinks the megazine.org code and drops the "how to submit" text from the paper. A 13th piece means printing double-sided, and the back gets a submit panel again.
+
 ## 2026-10-31 (4) · Sam's Claude
 
 - Sam OK'd named references for HomeBlocks ("Geocities-style" in the blurb) and, earlier, the comic booklet's famous characters and a captioned photo. `CLAUDE.md`'s names rule now says editors can bend it per piece; ask first, then log it here.

@@ -47,7 +47,8 @@
         "cognitive-hands",
         "thingsynth",
         "worldbuilder",
-        "street-team"
+        "street-team",
+        "ecphory"
       ]
     },
     {
@@ -683,6 +684,23 @@
         {
           "label": "Stickers, colour (zip)",
           "url": "print/street-team/megazine-stickers-colour.zip"
+        }
+      ]
+    },
+    {
+      "id": "ecphory",
+      "title": "Ecphory",
+      "kind": "game",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web · headphones help",
+      "blurb": "A 3D game set inside Richard Semon's forgotten theory of memory. You engrave whole moments as you walk, and a fragment of one brings the rest back. It's a working demo, so parts are unfinished and will change.",
+      "links": [
+        {
+          "label": "Play the demo",
+          "url": "https://ecphory.megazine.org/"
         }
       ]
     }
