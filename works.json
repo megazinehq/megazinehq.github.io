@@ -37,7 +37,7 @@
       "date": "November 2026",
       "theme": "",
       "works": [
-        "metamers",
+        "gag-machine",
         "chairquest",
         "last-skip",
         "homeblocks",
@@ -59,7 +59,8 @@
       "works": [
         "animal-sanctuary",
         "ambit",
-        "musicbox"
+        "musicbox",
+        "metamers"
       ]
     }
   ],
@@ -701,6 +702,23 @@
         {
           "label": "Play the demo",
           "url": "https://ecphory.megazine.org/"
+        }
+      ]
+    },
+    {
+      "id": "gag-machine",
+      "title": "Gag Machine",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Jan"
+      ],
+      "platform": "Web",
+      "blurb": "Pick three words and get a single-panel gag cartoon built around them. The jokes and the drawings come from Claude, a fresh one every time.",
+      "links": [
+        {
+          "label": "Make a gag",
+          "url": "https://janbrascamp.github.io/gag_machine/"
         }
       ]
     }

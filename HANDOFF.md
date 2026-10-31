@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-31 (5) · Sam's Claude
+
+- Jan submitted **Gag Machine** (Jan, made: both). It takes Metamers' slot in Issue 02; **Metamers moved to Issue 03** (now Animal Sanctuary, Ambit: Quartet, Frisky, Metamers). Also: Musicbox is now titled Frisky (id still `musicbox`), Orbitakt's play link is `/Orbitakt/play/`.
+
 ## 2026-10-31 (6) · Matt's Claude
 
 - Added **`print/stickers/avery-5260/`**: three black-and-white sheets for Avery 5260 labels (90 labels), plus an alignment test. Built by `print/stickers/src/labels.py`. Simulated scans only, none printed or phone-tested. Not in the Street Team zips.
