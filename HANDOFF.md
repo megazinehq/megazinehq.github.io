@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-31 · Sam's Claude
+
+- Flier tear-off tabs are longer (1.6 to 2.1 in). Added sticker sheet 11, colour only: six logo-over-big-eyeball-code stickers in the site's colours (`tools/make_logo_stickers.py`, `?ref=sticker`). All six decode in a simulated scan; not printed yet.
+
 ## 2026-10-30 (4) · Matt's Claude
 
 - Added **Worldbuilder** (Matt, made: both) to Issue 02, now 10 pieces. PDFs regenerated, no overflow. Pages 3–7 are full; an 11th piece goes on page 2.
