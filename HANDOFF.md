@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-31 (3) · Sam's Claude
+
+- Back issues are easier to find and have more zazz: a "Back issues ↓" link in the top line, a "Back issues (n) ↓" button beside the issue heading, and the section is now a shelf of taped, tilted covers (big pink-slipped issue number, month, piece count). Both links only show once there is a back issue (from Nov 1: Issue 01; from Dec 1: 01 and 02). Site-only change, no paper or data changes.
+
 ## 2026-10-31 (2) · Sam's Claude
 
 - Added **Street Team Pack** (id `street-team`, Sam + Matt, both) to Issue 02, now 11 pieces: download links for the flier and two zips of the sticker sheets (`print/street-team/`, rebuilt by `tools/make_street_team.py` whenever a sticker sheet changes). Page 2 of the paper was 4pt over until I shortened the blurb's first sentence; fits now.
