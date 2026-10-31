@@ -44,7 +44,8 @@
         "ashland",
         "orbitakt",
         "little-comics",
-        "cognitive-hands"
+        "cognitive-hands",
+        "thingsynth"
       ]
     },
     {
@@ -578,6 +579,27 @@
         {
           "label": "What is this?",
           "url": "https://crumplabsandbox.github.io/CognitiveHands/about.html"
+        }
+      ]
+    },
+    {
+      "id": "thingsynth",
+      "title": "thingsynth",
+      "kind": "sound",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web · keyboard or MIDI",
+      "blurb": "A painting that works as the controls of an organ. Hold a note and its part of the picture plays an animation as long as you hold on; pull a drawbar and a stalk grows a branch for every step. All 47 of the organ's controls and all 88 notes are wired into the painting.",
+      "links": [
+        {
+          "label": "Play the painting",
+          "url": "https://www.crumplab.com/thingsynth/"
+        },
+        {
+          "label": "What is this?",
+          "url": "https://www.crumplab.com/thingsynth/about.html"
         }
       ]
     },

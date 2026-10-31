@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-10-30 (3) · Matt's Claude
 
-- Added **Cognitive Hands** (Matt, made: both) to Issue 02, now 8 pieces. PDFs regenerated, no overflow. Page 7 of the paper is still blank.
+- Added **Cognitive Hands** and **thingsynth** (both Matt, made: both) to Issue 02, now 9 pieces. PDFs regenerated, no overflow. Page 7 of the paper has one piece, room for one more.
 
 ## 2026-10-30 (2) · Matt's Claude
 
