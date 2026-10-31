@@ -23,7 +23,7 @@ TABS = 10
 URL = S.BASE + "?ref=flier"
 LW, LH = letter
 M = 0.25 * inch
-TAB_H = 1.6 * inch
+TAB_H = 2.1 * inch
 tab_w = (LW - 2 * M) / TABS
 BIG = 2.3 * inch                                     # the big code on the main page
 BIG_X, BIG_Y = LW - M - BIG - 10, M + TAB_H + 70       # its lower-left corner
