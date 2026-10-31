@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-10-30 (2) · Matt's Claude
+
+- Added **`print/stickers/`**: 10 letter sheets, 93 stickers, black and white plus colour versions, using Matt's creatures cut from his paintings. Codes go to `?ref=sticker`. Simulated scans pass; none printed or phone-tested yet. Matt's rule: never use his signature, and keep "Every one signed" off the stickers.
+
 ## 2026-10-30 · Sam's Claude
 
 - Built a **picture-book popup** (`book` field in `works.json`, page-turn viewer, PDF download) and added Jan's *Comic Booklet* (id `little-comics`) (hands, makers Jan) to Issue 02. Jan approved; merged to main. Two of its comics draw other people's characters, which breaks the house rule; Sam chose to include them for now, plus a captioned photo of a real performer (someone else's photo; Sam bent the rule, Jan's call on rights). 
