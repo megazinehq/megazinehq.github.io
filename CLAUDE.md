@@ -108,3 +108,5 @@ Plain, dry, short. No hype, no "revolutionary". Blurbs describe what the thing d
 ## Other people's names stay off the page
 
 Be oblique about anything a piece borrows from. Blurbs, titles, seals, images and the paper never name or depict other people's games, characters, films, songs, screensavers, brands or products as inspiration ("like X", "a remake of Y", "X-style"). Describe what our piece does instead: "a night skyline from an old screensaver", not the screensaver's name; "a city builder", not the game it echoes. No logos, screenshots or artwork from other works. Naming a platform or store something runs on or is sold through (iPhone, App Store, Spotify) is fine.
+
+This is the default, not a ban. An editor can bend it for a specific piece when the reference matters to the piece (a Geocities-style homepage in HomeBlocks, a parody photo, comics that draw famous characters). Don't bend it on your own: say what the rule would cut, ask the editor, and note the exception in `HANDOFF.md`. Photos of real people and other people's artwork are the editor's call on rights, so flag that when you add them.
