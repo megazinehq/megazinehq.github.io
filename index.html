@@ -12,6 +12,7 @@
 <style>
 /* Layout: a photocopied masthead, then a pinboard of clippings (the issue), then a plain list (back issues). Two-colour riso: toner + blue, with fluoro pink reserved for misregistration and the copy stamp. */
 :root {
+  --aged: #F8F4E1; --aged-edge: #E4D8AC;
   --paper: #ECEDE9;
   --sheet: #F8F8F5;
   --toner: #18181B;
@@ -28,11 +29,13 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    --aged: #1C1C18; --aged-edge: #33301F;
     --paper: #101217; --sheet: #171A21; --toner: #ECEBE5; --muted: #A0A6AF;
     --rule: #2B303A; --blue: #7DB0FF; --pink: #FF68BA; --blend: screen; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
+  --aged: #1C1C18; --aged-edge: #33301F;
   --paper: #101217; --sheet: #171A21; --toner: #ECEBE5; --muted: #A0A6AF;
   --rule: #2B303A; --blue: #7DB0FF; --pink: #FF68BA; --blend: screen; color-scheme: dark;
 }
@@ -223,7 +226,9 @@ main { overflow-x: clip; }
 /* Back issues: a shelf of covers */
 .shelf { list-style: none; margin: 0; padding: 14px 0 26px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr)); gap: 26px 18px; }
 .cover { position: relative; transform: rotate(var(--tilt, 0deg)); transition: transform .25s ease; }
-.cover a { display: grid; gap: 4px; align-content: start; text-decoration: none; color: var(--toner); background: var(--sheet); border: 1px solid var(--rule);
+.cover a { display: grid; gap: 4px; align-content: start; text-decoration: none; color: var(--toner); border: 1px solid var(--aged-edge);
+  /* yellowed with age: warm paper, darker toward the edges and a foxed corner */
+  background: radial-gradient(120% 90% at 85% 100%, color-mix(in srgb, var(--aged-edge) 40%, transparent), transparent 60%), radial-gradient(ellipse at 30% 20%, transparent 60%, color-mix(in srgb, var(--aged-edge) 30%, transparent)), var(--aged);
   padding: 16px 12px 12px; box-shadow: 0 1px 0 var(--rule), 4px 4px 0 var(--pink); min-height: 140px; }
 .cover:hover { transform: rotate(0deg) translateY(-3px); }
 .cover a:hover { box-shadow: 0 1px 0 var(--rule), 5px 5px 0 var(--blue); }
