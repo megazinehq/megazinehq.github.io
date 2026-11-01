@@ -38,9 +38,9 @@ def logo(c, x, y, s):
     c.saveState(); c.translate(x, y); draw(TONER, BLUE); c.restoreState()
 
 
-def eyeball(c, cx, cy, R, rnd, look=(0, 0)):
+def eyeball(c, cx, cy, R, rnd, look=(0, 0), iris=0.62):
     c.setFillColor(TONER); c.circle(cx, cy, R, stroke=0, fill=1)
-    ri = R * 0.62 * rnd.uniform(0.94, 1.06); rp = ri * rnd.uniform(0.55, 0.64)
+    ri = R * iris * rnd.uniform(0.94, 1.06); rp = ri * rnd.uniform(0.55, 0.64)
     ix, iy = cx + look[0] * (R - ri) * 0.6, cy + look[1] * (R - ri) * 0.6
     c.setFillColor(rnd.choice(IRIS)); c.circle(ix, iy, ri, stroke=0, fill=1)
     c.setStrokeColor(TONER); c.setLineWidth(max(0.2, R * 0.04))
@@ -51,20 +51,20 @@ def eyeball(c, cx, cy, R, rnd, look=(0, 0)):
     c.setFillColor(white); c.circle(ix - rp * 0.38, iy + rp * 0.42, max(rp * 0.3, 0.5), stroke=0, fill=1)
 
 
-def eyeball_qr(c, x, y, size, url):
-    q = qrcode.QRCode(error_correction=ERROR_CORRECT_M, box_size=1, border=0)
+def eyeball_qr(c, x, y, size, url, ecc=ERROR_CORRECT_M, rad=(.5, .56), iris=0.62):
+    q = qrcode.QRCode(error_correction=ecc, box_size=1, border=0)
     q.add_data(url); q.make(fit=True); m = q.get_matrix(); n = len(m); sz = size / n
     rnd = random.Random(7)
     fin = [(0, 0), (0, n - 7), (n - 7, 0)]
     for r in range(n):
         for k in range(n):
             if m[r][k] and not any(a <= r < a + 7 and b <= k < b + 7 for a, b in fin):
-                eyeball(c, x + (k + .5) * sz, y + size - (r + .5) * sz, sz * rnd.uniform(.5, .56), rnd, (rnd.uniform(-1, 1), rnd.uniform(-1, 1)))
+                eyeball(c, x + (k + .5) * sz, y + size - (r + .5) * sz, sz * rnd.uniform(*rad), rnd, (rnd.uniform(-1, 1), rnd.uniform(-1, 1)), iris)
     for a, b in fin:
         fx, fy = x + b * sz, y + size - (a + 7) * sz
         c.setFillColor(TONER); c.roundRect(fx, fy, 7 * sz, 7 * sz, .9 * sz, stroke=0, fill=1)
         c.setFillColor(white); c.roundRect(fx + sz, fy + sz, 5 * sz, 5 * sz, .4 * sz, stroke=0, fill=1)
-        eyeball(c, fx + 3.5 * sz, fy + 3.5 * sz, sz * 1.55, rnd, (.3, -.2))
+        eyeball(c, fx + 3.5 * sz, fy + 3.5 * sz, sz * 1.55, rnd, (.3, -.2), iris)
 
 
 def sticker(c, x, y):
