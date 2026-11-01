@@ -672,11 +672,19 @@
         "Matt"
       ],
       "platform": "Print",
-      "blurb": "A kit for spreading the word: a flier with tear-off tabs and sheets of stickers. Every code points back here, so download them, print them and put them up around town.",
+      "blurb": "A kit for spreading the word: fliers and sheets of stickers. Every code points back here, so download them, print them and put them up around town.",
       "links": [
         {
           "label": "Flier (PDF)",
           "url": "print/flier.pdf"
+        },
+        {
+          "label": "Big-code flier (PDF)",
+          "url": "print/flier-big.pdf"
+        },
+        {
+          "label": "Big-code flier, doom (PDF)",
+          "url": "print/flier-big-doom.pdf"
         },
         {
           "label": "Stickers, black and white (zip)",
