@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-01 · Sam's Claude
 
-- New flier: `print/flier-big.pdf` (`tools/make_flier_big.py`): logo, a giant eyeball QR, slogan wrapped round it. Codes go to `?ref=flier-big`. The big eyeball code decodes in a simulated scan only when the page is downscaled to about phone-viewfinder size, not at full print resolution (a decoder quirk with huge modules); not printed or phone-tested yet. Not added to the Street Team Pack downloads.
+- New flier: `print/flier-big.pdf` (`tools/make_flier_big.py`): colour, crisp (not photocopied), a giant eyeball QR with the slogan wrapped round it and the logo along the bottom. Codes go to `?ref=flier-big`. The big eyeball code decodes in a simulated scan at some downscaled sizes but not others (a decoder quirk with huge modules); not printed or phone-tested yet. Not added to the Street Team Pack downloads.
 
 ## 2026-10-31 (5) · Sam's Claude
 
