@@ -35,7 +35,7 @@ Descriptions stay oblique about influences: no names of other people's games, fi
 
 - **The address** is megazine.org (the old megazinehq.github.io address redirects there).
 - **The eyeball QR** left of the title is a working code for megazine.org, drawn as eyes that follow the pointer and blink. It's generated in the page from the QR grid (the `eyeqr` script at the end of `tools/page.html`); if the address ever changes, regenerate the grid there.
-- **The issue** is the current lineup. Its cards appear in a new random order on every visit, so nobody's piece is always first.
+- **The issue** is the current lineup. Its cards appear in a new random order on every visit, so nobody's piece is always first. The Street Team Pack is the exception: it always comes last.
 - **Monthly issues:** the site shows the issue for the current month; earlier ones stay up under **Back issues** (`megazine.org/?issue=01`). Next month's issue can be built ahead as a draft and goes live on the 1st once it has pieces and isn't marked draft. To look at it early, open `megazine.org/?preview=02` (not counted in the stats).
 - **Picture books:** a piece made of images (comics, say) can be a `book` on its card: a popup you page through, with a PDF to download. Ask Sam's Claude or see CLAUDE.md.
 - **Pulled for now:** a finished piece can be hidden from the site without deleting it ("pull X for now").

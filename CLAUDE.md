@@ -91,7 +91,7 @@ People other than the editors submit through the BBS (repo `samuelling/BBS`, MEG
 
 ## Site behaviour worth knowing
 
-- An issue's cards are shuffled on every visit; the order in its `works` list only matters for the paper.
+- An issue's cards are shuffled on every visit; the order in its `works` list only matters for the paper. Exception: `street-team` (Street Team Pack) is always last, on the site and on the paper, in any issue that has it.
 - The back-cover code is `?issue=NN&copy=N`, so a copy of an old issue opens that issue; work codes (`?go=<id>`) don't depend on the issue.
 - Back issues are counted in GoatCounter as `/issue/NN`.
 - Visits, paper scans (`/scan/<id>`, `/scan/copy-<n>`) and clicks out (`/click/<id>`) are counted in GoatCounter under the code in `zine.goatcounter`. Don't add other trackers or cookies.

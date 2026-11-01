@@ -525,8 +525,10 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
       drawBoard();
     });
 
-    // A fresh order on every visit, so nothing is permanently first or last.
-    const order = shuffled(inIssue);
+    // A fresh order on every visit, so nothing is permanently first or last,
+    // except the Street Team Pack, which always closes the stack.
+    const order = shuffled(inIssue.filter((w) => w.id !== "street-team"))
+      .concat(inIssue.filter((w) => w.id === "street-team"));
     function drawBoard() {
       const list = order.filter((w) => active === "all" || w.kind === active);
       $("board").innerHTML = list.map((w, i) => {
