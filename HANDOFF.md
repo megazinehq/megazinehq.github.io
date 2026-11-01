@@ -4,7 +4,8 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-01 · Sam's Claude
 
-- New flier: `print/flier-big.pdf` (`tools/make_flier_big.py`): colour, crisp (not photocopied), one giant QR made of tiny QRs (the tiny ones are decorative at print size), the slogan said four times round it (once per side), the logo along the bottom. Codes go to `?ref=flier-big`. In simulated scans it decodes at most downscaled sizes (11 of 14) where a plain black code decodes at all; not printed or phone-tested yet, so phone-test it and fall back to a plain code if it fails.
+- Second big-code flier: `print/flier-big-doom.pdf` (`python3 tools/make_flier_big.py doom`), slogan "BETWEEN MONEY AND DOOM", codes go to `?ref=flier-big-doom`. Same caveat: decodes in 11 of 14 simulated sizes, phone-test before printing a stack.
+- New flier: `print/flier-big.pdf` (`tools/make_flier_big.py`): colour, crisp (not photocopied), one giant QR made of tiny QRs (the tiny ones are decorative at print size), the slogan in all caps running right round it (once per side, pink dots at the corners), the logo along the bottom. Codes go to `?ref=flier-big`. In simulated scans it decodes at most downscaled sizes (10 of 14) where a plain black code decodes at all; not printed or phone-tested yet, so phone-test it and fall back to a plain code if it fails.
 
 ## 2026-10-31 (5) · Sam's Claude
 
