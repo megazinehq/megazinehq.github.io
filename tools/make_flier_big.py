@@ -1,22 +1,58 @@
-"""The big-code flier: one letter page in the site's colours, with one giant eyeball QR code and the
-slogan said four times round it, once along each side, and the megaZINE logo along the bottom. Crisp vector,
-not photocopied. For a colour printer.
+"""The big-code flier: one letter page in the site's colours with one giant QR code made of tiny QR
+codes (every dark square of the big code is itself a little code), the slogan said once along each
+side of it, and the megaZINE logo along the bottom. Crisp vector, not photocopied. For a colour printer.
 
     python3 tools/make_flier_big.py            # print/flier-big.pdf
 
 The code carries ?ref=flier-big, so GoatCounter lists it under referrers.
 """
 import make_logo_stickers as L
-from qrcode.constants import ERROR_CORRECT_H
-from make_logo_stickers import (TONER, PINK, BLUE, logo, logo_w, eyeball_qr, pdfmetrics, canvas, letter, inch, white, ROOT, S)
+import qrcode
+from qrcode.constants import ERROR_CORRECT_H, ERROR_CORRECT_L
+from PIL import Image
+from reportlab.lib.utils import ImageReader
+from make_logo_stickers import (TONER, PINK, BLUE, logo, logo_w, pdfmetrics, canvas, letter, inch, white, ROOT, S)
 
 SLOGAN = "Making Yesterday’s Tomorrow Today"             # said once along every side of the code
 URL = S.BASE + "?ref=flier-big"
 LW, LH = letter
 M = 0.4 * inch
 B = 0.55 * inch                       # thickness of the slogan band on each side of the code
-PAD = 12                              # white card round the code
+PAD = 30                              # white card round the code (the quiet zone)
 FONT = "Sans-BoldItalic"
+
+
+def mini_code(data=S.BASE, px=8):
+    """One small QR code as an image, reused for every dark square of the big code."""
+    q = qrcode.QRCode(error_correction=ERROR_CORRECT_L, box_size=1, border=0)
+    q.add_data(data); q.make(fit=True)
+    m = q.get_matrix(); n = len(m)
+    im = Image.new("L", (n * px, n * px), 255)
+    for r in range(n):
+        for k in range(n):
+            if m[r][k]:
+                im.paste(0, (k * px, r * px, (k + 1) * px, (r + 1) * px))
+    return ImageReader(im)
+
+
+def qr_of_qrs(c, x, y, size, url, pad=0.22):
+    """The big code: every dark square is a black frame round a tiny code. The three corner squares
+    stay solid, and the high error correction plus the frames keep it scanning like a plain code."""
+    q = qrcode.QRCode(error_correction=ERROR_CORRECT_H, box_size=1, border=0)
+    q.add_data(url); q.make(fit=True)
+    m = q.get_matrix(); n = len(m); sz = size / n
+    tiny = mini_code()
+    finders = [(0, 0), (0, n - 7), (n - 7, 0)]
+    for r in range(n):
+        for k in range(n):
+            if not m[r][k]:
+                continue
+            cx, cy = x + k * sz, y + size - (r + 1) * sz
+            c.setFillColor(TONER)
+            c.rect(cx, cy, sz + 0.3, sz + 0.3, stroke=0, fill=1)
+            if not any(a <= r < a + 7 and b <= k < b + 7 for a, b in finders):
+                p = sz * pad
+                c.drawImage(tiny, cx + p, cy + p, sz - 2 * p, sz - 2 * p)
 
 
 def side_word(c, word, cx, cy, angle, size, color):
@@ -42,7 +78,7 @@ def draw_page(c):
     qy = bottom_y + B + PAD
     c.setFillColor(white); c.setStrokeColor(TONER); c.setLineWidth(2)
     c.rect(qx - PAD, qy - PAD, qs + 2 * PAD, qs + 2 * PAD, stroke=1, fill=1)
-    eyeball_qr(c, qx, qy, qs, URL, ecc=ERROR_CORRECT_H, iris=0.5)   # strong error correction and smaller irises, for scanning at this size
+    qr_of_qrs(c, qx, qy, qs, URL)
     # the slogan once on each side, sized to run the full length of the code
     size = 40
     while pdfmetrics.stringWidth(SLOGAN, FONT, size) > qs:
