@@ -55,4 +55,4 @@ Outsiders submit through MEGAzine BBS (formerly The Septic Tankz): they dial in,
 
 ## Stats
 
-**megazine.org/stats/** is our own readers dashboard, refreshed hourly: visitors per day, paper scans and clicks by piece, which numbered copies have been picked up, and where people came from. GoatCounter's dashboard (megazine.goatcounter.com) has the raw counts: visits (`/`), back issues (`/issue/NN`), paper scans per piece (`/scan/<id>`), back-cover scans per copy (`/scan/copy-<n>`), and clicks out (`/click/<id>`).
+**megazine.org/stats/** is our own readers dashboard, refreshed hourly: visitors per day, paper scans and clicks by piece, which numbered copies have been picked up, and where people came from. GoatCounter's dashboard (megazine.goatcounter.com) has the raw counts: visits (`/`), back issues (`/issue/NN`), paper scans per piece (`/scan/<id>`), back-cover scans per copy (`/scan/copy-<n>`), and clicks out (`/click/<id>`). It has a world map, and its lists open up to detail (a country's regions, a browser's versions, each page's referrers). No cities: GoatCounter doesn't keep them.

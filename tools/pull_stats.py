@@ -6,7 +6,10 @@ Without the key, or if GoatCounter is unreachable, it retries, then keeps the la
 exits cleanly so the deploy still goes out.
 
 Only aggregate counts are written: paths, days, referrer domains, browsers, screen sizes,
-countries. Nothing that identifies a visitor.
+countries, and the drill-downs under them (a country's regions, a browser's versions, a referrer's
+detail, the referrers of each page). Nothing that identifies a visitor. GoatCounter keeps no
+city: the finest place it has is a region (a US state, say), and only for the countries ticked under
+Settings > Data collection > Regions.
 
     GOATCOUNTER_TOKEN=... python3 tools/pull_stats.py
 """
@@ -94,8 +97,33 @@ def main():
         return
     # The site has a few dozen paths at most (/, /issue/NN, /scan/..., /click/...).
     hits = safe("/stats/hits", {}, daily="true", limit=100).get("hits") or []
-    lists = {k: (safe(f"/stats/{k}", {}, limit=12).get("stats") or [])
-             for k in ["toprefs", "browsers", "systems", "sizes", "locations"]}
+    raw = {k: (safe(f"/stats/{k}", {}, limit=(40 if k == "locations" else 12)).get("stats") or [])
+           for k in ["toprefs", "browsers", "systems", "sizes", "locations"]}
+
+    def rows(stats):
+        return [{"name": x.get("name") or "(unknown)", "count": x.get("count", 0)}
+                for x in stats or [] if x.get("count", 0) > 0]
+
+    lists = {}
+    for k, v in raw.items():
+        items = []
+        for x in v:
+            item = {"name": x.get("name") or "(unknown)", "count": x.get("count", 0)}
+            if k == "locations" and x.get("id"):
+                item["code"] = str(x["id"]).upper()  # ISO country code, for the map
+            # one more request each: a country's regions, a browser's versions, a referrer's detail
+            if k != "sizes" and x.get("id") and item["count"] > 0:
+                detail = rows(safe(f"/stats/{k}/{urllib.parse.quote(str(x['id']), safe='')}", {}, limit=20).get("stats"))
+                if detail:
+                    item["detail"] = detail
+            items.append(item)
+        lists[k] = items
+    # where each page's visitors came from (the busiest 40 paths)
+    for h in sorted(hits, key=lambda h: -h.get("count", 0))[:40]:
+        if h.get("path_id") and h.get("count", 0) > 0:
+            refs = rows(safe(f"/stats/hits/{h['path_id']}", {}, limit=20).get("refs"))
+            if refs:
+                h["refs_out"] = refs
     for f in failed:
         print(f"pull_stats: skipped {f}", file=sys.stderr)
 
@@ -103,7 +131,7 @@ def main():
         return {s["day"]: s.get("daily", 0) for s in stats or [] if s.get("daily")}
 
     paths = [{"path": h["path"], "event": bool(h.get("event")), "count": h.get("count", 0),
-              "days": daily(h.get("stats"))} for h in hits]
+              "days": daily(h.get("stats")), **({"refs": h["refs_out"]} if h.get("refs_out") else {})} for h in hits]
     out = {
         "generated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "range": {"start": rng["start"][:10], "end": (end - dt.timedelta(seconds=1)).strftime("%Y-%m-%d"), "days": DAYS},
@@ -111,7 +139,7 @@ def main():
         "total_events": total.get("total_events", 0),
         "days": daily(total.get("stats")),
         "paths": paths,
-        **{k: [{"name": s.get("name") or "(unknown)", "count": s.get("count", 0)} for s in v] for k, v in lists.items()},
+        **lists,
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(out, indent=1) + "\n")

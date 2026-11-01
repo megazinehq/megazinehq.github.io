@@ -85,6 +85,26 @@ h2 span { font: 400 .8rem/1 var(--type); color: var(--muted); letter-spacing: 0;
 .setup ol { margin: 8px 0 0; padding-left: 1.3em; display: grid; gap: 6px; }
 .setup code { font: 400 .9em var(--type); background: var(--blue-soft); padding: 1px 5px; }
 
+.rank li.has-more > .n { cursor: pointer; }
+.rank .tog { all: unset; cursor: pointer; color: var(--blue); font: 700 .8rem/1 var(--type); margin-right: 6px; display: inline-block; width: 1em; }
+.rank .tog:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+.rank ul.more { grid-column: 1 / -1; list-style: none; margin: 2px 0 4px 1.2em; padding: 0 0 0 12px; border-left: 2px solid var(--blue-soft); display: grid; gap: 5px; }
+.rank ul.more li { font-size: .88rem; color: var(--muted); }
+.rank ul.more .bar { height: 4px; }
+
+.mapbox { background: var(--sheet); border: 1px solid var(--rule); padding: 14px 14px 12px; }
+.mapbox svg { display: block; width: 100%; height: auto; }
+.mapbox .land { fill: var(--rule); }
+.mapbox .glow { fill: var(--pink); opacity: .22; }
+.mapbox .dot { fill: var(--pink); stroke: var(--sheet); stroke-width: .25; cursor: pointer; }
+.mapbox .dot.sel { fill: var(--blue); }
+.mapbox .ring { fill: none; stroke: var(--pink); stroke-width: .3; transform-box: fill-box; transform-origin: center; animation: ping 2.8s ease-out infinite; pointer-events: none; }
+@keyframes ping { from { transform: scale(.6); opacity: .9; } to { transform: scale(2.4); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .mapbox .ring { animation: none; opacity: .35; } }
+.mapinfo { margin-top: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 8px 22px; align-items: start; }
+.mapinfo h3 { margin: 0 0 8px; font: 400 1.05rem/1.1 var(--display); }
+.mapinfo .hint { font: 400 .82rem/1.4 var(--type); color: var(--muted); margin: 0; }
+
 #tip { position: fixed; z-index: 30; pointer-events: none; background: var(--toner); color: var(--paper); font: 700 .78rem/1.3 var(--type); padding: 6px 8px; transform: translate(-50%, calc(-100% - 10px)); white-space: nowrap; }
 footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(--muted); }
 </style>
@@ -139,13 +159,23 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
       <div class="copies" id="copies"></div>
     </section>
 
+    <section aria-labelledby="h-map">
+      <h2 id="h-map">Around the world <span>tap a dot to open it up</span></h2>
+      <div class="mapbox">
+        <svg id="map" viewBox="0 0 144 56" role="img" aria-label="World map; a pink dot for each country with readers"></svg>
+        <div class="mapinfo" id="mapinfo"></div>
+      </div>
+    </section>
+
     <section aria-labelledby="h-where">
       <h2 id="h-where">Where they came from</h2>
       <div class="grid2">
         <div><h3 class="sub">Referrers</h3><ul class="rank" id="refs"></ul></div>
-        <div><h3 class="sub">Countries</h3><ul class="rank" id="locations"></ul></div>
+        <div><h3 class="sub">Countries <small style="text-transform:none;letter-spacing:0">(tap for regions)</small></h3><ul class="rank" id="locations"></ul></div>
         <div><h3 class="sub">Issues read</h3><ul class="rank" id="issues"></ul></div>
         <div><h3 class="sub">Devices</h3><ul class="rank" id="systems"></ul></div>
+        <div><h3 class="sub">Browsers</h3><ul class="rank" id="browsers"></ul></div>
+        <div><h3 class="sub">Where each page's readers came from</h3><ul class="rank" id="pagerefs"></ul></div>
       </div>
     </section>
   </div>
@@ -197,23 +227,70 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
     const mid = days[Math.floor(days.length / 2)];
     axis.innerHTML = `<span>${short(days[0])}</span><span>${short(mid)}</span><span>${short(days[days.length - 1])}</span>`;
   }
+  function bars(rows, max) {
+    return rows.map((r) => `<li data-tip="${esc(r.name)}: ${fmt(r.count)}"><span class="n">${esc(r.name)}</span><span class="c">${fmt(r.count)}</span>
+      <span class="bar"><i style="width:${(r.count / max * 100).toFixed(1)}%"></i></span></li>`).join("");
+  }
   function rank(el, rows, empty) {
     rows = rows.filter((r) => r.count > 0);
     if (!rows.length) { el.innerHTML = `<li><p class="empty-note">${esc(empty)}</p></li>`; return; }
     const max = Math.max(...rows.map((r) => r.count));
-    el.innerHTML = rows.map((r) => `<li data-tip="${esc(r.name)}: ${fmt(r.count)}"><span class="n">${esc(r.name)}${r.note ? `<small>${esc(r.note)}</small>` : ""}</span><span class="c">${fmt(r.count)}</span>
-      <span class="bar"><i style="width:${(r.count / max * 100).toFixed(1)}%"></i></span></li>`).join("");
+    el.innerHTML = rows.map((r, i) => {
+      const more = r.detail && r.detail.length;
+      return `<li${more ? ' class="has-more"' : ""} data-tip="${esc(r.name)}: ${fmt(r.count)}"${r.code ? ` data-code="${esc(r.code)}"` : ""}><span class="n">${more ? `<button class="tog" aria-expanded="false" aria-label="Show detail for ${esc(r.name)}">▸</button>` : ""}${esc(r.name)}${r.note ? `<small>${esc(r.note)}</small>` : ""}</span><span class="c">${fmt(r.count)}</span>
+      <span class="bar"><i style="width:${(r.count / max * 100).toFixed(1)}%"></i></span>${more ? `<ul class="more rank" hidden>${bars(r.detail, Math.max(...r.detail.map((d) => d.count)))}</ul>` : ""}</li>`;
+    }).join("");
   }
+  document.addEventListener("click", (e) => {
+    const li = e.target.closest("li.has-more"); if (!li) return;
+    const ul = li.querySelector(":scope > ul.more"), b = li.querySelector(".tog");
+    ul.hidden = !ul.hidden; b.setAttribute("aria-expanded", String(!ul.hidden)); b.textContent = ul.hidden ? "▸" : "▾";
+    if (li.dataset.code && window.__selectCountry) window.__selectCountry(li.dataset.code);
+  });
   function sumDays(paths) {
     const out = {};
     paths.forEach((p) => Object.entries(p.days || {}).forEach(([d, v]) => { out[d] = (out[d] || 0) + v; }));
     return out;
   }
 
+  let WORLD = null;
+  function drawMap(locs) {
+    const svg = $("map"), info = $("mapinfo");
+    if (!WORLD) { svg.parentNode.hidden = true; return; }
+    const { step, lat0, rows, centroids } = WORLD;
+    const X = (lon) => (lon + 180) / step, Y = (lat) => (lat0 - lat) / step;
+    let land = "";
+    rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) if (r[x] === "1") land += `<circle class="land" cx="${x + .5}" cy="${y + .5}" r=".34"/>`; });
+    const pts = locs.filter((l) => l.code && centroids[l.code] && l.count > 0);
+    const max = Math.max(1, ...pts.map((l) => l.count));
+    const rad = (n) => 0.9 + 2.6 * Math.sqrt(n / max);
+    const dots = pts.map((l) => { const [lo, la] = centroids[l.code], cx = X(lo), cy = Y(la), r = rad(l.count);
+      return `<g class="pt" data-code="${esc(l.code)}"><circle class="glow" cx="${cx}" cy="${cy}" r="${r * 2}"/><circle class="ring" cx="${cx}" cy="${cy}" r="${r}"/>
+        <circle class="dot" cx="${cx}" cy="${cy}" r="${r}" tabindex="0" role="button" aria-label="${esc(l.name)}, ${fmt(l.count)} readers" data-tip="${esc(l.name)}: ${fmt(l.count)}"/></g>`; }).join("");
+    svg.innerHTML = land + dots;
+    const total = pts.reduce((a, l) => a + l.count, 0);
+    function select(code) {
+      const l = pts.find((x) => x.code === code); if (!l) return;
+      svg.querySelectorAll(".dot").forEach((d) => d.classList.toggle("sel", d.closest(".pt").dataset.code === code));
+      const det = (l.detail || []).filter((d) => d.count > 0);
+      info.innerHTML = `<div><h3>${esc(l.name)}</h3><p class="hint">${fmt(l.count)} visitor-days, ${total ? Math.round(l.count / total * 100) : 0}% of all located readers.</p></div>
+        <div>${det.length ? `<ul class="rank">${bars(det, Math.max(...det.map((d) => d.count)))}</ul>`
+          : `<p class="hint">No regions for this country. GoatCounter only keeps regions for the countries ticked under Settings → Data collection → Regions, and never keeps a city.</p>`}</div>`;
+    }
+    window.__selectCountry = select;
+    const onPick = (e) => { const g = e.target.closest(".pt"); if (g) select(g.dataset.code); };
+    svg.onclick = onPick;
+    svg.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onPick(e); } };
+    if (pts.length) select([...pts].sort((a, b) => b.count - a.count)[0].code);
+    else info.innerHTML = `<p class="hint">No located readers yet. Dots appear here as visits come in.</p>`;
+  }
+
   Promise.all([
     fetch("stats.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null),
     fetch("../works.json", { cache: "no-cache" }).then((r) => r.json()),
-  ]).then(([st, data]) => {
+    fetch("world.json").then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  ]).then(([st, data, world]) => {
+    WORLD = world;
     if (!st) { $("updated").textContent = "Not connected yet"; $("setup").hidden = false; return; }
     $("dash").hidden = false;
     $("updated").textContent = "Updated " + ago(st.generated);
@@ -261,10 +338,15 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
       ? `<div class="copy lit" data-tip="Copy ${n}: scanned ${copyCount[n]}×" tabindex="0">${n}${copyCount[n] > 1 ? `<b>${copyCount[n]}</b>` : ""}</div>`
       : `<div class="copy" data-tip="Copy ${n}: not yet" tabindex="0">${n}</div>`).join("");
 
-    const list = (k) => (st[k] || []).map((r) => ({ name: r.name, count: r.count }));
+    const list = (k) => (st[k] || []).map((r) => ({ name: r.name, count: r.count, detail: r.detail, code: r.code }));
     rank($("refs"), list("toprefs"), "Nothing yet. Paper scans and typed-in visits show no referrer.");
     rank($("locations"), list("locations"), "Nothing yet.");
     rank($("systems"), list("systems"), "Nothing yet.");
+    rank($("browsers"), list("browsers"), "Nothing yet.");
+    // each page's own referrers, opened from its row
+    const refRows = pages.map((p) => ({ name: p.path === "/" ? "Current issue" : "Issue " + p.path.slice(7), count: p.count, detail: p.refs })).sort((a, b) => b.count - a.count);
+    rank($("pagerefs"), refRows, "Nothing yet.");
+    drawMap(st.locations || []);
     const issueRows = pages.map((p) => ({ name: p.path === "/" ? "Current issue" : "Issue " + p.path.slice(7), count: p.count,
       note: p.path === "/" ? "megazine.org" : "back issue" })).sort((a, b) => b.count - a.count);
     rank($("issues"), issueRows, "Nothing yet.");

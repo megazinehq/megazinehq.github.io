@@ -12,6 +12,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-01 · Sam's Claude
 
+- Stats dashboard: world map (`stats/world.json`, static) and drill-downs (regions, browser versions, per-page referrers); `tools/pull_stats.py` now makes ~90 API calls (still under a minute). Written against GoatCounter's documented `/stats/{page}/{id}` and `/stats/hits/{path_id}` endpoints but not run against the live key yet, so check the next deploy's log for `pull_stats: skipped` lines and that regions show (needs US ticked in GoatCounter's Regions setting). No city-level data exists in GoatCounter.
 - Street Team Pack always last in an issue (last in `works`, pinned last in the site's shuffle in `tools/page.html`); keep it last when adding works.
 - Street Team Pack now also links both big-code fliers (flier-big, flier-big-doom).
 - Second big-code flier: `print/flier-big-doom.pdf` (`python3 tools/make_flier_big.py doom`), slogan "BETWEEN MONEY AND DOOM", codes go to `?ref=flier-big-doom`. Same caveat: decodes in 11 of 14 simulated sizes, phone-test before printing a stack.
