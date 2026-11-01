@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-01 · Sam's Claude
+
+- New flier: `print/flier-big.pdf` (`tools/make_flier_big.py`): logo, a giant eyeball QR, slogan wrapped round it. Codes go to `?ref=flier-big`. The big eyeball code decodes in a simulated scan only when the page is downscaled to about phone-viewfinder size, not at full print resolution (a decoder quirk with huge modules); not printed or phone-tested yet. Not added to the Street Team Pack downloads.
+
 ## 2026-10-31 (5) · Sam's Claude
 
 - Jan submitted **Gag Machine** (Jan, made: both). It takes Metamers' slot in Issue 02; **Metamers moved to Issue 03** (now Animal Sanctuary, Ambit: Quartet, Frisky, Metamers). Also: Musicbox is now titled Frisky (id still `musicbox`), Orbitakt's play link is `/Orbitakt/play/`.
