@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-01 (2) · Sam's Claude
+
+- **Ashland** (Issue 02) now has a second button, **Mac app (.dmg)**, and platform "Web, Mac". The DMG is a universal Mac app built by a workflow in `samuelling/chopper` (`.github/workflows/mac-dmg.yml`) and published as a GitHub release; the link (`releases/latest/download/Ashland-mac.dmg`) always serves the newest build. It is ad-hoc signed for now, so first launch needs System Settings, Privacy & Security, Open Anyway, until Sam adds his Developer ID secrets to that repo (then it is notarized and opens cleanly, same link). Paper unchanged (the code still goes to Play).
+
 ## 2026-11-01 · Sam's Claude
 
 - Street Team Pack always last in an issue (last in `works`, pinned last in the site's shuffle in `tools/page.html`); keep it last when adding works.

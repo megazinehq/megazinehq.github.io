@@ -522,12 +522,16 @@
       "makers": [
         "Sam"
       ],
-      "platform": "Web",
+      "platform": "Web, Mac",
       "blurb": "A quiet game set in Ashland State Park, Massachusetts, rebuilt from real map and elevation data and played through the four seasons. Row the lake, fish it, cut a tree if you must. Everything you ask a machine to do costs the place something, and it doesn't grow back overnight.",
       "links": [
         {
           "label": "Play",
           "url": "https://samuelling.github.io/Chopper/"
+        },
+        {
+          "label": "Mac app (.dmg)",
+          "url": "https://github.com/samuelling/chopper/releases/latest/download/Ashland-mac.dmg"
         }
       ]
     },
