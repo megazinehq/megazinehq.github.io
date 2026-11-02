@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-02 · Sam's Claude
 
-- Ambit is lined up in Issue 03 (December). Its App Store button reads "Out soon" (was "In review"); when it's live, put the App Store URL in that link, and the paper's first-link code will follow it.
+- Ambit is live on the App Store; its link is in `works.json` (Issue 03, December). The paper's code for it now goes to the App Store page.
 
 ## 2026-11-01 (3) · Sam's Claude
 
