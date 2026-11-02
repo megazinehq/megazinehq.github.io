@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-02 (2) · Sam's Claude
+
+- **Townies** (Issue 01) has a **Mac app (.dmg)** button and platform "Web · iPhone · iPad · Mac". The dmg is in `downloads/townies-mac.dmg`: signed with Sam's Developer ID and notarized, so it opens cleanly. It's a copy, so it doesn't update with the game; replace the file (from the latest "Mac app" run's artifact in `samuelling/Townies`) when Townies changes a lot. Paper unchanged.
+
 ## 2026-11-02 · Sam's Claude
 
 - Ambit is live on the App Store; its link is in `works.json` (Issue 03, December). The paper's code for it now goes to the App Store page.

@@ -73,12 +73,16 @@
       "makers": [
         "Sam"
       ],
-      "platform": "Web · iPhone · iPad",
+      "platform": "Web · iPhone · iPad · Mac",
       "blurb": "A city sim of the real Watertown, MA, built to scale from assessor records, with scenarios lifted from local news comment sections and a real traffic model under the hood. Ask any problem \"Why?\" and it shows you the chain of causes. To see its innards, open Help → Behind the Scenes.",
       "links": [
         {
           "label": "Play in browser",
           "url": "https://samuelling.github.io/Townies/"
+        },
+        {
+          "label": "Mac app (.dmg)",
+          "url": "https://megazine.org/downloads/townies-mac.dmg"
         },
         {
           "label": "TestFlight",
