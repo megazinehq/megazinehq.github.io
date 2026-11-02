@@ -14,6 +14,7 @@ Nothing waiting.
 
 ## Unassigned
 
+- **Orbitakt**, Sam, both, live. In `works.json`, no issue; taken out of Issue 02 when Ambit (which includes it) took its place.
 - **Titanosaur**, Sam, hands, live. In `works.json`, no issue; taken out of Issue 02 earlier.
 - **Topple House**, Sam, both, missing. Hidden in `works.json`, no link yet.
 - **Solstice**, Sam, both, missing. Hidden in `works.json`, no link yet.

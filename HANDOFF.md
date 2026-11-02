@@ -8,6 +8,8 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-02 · Sam's Claude
 
+- Issue 02 (November): Ambit replaces Orbitakt (same slot). Orbitakt stays in `works.json` and is in the queue's Unassigned. Ambit is also still in Issue 03 (December); Sam hasn't said whether to pull it from there.
+
 - Ambit is live on the App Store; its link is in `works.json` (Issue 03, December). The paper's code for it now goes to the App Store page.
 
 ## 2026-11-01 (3) · Sam's Claude
