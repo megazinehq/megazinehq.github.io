@@ -98,16 +98,12 @@
       "makers": [
         "Sam"
       ],
-      "platform": "iPhone",
+      "platform": "iOS (iPhone)",
       "blurb": "Four ambient instruments in one iPhone app, each listening to a different invisible field around you. Aether Wave plays the Bluetooth radio in the room, Bellweathered drones the weather, Leitmotif turns your phone's own data traffic into a melody, and Orbitakt drums the satellites passing overhead. A pad on the home screen leans the mix toward one voice.",
       "links": [
         {
           "label": "App Store",
           "url": "https://apps.apple.com/us/app/ambit-quartet/id6823966066"
-        },
-        {
-          "label": "How Aether listens",
-          "url": "https://samuelling.github.io/Aether/"
         }
       ]
     },
