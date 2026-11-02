@@ -82,7 +82,7 @@
         },
         {
           "label": "Mac app (.dmg)",
-          "url": "https://megazine.org/downloads/townies-mac.dmg"
+          "url": "https://github.com/samuelling/Townies/releases/download/mac-latest/Townies.dmg"
         },
         {
           "label": "TestFlight",

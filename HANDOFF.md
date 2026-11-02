@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-02 (2) · Sam's Claude
 
-- **Townies** (Issue 01) has a **Mac app (.dmg)** button and platform "Web · iPhone · iPad · Mac". The dmg is in `downloads/townies-mac.dmg`: signed with Sam's Developer ID and notarized, so it opens cleanly. It's a copy, so it doesn't update with the game; replace the file (from the latest "Mac app" run's artifact in `samuelling/Townies`) when Townies changes a lot. Paper unchanged.
+- **Townies** (Issue 01) has a **Mac app (.dmg)** button and platform "Web · iPhone · iPad · Mac". The dmg is signed with Sam's Developer ID and notarized, so it opens cleanly. It now links to the "Townies for Mac" release in `samuelling/Townies` (`releases/download/mac-latest/Townies.dmg`), which that repo's Mac app workflow rebuilds and replaces on every change, so the link always serves the current game; the earlier copy in `downloads/` is gone. Paper unchanged.
 
 ## 2026-11-02 · Sam's Claude
 
