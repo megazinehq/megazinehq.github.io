@@ -329,6 +329,7 @@ def colourise(im, seed):
     rgb[np.isin(lab, list(edge))] = t
     return rgb
 def sheet(cells, name):
+    global URL; URL = "https://megazine.org/?ref=" + name.replace("stickers-", "sticker-", 1)   # one code per sheet, so the dashboard can tell them apart
     PW, PH = I(8.5), I(11); page = np.ones((PH, PW), np.uint8) * 255; cpage = np.ones((PH, PW, 3), np.uint8) * 255; calm = np.zeros((PH, PW), bool); xs, ys = set(), set(); m = I(.06)
     for x, y, cw, ch, fn in cells:
         QR.clear(); CS.clear(); wd, hd = I(cw) - 2 * m, I(ch) - 2 * m; im = fn(wd, hd); flush(im); assert im.size == (wd, hd), im.size

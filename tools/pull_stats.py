@@ -97,7 +97,7 @@ def main():
         return
     # The site has a few dozen paths at most (/, /issue/NN, /scan/..., /click/...).
     hits = safe("/stats/hits", {}, daily="true", limit=100).get("hits") or []
-    raw = {k: (safe(f"/stats/{k}", {}, limit=(40 if k == "locations" else 12)).get("stats") or [])
+    raw = {k: (safe(f"/stats/{k}", {}, limit=(50 if k in ("locations", "toprefs") else 12)).get("stats") or [])
            for k in ["toprefs", "browsers", "systems", "sizes", "locations"]}
 
     def rows(stats):

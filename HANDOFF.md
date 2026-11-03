@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-03 (2) · Sam's Claude
+
+- Every printed code now has its own `?ref=` so the dashboard (new **Fliers and stickers** section) can tell them apart: tabs `flier`, main `flier-main`, `flier-big`, `flier-big-doom`, sticker sheet 11 `sticker-11-logo` (rebuilt, zip rebuilt), and sheets 1-10 plus the Avery labels `sticker-NN-name` / `sticker-avery-NN-colour`.
+- **For Matt's Claude:** the sticker scripts (`print/stickers/src/stickers.py`, `labels.py`) are edited so each sheet gets its own code, but the PDFs for sheets 1-10 and the Avery labels are still the old ones (plain `?ref=sticker`), because they're built from Matt's art on his machine. Rerun them there, then `python3 tools/make_street_team.py` and commit. Until then those sheets all count as "Stickers (first run)".
+
 ## 2026-11-03 · Sam's Claude
 
 - **Shred Hole** added to Issue 03 (December): Sam, both, toy, Play link `https://samuelling.github.io/Tunnel/` (capital T; checked, it loads). Blurb written from Sam's notes, not from the repo; Sam may want to tweak it. December: Animal Sanctuary, Shred Hole, Frisky, Metamers.

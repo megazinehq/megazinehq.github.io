@@ -59,6 +59,7 @@ Sh = {
  "03-paintings": [c_scene(k, (x, y, x + .55, y + .2)) for k, x, y in [(("gold", "whale", "bear")[i % 3], .03 + (i * .137) % .42, .04 + (i * .263) % .74) for i in range(30)]],
 }
 def build(name, fns):
+    global URL; URL = "https://megazine.org/?ref=" + name.replace("stickers-", "sticker-", 1)   # one code per sheet
     PW, PH = I(8.5), I(11); page = np.ones((PH, PW), np.uint8) * 255; calm = np.zeros((PH, PW), bool); inside = np.zeros((PH, PW), bool); cells = []; m = I(M)
     for i, fn in enumerate(fns):
         cx, cy = LX + (i % 3) * PX, LY + (i // 3) * PY; QR.clear(); CS.clear(); wd, hd = I(LW) - 2 * m, I(LH) - 2 * m; im = fn(wd, hd); flush(im); assert im.size == (wd, hd), im.size

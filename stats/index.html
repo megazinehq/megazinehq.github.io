@@ -154,6 +154,14 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
       </div>
     </section>
 
+    <section aria-labelledby="h-print">
+      <h2 id="h-print">Fliers and stickers <span>visitors who arrived by scanning a printed code</span></h2>
+      <div class="grid2">
+        <div><h3 class="sub">Fliers vs stickers</h3><ul class="rank ink" id="print-groups"></ul></div>
+        <div><h3 class="sub">Each piece</h3><ul class="rank" id="print-each"></ul></div>
+      </div>
+    </section>
+
     <section aria-labelledby="h-copies">
       <h2 id="h-copies">Copies picked up <span id="copies-note"></span></h2>
       <div class="copies" id="copies"></div>
@@ -339,6 +347,15 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
       : `<div class="copy" data-tip="Copy ${n}: not yet" tabindex="0">${n}</div>`).join("");
 
     const list = (k) => (st[k] || []).map((r) => ({ name: r.name, count: r.count, detail: r.detail, code: r.code }));
+    // Printed pieces: every code carries ?ref=<name> (flier, flier-main, flier-big, sticker-03-big, ...).
+    // Bare "sticker" is the early run, before each sheet had its own code.
+    const NICE = { "flier": "Flier: tear-off tabs", "flier-main": "Flier: big code", "flier-big": "Big-code flier", "flier-big-doom": "Big-code flier: Between Money and Doom", "sticker": "Stickers (first run, all sheets)" };
+    const nice = (n) => NICE[n] || (n.startsWith("sticker-") ? "Sticker sheet " + n.slice(8).replace(/^avery-/, "Avery ") : n);
+    const printed = (st.toprefs || []).filter((r) => /^(flier|sticker)(-|$)/i.test(r.name));
+    const kinds = [["Fliers", printed.filter((r) => /^flier/i.test(r.name))], ["Stickers", printed.filter((r) => /^sticker/i.test(r.name))]]
+      .map(([name, rs]) => ({ name, count: rs.reduce((a, r) => a + r.count, 0), detail: rs.map((r) => ({ name: nice(r.name), count: r.count })).sort((a, b) => b.count - a.count) }));
+    rank($("print-groups"), kinds, "No scans of fliers or stickers yet. Put some up.");
+    rank($("print-each"), printed.map((r) => ({ name: nice(r.name), count: r.count })).sort((a, b) => b.count - a.count), "Nothing yet.");
     rank($("refs"), list("toprefs"), "Nothing yet. Paper scans and typed-in visits show no referrer.");
     rank($("locations"), list("locations"), "Nothing yet.");
     rank($("systems"), list("systems"), "Nothing yet.");

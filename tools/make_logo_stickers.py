@@ -1,6 +1,6 @@
 """One letter sheet of six colour stickers: the site's logo (ink plus the slipped pink pass) on top,
 the big eyeball code underneath, in the site's colours. For a colour laser or inkjet on sticker paper.
-Straight cuts along the light grey lines. The code carries ?ref=sticker, same as the other sticker sheets.
+Straight cuts along the light grey lines. The code carries ?ref=sticker-11-logo; every sticker sheet has its own sticker-NN-name.
 
     python3 tools/make_logo_stickers.py      # print/stickers/color/stickers-11-logo-color.pdf
 """
@@ -16,7 +16,7 @@ from reportlab.pdfgen import canvas
 pdfmetrics.registerFont(TTFont("Logo", str(ROOT / "tools" / "fonts" / "BowlbyOneSC-Regular.ttf")))
 TONER, PINK, BLUE, GOLD, PAPER = HexColor("#18181B"), HexColor("#F2369B"), HexColor("#0055B3"), HexColor("#94671A"), HexColor("#FBFBF8")
 IRIS = [BLUE] * 5 + [PINK] * 4 + [GOLD] * 2
-URL = S.BASE + "?ref=sticker"
+URL = S.BASE + "?ref=sticker-11-logo"
 OUT = ROOT / "print" / "stickers" / "color" / "stickers-11-logo-color.pdf"
 LW, LH = letter
 COLS, ROWS = 2, 3
