@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-03 · Sam's Claude
+
+- **Shred Hole** added to Issue 03 (December): Sam, both, toy, Play link `https://samuelling.github.io/tunnel/` (address assumed from the repo name; confirm it loads). Blurb written from Sam's notes, not from the repo; Sam may want to tweak it. December: Animal Sanctuary, Shred Hole, Frisky, Metamers.
+
 ## 2026-11-02 (2) · Sam's Claude
 
 - **Townies** (Issue 01) has a **Mac app (.dmg)** button and platform "Web · iPhone · iPad · Mac". The dmg is signed with Sam's Developer ID and notarized, so it opens cleanly. It now links to the "Townies for Mac" release in `samuelling/Townies` (`releases/download/mac-latest/Townies.dmg`), which that repo's Mac app workflow rebuilds and replaces on every change, so the link always serves the current game; the earlier copy in `downloads/` is gone. Paper unchanged.

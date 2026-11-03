@@ -58,6 +58,7 @@
       "theme": "",
       "works": [
         "animal-sanctuary",
+        "shred-hole",
         "musicbox",
         "metamers"
       ]
@@ -663,6 +664,23 @@
         "pdf": "media/little-comics.pdf"
       },
       "links": []
+    },
+    {
+      "id": "shred-hole",
+      "title": "Shred Hole",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "Drop things down a tall 3D tunnel and watch a chopper fan shred them. You can type in an object and Claude builds it for you, then it goes in with the rest. The debris falls through a portal at the bottom.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://samuelling.github.io/tunnel/"
+        }
+      ]
     },
     {
       "id": "street-team",
