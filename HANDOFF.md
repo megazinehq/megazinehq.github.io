@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-03 · Sam's Claude
 
-- **Shred Hole** added to Issue 03 (December): Sam, both, toy, Play link `https://samuelling.github.io/tunnel/` (address assumed from the repo name; confirm it loads). Blurb written from Sam's notes, not from the repo; Sam may want to tweak it. December: Animal Sanctuary, Shred Hole, Frisky, Metamers.
+- **Shred Hole** added to Issue 03 (December): Sam, both, toy, Play link `https://samuelling.github.io/Tunnel/` (capital T; checked, it loads). Blurb written from Sam's notes, not from the repo; Sam may want to tweak it. December: Animal Sanctuary, Shred Hole, Frisky, Metamers.
 
 ## 2026-11-02 (2) · Sam's Claude
 
