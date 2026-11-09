@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-08 · Sam's Claude
+
+- **Gain Control** added to Issue 03 (December): Sam and Jan, both, game, Play link `https://samuelling.github.io/GainControl/` (loads; capital G and C). Blurb written from Sam's notes, not from the game; he may want to tweak it. December: Animal Sanctuary, Shred Hole, Frisky, Metamers, Gain Control.
+
 ## 2026-11-03 (2) · Sam's Claude
 
 - Every printed code now has its own `?ref=` so the dashboard (new **Fliers and stickers** section) can tell them apart: tabs `flier`, main `flier-main`, `flier-big`, `flier-big-doom`, sticker sheet 11 `sticker-11-logo` (rebuilt, zip rebuilt), and sheets 1-10 plus the Avery labels `sticker-NN-name` / `sticker-avery-NN-colour`.

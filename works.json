@@ -60,7 +60,8 @@
         "animal-sanctuary",
         "shred-hole",
         "musicbox",
-        "metamers"
+        "metamers",
+        "gain-control"
       ]
     }
   ],
@@ -679,6 +680,24 @@
         {
           "label": "Play",
           "url": "https://samuelling.github.io/Tunnel/"
+        }
+      ]
+    },
+    {
+      "id": "gain-control",
+      "title": "Gain Control",
+      "kind": "game",
+      "made": "both",
+      "makers": [
+        "Sam",
+        "Jan"
+      ],
+      "platform": "Web",
+      "blurb": "A point-and-click murder mystery set in a university neuroscience department, drawn in plain black line art. Poke around the labs and offices, talk to the suspects, and work out who did it.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://samuelling.github.io/GainControl/"
         }
       ]
     },
