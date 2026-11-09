@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-08 · Sam's Claude
 
-- **Gain Control** added to Issue 03 (December): Sam and Jan, both, game, Play link `https://samuelling.github.io/GainControl/` (loads; capital G and C). Blurb written from Sam's notes, not from the game; he may want to tweak it. December: Animal Sanctuary, Shred Hole, Frisky, Metamers, Gain Control.
+- **Gain Control** added to Issue 03 (December): Sam and Jan, both, game, Play link `https://samuelling.github.io/GainControl/` (loads; capital G and C). Blurb written from Sam's notes, not from the game; he may want to tweak it. Names-rule exception, at Sam's request: the blurb names Sierra Online and LucasArts as inspiration. December: Animal Sanctuary, Shred Hole, Frisky, Metamers, Gain Control.
 
 ## 2026-11-03 (2) · Sam's Claude
 
