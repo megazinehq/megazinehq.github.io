@@ -672,7 +672,8 @@
       "kind": "toy",
       "made": "both",
       "makers": [
-        "Sam"
+        "Sam",
+        "Matt"
       ],
       "platform": "Web",
       "blurb": "Drop things down a tall 3D tunnel and watch a chopper fan shred them. You can type in an object and Claude builds it for you, then it goes in with the rest. The debris falls through a portal at the bottom.",
