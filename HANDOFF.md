@@ -4,6 +4,8 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-10 · Sam's Claude
 
+- Lights are now every December's look, not just 2026's: any issue whose month ends `-12` gets them (`"decor": "none"` opts out), and Hanukkah's blue bulbs are worked out from the browser's Hebrew calendar for any year (2026's dates are the fallback). The `decor` field was dropped from Issue 03, since December triggers it.
+
 - December's site gets Christmas lights (C9 colours) swagged across the logo, falling off the last letter onto the rule under the masthead and down the right margin (`"decor": "lights"` on Issue 03; code in `tools/page.html`, `xmasLights`). Hanukkah mode (blue bulbs flickering, one more per night, 4 Dec 4 pm to 12 Dec 4 pm local) is date-driven; `?hanukkah=N`, `?hanukkah=0`, `?lights=off` for testing. Site only, nothing on the paper. Sam is approving it from `?preview=03`.
 
 - Gain Control now has a Mac app (.dmg) link (`.../GainControl/releases/download/mac-latest/GainControl.dmg`, checked: the file exists) and platform "Web · Mac".

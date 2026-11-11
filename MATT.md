@@ -57,4 +57,4 @@ Outsiders submit through MEGAzine BBS (formerly The Septic Tankz): they dial in,
 
 **megazine.org/stats/** is our own readers dashboard, refreshed hourly: visitors per day, paper scans and clicks by piece, which numbered copies have been picked up, and where people came from, with fliers and stickers split out by piece (every printed code carries its own `?ref=` name). GoatCounter's dashboard (megazine.goatcounter.com) has the raw counts: visits (`/`), back issues (`/issue/NN`), paper scans per piece (`/scan/<id>`), back-cover scans per copy (`/scan/copy-<n>`), and clicks out (`/click/<id>`). It has a world map, and its lists open up to detail (a country's regions, a browser's versions, each page's referrers). No cities: GoatCounter doesn't keep them.
 
-**December lights.** Issue 03 has `"decor": "lights"`: string lights on the site's logo and right margin, blue Hanukkah bulbs 4-12 December. Preview with `?preview=03&hanukkah=4`.
+**December lights.** Every December issue gets string lights on the site, with blue Hanukkah bulbs on the right nights (any year). Preview with `?preview=NN&hanukkah=4`; `"decor": "none"` turns them off.
