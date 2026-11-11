@@ -124,3 +124,5 @@ Print on letter paper, landscape, at 100% (no "fit to page"). Black only; it's d
 - `ambit` → App Store URL once Ambit: Quartet clears review.
 - `townies` → TestFlight public link for (Water) Townies.
 - Matt's work: paintings, his iOS app, anything (see `MATT.md`).
+
+**Seasonal decoration.** An issue with `"decor": "lights"` in `works.json` gets string lights over the site's logo and down the right margin (December's). During Hanukkah (4 Dec 4 pm to 12 Dec 4 pm, viewer's local time) the last eight bulbs on the drape are blue, and one more flickers each night. Try variants with `?preview=03&hanukkah=1..8`, `&hanukkah=0` (none) or `&lights=off`. It is drawn in `tools/page.html` (the `xmasLights` script); the paper has none.

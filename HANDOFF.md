@@ -4,6 +4,8 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-10 · Sam's Claude
 
+- December's site gets Christmas lights on the logo and down the right margin (`"decor": "lights"` on Issue 03; code in `tools/page.html`, `xmasLights`). Hanukkah mode (blue bulbs flickering, one more per night, 4 Dec 4 pm to 12 Dec 4 pm local) is date-driven; `?hanukkah=N`, `?hanukkah=0`, `?lights=off` for testing. Site only, nothing on the paper. Sam is approving it from `?preview=03`.
+
 - Gain Control now has a Mac app (.dmg) link (`.../GainControl/releases/download/mac-latest/GainControl.dmg`, checked: the file exists) and platform "Web · Mac".
 
 - **January (Issue 04)** started as a draft in `works.json` with **RetroSynths** (Sam, both, music, Open link `https://samuelling.github.io/RetroSynths/`; the name of the old desktop it's styled after is kept off the page, per Sam). Look at it with `?preview=04`. Remove `"draft"` when the lineup is ready; no January PDFs built yet.
