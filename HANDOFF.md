@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-11 · Sam's Claude
+
+- **FlyHarp** added (Sam, both, music, Play `https://samuelling.github.io/FlyHarp/`, loads) and slotted into December in place of **Animal Sanctuary**, which moves to a new **Issue 05 · February 2027** draft. Blurb written from Sam's notes and the page title, so he may tweak it. December is now FlyHarp, Shred Hole, Frisky, Metamers, Gain Control. No Issue 05 PDFs yet; remove `"draft"` when its lineup is ready.
+
 ## 2026-11-10 · Sam's Claude
 
 - Lights are now every December's look, not just 2026's: any issue whose month ends `-12` gets them (`"decor": "none"` opts out), and Hanukkah's blue bulbs are worked out from the browser's Hebrew calendar for any year (2026's dates are the fallback). The `decor` field was dropped from Issue 03, since December triggers it.

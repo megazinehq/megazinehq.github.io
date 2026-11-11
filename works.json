@@ -57,7 +57,7 @@
       "date": "December 2026",
       "theme": "",
       "works": [
-        "animal-sanctuary",
+        "flyharp",
         "shred-hole",
         "musicbox",
         "metamers",
@@ -72,6 +72,16 @@
       "draft": true,
       "works": [
         "retrosynths"
+      ]
+    },
+    {
+      "id": "05",
+      "month": "2027-02",
+      "date": "February 2027",
+      "theme": "",
+      "draft": true,
+      "works": [
+        "animal-sanctuary"
       ]
     }
   ],
@@ -798,6 +808,23 @@
         {
           "label": "Make a gag",
           "url": "https://janbrascamp.github.io/gag_machine/"
+        }
+      ]
+    },
+    {
+      "id": "flyharp",
+      "title": "FlyHarp",
+      "kind": "music",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "A synthesizer played by the fly's visual system. Point your webcam at the world, or pick a built-in scene, and the signal ripples through a model of the fruit fly's eye and brain, with each cell that fires turned into a note.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://samuelling.github.io/FlyHarp/"
         }
       ]
     }

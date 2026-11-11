@@ -16,6 +16,10 @@ Nothing waiting.
 
 In `works.json` as a draft (not live until `"draft"` comes off): RetroSynths. Nothing else waiting.
 
+## Issue 05 · February 2027
+
+In `works.json` as a draft (not live until `"draft"` comes off): Animal Sanctuary. Nothing else waiting.
+
 ## Unassigned
 
 - **Orbitakt**, Sam, both, live. In `works.json`, no issue; taken out of Issue 02 when Ambit (which includes it) took its place.
