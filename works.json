@@ -721,7 +721,7 @@
         "Sam"
       ],
       "platform": "Web",
-      "blurb": "A desktop toolbox of retro sound chips, where you play General MIDI through the sound hardware of 1977 to 1998. Open a synth, pick an era, and hear the same song change as the chips get better.",
+      "blurb": "A desktop toolbox of retro sound engines: game consoles, early home computers and PC sound cards, each one a synth you can play. Open an app, pick a chip, and hear the same song through the hardware of 1977 to 1998.",
       "links": [
         {
           "label": "Open",
