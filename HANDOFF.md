@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-10 · Sam's Claude
+
+- **January (Issue 04)** started as a draft in `works.json` with **RetroSynths** (Sam, both, music, Open link `https://samuelling.github.io/RetroSynths/`; the name of the old desktop it's styled after is kept off the page, per Sam). Look at it with `?preview=04`. Remove `"draft"` when the lineup is ready; no January PDFs built yet.
+
 ## 2026-11-08 · Sam's Claude
 
 - **Gain Control** added to Issue 03 (December): Sam and Jan, both, game, Play link `https://samuelling.github.io/GainControl/` (loads; capital G and C). Blurb written from Sam's notes, not from the game; he may want to tweak it. Names-rule exception, at Sam's request: the blurb names Sierra Online and LucasArts as inspiration. December: Animal Sanctuary, Shred Hole, Frisky, Metamers, Gain Control.

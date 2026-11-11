@@ -12,6 +12,10 @@ Nothing waiting.
 
 Nothing waiting.
 
+## Issue 04 · January 2027
+
+In `works.json` as a draft (not live until `"draft"` comes off): RetroSynths. Nothing else waiting.
+
 ## Unassigned
 
 - **Orbitakt**, Sam, both, live. In `works.json`, no issue; taken out of Issue 02 when Ambit (which includes it) took its place.

@@ -63,6 +63,16 @@
         "metamers",
         "gain-control"
       ]
+    },
+    {
+      "id": "04",
+      "month": "2027-01",
+      "date": "January 2027",
+      "theme": "",
+      "draft": true,
+      "works": [
+        "retrosynths"
+      ]
     }
   ],
   "works": [
@@ -699,6 +709,23 @@
         {
           "label": "Play",
           "url": "https://samuelling.github.io/GainControl/"
+        }
+      ]
+    },
+    {
+      "id": "retrosynths",
+      "title": "RetroSynths",
+      "kind": "music",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "A desktop toolbox of retro sound chips, where you play General MIDI through the sound hardware of 1977 to 1998. Open a synth, pick an era, and hear the same song change as the chips get better.",
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://samuelling.github.io/RetroSynths/"
         }
       ]
     },
