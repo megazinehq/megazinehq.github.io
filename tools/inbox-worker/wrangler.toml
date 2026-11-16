@@ -1,0 +1,7 @@
+name = "megazine-inbox"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+
+[[kv_namespaces]]
+binding = "INBOX"
+id = "PASTE_THE_ID_FROM_wrangler_kv_namespace_create"

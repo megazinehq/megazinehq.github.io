@@ -59,4 +59,4 @@ Outsiders submit through MEGAzine BBS (formerly The Septic Tankz): they dial in,
 
 **December lights.** Every December issue gets string lights on the site, with blue Hanukkah bulbs on the right nights (any year). Preview with `?preview=NN&hanukkah=4`; `"decor": "none"` turns them off.
 
-**Contact form.** `/contact/` is the inquiry page with the finger-gun captcha (see README). Don't link it from the site until `ENDPOINT` is set and the BBS side files inquiries. Its work entry `fingergun-captcha` is hidden for now.
+**Contact form.** `/contact/` is the inquiry page with the finger-gun captcha, posting to the inbox Worker (`tools/inbox-worker/`) and read on `/stats/` (Inbox). Not live until the Worker is deployed and `ENDPOINT` / `INBOX_URL` are set; don't link it from the site before that. Its work entry `fingergun-captcha` is hidden for now.

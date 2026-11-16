@@ -187,11 +187,23 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
       </div>
     </section>
   </div>
+
+  <section id="inbox-sec" aria-labelledby="h-inbox" hidden>
+      <h2 id="h-inbox">Inbox <span>notes sent through the contact page; only you can open this</span></h2>
+      <form id="inbox-key" class="inbox-bar"><input type="password" id="ikey" placeholder="inbox key" autocomplete="current-password" aria-label="Inbox key"><button type="submit">Open</button><button type="button" id="irefresh" hidden>Refresh</button></form>
+      <p class="hint" id="inote"></p>
+      <ul class="inbox" id="ilist"></ul>
+    </section>
 </main>
 
 <footer class="wrap">Counts come from GoatCounter (no cookies) and refresh hourly. A visitor is counted once per day across the whole site, so repeat visits on other days count again (no cookies means no way to tell).</footer>
 <div id="tip" hidden></div>
 
+<style>.inbox-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; } .inbox-bar input { font: 16px var(--body); padding: 8px 10px; border: 1.5px solid var(--rule); border-radius: 4px; background: var(--sheet); color: inherit; min-width: 14rem; }
+.inbox-bar button, .inbox button { font: 700 .8rem var(--type); letter-spacing: .08em; text-transform: uppercase; padding: 8px 12px; border: 1.5px solid var(--toner); border-radius: 4px; background: var(--sheet); color: inherit; cursor: pointer; }
+.inbox { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; } .inbox li { background: var(--sheet); border: 1.5px solid var(--rule); border-radius: 6px; padding: 12px 14px; }
+.inbox .who { font: 700 .8rem var(--type); letter-spacing: .06em; text-transform: uppercase; } .inbox .when { color: var(--muted); font: .78rem var(--type); margin-left: 8px; text-transform: none; letter-spacing: 0; }
+.inbox .msg { white-space: pre-wrap; overflow-wrap: anywhere; margin: 6px 0 8px; } .inbox .acts { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; } .inbox .meta { color: var(--muted); font: .74rem var(--type); }</style>
 <style>.sub { margin: 0 0 12px; font: 700 .78rem/1.2 var(--type); letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }</style>
 <script>
 (function () {
@@ -368,6 +380,40 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
       note: p.path === "/" ? "megazine.org" : "back issue" })).sort((a, b) => b.count - a.count);
     rank($("issues"), issueRows, "Nothing yet.");
   }).catch(() => { $("updated").textContent = "Couldn't load the numbers. Refresh to try again."; });
+})();
+</script>
+<script>
+// The inbox: messages from /contact/ live in a Cloudflare Worker (tools/inbox-worker/), never in this repo. Set INBOX_URL once it is deployed.
+(function () {
+  const INBOX_URL = "";
+  if (!INBOX_URL) return;
+  const $ = (id) => document.getElementById(id);
+  $("inbox-sec").hidden = false;
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  let key = ""; try { key = sessionStorage.getItem("megazine.inbox") || ""; } catch (e) {}
+  const note = (t) => { $("inote").textContent = t; };
+  async function load() {
+    if (!key) return; note("Loading...");
+    try {
+      const r = await fetch(INBOX_URL + "/inbox", { headers: { authorization: "Bearer " + key } });
+      if (r.status === 401) { note("That key is not right."); key = ""; try { sessionStorage.removeItem("megazine.inbox"); } catch (e) {} $("irefresh").hidden = true; $("ilist").innerHTML = ""; return; }
+      if (!r.ok) throw new Error(r.status);
+      const rows = await r.json(); $("irefresh").hidden = false;
+      note(rows.length ? rows.length + (rows.length === 1 ? " note." : " notes, newest first.") : "Nothing yet.");
+      $("ilist").innerHTML = rows.map((m) => `<li data-id="${esc(m.id)}"><div class="who">${esc(m.name || "No name")}<span class="when">${esc(new Date(m.at).toLocaleString())}</span></div>
+        <div class="msg">${esc(m.message)}</div><div class="acts"><a href="mailto:${esc(m.email)}?subject=${encodeURIComponent("Re: your note to megaZINE")}">Reply to ${esc(m.email)}</a>
+        <button type="button" class="del">Delete</button><span class="meta">${esc(m.proof && m.proof.mode === "gun" ? "finger gun, " + m.proof.shots + " shots" : "mouse")}</span></div></li>`).join("");
+    } catch (e) { note("Could not reach the inbox. Try again."); }
+  }
+  $("inbox-key").addEventListener("submit", (e) => { e.preventDefault(); key = $("ikey").value.trim(); $("ikey").value = ""; try { sessionStorage.setItem("megazine.inbox", key); } catch (er) {} load(); });
+  $("irefresh").addEventListener("click", load);
+  $("ilist").addEventListener("click", async (e) => {
+    const b = e.target.closest(".del"); if (!b) return; const li = b.closest("li");
+    if (!confirm("Delete this note for good?")) return;
+    const r = await fetch(INBOX_URL + "/inbox?id=" + encodeURIComponent(li.dataset.id), { method: "DELETE", headers: { authorization: "Bearer " + key } });
+    if (r.ok) { li.remove(); note($("ilist").children.length + " left."); } else note("Could not delete.");
+  });
+  load();
 })();
 </script>
 </body>

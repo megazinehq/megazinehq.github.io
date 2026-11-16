@@ -125,8 +125,8 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <script>
 (() => {
   "use strict";
-  // Where a passed inquiry is posted: an endpoint on the BBS's Worker that files it in the megaZINE inquiries base.
-  // Empty until that exists; the page then says plainly that nothing was sent.
+  // Where a passed inquiry is posted: the inbox Worker's /inquiry (tools/inbox-worker/), read by the editors on /stats/.
+  // Empty until it is deployed; the page then says plainly that nothing was sent.
   const ENDPOINT = "";
   const SRC = {
     mjs: "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/vision_bundle.mjs",
