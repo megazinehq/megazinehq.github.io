@@ -40,6 +40,7 @@ Never guess `made`. Ask.
 | `tools/page.html` | For site design changes | The site's source (a fragment, no `<html>`/`<head>`). |
 | `index.html` | **Never by hand** | Built from `tools/page.html` by `python3 tools/build.py`. |
 | `tools/make_sheet.py` | For paper layout changes | Builds `print/issue-NN.pdf` and `print/issue-NN-numbered.pdf`. |
+| `contact/index.html` | For the inquiry form | Standalone page at `/contact/`: finger-gun captcha (webcam hand tracking in the browser, mouse fallback), then a form. `ENDPOINT` in it is where a passed inquiry posts; empty means "preview, nothing sent". Not linked from the site until the BBS endpoint exists. |
 | `media/` | Add files | Images for works (paintings, screenshots). Keep each under ~1 MB, JPG or WebP. |
 | `print/` | Generated | Commit regenerated PDFs with the change that caused them. |
 
@@ -87,7 +88,7 @@ python3 tools/make_sheet.py --issue 02 # print a specific issue (default: the on
 
 ## Outside submissions
 
-People other than the editors submit through the BBS (repo `samuelling/BBS`, MEGAzine BBS, formerly The Septic Tankz; work id `septic-tankz` stays because it's in printed Issue 01): they make an account (open enrollment for now; the SysOp can require validation again), and they post in the **megaZINE Submissions** message base using the template in its first post (title, what, link, how it was made, seal name). The SysOp gets a Slack/Telegram ping for each one. When an editor accepts one, add it to `works.json` with the submitter's seal name in `makers`, and tell them by board e-mail. Don't take submissions any other way.
+People other than the editors submit through the BBS (repo `samuelling/BBS`, MEGAzine BBS, formerly The Septic Tankz; work id `septic-tankz` stays because it's in printed Issue 01): they make an account (open enrollment for now; the SysOp can require validation again), and they post in the **megaZINE Submissions** message base using the template in its first post (title, what, link, how it was made, seal name). The SysOp gets a Slack/Telegram ping for each one. When an editor accepts one, add it to `works.json` with the submitter's seal name in `makers`, and tell them by board e-mail. Don't take submissions any other way. The one extra door is the `/contact/` inquiry form, which must post into the BBS (an inquiries base), never to a separate inbox.
 
 ## Site behaviour worth knowing
 

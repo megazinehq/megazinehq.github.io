@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 (3) · Sam's Claude
+
+- **Finger-gun captcha contact form** built at `contact/index.html` (Sam, Matt, Jenn; both; work `fingergun-captcha`, hidden). Shoot the squares with a motorcycle or a bird, then write. Mouse fallback works; the webcam path is built on Splatterhaus's tracker and tested only with simulated aim and fire, not a real hand. **Not connected:** `ENDPOINT` is empty, so a passed form says nothing was sent. The BBS side (repo `samuelling/BBS`, private, unreadable from here) needs `POST /api/inquiry` taking `{name, email, message, proof:{mode,shots,ms,fails}}`, with CORS for `https://megazine.org`, rate limiting, and filing it in a megaZINE Inquiries base with a SysOp ping. Then set `ENDPOINT`, link `/contact/` from the site, and unhide the work. Sam said inquiries go to the BBS.
+
 ## 2026-11-16 (2) · Sam's Claude
 
 - Splatterhouse renamed **Splatterhaus** (title only; the work `id` stays `splatterhouse` and the live page is still `.../Splatterhouse/`, since `.../Splatterhaus/` 404s). Blurb now mentions finger-gun and head tracking. The old game's name is off the page again, so the names-rule exception below no longer applies.

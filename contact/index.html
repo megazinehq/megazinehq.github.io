@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Write to megaZINE</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Courier+Prime:wght@400;700&family=Spline+Sans:wght@400;500;600&display=swap">
+<style>
+/* The inquiry form, with a gate: shoot every square holding a motorcycle or a bird, with a finger gun, then write.
+   Same riso tokens as megazine.org. The hand is read in the browser by MediaPipe; no picture leaves the computer. */
+:root {
+  --paper: #ECEDE9; --sheet: #F8F8F5; --toner: #18181B; --muted: #595E66; --rule: #C6C9C4;
+  --blue: #0055B3; --pink: #F2369B; --ok: #1f7a46; --bad: #b3261e;
+  --display: "Bowlby One SC", "Arial Black", Impact, sans-serif;
+  --body: "Spline Sans", "Helvetica Neue", Arial, sans-serif;
+  --type: "Courier Prime", "Courier New", Courier, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #101217; --sheet: #171A21; --toner: #ECEBE5; --muted: #A0A6AF; --rule: #2B303A;
+    --blue: #7DB0FF; --pink: #FF68BA; --ok: #5fcf8c; --bad: #ff8a80; color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--toner); font: 16px/1.5 var(--body); }
+main { max-width: 640px; margin: 0 auto; padding: 28px 16px 64px; }
+a { color: var(--blue); }
+h1 { font: 30px/1.05 var(--display); text-transform: uppercase; margin: 0 0 6px; letter-spacing: .01em; }
+h1 span { color: var(--pink); }
+.lede { color: var(--muted); margin: 0 0 22px; }
+.card { background: var(--sheet); border: 1.5px solid var(--toner); border-radius: 6px; padding: 16px; margin: 0 0 18px; position: relative; }
+.card h2 { font: 13px/1 var(--type); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 12px; color: var(--muted); }
+label { display: block; font: 700 13px var(--type); letter-spacing: .06em; text-transform: uppercase; margin: 14px 0 4px; }
+label small { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); }
+input[type=text], input[type=email], textarea { width: 100%; font: 16px var(--body); color: inherit; background: var(--paper); border: 1.5px solid var(--rule); border-radius: 4px; padding: 9px 10px; }
+input:focus, textarea:focus, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 1px; }
+textarea { min-height: 130px; resize: vertical; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+button { font: 700 14px var(--type); letter-spacing: .08em; text-transform: uppercase; color: var(--toner); background: var(--sheet); border: 1.5px solid var(--toner); border-radius: 4px; padding: 10px 14px; cursor: pointer; }
+button.primary { background: var(--pink); color: #18181B; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
+.note { font: 14px/1.4 var(--type); color: var(--muted); margin: 8px 0 0; min-height: 1.4em; }
+.note.ok { color: var(--ok); } .note.bad { color: var(--bad); }
+
+/* the gate */
+.ask { font: 15px/1.3 var(--body); margin: 0 0 10px; }
+.ask b { font-family: var(--display); font-weight: 400; text-transform: uppercase; color: var(--pink); }
+#stage { position: relative; touch-action: manipulation; user-select: none; }
+#grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.tile { position: relative; aspect-ratio: 1; padding: 0; border: 1.5px solid var(--toner); border-radius: 4px; overflow: hidden; background: #cfd8dc; color: #1b2a33; }
+.tile svg { width: 100%; height: 100%; display: block; }
+.tile.aim { outline: 3px solid var(--blue); outline-offset: -3px; }
+.tile.shot::after { content: ""; position: absolute; inset: 0; background:
+    radial-gradient(circle at 50% 50%, #18181B 0 5%, transparent 6%),
+    radial-gradient(circle at 50% 50%, transparent 0 24%, var(--pink) 25% 29%, transparent 30%);
+  background-color: rgba(242, 54, 155, .22); }
+.tile.hit { animation: kick .25s; }
+@keyframes kick { 40% { transform: scale(.94) rotate(-1.5deg); } }
+#verify { display: block; width: 100%; margin-top: 8px; }
+#reticle { position: absolute; width: 38px; height: 38px; margin: -19px 0 0 -19px; pointer-events: none; z-index: 5; display: none;
+  border: 2px solid var(--pink); border-radius: 50%; box-shadow: 0 0 0 2px rgba(24,24,27,.55); }
+#reticle::before, #reticle::after { content: ""; position: absolute; background: var(--pink); }
+#reticle::before { left: 50%; top: -7px; bottom: -7px; width: 2px; margin-left: -1px; }
+#reticle::after { top: 50%; left: -7px; right: -7px; height: 2px; margin-top: -1px; }
+#reticle.gun { border-color: var(--blue); } #reticle.gun::before, #reticle.gun::after { background: var(--blue); }
+#reticle.bang { transform: scale(1.5); transition: transform .12s; }
+#cam { position: relative; width: 132px; aspect-ratio: 4 / 3; border: 1.5px solid var(--toner); border-radius: 4px; overflow: hidden; background: #000; display: none; }
+#cam video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+#cam.on { display: block; }
+.gate-top { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+.state { font: 700 13px var(--type); letter-spacing: .08em; text-transform: uppercase; }
+.pass { color: var(--ok); }
+.fine { font: 13px/1.4 var(--body); color: var(--muted); margin: 10px 0 0; }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--blue); text-decoration: underline; font: inherit; letter-spacing: 0; text-transform: none; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .tile.hit, #reticle.bang { animation: none; transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Write to <span>mega</span>ZINE</h1>
+  <p class="lede">A question, a hello, a piece you made. Your note goes to the editors. First, a small test that you are a person with a hand.</p>
+
+  <section class="card" id="gate" aria-labelledby="gate-h">
+    <h2 id="gate-h">Step 1 · prove it</h2>
+    <div class="gate-top">
+      <p class="ask" id="ask">Shoot every square with a <b>motorcycle</b> or a <b>bird</b>.</p>
+      <div id="cam" aria-hidden="true"><video playsinline muted></video></div>
+    </div>
+    <div id="stage">
+      <div id="grid" role="group" aria-label="Nine squares"></div>
+      <button id="verify" type="button">Done shooting</button>
+      <div id="reticle" aria-hidden="true"></div>
+    </div>
+    <p class="note" id="gnote" role="status" aria-live="polite">Make a finger gun, thumb up. Point at a square, then drop your thumb to fire.</p>
+    <div class="row">
+      <button id="start" type="button" class="primary">Turn on camera</button>
+      <button id="mouse" type="button">No camera? Use the mouse</button>
+    </div>
+    <p class="fine">Your camera picture is read inside this page by a hand tracker and never sent anywhere. The tracker itself downloads from a public host the first time. Index finger out, or two; ring and little finger folded.</p>
+  </section>
+
+  <form class="card" id="form" aria-labelledby="form-h" novalidate>
+    <h2 id="form-h">Step 2 · write</h2>
+    <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <label for="name">Name <small>(first name is fine)</small></label>
+    <input type="text" id="name" name="name" maxlength="80" autocomplete="given-name">
+    <label for="email">Where we can write back <small>(email)</small></label>
+    <input type="email" id="email" name="email" maxlength="160" autocomplete="email" required>
+    <label for="msg">Message</label>
+    <textarea id="msg" name="message" maxlength="3000" required></textarea>
+    <div class="row">
+      <button id="send" type="submit" class="primary" disabled>Send</button>
+      <span class="state" id="gstate">Locked: finish step 1</span>
+    </div>
+    <p class="note" id="fnote" role="status" aria-live="polite"></p>
+  </form>
+</main>
+
+<script>
+(() => {
+  "use strict";
+  // Where a passed inquiry is posted: an endpoint on the BBS's Worker that files it in the megaZINE inquiries base.
+  // Empty until that exists; the page then says plainly that nothing was sent.
+  const ENDPOINT = "";
+  const SRC = {
+    mjs: "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/vision_bundle.mjs",
+    wasm: "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/wasm",
+    model: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task"
+  };
+  const $ = id => document.getElementById(id);
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  // ---------- the pictures: little flat drawings, jittered per square so no two repeat ----------
+  const ART = {
+    motorcycle: '<circle cx="15" cy="44" r="9"/><circle cx="49" cy="44" r="9"/><path d="M15 44 L26 33 H40 L49 44"/><path d="M27 33 L31 25 H41 L44 31"/><path d="M44 31 L47 22 H53"/><path d="M26 33 L36 44 L49 44"/>',
+    bird: '<path d="M10 38 Q20 22 36 28 Q44 20 54 26 L47 31 Q46 46 30 47 Q16 47 10 38 Z"/><path d="M36 28 Q38 40 28 42"/><path d="M54 26 L60 27"/><circle cx="46" cy="27" r="1.6" fill="currentColor"/><path d="M12 38 L3 44 M14 40 L6 50"/><path d="M26 47 L24 56 M32 47 L33 56"/>',
+    bicycle: '<circle cx="15" cy="42" r="11"/><circle cx="49" cy="42" r="11"/><path d="M15 42 L28 28 L44 28 L49 42 M28 28 L34 42 L15 42 M34 42 L44 28"/><path d="M26 24 H32 M43 28 L41 20 H47"/>',
+    car: '<path d="M6 42 V34 Q6 30 11 29 L18 28 L24 20 H42 L50 28 L56 30 Q60 31 60 35 V42 Z"/><path d="M26 22 L22 28 H34 V22 Z M38 22 V28 H48 L42 22 Z"/><circle cx="19" cy="43" r="7" fill="#cfd8dc"/><circle cx="47" cy="43" r="7" fill="#cfd8dc"/>',
+    hydrant: '<path d="M20 54 V30 Q20 16 32 16 Q44 16 44 30 V54 Z"/><path d="M14 30 H20 M44 30 H50 M26 12 H38 M28 54 V42 H36 V54"/><circle cx="32" cy="12" r="2.4"/>',
+    light: '<rect x="20" y="6" width="24" height="42" rx="5"/><circle cx="32" cy="16" r="5"/><circle cx="32" cy="27" r="5"/><circle cx="32" cy="38" r="5"/><path d="M32 48 V58 M24 58 H40"/>',
+    tree: '<circle cx="32" cy="24" r="16"/><circle cx="22" cy="30" r="9"/><circle cx="43" cy="30" r="9"/><path d="M32 40 V58 M32 50 L40 44"/>',
+    bus: '<rect x="6" y="14" width="52" height="32" rx="5"/><path d="M6 32 H58"/><rect x="11" y="19" width="10" height="9"/><rect x="27" y="19" width="10" height="9"/><rect x="43" y="19" width="10" height="9"/><circle cx="19" cy="48" r="6" fill="#cfd8dc"/><circle cx="46" cy="48" r="6" fill="#cfd8dc"/>'
+  };
+  const TARGETS = ["motorcycle", "bird"], DECOYS = ["bicycle", "car", "hydrant", "light", "tree", "bus"];
+  const SKY = ["#cfd8dc", "#d7ccc8", "#c8e6c9", "#ffe0b2", "#d1c4e9", "#b3e5fc", "#f0f4c3"];
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  function tileSVG(kind) {
+    const rot = (Math.random() * 14 - 7).toFixed(1), sc = (0.82 + Math.random() * 0.2).toFixed(2);
+    const dx = (Math.random() * 6 - 3).toFixed(1), dy = (Math.random() * 6 - 3).toFixed(1);
+    const flip = Math.random() < .5 ? -1 : 1;
+    const bg = pick(SKY), dots = Array.from({ length: 6 }, () =>
+      `<circle cx="${(Math.random() * 64).toFixed(0)}" cy="${(Math.random() * 64).toFixed(0)}" r="${(0.6 + Math.random() * 1.6).toFixed(1)}" fill="#000" opacity=".07"/>`).join("");
+    return `<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="${bg}"/>${dots}` +
+      `<g transform="translate(${32 + +dx} ${32 + +dy}) rotate(${rot}) scale(${flip * sc} ${sc}) translate(-32 -32)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${ART[kind]}</g></svg>`;
+  }
+
+  // ---------- one round: nine squares, three or four of them targets ----------
+  const G = { kinds: [], shot: new Set(), passed: false, mode: "", shots: 0, t0: 0, fails: 0 };
+  function newRound(why) {
+    const nT = 3 + (Math.random() < .5 ? 1 : 0);
+    const kinds = shuffle([...Array.from({ length: nT }, () => pick(TARGETS)), ...Array.from({ length: 9 - nT }, () => pick(DECOYS))]);
+    G.kinds = kinds; G.shot.clear(); G.t0 = performance.now();
+    const grid = $("grid"); grid.innerHTML = "";
+    kinds.forEach((k, i) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "tile"; b.dataset.i = i; b.tabIndex = -1;
+      b.innerHTML = tileSVG(k); b.setAttribute("aria-label", "square " + (i + 1) + (G.mode === "mouse" ? ", " + k : ""));
+      grid.appendChild(b);
+    });
+    if (why) note(why, "bad");
+  }
+  function toggle(i) {
+    const el = $("grid").children[i]; if (!el) return;
+    G.shots++; G.shot.has(i) ? G.shot.delete(i) : G.shot.add(i);
+    el.classList.toggle("shot", G.shot.has(i)); el.classList.remove("hit"); void el.offsetWidth; el.classList.add("hit");
+  }
+  function check() {
+    const want = new Set(G.kinds.map((k, i) => TARGETS.includes(k) ? i : -1).filter(i => i >= 0));
+    const ok = want.size === G.shot.size && [...want].every(i => G.shot.has(i));
+    if (ok && performance.now() - G.t0 > 800) { pass(); }
+    else { G.fails++; newRound(G.fails > 1 ? "Not quite. New squares. Motorcycles and birds only." : "Not quite. New squares."); }
+  }
+  function pass() {
+    G.passed = true; Hand.stop();
+    $("gate").querySelector("h2").innerHTML = 'Step 1 · <span class="pass">passed</span>';
+    $("ask").textContent = "Nicely shot.";
+    $("verify").hidden = true; $("start").hidden = true; $("mouse").hidden = true; $("reticle").style.display = "none";
+    note("You are a person with a hand, or a very patient robot. Write away.", "ok");
+    $("send").disabled = false; $("gstate").textContent = "Unlocked"; $("gstate").className = "state pass";
+  }
+  function note(t, cls) { const n = $("gnote"); n.textContent = t; n.className = "note" + (cls ? " " + cls : ""); }
+
+  // ---------- aiming: the reticle sits over the stage; firing presses whatever is under it ----------
+  const ret = $("reticle"), stage = $("stage");
+  function under(x, y) {
+    const r = stage.getBoundingClientRect(), px = r.left + x * r.width, py = r.top + y * r.height;
+    const el = document.elementFromPoint(px, py); return el && el.closest ? el.closest(".tile, #verify") : null;
+  }
+  function aimAt(x, y, gun) {
+    ret.style.display = "block"; ret.style.left = (x * 100) + "%"; ret.style.top = (y * 100) + "%"; ret.classList.toggle("gun", !!gun);
+    const t = under(x, y);
+    for (const e of $("grid").children) e.classList.toggle("aim", e === t);
+    $("verify").style.outline = t && t.id === "verify" ? "3px solid var(--blue)" : "";
+  }
+  function fireAt(x, y) {
+    ret.classList.add("bang"); setTimeout(() => ret.classList.remove("bang"), 120);
+    const t = under(x, y); if (!t || G.passed) return;
+    if (t.id === "verify") check(); else toggle(+t.dataset.i);
+  }
+
+  // ---------- the hand: MediaPipe's tracker gives 21 points per hand. A finger gun is the index finger (and maybe the middle one)
+  // out and the ring and little fingers folded; the thumb dropping is the hammer falling. ----------
+  const Hand = (() => {
+    const video = document.querySelector("#cam video"), cam = $("cam");
+    let lm = null, stream = null, running = false, lastT = -1;
+    const S = { gun: false, inN: 0, outN: 0, lost: 0, hi: 0, cocked: false, lowN: 0, x: .5, y: .5, hist: [], lastFire: 0 };
+    const len = (a, b) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
+    function read(l, w) {
+      const d = (i, j) => len(w[i], w[j]) + 1e-6, E = k => d(k + 3, 0) / d(k, 0);
+      const ei = E(5), em = E(9), eo = Math.max(E(13), E(17)), two = em > ei * .8;
+      return { score: ei - eo, thumb: d(4, 5) / d(9, 0),
+        x: 1 - (two ? (l[8].x + l[12].x) / 2 : l[8].x), y: two ? (l[8].y + l[12].y) / 2 : l[8].y };
+    }
+    function frame(r) {
+      if (!r) { if (++S.lost > 10) { S.gun = false; S.cocked = false; note("Show the camera a finger gun."); } return; }
+      S.lost = 0;
+      if (r.score > .36) { S.inN++; S.outN = 0; } else if (r.score < .16) { S.outN++; S.inN = 0; } else S.outN = 0;
+      if (!S.gun && S.inN >= 2) { S.gun = true; S.hi = 0; S.cocked = false; S.hist.length = 0; }
+      else if (S.gun && S.outN >= 6) { S.gun = false; S.cocked = false; }
+      if (!S.gun) { note("One or two fingers out, the rest folded."); return; }
+      // the middle of the picture covers the stage, so you do not have to reach the edges
+      const tx = clamp((r.x - .2) / .6, 0, 1), ty = clamp((r.y - .22) / .56, 0, 1);
+      S.x += (tx - S.x) * .4; S.y += (ty - S.y) * .4;
+      S.hist.push([S.x, S.y]); if (S.hist.length > 6) S.hist.shift();
+      aimAt(S.x, S.y, true);
+      S.hi = Math.max(r.thumb, S.hi - .0015);
+      const cockAt = S.hi > .4 ? S.hi * .85 : 9, fireAt2 = S.hi * .62;
+      if (r.thumb > cockAt) { S.cocked = true; S.lowN = 0; note("Aiming. Drop your thumb to fire."); }
+      else if (S.cocked && r.thumb < fireAt2) {
+        if (++S.lowN >= 2) {
+          S.cocked = false; S.lowN = 0;
+          const now = performance.now(); if (now - S.lastFire > 250) { S.lastFire = now; const h = S.hist[0]; fireAt(h[0], h[1]); note("Bang."); }
+        }
+      } else S.lowN = 0;
+    }
+    function loop() {
+      if (!running) return;
+      if (lm && video.readyState >= 2 && video.currentTime !== lastT) {
+        lastT = video.currentTime;
+        let res = null; try { res = lm.detectForVideo(video, performance.now()); } catch (e) { /* skip a bad frame */ }
+        const r = res && res.landmarks && res.landmarks[0] && res.worldLandmarks && res.worldLandmarks[0] ? read(res.landmarks[0], res.worldLandmarks[0]) : null;
+        frame(r);
+      }
+      requestAnimationFrame(loop);
+    }
+    async function start() {
+      try {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error("This browser or page cannot use a camera.");
+        note("Asking for the camera.");
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 30 } }, audio: false });
+        video.srcObject = stream; await video.play(); cam.classList.add("on");
+        if (!lm) {
+          note("Fetching the hand tracker.");
+          const vis = await import(SRC.mjs), fset = await vis.FilesetResolver.forVisionTasks(SRC.wasm);
+          const mk = dg => vis.HandLandmarker.createFromOptions(fset, { baseOptions: { modelAssetPath: SRC.model, delegate: dg }, runningMode: "VIDEO", numHands: 1, minHandDetectionConfidence: .35, minHandPresenceConfidence: .35, minTrackingConfidence: .35 });
+          try { lm = await mk("GPU"); } catch (e) { lm = await mk("CPU"); }
+        }
+        G.mode = "gun"; running = true; $("start").textContent = "Camera is on"; $("start").disabled = true;
+        note("Make a finger gun, thumb up. Point at a square, then drop your thumb to fire."); requestAnimationFrame(loop);
+      } catch (e) {
+        stop(); note((e && e.message ? e.message : "The camera or tracker could not start") + " You can use the mouse instead.", "bad");
+      }
+    }
+    function stop() {
+      running = false; if (stream) { for (const t of stream.getTracks()) t.stop(); stream = null; }
+      video.srcObject = null; cam.classList.remove("on");
+    }
+    return { start, stop, S };
+  })();
+
+  // ---------- the mouse way, for people with no camera or no hand to spare ----------
+  stage.addEventListener("click", e => {
+    if (G.mode !== "mouse" || G.passed) return;
+    const t = e.target.closest(".tile, #verify"); if (!t) return;
+    if (t.id === "verify") check(); else toggle(+t.dataset.i);
+  });
+  $("mouse").addEventListener("click", () => {
+    Hand.stop(); G.mode = "mouse"; $("start").disabled = false; $("start").textContent = "Turn on camera";
+    for (const t of $("grid").children) t.tabIndex = 0;
+    newRound(); $("ask").innerHTML = 'Click every square with a <b>motorcycle</b> or a <b>bird</b>.';
+    note("Mouse mode: click the squares, then Done."); ret.style.display = "none";
+  });
+  $("start").addEventListener("click", () => { G.mode = ""; newRound(); $("ask").innerHTML = 'Shoot every square with a <b>motorcycle</b> or a <b>bird</b>.'; Hand.start(); });
+  $("verify").addEventListener("keydown", e => { if (e.key === "Enter" && G.mode !== "mouse") e.preventDefault(); });
+
+  // ---------- sending ----------
+  $("form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const f = $("form"), fn = $("fnote");
+    if (!G.passed) { fn.textContent = "Finish step 1 first."; fn.className = "note bad"; return; }
+    const email = f.email.value.trim(), message = f.message.value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || message.length < 5) { fn.textContent = "An email we can reply to, and a message, please."; fn.className = "note bad"; return; }
+    if (f.website.value) { fn.textContent = "Sent."; fn.className = "note ok"; return; }   // the honeypot: look sent, send nothing
+    if (!ENDPOINT) { fn.textContent = "The inbox is not connected yet, so nothing was sent. This is a preview."; fn.className = "note bad"; return; }
+    $("send").disabled = true; fn.textContent = "Sending..."; fn.className = "note";
+    try {
+      const res = await fetch(ENDPOINT, { method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ name: f.name.value.trim(), email, message, proof: { mode: G.mode, shots: G.shots, ms: Math.round(performance.now() - G.t0), fails: G.fails } }) });
+      if (!res.ok) throw new Error("status " + res.status);
+      f.reset(); fn.textContent = "Sent. The editors will write back."; fn.className = "note ok";
+    } catch (err) { $("send").disabled = false; fn.textContent = "That did not go through. Try again in a minute."; fn.className = "note bad"; }
+  });
+
+  newRound();
+  window.__cap = { G, toggle, check, fireAt, aimAt, Hand };   // for testing
+})();
+</script>
+</body>
+</html>

@@ -863,6 +863,26 @@
           "url": "https://samuelling.github.io/Scratcher/"
         }
       ]
+    },
+    {
+      "id": "fingergun-captcha",
+      "title": "Fingergun Captcha",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam",
+        "Matt",
+        "Jenn"
+      ],
+      "platform": "Web",
+      "hidden": true,
+      "blurb": "A contact form with a gate: shoot every square holding a motorcycle or a bird, using a finger gun your webcam tracks, then write to the editors.",
+      "links": [
+        {
+          "label": "Write to us",
+          "url": "https://megazine.org/contact/"
+        }
+      ]
     }
   ]
 }
