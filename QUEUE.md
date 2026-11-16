@@ -14,7 +14,7 @@ Nothing waiting.
 
 ## Issue 04 · January 2027
 
-In `works.json` as a draft (not live until `"draft"` comes off): RetroSynths. Nothing else waiting.
+In `works.json` as a draft (not live until `"draft"` comes off): RetroSynths, LiveSkratch. Nothing else waiting.
 
 ## Issue 05 · February 2027
 

@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 · Sam's Claude
+
+- **Splatterhouse** added to December (Sam, both, toy, Open link, loads) and **LiveSkratch** to the January draft (Sam, both, tool; its page lives at `.../Scratcher/`, the old repo name, and loads). Blurbs from Sam's notes. Names-rule exception, at Sam's request: the title Splatterhouse is also an old game's name; kept. December: FlyHarp, Shred Hole, Frisky, Metamers, Gain Control, Splatterhouse. January draft: RetroSynths, LiveSkratch.
+
 ## 2026-11-11 · Sam's Claude
 
 - **FlyHarp** added (Sam, both, music, Play `https://samuelling.github.io/FlyHarp/`, loads) and slotted into December in place of **Animal Sanctuary**, which moves to a new **Issue 05 · February 2027** draft. Blurb written from Sam's notes and the page title, so he may tweak it. December is now FlyHarp, Shred Hole, Frisky, Metamers, Gain Control. No Issue 05 PDFs yet; remove `"draft"` when its lineup is ready.

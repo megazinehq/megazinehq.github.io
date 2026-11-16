@@ -61,7 +61,8 @@
         "shred-hole",
         "musicbox",
         "metamers",
-        "gain-control"
+        "gain-control",
+        "splatterhouse"
       ]
     },
     {
@@ -71,7 +72,8 @@
       "theme": "",
       "draft": true,
       "works": [
-        "retrosynths"
+        "retrosynths",
+        "liveskratch"
       ]
     },
     {
@@ -825,6 +827,40 @@
         {
           "label": "Play",
           "url": "https://samuelling.github.io/FlyHarp/"
+        }
+      ]
+    },
+    {
+      "id": "splatterhouse",
+      "title": "Splatterhouse",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "Hundreds of birds swarm in flocks over a meadow, dunes and a sea, all drawn as soft 3D splats. Switch the species, and a slow ambient pad plays underneath.",
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://samuelling.github.io/Splatterhouse/"
+        }
+      ]
+    },
+    {
+      "id": "liveskratch",
+      "title": "LiveSkratch",
+      "kind": "tool",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "Scratch live audio with a real turntable. A control tone on the record tells the page where the platter is, and it scrubs whatever you feed it to match.",
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://samuelling.github.io/Scratcher/"
         }
       ]
     }
