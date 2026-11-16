@@ -839,7 +839,7 @@
         "Sam"
       ],
       "platform": "Web",
-      "blurb": "Hundreds of birds swarm in flocks over a meadow, dunes and a sea, all drawn as soft 3D splats. Aim with a finger gun and look around by moving your head, both tracked through your webcam, while a slow ambient pad plays underneath.",
+      "blurb": "Hundreds of birds swarm in flocks over a meadow, dunes and a sea. The scene is built from Gaussian splats, and the birds follow real flocking algorithms. Aim with a finger gun and look around by moving your head, both tracked through your webcam, while a slow ambient pad plays underneath.",
       "links": [
         {
           "label": "Open",
