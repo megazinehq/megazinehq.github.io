@@ -296,6 +296,8 @@ dialog#book[open] { display: grid; place-items: center; }
 .submit .steps { margin: 10px 0 14px; padding-left: 1.4em; display: grid; gap: 4px; max-width: 46ch; }
 .submit .steps li::marker { font: 700 .85em var(--type); color: var(--blue); }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 12px; }
+footer .sendc { color: inherit; opacity: .7; text-decoration: underline dotted; text-underline-offset: 3px; margin-left: 10px; }
+footer .sendc:hover, footer .sendc:focus-visible { opacity: 1; }
 footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400 .85rem/1.5 var(--type); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
 .err { font: 400 .95rem/1.5 var(--type); color: var(--muted); padding-block: 20px; }
 
@@ -401,7 +403,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
 
 <footer class="wrap">
   <span>megaZINE · edited by Sam &amp; Matt</span>
-  <span>Fold it, cut it, leave it somewhere.</span>
+  <span>Fold it, cut it, leave it somewhere. <a class="sendc" href="contact/">Send comment</a></span>
 </footer>
 
 <dialog id="book" aria-label="Picture book">

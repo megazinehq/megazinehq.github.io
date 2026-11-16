@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 (4) · Sam's Claude
+
+- Added a discreet **Send comment** link in the site footer (`tools/page.html`) pointing at `/contact/`, so Sam can test the gate. The Worker isn't deployed yet, so a passed form still says nothing was sent.
+
 ## 2026-11-16 (3) · Sam's Claude
 
 - **Finger-gun captcha contact form** built at `contact/index.html` (Sam, Matt, Jenn; both; work `fingergun-captcha`, hidden). Shoot the squares with a motorcycle or a bird, then write. Mouse fallback works; the webcam path is built on Splatterhaus's tracker and tested only with simulated aim and fire, not a real hand. **Not connected:** `ENDPOINT` is empty, so a passed form says nothing was sent. Sam chose a Worker + KV inbox over the BBS: `tools/inbox-worker/` (tested with a fake KV: store, newest-first read, auth, delete, rate limit) and an Inbox section on `/stats/` (hidden until `INBOX_URL` is set; tested with a mock). Sam must deploy it once (README in that folder: create KV, set `ADMIN_KEY`, `wrangler deploy`), then set `ENDPOINT` in `contact/index.html` and `INBOX_URL` in `stats/index.html`, link `/contact/` from the site and unhide the work.

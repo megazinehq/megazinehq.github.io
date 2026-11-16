@@ -40,7 +40,7 @@ Never guess `made`. Ask.
 | `tools/page.html` | For site design changes | The site's source (a fragment, no `<html>`/`<head>`). |
 | `index.html` | **Never by hand** | Built from `tools/page.html` by `python3 tools/build.py`. |
 | `tools/make_sheet.py` | For paper layout changes | Builds `print/issue-NN.pdf` and `print/issue-NN-numbered.pdf`. |
-| `contact/index.html` | For the inquiry form | Standalone page at `/contact/`: finger-gun captcha (webcam hand tracking in the browser, mouse fallback), then a form. `ENDPOINT` in it is where a passed inquiry posts (the inbox Worker); empty means "preview, nothing sent". Not linked from the site until the Worker is deployed. |
+| `contact/index.html` | For the inquiry form | Standalone page at `/contact/`: finger-gun captcha (webcam hand tracking in the browser, mouse fallback), then a form. `ENDPOINT` in it is where a passed inquiry posts (the inbox Worker); empty means "preview, nothing sent". Linked only by a discreet "Send comment" link in the site footer (testing) until the Worker is deployed. |
 | `tools/inbox-worker/` | For the inbox | Cloudflare Worker + KV that stores inquiries; read on `/stats/` (Inbox section, `INBOX_URL`) with an admin key. Setup in its README. Messages never go in this repo. |
 | `media/` | Add files | Images for works (paintings, screenshots). Keep each under ~1 MB, JPG or WebP. |
 | `print/` | Generated | Commit regenerated PDFs with the change that caused them. |
