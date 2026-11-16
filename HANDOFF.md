@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 (2) · Sam's Claude
+
+- Splatterhouse renamed **Splatterhaus** (title only; the work `id` stays `splatterhouse` and the live page is still `.../Splatterhouse/`, since `.../Splatterhaus/` 404s). Blurb now mentions finger-gun and head tracking. The old game's name is off the page again, so the names-rule exception below no longer applies.
+
 ## 2026-11-16 · Sam's Claude
 
 - **Splatterhouse** added to December (Sam, both, toy, Open link, loads) and **LiveSkratch** to the January draft (Sam, both, tool; its page lives at `.../Scratcher/`, the old repo name, and loads). Blurbs from Sam's notes. Names-rule exception, at Sam's request: the title Splatterhouse is also an old game's name; kept. December: FlyHarp, Shred Hole, Frisky, Metamers, Gain Control, Splatterhouse. January draft: RetroSynths, LiveSkratch.
