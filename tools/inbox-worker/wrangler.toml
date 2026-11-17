@@ -4,4 +4,5 @@ compatibility_date = "2026-11-01"
 
 [[kv_namespaces]]
 binding = "INBOX"
-id = "PASTE_THE_ID_FROM_wrangler_kv_namespace_create"
+# The deploy workflow (.github/workflows/inbox.yml) fills this in on each run; by hand, paste the id from `wrangler kv namespace create INBOX`.
+id = "FILLED_IN_BY_THE_DEPLOY"
