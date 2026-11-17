@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 (10) · Sam's Claude
+
+- **Notes from `/contact/` now go to the BBS**, at Sam's request. The inbox Worker hands each one to the BBS Worker's new `Outside` entrypoint (repo `samuelling/BBS`, pushed there) over a service binding; it becomes board e-mail from `megaZINE.org` to every SysOp (Sam chose: private, all SysOps, so Wiz gets them too) and the board's Slack ping fires. A copy still lands in the `/stats/` Inbox as a fallback. Tested locally with both Workers running together under `wrangler dev`. Correction to earlier notes here: the BBS repo was readable from this session all along; the "unreadable" line was my mistake.
+- `SLACK_WEBHOOK` on the inbox Worker is now only a fallback and can stay unset.
+
 ## 2026-11-16 (9) · Sam's Claude
 
 - Contact page, at Sam's request: a **Finger gun / Head** toggle (head mode: nose aims, opening the mouth fires; face tracker with jaw-open reading), a three-picture tutorial per mode, and a line sending anyone who won't use a webcam "or has no fingers or face" to the BBS. Calibration cut to **two dots** (about 2.5 s; the thumb step is gone, the trigger is judged from where it rested). Head mode's first calibration can't be skipped, because which way a head reads is only known once both dots are measured. `/stats/` labels each note's aim (finger gun / head aim). All in `contact/index.html`; the Worker did not change.

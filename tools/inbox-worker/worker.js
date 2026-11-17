@@ -1,7 +1,8 @@
 // megaZINE inbox: a tiny Cloudflare Worker with one KV namespace (binding INBOX) and one secret (ADMIN_KEY).
 //   GET    /challenge    nine drawn squares, what to shoot, and a signed token. The answer is not in the reply.
 //   POST   /verify       {token, mask}: which squares were shot. Right, once, and not too fast -> a pass.
-//   POST   /inquiry      {pass, name, email, message, proof} from megazine.org/contact/ -> stored, and Slack is pinged (SLACK_WEBHOOK)
+//   POST   /inquiry      {pass, name, email, message, proof} from megazine.org/contact/ -> handed to the BBS (binding BBS) as
+//                        board e-mail to the SysOps, and a copy stored here; if the BBS is out, Slack is pinged (SLACK_WEBHOOK)
 //   GET    /inbox        editors only (Authorization: Bearer <ADMIN_KEY>) -> newest first
 //   DELETE /inbox?id=... editors only
 // The page cannot grade its own test: the squares are drawn here, the answer stays here, and nothing is stored
@@ -50,6 +51,12 @@ export default {
     const ip = req.headers.get("cf-connecting-ip") || "?", fromSite = (req.headers.get("origin") || "") === site;
     const body = async () => { try { const t = await req.text(); if (t.length > 12000) return null; const b = JSON.parse(t); return b && typeof b === "object" ? b : null; } catch (e) { return null; } };
 
+    // /about says which build is live and whether the line to the BBS is up; nothing private.
+    if (url.pathname === "/about") {
+      let bbs = "not bound"; if (env.BBS) { try { bbs = (await env.BBS.hello()) ? "ok" : "odd"; } catch (e) { bbs = "error"; } }
+      return json({ build: 4, bbs }, 200, cors);
+    }
+
     if (url.pathname === "/challenge" && req.method === "GET") {
       const { ask, tiles, mask } = squares(), t = Date.now(), n = nonce();
       return json({ token: `${t}.${n}.${await sign(env, `c|${t}|${n}|${mask}`)}`, ask, tiles }, 200, cors);
@@ -83,7 +90,11 @@ export default {
       const at = Date.now(), id = "msg:" + String(9999999999999 - at).padStart(13, "0") + ":" + nonce().slice(0, 6);
       await env.INBOX.put(id, JSON.stringify({ at, name, email, message, proof }), { expirationTtl: KEEP_SECONDS });
       await env.INBOX.put("n:" + p.n, "1", { expirationTtl: 3600 });
-      const told = ping(env, { name, email, message }); if (ctx && ctx.waitUntil) ctx.waitUntil(told); else await told;
+      // Hand it to the BBS, where it becomes board e-mail to the SysOps and sets off the board's own Slack ping. The copy kept
+      // above is the fallback: if the board is down the note is still on /stats/, and this Worker's own ping (if set) says so.
+      let filed = false;
+      if (env.BBS) { try { const r = await env.BBS.note({ name, email, message, aim: proof.mode }); filed = !!(r && r.ok); } catch (e) { console.error("bbs", e && e.message); } }
+      if (!filed) { const told = ping(env, { name, email, message }); if (ctx && ctx.waitUntil) ctx.waitUntil(told); else await told; }
       return json({ ok: true }, 200, cors);
     }
 

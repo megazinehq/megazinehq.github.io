@@ -6,3 +6,10 @@ compatibility_date = "2026-11-01"
 binding = "INBOX"
 # The deploy workflow (.github/workflows/inbox.yml) fills this in on each run; by hand, paste the id from `wrangler kv namespace create INBOX`.
 id = "FILLED_IN_BY_THE_DEPLOY"
+
+# The BBS (repo samuelling/BBS, Worker "bbs"): notes are handed to its "Outside" entrypoint, which files them as board
+# e-mail to the SysOps. A service binding, so the hand-off never crosses the public internet.
+[[services]]
+binding = "BBS"
+service = "bbs"
+entrypoint = "Outside"
