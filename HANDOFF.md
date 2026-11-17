@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 (8) · Sam's Claude
+
+- Sam tried the live finger gun: it almost worked but needed calibration. Added the four-step calibration from his own Splatterhaus (centre, thumb drop, two corners) to `contact/index.html`: runs the first time the camera starts, can be skipped, is remembered in the browser (`megazine.fingergun`), and "Calibrate again" redoes it. In simulation a hand with a short, off-centre reach misses without it and passes with it. Waiting on Sam's word on how it feels with a real hand.
+
 ## 2026-11-16 (7) · Sam's Claude
 
 - **The contact form is live.** Sam added the Cloudflare and passphrase secrets; the Worker deployed to `https://megazine-inbox.samuelling.workers.dev`, and `API` (contact page) and `INBOX_URL` (`/stats/`) now point at it. No `SLACK_WEBHOOK` yet, so no Slack ping until Sam adds that secret and the workflow runs again. Still unproven: a real hand on a real camera. `fingergun-captcha` stays hidden and in no issue until Sam says.

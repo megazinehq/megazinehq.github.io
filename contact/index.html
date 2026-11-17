@@ -70,6 +70,12 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 #reticle.bang { transform: scale(1.5); transition: transform .12s; }
 #cam { position: relative; width: 132px; aspect-ratio: 4 / 3; border: 1.5px solid var(--toner); border-radius: 4px; overflow: hidden; background: #000; display: none; }
 #cam video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+#calib { position: absolute; inset: 0; z-index: 6; border-radius: 4px; background: var(--sheet); border: 1.5px solid var(--toner); }
+#calib p { position: absolute; left: 8%; right: 8%; top: 62%; margin: 0; text-align: center; font: 600 18px/1.25 var(--body); }
+#calib small { position: absolute; left: 8%; right: 8%; top: 76%; text-align: center; font: 14px var(--type); color: var(--muted); }
+#calib i { position: absolute; width: 52px; height: 52px; margin: -26px 0 0 -26px; border-radius: 50%; transition: left .25s, top .25s;
+  background: radial-gradient(circle, var(--pink) 0 19%, var(--sheet) 21% 60%, transparent 62%), conic-gradient(var(--blue) calc(var(--p, 0) * 1turn), var(--rule) 0); }
+#calskip { position: absolute; left: 10px; bottom: 10px; padding: 6px 10px; font-size: 12px; }
 #cam.on { display: block; }
 #cam i { position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 2px #fff; }
 #stage.gun #verify { border-style: solid; }
@@ -99,13 +105,15 @@ button:disabled { opacity: .45; cursor: not-allowed; }
       <div id="grid" role="group" aria-label="Nine squares"></div>
       <div id="verify">Done? Shoot here</div>
       <div id="reticle" aria-hidden="true"></div>
+      <div id="calib" hidden><i aria-hidden="true"></i><p id="calt" role="status" aria-live="polite"></p><small id="cals"></small><button id="calskip" type="button">Skip</button></div>
     </div>
     <p class="note" id="gnote" role="status" aria-live="polite">Make a finger gun, thumb up. Point at a square, then drop your thumb to fire.</p>
     <div class="row">
       <button id="start" type="button" class="primary">Turn on camera</button>
+      <button id="recal" type="button" hidden>Calibrate again</button>
       <button id="retry" type="button" hidden>Load the squares again</button>
     </div>
-    <p class="fine">Your camera picture is read inside this page by a hand tracker and never sent anywhere. The tracker itself downloads from a public host the first time. Index finger out, or two; ring and little finger folded. There is no mouse option: no camera, no note.</p>
+    <p class="fine">Your camera picture is read inside this page by a hand tracker and never sent anywhere. The tracker itself downloads from a public host the first time. Index finger out, or two; ring and little finger folded. The first time, four quick steps fit the aim and the trigger to your hand, and this browser remembers them. There is no mouse option: no camera, no note.</p>
   </section>
 
   <form class="card" id="form" aria-labelledby="form-h" novalidate>
@@ -237,29 +245,73 @@ button:disabled { opacity: .45; cursor: not-allowed; }
       const ei = E(5), em = E(9), eo = Math.max(E(13), E(17)), two = em > ei * .8;
       return { score: ei - eo, thumb: d(4, 5) / d(9, 0), x: 1 - (two ? (l[8].x + l[12].x) / 2 : l[8].x), y: two ? (l[8].y + l[12].y) / 2 : l[8].y };
     }
+    // What a finger gun looks like from this hand: how strongly it reads (S0), how far the thumb travels (up, down), and where the
+    // fingertip is in the picture when it points at the top-left and bottom-right dots (x1 y1, x2 y2). The standard figures fit an
+    // average hand at arm's length; a short calibration replaces them with your own, kept in this browser for next time.
+    const DOT = [[.5, .5], [.5, .5], [.12, .14], [.88, .86]], DEF = { S0: .8, up: 0, down: 0, x1: .27, y1: .3, x2: .73, y2: .7, done: false }, KEY = "megazine.fingergun";
+    let C = Object.assign({}, DEF), cal = null, skipped = false;
+    try { const j = JSON.parse(localStorage.getItem(KEY)); if (j && j.done) C = Object.assign({}, DEF, j); } catch (e) {}
+    const ov = $("calib"), ovD = ov.querySelector("i"), med = a => { const b = a.slice().sort((x, y) => x - y); return b[b.length >> 1]; };
+    const SAY = ["Point your finger gun at the dot, thumb up.", "Keep pointing. Now drop your thumb.", "Thumb up again. Point at the top-left dot.", "Now the bottom-right dot."];
+    function calShow(sub, p) {
+      const d = DOT[cal.step]; ov.hidden = false; $("calt").textContent = cal.pause ? "Got it." : SAY[cal.step]; $("cals").textContent = cal.pause ? "" : (sub || "");
+      ovD.style.left = (d[0] * 100) + "%"; ovD.style.top = (d[1] * 100) + "%"; ovD.style.setProperty("--p", clamp(p || 0, 0, 1).toFixed(3));
+    }
+    function calNext(t) { cal.step++; cal.buf = []; cal.win = []; cal.c0 = 0; cal.pause = 0; cal.t0 = t; if (cal.step > 3) calDone(); else calShow(cal.step === 1 ? "" : "Move to the dot and hold still.", 0); }
+    function calStart() { if (!running || G.passed) return; cal = { step: -1, T: Object.assign({}, DEF), miss: 0 }; S.gun = false; S.cocked = false; aimOff(); calNext(performance.now() / 1000); note("Fitting the gun to your hand: four quick steps."); }
+    function calCancel() { if (!cal) return; cal = null; skipped = true; ov.hidden = true; note(C.done ? "Kept the calibration you had." : "Using the standard settings. Make a finger gun, thumb up."); }
+    function calDone() {
+      const T = cal.T; cal = null; ov.hidden = true;
+      if (Math.abs(T.x2 - T.x1) < .12) { T.x1 = DEF.x1; T.x2 = DEF.x2; } if (Math.abs(T.y2 - T.y1) < .09) { T.y1 = DEF.y1; T.y2 = DEF.y2; }   // corners too close together to be believed: keep the standard reach
+      if (!(T.up - T.down > .12 * T.up)) { T.up = 0; T.down = 0; }                                                               // thumb barely moved: judge it on the fly instead
+      T.done = true; C = T; try { localStorage.setItem(KEY, JSON.stringify(C)); } catch (e) {}
+      S.hi = 0; S.inN = S.outN = 0; S.gun = false; fx.t = fy.t = null; note("Calibrated. Point at a square, then drop your thumb to fire.", "ok");
+    }
+    // Each step waits until the hand has reached its place and is holding still, then reads it for a second, and starts that second
+    // again if the hand moves. Timed by the clock, not by counting readings, so a fast camera does not rush it.
+    function calFrame(r, t) {
+      const st = cal.step, T = cal.T;
+      if (cal.pause) { if (t > cal.pause) calNext(t); else calShow("", 1); return; }                 // a beat between steps, so the next line can be read
+      if (!r || r.score < .12) { if (!cal.miss) cal.miss = t; if (t - cal.miss > .6) { cal.c0 = 0; cal.buf = []; cal.win = []; calShow("Show the camera a finger gun.", 0); } return; }
+      cal.miss = 0; const w = cal.win; w.push([t, r.x, r.y]); while (w.length && t - w[0][0] > .45) w.shift();
+      let x0 = 1, x1 = 0, y0 = 1, y1 = 0; for (const q of w) { x0 = Math.min(x0, q[1]); x1 = Math.max(x1, q[1]); y0 = Math.min(y0, q[2]); y1 = Math.max(y1, q[2]); }
+      const still = t - w[0][0] > .3 && x1 - x0 < .035 && y1 - y0 < .035, need = st === 1 ? .6 : 1, early = t - cal.t0 < (st > 1 ? 1.1 : .8);
+      // what each step waits for: a still hand; a dropped thumb; a hand that has left the middle and come to rest
+      const ok = st === 1 ? r.thumb < T.up * .82 : still && !early && (st < 2 || Math.abs(r.x - T.cx) > .03 || Math.abs(r.y - T.cy) > .03);
+      if (!ok) { cal.c0 = 0; cal.buf = []; calShow(st === 1 ? "" : "Move to the dot and hold still.", 0); return; }
+      if (!cal.c0) cal.c0 = t; cal.buf.push(st === 1 ? r.thumb : [r.score, r.thumb, r.x, r.y]); const p = (t - cal.c0) / need; calShow("Hold it there.", p);
+      if (p < 1) return;
+      const b = cal.buf, m = k => med(b.map(q => q[k]));
+      if (st === 0) { T.S0 = clamp(m(0), .3, 1.6); T.up = m(1); T.cx = m(2); T.cy = m(3); } else if (st === 1) T.down = med(b); else if (st === 2) { T.x1 = m(2); T.y1 = m(3); } else { T.x2 = m(2); T.y2 = m(3); }
+      cal.pause = t + .7; calShow("", 1);
+    }
     function frame(r, now) {
+      if (r) { dot.hidden = false; dot.style.left = (r.x * 100) + "%"; dot.style.top = (r.y * 100) + "%"; S.seen = true; } else dot.hidden = true;
+      if (cal) { calFrame(r, now / 1000); return; }
       if (!r) {
-        dot.hidden = true;
         if (++S.lost > 10) { if (S.gun) aimOff(); S.gun = false; S.cocked = false; note(!S.seen && now - t0 > 6000 ? "No hand in view yet. Hold it up about an arm's length from the camera, in good light." : "Show the camera a finger gun."); }
         return;
       }
-      S.lost = 0; S.seen = true; dot.hidden = false; dot.style.left = (r.x * 100) + "%"; dot.style.top = (r.y * 100) + "%";
+      S.lost = 0;
       // in and out of "this is a finger gun" by two thresholds, and only after a few readings in a row, so it does not flicker
-      if (r.score > .36) { S.inN++; S.outN = 0; } else if (r.score < .16) { S.outN++; S.inN = 0; } else S.outN = 0;
+      if (r.score > .45 * C.S0) { S.inN++; S.outN = 0; } else if (r.score < .2 * C.S0) { S.outN++; S.inN = 0; } else S.outN = 0;
       if (!S.gun && S.inN >= 2) { S.gun = true; S.hi = 0; S.cocked = false; S.hist.length = 0; fx.t = fy.t = null; S.tGun = now; }
       else if (S.gun && S.outN >= 6) { S.gun = false; S.cocked = false; aimOff(); }
       if (!S.gun) { note("One or two fingers out, the rest folded."); return; }
-      // the middle of the picture covers the stage, so nobody has to reach for the edges
-      const t = now / 1000; S.x = clamp(euro(fx, clamp((r.x - .2) / .6, 0, 1), t), 0, 1); S.y = clamp(euro(fy, clamp((r.y - .22) / .56, 0, 1), t), 0, 1);
+      // where it points: stretched between the two corner dots, by your own reach if calibrated
+      const t = now / 1000, tx = .12 + (r.x - C.x1) / (C.x2 - C.x1) * .76, ty = .14 + (r.y - C.y1) / (C.y2 - C.y1) * .72;
+      S.x = clamp(euro(fx, clamp(tx, -.05, 1.05), t), 0, 1); S.y = clamp(euro(fy, clamp(ty, -.05, 1.05), t), 0, 1);
       S.hist.push([S.x, S.y]); if (S.hist.length > 6) S.hist.shift();
       aimAt(S.x, S.y);
-      S.hi = Math.max(r.thumb, S.hi - .0015);
-      const cockAt = S.hi > .4 ? S.hi * .85 : 9, fireAt2 = S.hi * .62;
+      // the thumb: against your own measured travel if calibrated, otherwise against how high this hand has lately held it
+      let cockAt, fireAt2;
+      if (C.up > 0) { cockAt = C.down + .7 * (C.up - C.down); fireAt2 = C.down + .4 * (C.up - C.down); }
+      else { S.hi = Math.max(r.thumb, S.hi - .0015); cockAt = S.hi > .4 ? S.hi * .85 : 9; fireAt2 = S.hi * .62; }
       if (r.thumb > cockAt) { S.cocked = true; S.lowN = 0; note(S.fires === 0 && now - S.tGun > 10000 ? "Aiming. Thumb straight up first, then snap it down onto your hand." : "Aiming. Drop your thumb to fire."); }
       else if (S.cocked && r.thumb < fireAt2) {
         if (++S.lowN >= 2) {
           S.cocked = false; S.lowN = 0;
-          if (now - S.lastFire > 250) { S.lastFire = now; S.fires++; const h = S.hist[0]; fireAt(h[0], h[1]); if (!G.busy && !G.passed) note("Bang."); }   // from where it pointed a moment ago, before the thumb jogged the hand
+          if (now - S.lastFire > 250) { S.lastFire = now; S.fires++; const q = S.hist[0]; fireAt(q[0], q[1]); if (!G.busy && !G.passed) note("Bang."); }   // from where it pointed a moment ago, before the thumb jogged the hand
         }
       } else S.lowN = 0;
     }
@@ -286,7 +338,8 @@ button:disabled { opacity: .45; cursor: not-allowed; }
         }
         if (G.passed) { stop(); return; }
         G.mode = "gun"; running = true; t0 = performance.now(); S.seen = false; S.fires = 0; S.gun = false; stage.classList.add("gun"); $("start").textContent = "Camera is on";
-        note("Make a finger gun, thumb up. Point at a square, then drop your thumb to fire."); stage.scrollIntoView({ block: "center", behavior: "smooth" }); requestAnimationFrame(loop);
+        $("recal").hidden = false; stage.scrollIntoView({ block: "center", behavior: "smooth" }); requestAnimationFrame(loop);
+        if (!C.done && !skipped) calStart(); else note("Make a finger gun, thumb up. Point at a square, then drop your thumb to fire.");
       } catch (e) {
         stop(); $("start").disabled = false; $("start").textContent = "Turn on camera";
         const denied = e && (e.name === "NotAllowedError" || e.name === "SecurityError"), none = e && (e.name === "NotFoundError" || e.name === "OverconstrainedError");
@@ -296,13 +349,16 @@ button:disabled { opacity: .45; cursor: not-allowed; }
     function stop() {
       running = false; if (stream) { for (const t of stream.getTracks()) t.stop(); stream = null; }
       video.srcObject = null; cam.classList.remove("on"); dot.hidden = true; stage.classList.remove("gun"); aimOff();
+      cal = null; ov.hidden = true; $("recal").hidden = true;
     }
-    return { start, stop, S };
+    return { start, stop, S, calStart, calCancel, calStep: () => (cal ? (cal.pause ? -2 : cal.step) : -1), fit: () => C };
   })();
 
-  // ---------- buttons: there are two, and neither is a square. The squares and Done answer only to the finger gun. ----------
+  // ---------- buttons: none of them is a square. The squares and Done answer only to the finger gun. ----------
   $("start").addEventListener("click", () => Hand.start());
   $("retry").addEventListener("click", () => newRound());
+  $("recal").addEventListener("click", () => Hand.calStart());
+  $("calskip").addEventListener("click", () => Hand.calCancel());
   addEventListener("pagehide", () => Hand.stop());
 
   // ---------- sending ----------
