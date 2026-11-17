@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Courier+Prime:wght@400;700&family=Spline+Sans:wght@400;500;600&display=swap">
 <style>
-/* The inquiry form, with a gate: shoot every square holding a motorcycle or a bird, with a finger gun, then write.
+/* The inquiry form, with a gate: shoot every square holding the kind of thing asked for, with a finger gun, then write.
    Same riso tokens as megazine.org. The hand is read in the browser by MediaPipe; no picture leaves the computer. */
 :root {
   --paper: #ECEDE9; --sheet: #F8F8F5; --toner: #18181B; --muted: #595E66; --rule: #C6C9C4;
@@ -52,26 +52,29 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .ask b { font-family: var(--display); font-weight: 400; text-transform: uppercase; color: var(--pink); }
 #stage { position: relative; touch-action: manipulation; user-select: none; }
 #grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-.tile { position: relative; aspect-ratio: 1; padding: 0; border: 1.5px solid var(--toner); border-radius: 4px; overflow: hidden; background: #cfd8dc; color: #1b2a33; }
+.tile { position: relative; aspect-ratio: 1; border: 1.5px solid var(--toner); border-radius: 4px; overflow: hidden; background: #F8F6EA; }
 .tile svg { width: 100%; height: 100%; display: block; }
-.tile.aim { outline: 3px solid var(--blue); outline-offset: -3px; }
+.tile.aim { outline: 4px solid var(--blue); outline-offset: -4px; }
 .tile.shot::after { content: ""; position: absolute; inset: 0; background:
     radial-gradient(circle at 50% 50%, #18181B 0 5%, transparent 6%),
     radial-gradient(circle at 50% 50%, transparent 0 24%, var(--pink) 25% 29%, transparent 30%);
   background-color: rgba(242, 54, 155, .22); }
 .tile.hit { animation: kick .25s; }
 @keyframes kick { 40% { transform: scale(.94) rotate(-1.5deg); } }
-#verify { display: block; width: 100%; margin-top: 8px; }
+#verify { margin-top: 8px; min-height: 76px; display: grid; place-items: center; border: 1.5px dashed var(--toner); border-radius: 4px; font: 700 16px var(--type); letter-spacing: .08em; text-transform: uppercase; background: var(--sheet); }
 #reticle { position: absolute; width: 38px; height: 38px; margin: -19px 0 0 -19px; pointer-events: none; z-index: 5; display: none;
-  border: 2px solid var(--pink); border-radius: 50%; box-shadow: 0 0 0 2px rgba(24,24,27,.55); }
-#reticle::before, #reticle::after { content: ""; position: absolute; background: var(--pink); }
+  border: 2.5px solid #0055B3; border-radius: 50%; box-shadow: 0 0 0 2px #fff, inset 0 0 0 2px #fff; }
+#reticle::before, #reticle::after { content: ""; position: absolute; background: #0055B3; box-shadow: 0 0 0 1px #fff; }
 #reticle::before { left: 50%; top: -7px; bottom: -7px; width: 2px; margin-left: -1px; }
 #reticle::after { top: 50%; left: -7px; right: -7px; height: 2px; margin-top: -1px; }
-#reticle.gun { border-color: var(--blue); } #reticle.gun::before, #reticle.gun::after { background: var(--blue); }
 #reticle.bang { transform: scale(1.5); transition: transform .12s; }
 #cam { position: relative; width: 132px; aspect-ratio: 4 / 3; border: 1.5px solid var(--toner); border-radius: 4px; overflow: hidden; background: #000; display: none; }
 #cam video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
 #cam.on { display: block; }
+#cam i { position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 2px #fff; }
+#stage.gun #verify { border-style: solid; }
+#verify.aim { outline: 3px solid var(--blue); outline-offset: -3px; }
+
 .gate-top { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
 .state { font: 700 13px var(--type); letter-spacing: .08em; text-transform: uppercase; }
 .pass { color: var(--ok); }
@@ -84,25 +87,25 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <body>
 <main>
   <h1>Write to <span>mega</span>ZINE</h1>
-  <p class="lede">A question, a hello, a piece you made. Your note goes to the editors. First, a small test that you are a person with a hand.</p>
+  <p class="lede">A question, a hello, a piece you made. This is the way in if you would rather not make an account on <a href="https://samuelling.github.io/BBS/">the BBS</a>. Your note goes to the editors. First, a small test that you are a person with a hand.</p>
 
   <section class="card" id="gate" aria-labelledby="gate-h">
     <h2 id="gate-h">Step 1 · prove it</h2>
     <div class="gate-top">
-      <p class="ask" id="ask">Shoot every square with a <b>motorcycle</b> or a <b>bird</b>.</p>
-      <div id="cam" aria-hidden="true"><video playsinline muted></video></div>
+      <p class="ask" id="ask">Loading the squares.</p>
+      <div id="cam" aria-hidden="true"><video playsinline muted></video><i hidden></i></div>
     </div>
     <div id="stage">
       <div id="grid" role="group" aria-label="Nine squares"></div>
-      <button id="verify" type="button">Done shooting</button>
+      <div id="verify">Done? Shoot here</div>
       <div id="reticle" aria-hidden="true"></div>
     </div>
     <p class="note" id="gnote" role="status" aria-live="polite">Make a finger gun, thumb up. Point at a square, then drop your thumb to fire.</p>
     <div class="row">
       <button id="start" type="button" class="primary">Turn on camera</button>
-      <button id="mouse" type="button">No camera? Use the mouse</button>
+      <button id="retry" type="button" hidden>Load the squares again</button>
     </div>
-    <p class="fine">Your camera picture is read inside this page by a hand tracker and never sent anywhere. The tracker itself downloads from a public host the first time. Index finger out, or two; ring and little finger folded.</p>
+    <p class="fine">Your camera picture is read inside this page by a hand tracker and never sent anywhere. The tracker itself downloads from a public host the first time. Index finger out, or two; ring and little finger folded. There is no mouse option: no camera, no note.</p>
   </section>
 
   <form class="card" id="form" aria-labelledby="form-h" novalidate>
@@ -125,9 +128,9 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <script>
 (() => {
   "use strict";
-  // Where a passed inquiry is posted: the inbox Worker's /inquiry (tools/inbox-worker/), read by the editors on /stats/.
-  // Empty until it is deployed; the page then says plainly that nothing was sent.
-  const ENDPOINT = "";
+  // The inbox Worker's address (tools/inbox-worker/), no trailing slash. It draws the squares, keeps the answer and stores
+  // the note. Empty means preview: the squares are drawn and checked here, and nothing can be sent.
+  const API = "";
   const SRC = {
     mjs: "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/vision_bundle.mjs",
     wasm: "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/wasm",
@@ -135,191 +138,195 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   };
   const $ = id => document.getElementById(id);
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const grid = $("grid"), stage = $("stage"), ret = $("reticle"), verify = $("verify");
 
-  // ---------- the pictures: little flat drawings, jittered per square so no two repeat ----------
-  const ART = {
-    motorcycle: '<circle cx="15" cy="44" r="9"/><circle cx="49" cy="44" r="9"/><path d="M15 44 L26 33 H40 L49 44"/><path d="M27 33 L31 25 H41 L44 31"/><path d="M44 31 L47 22 H53"/><path d="M26 33 L36 44 L49 44"/>',
-    bird: '<path d="M10 38 Q20 22 36 28 Q44 20 54 26 L47 31 Q46 46 30 47 Q16 47 10 38 Z"/><path d="M36 28 Q38 40 28 42"/><path d="M54 26 L60 27"/><circle cx="46" cy="27" r="1.6" fill="currentColor"/><path d="M12 38 L3 44 M14 40 L6 50"/><path d="M26 47 L24 56 M32 47 L33 56"/>',
-    bicycle: '<circle cx="15" cy="42" r="11"/><circle cx="49" cy="42" r="11"/><path d="M15 42 L28 28 L44 28 L49 42 M28 28 L34 42 L15 42 M34 42 L44 28"/><path d="M26 24 H32 M43 28 L41 20 H47"/>',
-    car: '<path d="M6 42 V34 Q6 30 11 29 L18 28 L24 20 H42 L50 28 L56 30 Q60 31 60 35 V42 Z"/><path d="M26 22 L22 28 H34 V22 Z M38 22 V28 H48 L42 22 Z"/><circle cx="19" cy="43" r="7" fill="#cfd8dc"/><circle cx="47" cy="43" r="7" fill="#cfd8dc"/>',
-    hydrant: '<path d="M20 54 V30 Q20 16 32 16 Q44 16 44 30 V54 Z"/><path d="M14 30 H20 M44 30 H50 M26 12 H38 M28 54 V42 H36 V54"/><circle cx="32" cy="12" r="2.4"/>',
-    light: '<rect x="20" y="6" width="24" height="42" rx="5"/><circle cx="32" cy="16" r="5"/><circle cx="32" cy="27" r="5"/><circle cx="32" cy="38" r="5"/><path d="M32 48 V58 M24 58 H40"/>',
-    tree: '<circle cx="32" cy="24" r="16"/><circle cx="22" cy="30" r="9"/><circle cx="43" cy="30" r="9"/><path d="M32 40 V58 M32 50 L40 44"/>',
-    bus: '<rect x="6" y="14" width="52" height="32" rx="5"/><path d="M6 32 H58"/><rect x="11" y="19" width="10" height="9"/><rect x="27" y="19" width="10" height="9"/><rect x="43" y="19" width="10" height="9"/><circle cx="19" cy="48" r="6" fill="#cfd8dc"/><circle cx="46" cy="48" r="6" fill="#cfd8dc"/>'
-  };
-  const TARGETS = ["motorcycle", "bird"], DECOYS = ["bicycle", "car", "hydrant", "light", "tree", "bus"];
-  const SKY = ["#cfd8dc", "#d7ccc8", "#c8e6c9", "#ffe0b2", "#d1c4e9", "#b3e5fc", "#f0f4c3"];
-  const pick = a => a[Math.floor(Math.random() * a.length)];
-  const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-
-  function tileSVG(kind) {
-    const rot = (Math.random() * 14 - 7).toFixed(1), sc = (0.82 + Math.random() * 0.2).toFixed(2);
-    const dx = (Math.random() * 6 - 3).toFixed(1), dy = (Math.random() * 6 - 3).toFixed(1);
-    const flip = Math.random() < .5 ? -1 : 1;
-    const bg = pick(SKY), dots = Array.from({ length: 6 }, () =>
-      `<circle cx="${(Math.random() * 64).toFixed(0)}" cy="${(Math.random() * 64).toFixed(0)}" r="${(0.6 + Math.random() * 1.6).toFixed(1)}" fill="#000" opacity=".07"/>`).join("");
-    return `<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="${bg}"/>${dots}` +
-      `<g transform="translate(${32 + +dx} ${32 + +dy}) rotate(${rot}) scale(${flip * sc} ${sc}) translate(-32 -32)" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${ART[kind]}</g></svg>`;
-  }
-
-  // ---------- one round: nine squares, three or four of them targets ----------
-  const G = { kinds: [], shot: new Set(), passed: false, mode: "", shots: 0, t0: 0, fails: 0 };
-  function newRound(why) {
-    const nT = 3 + (Math.random() < .5 ? 1 : 0);
-    const kinds = shuffle([...Array.from({ length: nT }, () => pick(TARGETS)), ...Array.from({ length: 9 - nT }, () => pick(DECOYS))]);
-    G.kinds = kinds; G.shot.clear(); G.t0 = performance.now();
-    const grid = $("grid"); grid.innerHTML = "";
-    kinds.forEach((k, i) => {
-      const b = document.createElement("button"); b.type = "button"; b.className = "tile"; b.dataset.i = i; b.tabIndex = -1;
-      b.innerHTML = tileSVG(k); b.setAttribute("aria-label", "square " + (i + 1) + (G.mode === "mouse" ? ", " + k : ""));
-      grid.appendChild(b);
+  // ---------- one round: nine moving squares and one kind of thing to shoot. With a Worker, this page never learns
+  // which squares are right: the Worker draws them and keeps the answer. In preview the page draws its own. ----------
+  const ASK = { animal: "an animal", vehicle: "a vehicle", plant: "a plant", instrument: "an instrument" };
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const G = { shot: new Set(), passed: false, pass: "", token: "", answer: -1, mode: "", shots: 0, t0: 0, fails: 0, busy: false };
+  function note(t, cls) { const n = $("gnote"); n.textContent = t; n.className = "note" + (cls ? " " + cls : ""); }
+  async function newRound(why) {
+    G.shot.clear(); G.busy = true; G.token = ""; G.answer = -1; let s;
+    try {
+      if (API) { const r = await fetch(API + "/challenge", { cache: "no-store" }); if (!r.ok) throw 0; s = await r.json(); G.token = s.token; }
+      else { s = (await import("./squares.js")).squares(); G.answer = s.mask; }
+      if (!ASK[s.ask] || !Array.isArray(s.tiles) || s.tiles.length !== 9) throw 0;
+    } catch (e) { grid.innerHTML = ""; G.busy = false; verify.hidden = true; $("retry").hidden = false; note("The squares could not load. Check your connection, then try again.", "bad"); return; }
+    $("retry").hidden = true; verify.hidden = false; grid.innerHTML = "";
+    $("ask").innerHTML = "Shoot every square with <b>" + ASK[s.ask] + "</b>.";
+    s.tiles.forEach((svg, i) => {
+      const d = document.createElement("div"); d.className = "tile"; d.dataset.i = i; d.setAttribute("role", "img"); d.setAttribute("aria-label", "square " + (i + 1));
+      d.innerHTML = svg; grid.appendChild(d);
+      if (still) { const g = d.querySelector("svg"); if (g && g.pauseAnimations) g.pauseAnimations(); }
     });
+    G.t0 = performance.now(); G.busy = false;
     if (why) note(why, "bad");
   }
   function toggle(i) {
-    const el = $("grid").children[i]; if (!el) return;
+    const el = grid.children[i]; if (!el || G.busy || G.passed) return;
     G.shots++; G.shot.has(i) ? G.shot.delete(i) : G.shot.add(i);
-    el.classList.toggle("shot", G.shot.has(i)); el.classList.remove("hit"); void el.offsetWidth; el.classList.add("hit");
+    el.classList.toggle("shot", G.shot.has(i)); el.setAttribute("aria-label", "square " + (i + 1) + (G.shot.has(i) ? ", shot" : ""));
+    el.classList.remove("hit"); void el.offsetWidth; el.classList.add("hit");
   }
-  function check() {
-    const want = new Set(G.kinds.map((k, i) => TARGETS.includes(k) ? i : -1).filter(i => i >= 0));
-    const ok = want.size === G.shot.size && [...want].every(i => G.shot.has(i));
-    if (ok && performance.now() - G.t0 > 800) { pass(); }
-    else { G.fails++; newRound(G.fails > 1 ? "Not quite. New squares. Motorcycles and birds only." : "Not quite. New squares."); }
+  const fail = why => { G.fails++; return newRound(why === "fast" ? "Too quick for a person. New squares, take your time." : why === "expired" || why === "used" ? "Those squares went stale. Here are new ones." : "Not quite. New squares, and maybe a new thing to shoot."); };
+  async function check() {
+    if (G.busy || G.passed || !grid.children.length) return;
+    const mask = [...G.shot].reduce((m, i) => m | (1 << i), 0);
+    if (!API) { if (mask === G.answer && performance.now() - G.t0 > 800) pass(); else fail(); return; }
+    G.busy = true; note("Checking.");
+    try {
+      const r = await fetch(API + "/verify", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ token: G.token, mask }) });
+      if (r.status === 429) { G.busy = false; note("Too many tries from here. Give it an hour.", "bad"); return; }
+      const j = await r.json(); G.busy = false;
+      if (j.ok && j.pass) { G.pass = j.pass; pass(); } else await fail(j.why);
+    } catch (e) { G.busy = false; note("Could not check that. Shoot Done again.", "bad"); }
   }
   function pass() {
     G.passed = true; Hand.stop();
-    $("gate").querySelector("h2").innerHTML = 'Step 1 · <span class="pass">passed</span>';
-    $("ask").textContent = "Nicely shot.";
-    $("verify").hidden = true; $("start").hidden = true; $("mouse").hidden = true; $("reticle").style.display = "none";
+    $("gate-h").innerHTML = 'Step 1 · <span class="pass">passed</span>'; $("ask").textContent = "Nicely shot.";
+    verify.hidden = true; $("start").hidden = true; ret.style.display = "none";
+    for (const e of grid.children) e.classList.remove("aim");
     note("You are a person with a hand, or a very patient robot. Write away.", "ok");
     $("send").disabled = false; $("gstate").textContent = "Unlocked"; $("gstate").className = "state pass";
   }
-  function note(t, cls) { const n = $("gnote"); n.textContent = t; n.className = "note" + (cls ? " " + cls : ""); }
+  function relock(why) {                       // a pass that sat too long: the message stays, the test is taken again
+    G.passed = false; G.pass = ""; G.mode = "";
+    $("gate-h").textContent = "Step 1 · prove it"; verify.hidden = false; $("start").hidden = false; $("start").disabled = false; $("start").textContent = "Turn on camera";
+    $("send").disabled = true; $("gstate").textContent = "Locked: finish step 1"; $("gstate").className = "state";
+    stage.classList.remove("gun"); newRound(why);
+  }
 
-  // ---------- aiming: the reticle sits over the stage; firing presses whatever is under it ----------
-  const ret = $("reticle"), stage = $("stage");
+  // ---------- aiming. The cross-hairs sit over the stage; a shot lands on the nearest square or the Done bar, worked out from
+  // their places on the page, so the gaps between squares and squares scrolled off screen still count. ----------
   function under(x, y) {
-    const r = stage.getBoundingClientRect(), px = r.left + x * r.width, py = r.top + y * r.height;
-    const el = document.elementFromPoint(px, py); return el && el.closest ? el.closest(".tile, #verify") : null;
+    const s = stage.getBoundingClientRect(), px = s.left + x * s.width, py = s.top + y * s.height; let best = null, bd = 1e9;
+    for (const el of [...grid.children, verify]) {
+      if (el.hidden) continue; const r = el.getBoundingClientRect();
+      const d = Math.hypot(Math.max(r.left - px, 0, px - r.right), Math.max(r.top - py, 0, py - r.bottom)); if (d < bd) { bd = d; best = el; }
+    }
+    return bd <= 12 ? best : null;
   }
-  function aimAt(x, y, gun) {
-    ret.style.display = "block"; ret.style.left = (x * 100) + "%"; ret.style.top = (y * 100) + "%"; ret.classList.toggle("gun", !!gun);
-    const t = under(x, y);
-    for (const e of $("grid").children) e.classList.toggle("aim", e === t);
-    $("verify").style.outline = t && t.id === "verify" ? "3px solid var(--blue)" : "";
+  function aimAt(x, y) {
+    ret.style.display = "block"; ret.style.left = (x * 100) + "%"; ret.style.top = (y * 100) + "%";
+    const t = under(x, y); for (const e of grid.children) e.classList.toggle("aim", e === t); verify.classList.toggle("aim", t === verify);
   }
+  function aimOff() { ret.style.display = "none"; for (const e of grid.children) e.classList.remove("aim"); verify.classList.remove("aim"); }
   function fireAt(x, y) {
     ret.classList.add("bang"); setTimeout(() => ret.classList.remove("bang"), 120);
     const t = under(x, y); if (!t || G.passed) return;
-    if (t.id === "verify") check(); else toggle(+t.dataset.i);
+    if (t === verify) check(); else toggle(+t.dataset.i);
   }
 
-  // ---------- the hand: MediaPipe's tracker gives 21 points per hand. A finger gun is the index finger (and maybe the middle one)
-  // out and the ring and little fingers folded; the thumb dropping is the hammer falling. ----------
+  // ---------- the hand. MediaPipe's tracker gives 21 points per hand. A finger gun is the index finger (and maybe the middle one)
+  // out with the ring and little fingers folded; the thumb dropping is the hammer falling. ----------
   const Hand = (() => {
-    const video = document.querySelector("#cam video"), cam = $("cam");
-    let lm = null, stream = null, running = false, lastT = -1;
-    const S = { gun: false, inN: 0, outN: 0, lost: 0, hi: 0, cocked: false, lowN: 0, x: .5, y: .5, hist: [], lastFire: 0 };
+    const video = document.querySelector("#cam video"), cam = $("cam"), dot = cam.querySelector("i");
+    let lm = null, stream = null, running = false, lastT = -1, t0 = 0;
+    const S = { gun: false, inN: 0, outN: 0, lost: 0, seen: false, hi: 0, cocked: false, lowN: 0, x: .5, y: .5, hist: [], lastFire: 0, fires: 0, tGun: 0 };
+    const fx = {}, fy = {};
+    // the one-euro filter: steady when the hand is still, quick when it moves
+    function euro(f, v, t) {
+      if (f.t == null) { f.t = t; f.v = v; f.d = 0; return v; }
+      const dt = Math.max(1e-3, t - f.t), a = c => { const r = 2 * Math.PI * c * dt; return r / (r + 1); }; f.t = t;
+      f.d += a(1) * ((v - f.v) / dt - f.d); f.v += a(1.1 + 2.2 * Math.abs(f.d)) * (v - f.v); return f.v;
+    }
     const len = (a, b) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
     function read(l, w) {
       const d = (i, j) => len(w[i], w[j]) + 1e-6, E = k => d(k + 3, 0) / d(k, 0);
       const ei = E(5), em = E(9), eo = Math.max(E(13), E(17)), two = em > ei * .8;
-      return { score: ei - eo, thumb: d(4, 5) / d(9, 0),
-        x: 1 - (two ? (l[8].x + l[12].x) / 2 : l[8].x), y: two ? (l[8].y + l[12].y) / 2 : l[8].y };
+      return { score: ei - eo, thumb: d(4, 5) / d(9, 0), x: 1 - (two ? (l[8].x + l[12].x) / 2 : l[8].x), y: two ? (l[8].y + l[12].y) / 2 : l[8].y };
     }
-    function frame(r) {
-      if (!r) { if (++S.lost > 10) { S.gun = false; S.cocked = false; note("Show the camera a finger gun."); } return; }
-      S.lost = 0;
+    function frame(r, now) {
+      if (!r) {
+        dot.hidden = true;
+        if (++S.lost > 10) { if (S.gun) aimOff(); S.gun = false; S.cocked = false; note(!S.seen && now - t0 > 6000 ? "No hand in view yet. Hold it up about an arm's length from the camera, in good light." : "Show the camera a finger gun."); }
+        return;
+      }
+      S.lost = 0; S.seen = true; dot.hidden = false; dot.style.left = (r.x * 100) + "%"; dot.style.top = (r.y * 100) + "%";
+      // in and out of "this is a finger gun" by two thresholds, and only after a few readings in a row, so it does not flicker
       if (r.score > .36) { S.inN++; S.outN = 0; } else if (r.score < .16) { S.outN++; S.inN = 0; } else S.outN = 0;
-      if (!S.gun && S.inN >= 2) { S.gun = true; S.hi = 0; S.cocked = false; S.hist.length = 0; }
-      else if (S.gun && S.outN >= 6) { S.gun = false; S.cocked = false; }
+      if (!S.gun && S.inN >= 2) { S.gun = true; S.hi = 0; S.cocked = false; S.hist.length = 0; fx.t = fy.t = null; S.tGun = now; }
+      else if (S.gun && S.outN >= 6) { S.gun = false; S.cocked = false; aimOff(); }
       if (!S.gun) { note("One or two fingers out, the rest folded."); return; }
-      // the middle of the picture covers the stage, so you do not have to reach the edges
-      const tx = clamp((r.x - .2) / .6, 0, 1), ty = clamp((r.y - .22) / .56, 0, 1);
-      S.x += (tx - S.x) * .4; S.y += (ty - S.y) * .4;
+      // the middle of the picture covers the stage, so nobody has to reach for the edges
+      const t = now / 1000; S.x = clamp(euro(fx, clamp((r.x - .2) / .6, 0, 1), t), 0, 1); S.y = clamp(euro(fy, clamp((r.y - .22) / .56, 0, 1), t), 0, 1);
       S.hist.push([S.x, S.y]); if (S.hist.length > 6) S.hist.shift();
-      aimAt(S.x, S.y, true);
+      aimAt(S.x, S.y);
       S.hi = Math.max(r.thumb, S.hi - .0015);
       const cockAt = S.hi > .4 ? S.hi * .85 : 9, fireAt2 = S.hi * .62;
-      if (r.thumb > cockAt) { S.cocked = true; S.lowN = 0; note("Aiming. Drop your thumb to fire."); }
+      if (r.thumb > cockAt) { S.cocked = true; S.lowN = 0; note(S.fires === 0 && now - S.tGun > 10000 ? "Aiming. Thumb straight up first, then snap it down onto your hand." : "Aiming. Drop your thumb to fire."); }
       else if (S.cocked && r.thumb < fireAt2) {
         if (++S.lowN >= 2) {
           S.cocked = false; S.lowN = 0;
-          const now = performance.now(); if (now - S.lastFire > 250) { S.lastFire = now; const h = S.hist[0]; fireAt(h[0], h[1]); note("Bang."); }
+          if (now - S.lastFire > 250) { S.lastFire = now; S.fires++; const h = S.hist[0]; fireAt(h[0], h[1]); if (!G.busy && !G.passed) note("Bang."); }   // from where it pointed a moment ago, before the thumb jogged the hand
         }
       } else S.lowN = 0;
     }
     function loop() {
       if (!running) return;
       if (lm && video.readyState >= 2 && video.currentTime !== lastT) {
-        lastT = video.currentTime;
-        let res = null; try { res = lm.detectForVideo(video, performance.now()); } catch (e) { /* skip a bad frame */ }
-        const r = res && res.landmarks && res.landmarks[0] && res.worldLandmarks && res.worldLandmarks[0] ? read(res.landmarks[0], res.worldLandmarks[0]) : null;
-        frame(r);
+        lastT = video.currentTime; const now = performance.now();
+        let res = null; try { res = lm.detectForVideo(video, now); } catch (e) { /* skip a bad frame */ }
+        frame(res && res.landmarks && res.landmarks[0] && res.worldLandmarks && res.worldLandmarks[0] ? read(res.landmarks[0], res.worldLandmarks[0]) : null, now);
       }
       requestAnimationFrame(loop);
     }
     async function start() {
       try {
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error("This browser or page cannot use a camera.");
-        note("Asking for the camera.");
+        note("Asking for the camera."); $("start").disabled = true;
         stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 30 } }, audio: false });
         video.srcObject = stream; await video.play(); cam.classList.add("on");
         if (!lm) {
-          note("Fetching the hand tracker.");
+          note("Fetching the hand tracker. A few seconds the first time.");
           const vis = await import(SRC.mjs), fset = await vis.FilesetResolver.forVisionTasks(SRC.wasm);
           const mk = dg => vis.HandLandmarker.createFromOptions(fset, { baseOptions: { modelAssetPath: SRC.model, delegate: dg }, runningMode: "VIDEO", numHands: 1, minHandDetectionConfidence: .35, minHandPresenceConfidence: .35, minTrackingConfidence: .35 });
           try { lm = await mk("GPU"); } catch (e) { lm = await mk("CPU"); }
         }
-        G.mode = "gun"; running = true; $("start").textContent = "Camera is on"; $("start").disabled = true;
-        note("Make a finger gun, thumb up. Point at a square, then drop your thumb to fire."); requestAnimationFrame(loop);
+        if (G.passed) { stop(); return; }
+        G.mode = "gun"; running = true; t0 = performance.now(); S.seen = false; S.fires = 0; S.gun = false; stage.classList.add("gun"); $("start").textContent = "Camera is on";
+        note("Make a finger gun, thumb up. Point at a square, then drop your thumb to fire."); stage.scrollIntoView({ block: "center", behavior: "smooth" }); requestAnimationFrame(loop);
       } catch (e) {
-        stop(); note((e && e.message ? e.message : "The camera or tracker could not start") + " You can use the mouse instead.", "bad");
+        stop(); $("start").disabled = false; $("start").textContent = "Turn on camera";
+        const denied = e && (e.name === "NotAllowedError" || e.name === "SecurityError"), none = e && (e.name === "NotFoundError" || e.name === "OverconstrainedError");
+        note((denied ? "The camera was not allowed." : none ? "No camera found." : "The camera or the hand tracker could not start.") + " This page needs one to let you through.", "bad");
       }
     }
     function stop() {
       running = false; if (stream) { for (const t of stream.getTracks()) t.stop(); stream = null; }
-      video.srcObject = null; cam.classList.remove("on");
+      video.srcObject = null; cam.classList.remove("on"); dot.hidden = true; stage.classList.remove("gun"); aimOff();
     }
     return { start, stop, S };
   })();
 
-  // ---------- the mouse way, for people with no camera or no hand to spare ----------
-  stage.addEventListener("click", e => {
-    if (G.mode !== "mouse" || G.passed) return;
-    const t = e.target.closest(".tile, #verify"); if (!t) return;
-    if (t.id === "verify") check(); else toggle(+t.dataset.i);
-  });
-  $("mouse").addEventListener("click", () => {
-    Hand.stop(); G.mode = "mouse"; $("start").disabled = false; $("start").textContent = "Turn on camera";
-    for (const t of $("grid").children) t.tabIndex = 0;
-    newRound(); $("ask").innerHTML = 'Click every square with a <b>motorcycle</b> or a <b>bird</b>.';
-    note("Mouse mode: click the squares, then Done."); ret.style.display = "none";
-  });
-  $("start").addEventListener("click", () => { G.mode = ""; newRound(); $("ask").innerHTML = 'Shoot every square with a <b>motorcycle</b> or a <b>bird</b>.'; Hand.start(); });
-  $("verify").addEventListener("keydown", e => { if (e.key === "Enter" && G.mode !== "mouse") e.preventDefault(); });
+  // ---------- buttons: there are two, and neither is a square. The squares and Done answer only to the finger gun. ----------
+  $("start").addEventListener("click", () => Hand.start());
+  $("retry").addEventListener("click", () => newRound());
+  addEventListener("pagehide", () => Hand.stop());
 
   // ---------- sending ----------
   $("form").addEventListener("submit", async e => {
     e.preventDefault();
-    const f = $("form"), fn = $("fnote");
-    if (!G.passed) { fn.textContent = "Finish step 1 first."; fn.className = "note bad"; return; }
+    const f = $("form"), fn = $("fnote"), say = (t, c) => { fn.textContent = t; fn.className = "note" + (c ? " " + c : ""); };
+    if (!G.passed) { say("Finish step 1 first.", "bad"); return; }
     const email = f.email.value.trim(), message = f.message.value.trim();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || message.length < 5) { fn.textContent = "An email we can reply to, and a message, please."; fn.className = "note bad"; return; }
-    if (f.website.value) { fn.textContent = "Sent."; fn.className = "note ok"; return; }   // the honeypot: look sent, send nothing
-    if (!ENDPOINT) { fn.textContent = "The inbox is not connected yet, so nothing was sent. This is a preview."; fn.className = "note bad"; return; }
-    $("send").disabled = true; fn.textContent = "Sending..."; fn.className = "note";
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || message.length < 5) { say("An email we can reply to, and a message, please.", "bad"); return; }
+    if (f.website.value) { say("Sent.", "ok"); return; }   // the honeypot: look sent, send nothing
+    if (!API) { say("The inbox is not connected yet, so nothing was sent. This is a preview.", "bad"); return; }
+    $("send").disabled = true; say("Sending.");
     try {
-      const res = await fetch(ENDPOINT, { method: "POST", headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name: f.name.value.trim(), email, message, proof: { mode: G.mode, shots: G.shots, ms: Math.round(performance.now() - G.t0), fails: G.fails } }) });
+      const res = await fetch(API + "/inquiry", { method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ pass: G.pass, name: f.name.value.trim(), email, message, proof: { mode: G.mode, shots: G.shots, ms: Math.round(performance.now() - G.t0), fails: G.fails } }) });
+      if (res.status === 401) { say("The test went stale while you wrote. Your message is still here: shoot once more, then Send.", "bad"); relock(); return; }
+      if (res.status === 429) { $("send").disabled = false; say("That is a lot of notes from one place. Try again in an hour.", "bad"); return; }
       if (!res.ok) throw new Error("status " + res.status);
-      f.reset(); fn.textContent = "Sent. The editors will write back."; fn.className = "note ok";
-    } catch (err) { $("send").disabled = false; fn.textContent = "That did not go through. Try again in a minute."; fn.className = "note bad"; }
+      f.reset(); G.pass = ""; say("Sent. The editors will write back.", "ok"); $("gstate").textContent = "Sent";
+    } catch (err) { $("send").disabled = false; say("That did not go through. Try again in a minute.", "bad"); }
   });
 
   newRound();
-  window.__cap = { G, toggle, check, fireAt, aimAt, Hand };   // for testing
+  window.__cap = { G, Hand, aimAt, fireAt };   // for testing. With a Worker the answer is not on this page, so this opens nothing.
 })();
 </script>
 </body>

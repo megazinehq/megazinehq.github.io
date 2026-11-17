@@ -2,6 +2,12 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 (5) · Sam's Claude
+
+- **Finger-gun captcha reworked** at Sam's request. Camera only (mouse option removed). The squares are now moving two-ink drawings in four categories (animals, vehicles, plants, instruments; 18 drawings in `contact/squares.js`), and the ask changes per round. The page no longer grades itself: the Worker draws the round, keeps the answer and signs a one-use pass (`/challenge`, `/verify`, `/inquiry`). The Worker also pings Slack per note if it has a `SLACK_WEBHOOK` secret. Sam's rule change: `/contact/` is the alternative to making a BBS account, so pieces can arrive there too (CLAUDE.md updated).
+- The page's setting is now `API` (the Worker's base URL), not `ENDPOINT`. Still empty, so `/contact/` is a preview that sends nothing, and the `/stats/` Inbox is hidden. Sam deploys the Worker (README in `tools/inbox-worker/`), then `API` and `INBOX_URL` get set.
+- Tested: the Worker's rules against a pretend KV; the whole path (camera on, aim, fire, Done, form, inbox, Slack ping) in a headless browser with a simulated hand, including shaky aim. **Not tested with a real hand on a real camera, nor on Cloudflare itself.**
+
 ## 2026-11-16 (4) · Sam's Claude
 
 - Added a discreet **Send comment** link in the site footer (`tools/page.html`) pointing at `/contact/`, so Sam can test the gate. The Worker isn't deployed yet, so a passed form still says nothing was sent.
