@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 (9) · Sam's Claude
+
+- Contact page, at Sam's request: a **Finger gun / Head** toggle (head mode: nose aims, opening the mouth fires; face tracker with jaw-open reading), a three-picture tutorial per mode, and a line sending anyone who won't use a webcam "or has no fingers or face" to the BBS. Calibration cut to **two dots** (about 2.5 s; the thumb step is gone, the trigger is judged from where it rested). Head mode's first calibration can't be skipped, because which way a head reads is only known once both dots are measured. `/stats/` labels each note's aim (finger gun / head aim). All in `contact/index.html`; the Worker did not change.
+- Tested in simulation only (pretend hand and pretend face, including a mirrored one and small movements). **Head mode has never seen a real face; the finger gun has had one real try, before calibration existed.**
+
 ## 2026-11-16 (8) · Sam's Claude
 
 - Sam tried the live finger gun: it almost worked but needed calibration. Added the four-step calibration from his own Splatterhaus (centre, thumb drop, two corners) to `contact/index.html`: runs the first time the camera starts, can be skipped, is remembered in the browser (`megazine.fingergun`), and "Calibrate again" redoes it. In simulation a hand with a short, off-centre reach misses without it and passes with it. Waiting on Sam's word on how it feels with a real hand.

@@ -402,7 +402,7 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
       note(rows.length ? rows.length + (rows.length === 1 ? " note." : " notes, newest first.") : "Nothing yet.");
       $("ilist").innerHTML = rows.map((m) => `<li data-id="${esc(m.id)}"><div class="who">${esc(m.name || "No name")}<span class="when">${esc(new Date(m.at).toLocaleString())}</span></div>
         <div class="msg">${esc(m.message)}</div><div class="acts"><a href="mailto:${esc(m.email)}?subject=${encodeURIComponent("Re: your note to megaZINE")}">Reply to ${esc(m.email)}</a>
-        <button type="button" class="del">Delete</button><span class="meta">${esc(m.proof && m.proof.mode === "gun" ? "finger gun, " + m.proof.shots + " shots" : "mouse")}</span></div></li>`).join("");
+        <button type="button" class="del">Delete</button><span class="meta">${esc(m.proof ? ({ gun: "finger gun", head: "head aim" }[m.proof.mode] || "unknown aim") + ", " + m.proof.shots + " shots" : "")}</span></div></li>`).join("");
     } catch (e) { note("Could not reach the inbox. Try again."); }
   }
   $("inbox-key").addEventListener("submit", (e) => { e.preventDefault(); key = $("ikey").value.trim(); $("ikey").value = ""; try { sessionStorage.setItem("megazine.inbox", key); } catch (er) {} load(); });

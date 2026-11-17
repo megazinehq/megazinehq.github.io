@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Courier+Prime:wght@400;700&family=Spline+Sans:wght@400;500;600&display=swap">
 <style>
-/* The inquiry form, with a gate: shoot every square holding the kind of thing asked for, with a finger gun, then write.
+/* The inquiry form, with a gate: shoot every square holding the kind of thing asked for, with a finger gun or your head, then write.
    Same riso tokens as megazine.org. The hand is read in the browser by MediaPipe; no picture leaves the computer. */
 :root {
   --paper: #ECEDE9; --sheet: #F8F8F5; --toner: #18181B; --muted: #595E66; --rule: #C6C9C4;
@@ -85,6 +85,13 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .state { font: 700 13px var(--type); letter-spacing: .08em; text-transform: uppercase; }
 .pass { color: var(--ok); }
 .fine { font: 13px/1.4 var(--body); color: var(--muted); margin: 10px 0 0; }
+.bbs { font: 15px/1.4 var(--body); margin: 14px 0 0; }
+.modes { display: inline-flex; border: 1.5px solid var(--toner); border-radius: 4px; overflow: hidden; margin: 0 0 12px; }
+.modes button { border: 0; border-radius: 0; padding: 8px 14px; font-size: 13px; }
+.modes button[aria-checked="true"] { background: var(--toner); color: var(--sheet); }
+#how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 14px; padding: 10px 6px; border: 1.5px dashed var(--rule); border-radius: 4px; }
+#how figure { margin: 0; text-align: center; font: 13px/1.25 var(--body); color: var(--muted); }
+#how svg { width: 64px; height: 64px; display: block; margin: 0 auto 4px; color: var(--toner); }
 .linkbtn { background: none; border: 0; padding: 0; color: var(--blue); text-decoration: underline; font: inherit; letter-spacing: 0; text-transform: none; }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .tile.hit, #reticle.bang { animation: none; transition: none; } }
@@ -93,10 +100,12 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <body>
 <main>
   <h1>Write to <span>mega</span>ZINE</h1>
-  <p class="lede">A question, a hello, a piece you made. This is the way in if you would rather not make an account on <a href="https://samuelling.github.io/BBS/">the BBS</a>. Your note goes to the editors. First, a small test that you are a person with a hand.</p>
+  <p class="lede">A question, a hello, a piece you made. This is the way in if you would rather not make an account on <a href="https://samuelling.github.io/BBS/">the BBS</a>. Your note goes to the editors. First, a small test that you are a person with a hand, or at least a head.</p>
 
   <section class="card" id="gate" aria-labelledby="gate-h">
     <h2 id="gate-h">Step 1 · prove it</h2>
+    <div class="modes" role="radiogroup" aria-label="How to aim"><button type="button" role="radio" data-kind="gun" aria-checked="true">Finger gun</button><button type="button" role="radio" data-kind="head" aria-checked="false">Head</button></div>
+    <div id="how" aria-label="How it works"></div>
     <div class="gate-top">
       <p class="ask" id="ask">Loading the squares.</p>
       <div id="cam" aria-hidden="true"><video playsinline muted></video><i hidden></i></div>
@@ -113,7 +122,8 @@ button:disabled { opacity: .45; cursor: not-allowed; }
       <button id="recal" type="button" hidden>Calibrate again</button>
       <button id="retry" type="button" hidden>Load the squares again</button>
     </div>
-    <p class="fine">Your camera picture is read inside this page by a hand tracker and never sent anywhere. The tracker itself downloads from a public host the first time. Index finger out, or two; ring and little finger folded. The first time, four quick steps fit the aim and the trigger to your hand, and this browser remembers them. There is no mouse option: no camera, no note.</p>
+    <p class="bbs">Would rather not use your webcam, or have no fingers or face? <a href="https://samuelling.github.io/BBS/">Use the BBS instead.</a></p>
+    <p class="fine">Hit every square that matches, then shoot Done. Your camera picture is read inside this page by a hand or face tracker and never sent anywhere; the tracker itself downloads from a public host the first time. The first time, you point at two dots so the aim fits you; this browser remembers it.</p>
   </section>
 
   <form class="card" id="form" aria-labelledby="form-h" novalidate>
@@ -193,14 +203,14 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   function pass() {
     G.passed = true; Hand.stop();
     $("gate-h").innerHTML = 'Step 1 · <span class="pass">passed</span>'; $("ask").textContent = "Nicely shot.";
-    verify.hidden = true; $("start").hidden = true; ret.style.display = "none";
+    verify.hidden = true; $("start").hidden = true; $("how").hidden = true; document.querySelector(".modes").hidden = true; ret.style.display = "none";
     for (const e of grid.children) e.classList.remove("aim");
-    note("You are a person with a hand, or a very patient robot. Write away.", "ok");
+    note("You are a person, or a very patient robot. Write away.", "ok");
     $("send").disabled = false; $("gstate").textContent = "Unlocked"; $("gstate").className = "state pass";
   }
   function relock(why) {                       // a pass that sat too long: the message stays, the test is taken again
     G.passed = false; G.pass = ""; G.mode = "";
-    $("gate-h").textContent = "Step 1 · prove it"; verify.hidden = false; $("start").hidden = false; $("start").disabled = false; $("start").textContent = "Turn on camera";
+    $("gate-h").textContent = "Step 1 · prove it"; verify.hidden = false; $("how").hidden = false; document.querySelector(".modes").hidden = false; $("start").hidden = false; $("start").disabled = false; $("start").textContent = "Turn on camera";
     $("send").disabled = true; $("gstate").textContent = "Locked: finish step 1"; $("gstate").className = "state";
     stage.classList.remove("gun"); newRound(why);
   }
@@ -226,138 +236,198 @@ button:disabled { opacity: .45; cursor: not-allowed; }
     if (t === verify) check(); else toggle(+t.dataset.i);
   }
 
-  // ---------- the hand. MediaPipe's tracker gives 21 points per hand. A finger gun is the index finger (and maybe the middle one)
-  // out with the ring and little fingers folded; the thumb dropping is the hammer falling. ----------
+  // ---------- two ways to aim, one pipeline. Either way a reading is {score, thumb, x, y}: how surely the pointer is there, how
+  // far the trigger is from fired, and where it points in the picture.
+  //   gun:  MediaPipe's hand tracker gives 21 points. A finger gun is the index finger (and maybe the middle one) out with the ring
+  //         and little fingers folded; the fingertip aims, and the thumb dropping is the hammer falling.
+  //   head: the face tracker gives which way the face points and how open the jaw is. The nose aims; opening the mouth fires. ----------
   const Hand = (() => {
     const video = document.querySelector("#cam video"), cam = $("cam"), dot = cam.querySelector("i");
-    let lm = null, stream = null, running = false, lastT = -1, t0 = 0;
+    const FACE = "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task";
+    let vis = null, fset = null, lm = null, fm = null, stream = null, running = false, lastT = -1, t0 = 0, kind = "gun", busy = false;
+    try { if (localStorage.getItem("megazine.aim") === "head") kind = "head"; } catch (e) {}
     const S = { gun: false, inN: 0, outN: 0, lost: 0, seen: false, hi: 0, cocked: false, lowN: 0, x: .5, y: .5, hist: [], lastFire: 0, fires: 0, tGun: 0 };
+    const W = {
+      gun: { say: ["Point your finger gun at the dot, thumb up.", "Now this one."],
+        show: "Show the camera a finger gun.", none: "No hand in view yet. Hold it up about an arm's length from the camera, in good light.", shape: "One or two fingers out, the rest folded.",
+        ready: "Make a finger gun, thumb up. Point at a square, then drop your thumb to fire.", aim: "Aiming. Drop your thumb to fire.", stuck: "Aiming. Thumb straight up first, then snap it down onto your hand.",
+        fetch: "Fetching the hand tracker. A few seconds the first time.", fit: "Two dots to fit the aim to your hand." },
+      head: { say: ["Point your nose at the dot, mouth closed.", "Now this one."],
+        show: "Show the camera your face.", none: "No face in view yet. Sit square to the camera, in good light.", shape: "Show the camera your face.",
+        ready: "Point your nose at a square, then open your mouth to fire.", aim: "Aiming. Open your mouth to fire.", stuck: "Aiming. Close your mouth first, then open it wide.",
+        fetch: "Fetching the face tracker. A few seconds the first time.", fit: "Two dots to fit the aim to your head." }
+    };
     const fx = {}, fy = {};
-    // the one-euro filter: steady when the hand is still, quick when it moves
+    // the one-euro filter: steady when the pointer is still, quick when it moves
     function euro(f, v, t) {
       if (f.t == null) { f.t = t; f.v = v; f.d = 0; return v; }
       const dt = Math.max(1e-3, t - f.t), a = c => { const r = 2 * Math.PI * c * dt; return r / (r + 1); }; f.t = t;
       f.d += a(1) * ((v - f.v) / dt - f.d); f.v += a(1.1 + 2.2 * Math.abs(f.d)) * (v - f.v); return f.v;
     }
     const len = (a, b) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
-    function read(l, w) {
+    function readHand(l, w) {
       const d = (i, j) => len(w[i], w[j]) + 1e-6, E = k => d(k + 3, 0) / d(k, 0);
       const ei = E(5), em = E(9), eo = Math.max(E(13), E(17)), two = em > ei * .8;
       return { score: ei - eo, thumb: d(4, 5) / d(9, 0), x: 1 - (two ? (l[8].x + l[12].x) / 2 : l[8].x), y: two ? (l[8].y + l[12].y) / 2 : l[8].y };
     }
-    // What a finger gun looks like from this hand: how strongly it reads (S0), how far the thumb travels (up, down), and where the
-    // fingertip is in the picture when it points at the top-left and bottom-right dots (x1 y1, x2 y2). The standard figures fit an
-    // average hand at arm's length; a short calibration replaces them with your own, kept in this browser for next time.
-    const DOT = [[.5, .5], [.5, .5], [.12, .14], [.88, .86]], DEF = { S0: .8, up: 0, down: 0, x1: .27, y1: .3, x2: .73, y2: .7, done: false }, KEY = "megazine.fingergun";
-    let C = Object.assign({}, DEF), cal = null, skipped = false;
-    try { const j = JSON.parse(localStorage.getItem(KEY)); if (j && j.done) C = Object.assign({}, DEF, j); } catch (e) {}
+    // m is the head's attitude as a 4 x 4 matrix; its third column is the way the face points. 25 degrees of turn spans the picture's
+    // half-width here, so a small turn covers the squares. The trigger reads 1 with the mouth shut and falls as it opens.
+    function readHead(m, cats) {
+      const yaw = Math.atan2(-m[8], m[10]) * 57.296, pitch = Math.asin(clamp(m[9], -1, 1)) * 57.296; let jaw = 0;
+      for (const c of cats || []) if (c.categoryName === "jawOpen") { jaw = c.score; break; }
+      return { score: 1, thumb: 1 - jaw, x: .5 + yaw / 50, y: .5 - pitch / 40 };
+    }
+    // The fit: how strongly the pointer reads (S0), where the trigger rests (up), and where the pointer is in the picture when it
+    // points at the top-left and bottom-right dots (x1 y1, x2 y2). The standard figures suit an average hand at arm's length; pointing
+    // at two dots, for about half a second each, replaces them with your own, kept in this browser, one fit for the gun and one for the
+    // head. Because both corners are measured, it does not matter which way round a camera or a head happens to read.
+    const DOT = [[.12, .14], [.88, .86]], DEF = { S0: .8, up: 0, x1: .27, y1: .3, x2: .73, y2: .7, done: false }, KEYS = { gun: "megazine.fingergun", head: "megazine.headaim" };
+    const load = k => { try { const j = JSON.parse(localStorage.getItem(KEYS[k])); if (j && j.done) return Object.assign({}, DEF, j); } catch (e) {} return Object.assign({}, DEF); };
+    const FIT = { gun: load("gun"), head: load("head") }, skipped = { gun: false, head: false };
+    let C = FIT[kind], cal = null;
     const ov = $("calib"), ovD = ov.querySelector("i"), med = a => { const b = a.slice().sort((x, y) => x - y); return b[b.length >> 1]; };
-    const SAY = ["Point your finger gun at the dot, thumb up.", "Keep pointing. Now drop your thumb.", "Thumb up again. Point at the top-left dot.", "Now the bottom-right dot."];
     function calShow(sub, p) {
-      const d = DOT[cal.step]; ov.hidden = false; $("calt").textContent = cal.pause ? "Got it." : SAY[cal.step]; $("cals").textContent = cal.pause ? "" : (sub || "");
+      const d = DOT[cal.step]; ov.hidden = false; $("calt").textContent = W[kind].say[cal.step]; $("cals").textContent = sub || "";
       ovD.style.left = (d[0] * 100) + "%"; ovD.style.top = (d[1] * 100) + "%"; ovD.style.setProperty("--p", clamp(p || 0, 0, 1).toFixed(3));
     }
-    function calNext(t) { cal.step++; cal.buf = []; cal.win = []; cal.c0 = 0; cal.pause = 0; cal.t0 = t; if (cal.step > 3) calDone(); else calShow(cal.step === 1 ? "" : "Move to the dot and hold still.", 0); }
-    function calStart() { if (!running || G.passed) return; cal = { step: -1, T: Object.assign({}, DEF), miss: 0 }; S.gun = false; S.cocked = false; aimOff(); calNext(performance.now() / 1000); note("Fitting the gun to your hand: four quick steps."); }
-    function calCancel() { if (!cal) return; cal = null; skipped = true; ov.hidden = true; note(C.done ? "Kept the calibration you had." : "Using the standard settings. Make a finger gun, thumb up."); }
+    function calNext(t) { cal.step++; cal.buf = []; cal.win = []; cal.c0 = 0; cal.t0 = t; if (cal.step > 1) calDone(); else calShow("", 0); }
+    function calStart() {
+      if (!running || G.passed) return; cal = { step: -1, T: Object.assign({}, DEF), miss: 0 }; S.gun = false; S.cocked = false; aimOff();
+      $("calskip").hidden = kind === "head" && !C.done;              // the head's standard figures are a guess, so its first fit is not optional
+      calNext(performance.now() / 1000); note(W[kind].fit);
+    }
+    function calCancel() { if (!cal) return; cal = null; skipped[kind] = true; ov.hidden = true; note(C.done ? "Kept the calibration you had." : "Using the standard settings. " + W[kind].ready); }
     function calDone() {
       const T = cal.T; cal = null; ov.hidden = true;
-      if (Math.abs(T.x2 - T.x1) < .12) { T.x1 = DEF.x1; T.x2 = DEF.x2; } if (Math.abs(T.y2 - T.y1) < .09) { T.y1 = DEF.y1; T.y2 = DEF.y2; }   // corners too close together to be believed: keep the standard reach
-      if (!(T.up - T.down > .12 * T.up)) { T.up = 0; T.down = 0; }                                                               // thumb barely moved: judge it on the fly instead
-      T.done = true; C = T; try { localStorage.setItem(KEY, JSON.stringify(C)); } catch (e) {}
-      S.hi = 0; S.inN = S.outN = 0; S.gun = false; fx.t = fy.t = null; note("Calibrated. Point at a square, then drop your thumb to fire.", "ok");
+      if (Math.abs(T.x2 - T.x1) < .12) { T.x1 = DEF.x1; T.x2 = DEF.x2; } if (Math.abs(T.y2 - T.y1) < .09) { T.y1 = DEF.y1; T.y2 = DEF.y2; }   // dots too close together to be believed: keep the standard reach
+      T.done = true; C = FIT[kind] = T; try { localStorage.setItem(KEYS[kind], JSON.stringify(C)); } catch (e) {}
+      S.hi = 0; S.inN = S.outN = 0; S.gun = false; fx.t = fy.t = null; note("Set. " + W[kind].ready, "ok");
     }
-    // Each step waits until the hand has reached its place and is holding still, then reads it for a second, and starts that second
-    // again if the hand moves. Timed by the clock, not by counting readings, so a fast camera does not rush it.
+    // Each dot waits until the pointer has come to rest somewhere new, reads it for half a second, and starts again if it moves.
+    // Timed by the clock, not by counting readings, so a fast camera does not rush it.
     function calFrame(r, t) {
       const st = cal.step, T = cal.T;
-      if (cal.pause) { if (t > cal.pause) calNext(t); else calShow("", 1); return; }                 // a beat between steps, so the next line can be read
-      if (!r || r.score < .12) { if (!cal.miss) cal.miss = t; if (t - cal.miss > .6) { cal.c0 = 0; cal.buf = []; cal.win = []; calShow("Show the camera a finger gun.", 0); } return; }
-      cal.miss = 0; const w = cal.win; w.push([t, r.x, r.y]); while (w.length && t - w[0][0] > .45) w.shift();
-      let x0 = 1, x1 = 0, y0 = 1, y1 = 0; for (const q of w) { x0 = Math.min(x0, q[1]); x1 = Math.max(x1, q[1]); y0 = Math.min(y0, q[2]); y1 = Math.max(y1, q[2]); }
-      const still = t - w[0][0] > .3 && x1 - x0 < .035 && y1 - y0 < .035, need = st === 1 ? .6 : 1, early = t - cal.t0 < (st > 1 ? 1.1 : .8);
-      // what each step waits for: a still hand; a dropped thumb; a hand that has left the middle and come to rest
-      const ok = st === 1 ? r.thumb < T.up * .82 : still && !early && (st < 2 || Math.abs(r.x - T.cx) > .03 || Math.abs(r.y - T.cy) > .03);
-      if (!ok) { cal.c0 = 0; cal.buf = []; calShow(st === 1 ? "" : "Move to the dot and hold still.", 0); return; }
-      if (!cal.c0) cal.c0 = t; cal.buf.push(st === 1 ? r.thumb : [r.score, r.thumb, r.x, r.y]); const p = (t - cal.c0) / need; calShow("Hold it there.", p);
+      if (!r || r.score < .12) { if (!cal.miss) cal.miss = t; if (t - cal.miss > .6) { cal.c0 = 0; cal.buf = []; cal.win = []; calShow(W[kind].show, 0); } return; }
+      cal.miss = 0; const w = cal.win; w.push([t, r.x, r.y]); while (w.length && t - w[0][0] > .35) w.shift();
+      let x0 = 9, x1 = -9, y0 = 9, y1 = -9; for (const q of w) { x0 = Math.min(x0, q[1]); x1 = Math.max(x1, q[1]); y0 = Math.min(y0, q[2]); y1 = Math.max(y1, q[2]); }
+      const still = t - w[0][0] > .22 && x1 - x0 < .04 && y1 - y0 < .04, moved = st === 0 || Math.abs(r.x - T.x1) > .06 || Math.abs(r.y - T.y1) > .05;
+      if (!(still && moved && t - cal.t0 > .35)) { cal.c0 = 0; cal.buf = []; calShow("", 0); return; }
+      if (!cal.c0) cal.c0 = t; cal.buf.push([r.score, r.thumb, r.x, r.y]); const p = (t - cal.c0) / .5; calShow("Hold it.", p);
       if (p < 1) return;
       const b = cal.buf, m = k => med(b.map(q => q[k]));
-      if (st === 0) { T.S0 = clamp(m(0), .3, 1.6); T.up = m(1); T.cx = m(2); T.cy = m(3); } else if (st === 1) T.down = med(b); else if (st === 2) { T.x1 = m(2); T.y1 = m(3); } else { T.x2 = m(2); T.y2 = m(3); }
-      cal.pause = t + .7; calShow("", 1);
+      if (st === 0) { T.S0 = clamp(m(0), .3, 1.6); T.up = m(1); T.x1 = m(2); T.y1 = m(3); } else { T.x2 = m(2); T.y2 = m(3); }
+      calNext(t);
     }
     function frame(r, now) {
-      if (r) { dot.hidden = false; dot.style.left = (r.x * 100) + "%"; dot.style.top = (r.y * 100) + "%"; S.seen = true; } else dot.hidden = true;
+      if (r) { dot.hidden = false; dot.style.left = (clamp(r.x, 0, 1) * 100) + "%"; dot.style.top = (clamp(r.y, 0, 1) * 100) + "%"; S.seen = true; } else dot.hidden = true;
       if (cal) { calFrame(r, now / 1000); return; }
       if (!r) {
-        if (++S.lost > 10) { if (S.gun) aimOff(); S.gun = false; S.cocked = false; note(!S.seen && now - t0 > 6000 ? "No hand in view yet. Hold it up about an arm's length from the camera, in good light." : "Show the camera a finger gun."); }
+        if (++S.lost > 10) { if (S.gun) aimOff(); S.gun = false; S.cocked = false; note(!S.seen && now - t0 > 6000 ? W[kind].none : W[kind].show); }
         return;
       }
       S.lost = 0;
-      // in and out of "this is a finger gun" by two thresholds, and only after a few readings in a row, so it does not flicker
+      // in and out of "the pointer is there" by two thresholds, and only after a few readings in a row, so it does not flicker
       if (r.score > .45 * C.S0) { S.inN++; S.outN = 0; } else if (r.score < .2 * C.S0) { S.outN++; S.inN = 0; } else S.outN = 0;
       if (!S.gun && S.inN >= 2) { S.gun = true; S.hi = 0; S.cocked = false; S.hist.length = 0; fx.t = fy.t = null; S.tGun = now; }
       else if (S.gun && S.outN >= 6) { S.gun = false; S.cocked = false; aimOff(); }
-      if (!S.gun) { note("One or two fingers out, the rest folded."); return; }
+      if (!S.gun) { note(W[kind].shape); return; }
       // where it points: stretched between the two corner dots, by your own reach if calibrated
       const t = now / 1000, tx = .12 + (r.x - C.x1) / (C.x2 - C.x1) * .76, ty = .14 + (r.y - C.y1) / (C.y2 - C.y1) * .72;
       S.x = clamp(euro(fx, clamp(tx, -.05, 1.05), t), 0, 1); S.y = clamp(euro(fy, clamp(ty, -.05, 1.05), t), 0, 1);
       S.hist.push([S.x, S.y]); if (S.hist.length > 6) S.hist.shift();
       aimAt(S.x, S.y);
-      // the thumb: against your own measured travel if calibrated, otherwise against how high this hand has lately held it
-      let cockAt, fireAt2;
-      if (C.up > 0) { cockAt = C.down + .7 * (C.up - C.down); fireAt2 = C.down + .4 * (C.up - C.down); }
-      else { S.hi = Math.max(r.thumb, S.hi - .0015); cockAt = S.hi > .4 ? S.hi * .85 : 9; fireAt2 = S.hi * .62; }
-      if (r.thumb > cockAt) { S.cocked = true; S.lowN = 0; note(S.fires === 0 && now - S.tGun > 10000 ? "Aiming. Thumb straight up first, then snap it down onto your hand." : "Aiming. Drop your thumb to fire."); }
+      // the trigger: measured against where it rested during calibration, or failing that against how high it has lately been held.
+      // It cocks near the top and fires once it has fallen well below.
+      S.hi = Math.max(r.thumb, S.hi - .0015); const top = C.up > 0 ? C.up : S.hi > .4 ? S.hi : 0, cockAt = top ? top * .85 : 9, fireAt2 = top * .62;
+      if (r.thumb > cockAt) { S.cocked = true; S.lowN = 0; note(S.fires === 0 && now - S.tGun > 10000 ? W[kind].stuck : W[kind].aim); }
       else if (S.cocked && r.thumb < fireAt2) {
         if (++S.lowN >= 2) {
           S.cocked = false; S.lowN = 0;
-          if (now - S.lastFire > 250) { S.lastFire = now; S.fires++; const q = S.hist[0]; fireAt(q[0], q[1]); if (!G.busy && !G.passed) note("Bang."); }   // from where it pointed a moment ago, before the thumb jogged the hand
+          if (now - S.lastFire > 250) { S.lastFire = now; S.fires++; const q = S.hist[0]; fireAt(q[0], q[1]); if (!G.busy && !G.passed) note("Bang."); }   // from where it pointed a moment ago, before the trigger jogged the aim
         }
       } else S.lowN = 0;
     }
     function loop() {
       if (!running) return;
-      if (lm && video.readyState >= 2 && video.currentTime !== lastT) {
-        lastT = video.currentTime; const now = performance.now();
-        let res = null; try { res = lm.detectForVideo(video, now); } catch (e) { /* skip a bad frame */ }
-        frame(res && res.landmarks && res.landmarks[0] && res.worldLandmarks && res.worldLandmarks[0] ? read(res.landmarks[0], res.worldLandmarks[0]) : null, now);
+      if (video.readyState >= 2 && video.currentTime !== lastT) {
+        lastT = video.currentTime; const now = performance.now(); let r = null;
+        try {
+          if (kind === "gun" && lm) { const res = lm.detectForVideo(video, now); if (res && res.landmarks && res.landmarks[0] && res.worldLandmarks && res.worldLandmarks[0]) r = readHand(res.landmarks[0], res.worldLandmarks[0]); }
+          else if (kind === "head" && fm) { const res = fm.detectForVideo(video, now), m = res && res.facialTransformationMatrixes && res.facialTransformationMatrixes[0]; if (m && m.data) r = readHead(m.data, res.faceBlendshapes && res.faceBlendshapes[0] && res.faceBlendshapes[0].categories); }
+        } catch (e) { /* skip a bad frame */ }
+        if ((kind === "gun" && lm) || (kind === "head" && fm)) frame(r, now);
       }
       requestAnimationFrame(loop);
     }
     async function start() {
+      if (busy) return; busy = true;
       try {
-        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error("This browser or page cannot use a camera.");
-        note("Asking for the camera."); $("start").disabled = true;
-        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 30 } }, audio: false });
-        video.srcObject = stream; await video.play(); cam.classList.add("on");
-        if (!lm) {
-          note("Fetching the hand tracker. A few seconds the first time.");
-          const vis = await import(SRC.mjs), fset = await vis.FilesetResolver.forVisionTasks(SRC.wasm);
-          const mk = dg => vis.HandLandmarker.createFromOptions(fset, { baseOptions: { modelAssetPath: SRC.model, delegate: dg }, runningMode: "VIDEO", numHands: 1, minHandDetectionConfidence: .35, minHandPresenceConfidence: .35, minTrackingConfidence: .35 });
-          try { lm = await mk("GPU"); } catch (e) { lm = await mk("CPU"); }
+        if (!stream) {
+          if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error("no camera here");
+          note("Asking for the camera."); $("start").disabled = true;
+          stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 30 } }, audio: false });
+          video.srcObject = stream; await video.play(); cam.classList.add("on");
         }
-        if (G.passed) { stop(); return; }
-        G.mode = "gun"; running = true; t0 = performance.now(); S.seen = false; S.fires = 0; S.gun = false; stage.classList.add("gun"); $("start").textContent = "Camera is on";
-        $("recal").hidden = false; stage.scrollIntoView({ block: "center", behavior: "smooth" }); requestAnimationFrame(loop);
-        if (!C.done && !skipped) calStart(); else note("Make a finger gun, thumb up. Point at a square, then drop your thumb to fire.");
+        const k = kind;
+        if ((k === "gun" && !lm) || (k === "head" && !fm)) {
+          note(W[k].fetch);
+          if (!vis) { vis = await import(SRC.mjs); fset = await vis.FilesetResolver.forVisionTasks(SRC.wasm); }
+          if (k === "gun") { const mk = dg => vis.HandLandmarker.createFromOptions(fset, { baseOptions: { modelAssetPath: SRC.model, delegate: dg }, runningMode: "VIDEO", numHands: 1, minHandDetectionConfidence: .35, minHandPresenceConfidence: .35, minTrackingConfidence: .35 }); try { lm = await mk("GPU"); } catch (e) { lm = await mk("CPU"); } }
+          else { const mk = dg => vis.FaceLandmarker.createFromOptions(fset, { baseOptions: { modelAssetPath: FACE, delegate: dg }, runningMode: "VIDEO", numFaces: 1, outputFacialTransformationMatrixes: true, outputFaceBlendshapes: true }); try { fm = await mk("GPU"); } catch (e) { fm = await mk("CPU"); } }
+        }
+        if (G.passed) { busy = false; stop(); return; }
+        if (k !== kind) { busy = false; return start(); }               // switched over while it was fetching
+        G.mode = kind; t0 = performance.now(); Object.assign(S, { seen: false, fires: 0, gun: false, cocked: false, inN: 0, outN: 0, lost: 0, hi: 0 }); fx.t = fy.t = null;
+        stage.classList.add("gun"); $("start").textContent = "Camera is on"; $("recal").hidden = false;
+        if (!running) { running = true; stage.scrollIntoView({ block: "center", behavior: "smooth" }); requestAnimationFrame(loop); }
+        if (!C.done && !skipped[kind]) calStart(); else note(W[kind].ready);
       } catch (e) {
         stop(); $("start").disabled = false; $("start").textContent = "Turn on camera";
         const denied = e && (e.name === "NotAllowedError" || e.name === "SecurityError"), none = e && (e.name === "NotFoundError" || e.name === "OverconstrainedError");
-        note((denied ? "The camera was not allowed." : none ? "No camera found." : "The camera or the hand tracker could not start.") + " This page needs one to let you through.", "bad");
+        note((denied ? "The camera was not allowed." : none ? "No camera found." : "The camera or the tracker could not start.") + " This page needs one to let you through; the BBS does not.", "bad");
       }
+      busy = false;
     }
     function stop() {
       running = false; if (stream) { for (const t of stream.getTracks()) t.stop(); stream = null; }
       video.srcObject = null; cam.classList.remove("on"); dot.hidden = true; stage.classList.remove("gun"); aimOff();
       cal = null; ov.hidden = true; $("recal").hidden = true;
     }
-    return { start, stop, S, calStart, calCancel, calStep: () => (cal ? (cal.pause ? -2 : cal.step) : -1), fit: () => C };
+    function setKind(k) {
+      if (k !== "gun" && k !== "head") return; const was = kind; kind = k; C = FIT[k]; try { localStorage.setItem("megazine.aim", k); } catch (e) {}
+      dress(k); if (was === k) return;
+      cal = null; ov.hidden = true; aimOff(); S.gun = false; S.cocked = false;
+      if (stream && !G.passed) start(); else if (!G.passed) note(W[k].ready);
+    }
+    return { start, stop, S, calStart, calCancel, setKind, kind: () => kind, calStep: () => (cal ? (cal.pause ? -2 : cal.step) : -1), fit: () => C };
   })();
+
+  // ---------- the tiny tutorial: three pictures for whichever way of aiming is chosen ----------
+  const pic = inner => `<svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+  const gunHand = thumb => `<path d="M30 32H52Q56 32 56 36Q56 40 52 40H32" fill="var(--sheet)"/><path d="M12 32H32V50Q32 54 28 54H18Q12 54 12 48Z" fill="var(--pink)"/><path d="M32 44H25M32 49H25M15 54V61M27 54V61"/><g><path d="M14 32V20Q14 16 18 16Q22 16 22 20V32" fill="var(--sheet)"/>${thumb}</g>`;
+  const sight = `<circle cx="0" cy="0" r="6" stroke="var(--blue)"/><path d="M0 -9V9M-9 0H9" stroke="var(--blue)"/>`;
+  const bang = (x, y) => `<path d="M${x} ${y - 6}l4 -4M${x + 1} ${y}h5M${x} ${y + 6}l4 4" stroke="var(--pink)" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;.48;.52;.78;1" dur="1.6s" repeatCount="indefinite"/></path>`;
+  const face = (features, mouth) => `<circle cx="32" cy="32" r="21" fill="var(--pink)"/><g>${`<circle cx="25" cy="27" r="1.9" fill="currentColor" stroke="none"/><circle cx="39" cy="27" r="1.9" fill="currentColor" stroke="none"/><path d="M32 29V36H29"/>` + mouth}${features}</g>`;
+  const lips = anim => `<ellipse cx="32" cy="43" rx="5.5" ry="1" fill="currentColor">${anim}</ellipse>`;
+  const HOW = {
+    gun: [[pic(gunHand("")), "Make a finger gun, thumb up"],
+      [pic(`<g><g transform="translate(0 16) scale(.72)">${gunHand("")}</g><animateTransform attributeName="transform" type="rotate" values="-11 14 58;11 14 58;-11 14 58" dur="2.2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/></g><g transform="translate(54 40)"><g>${sight}<animateTransform attributeName="transform" type="translate" values="0 -11;0 11;0 -11" dur="2.2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/></g></g>`), "Point to aim"],
+      [pic(gunHand(`<animateTransform attributeName="transform" type="rotate" values="0 18 32;0 18 32;68 18 32;68 18 32;0 18 32" keyTimes="0;.42;.5;.8;1" dur="1.6s" repeatCount="indefinite"/>`) + bang(58, 36)), "Drop your thumb to fire"]],
+    head: [[pic(face("", lips(""))), "Face the camera"],
+      [pic(face(`<animateTransform attributeName="transform" type="translate" values="-6 -3;6 3;-6 -3" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/>`, lips("")) + `<g transform="translate(32 34)"><g>${sight}<animateTransform attributeName="transform" type="translate" values="-20 -12;20 12;-20 -12" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".4 0 .6 1;.4 0 .6 1"/></g></g>`), "Point your nose to aim"],
+      [pic(face("", lips(`<animate attributeName="ry" values="1;1;6.5;6.5;1" keyTimes="0;.42;.5;.8;1" dur="1.6s" repeatCount="indefinite"/>`)) + bang(57, 32)), "Open your mouth to fire"]]
+  };
+  function dress(k) {
+    for (const b of document.querySelectorAll(".modes button")) b.setAttribute("aria-checked", String(b.dataset.kind === k));
+    $("how").innerHTML = HOW[k].map(([svg, cap], i) => `<figure>${svg}<figcaption>${i + 1}. ${cap}</figcaption></figure>`).join("");
+    if (still) for (const s of $("how").querySelectorAll("svg")) if (s.pauseAnimations) s.pauseAnimations();
+  }
 
   // ---------- buttons: none of them is a square. The squares and Done answer only to the finger gun. ----------
   $("start").addEventListener("click", () => Hand.start());
   $("retry").addEventListener("click", () => newRound());
   $("recal").addEventListener("click", () => Hand.calStart());
+  for (const b of document.querySelectorAll(".modes button")) b.addEventListener("click", () => Hand.setKind(b.dataset.kind));
   $("calskip").addEventListener("click", () => Hand.calCancel());
   addEventListener("pagehide", () => Hand.stop());
 
@@ -381,6 +451,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
     } catch (err) { $("send").disabled = false; say("That did not go through. Try again in a minute.", "bad"); }
   });
 
+  dress(Hand.kind());
   newRound();
   window.__cap = { G, Hand, aimAt, fireAt };   // for testing. With a Worker the answer is not on this page, so this opens nothing.
 })();
