@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 (11) · Sam's Claude
+
+- **Fingergun Captcha** is in December (Issue 03): unhidden and added to the lineup (Sam, Matt, Jenn; both; "Write to us" link to `/contact/`). December is now FlyHarp, Shred Hole, Frisky, Metamers, Gain Control, Splatterhaus, Fingergun Captcha. December PDFs rebuilt.
+
 ## 2026-11-16 (10) · Sam's Claude
 
 - **Notes from `/contact/` now go to the BBS**, at Sam's request. The inbox Worker hands each one to the BBS Worker's new `Outside` entrypoint (repo `samuelling/BBS`, pushed there) over a service binding; it becomes board e-mail from `megaZINE.org` to every SysOp (Sam chose: private, all SysOps, so Wiz gets them too) and the board's Slack ping fires. A copy still lands in the `/stats/` Inbox as a fallback. Tested locally with both Workers running together under `wrangler dev`. Correction to earlier notes here: the BBS repo was readable from this session all along; the "unreadable" line was my mistake.
