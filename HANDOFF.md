@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-16 (6) · Sam's Claude
+
+- The inbox Worker now deploys from GitHub: `.github/workflows/inbox.yml` (on changes to `tools/inbox-worker/` or `contact/squares.js`, or by hand). It needs Sam's repository secrets `CLOUDFLARE_API_TOKEN` and `INBOX_ADMIN_KEY` (and optionally `SLACK_WEBHOOK`); without them it skips. **Waiting on Sam to add them.** After the first real run, set `API` in `contact/index.html` and `INBOX_URL` in `stats/index.html` to the Worker's address (expected `https://megazine-inbox.samuelling.workers.dev`, to be confirmed).
+
 ## 2026-11-16 (5) · Sam's Claude
 
 - **Finger-gun captcha reworked** at Sam's request. Camera only (mouse option removed). The squares are now moving two-ink drawings in four categories (animals, vehicles, plants, instruments; 18 drawings in `contact/squares.js`), and the ask changes per round. The page no longer grades itself: the Worker draws the round, keeps the answer and signs a one-use pass (`/challenge`, `/verify`, `/inquiry`). The Worker also pings Slack per note if it has a `SLACK_WEBHOOK` secret. Sam's rule change: `/contact/` is the alternative to making a BBS account, so pieces can arrive there too (CLAUDE.md updated).
