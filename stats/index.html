@@ -385,7 +385,7 @@ footer { padding-block: 30px 40px; font: 400 .82rem/1.5 var(--type); color: var(
 <script>
 // The inbox: messages from /contact/ live in a Cloudflare Worker (tools/inbox-worker/), never in this repo. Set INBOX_URL once it is deployed.
 (function () {
-  const INBOX_URL = "";
+  const INBOX_URL = "https://megazine-inbox.samuelling.workers.dev";
   if (!INBOX_URL) return;
   const $ = (id) => document.getElementById(id);
   $("inbox-sec").hidden = false;

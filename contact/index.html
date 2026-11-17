@@ -130,7 +130,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   "use strict";
   // The inbox Worker's address (tools/inbox-worker/), no trailing slash. It draws the squares, keeps the answer and stores
   // the note. Empty means preview: the squares are drawn and checked here, and nothing can be sent.
-  const API = "";
+  const API = "https://megazine-inbox.samuelling.workers.dev";
   const SRC = {
     mjs: "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/vision_bundle.mjs",
     wasm: "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.3/wasm",
