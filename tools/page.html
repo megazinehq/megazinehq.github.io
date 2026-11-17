@@ -426,11 +426,27 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     }
     return pts.join(" ");
   })();
+  // The names in the middle of the seal: one name to a line, so two or three makers stay as big as they can.
+  // Each line is sized to the inner ring at its own height, the largest size at which every line fits.
+  // Bowlby One SC runs about .72 em a letter and .72 em tall.
+  function sealNames(w) {
+    const names = w.seal ? [w.seal] : (w.makers && w.makers.length ? w.makers : ["?"]);
+    const lines = names.map((n, k) => ({ amp: k > 0, text: String(n).toUpperCase() }));
+    const R = 26.5, label = 5.6, gap = 2.2, wide = l => (l.text.length + (l.amp ? 1.25 : 0)) * 0.72;
+    for (let fs = 19; fs >= 3; fs -= 0.25) {
+      const pitch = fs * 0.98, block = label + gap + (lines.length - 1) * pitch + fs * 0.72, top = -block / 2 - 0.6;
+      const base = lines.map((l, k) => top + label + gap + k * pitch + fs * 0.72);
+      const fits = lines.every((l, k) => { const y = Math.max(Math.abs(base[k]), Math.abs(base[k] - fs * 0.72)); return y < R && wide(l) * fs / 2 <= Math.sqrt(R * R - y * y); });
+      if (fits) return { fs, labelY: top + label * 0.8, lines: lines.map((l, k) => ({ ...l, y: base[k] })) };
+    }
+    return { fs: 3, labelY: -4.5, lines: [{ amp: false, text: names.join(" & ").toUpperCase(), y: 3 }] };
+  }
   function sealSVG(w, i) {
     const who = (w.seal || (w.makers || []).join(" & ") || "?").toUpperCase();
     const how = SEAL_HOW[w.made] || String(w.made || "").toUpperCase();
-    const fs = Math.min(19, 52 / (who.length * 0.72));  // the name fits inside the inner ring
+    const fit = sealNames(w);
     const rot = [9, -7, 13, -11, 5, -4][(i || 0) % 6];
+    const names = fit.lines.map(l => `<text class="name" y="${l.y.toFixed(1)}" font-size="${fit.fs.toFixed(2)}" text-anchor="middle">${l.amp ? `<tspan font-size="${(fit.fs * .62).toFixed(2)}" dy="0">&amp; </tspan>` : ""}${esc(l.text)}</text>`).join("");
     return `<svg class="seal" viewBox="-50 -50 100 100" style="--seal-rot:${rot}deg" role="img" aria-label="Seal: made by ${esc(who.toLowerCase())}, ${esc(how.toLowerCase())}">
       <polygon points="${BURST}" fill="url(#seal-gold)" stroke="var(--gold-lo)" stroke-width=".8"/>
       <circle r="42.5" fill="none" stroke="var(--gold-ink)" stroke-width="1" opacity=".55"/>
@@ -438,8 +454,8 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
       <text font-size="7.6" letter-spacing="1.1"><textPath href="#seal-top" startOffset="50%" text-anchor="middle">MEGAZINE SEAL</textPath></text>
       <text font-size="6.4" letter-spacing=".6"><textPath href="#seal-bot" startOffset="50%" text-anchor="middle">${esc(how)}</textPath></text>
       <text x="-37" y="2.6" font-size="7" text-anchor="middle">★</text><text x="37" y="2.6" font-size="7" text-anchor="middle">★</text>
-      <text class="name" y="-4.5" font-size="5.6" text-anchor="middle" letter-spacing=".8">MADE BY</text>
-      <text class="name" y="${(fs * 0.36 + 5).toFixed(1)}" font-size="${fs}" text-anchor="middle">${esc(who)}</text>
+      <text class="name" y="${fit.labelY.toFixed(1)}" font-size="5.6" text-anchor="middle" letter-spacing=".8">MADE BY</text>
+      ${names}
     </svg>`;
   }
   const $ = (id) => document.getElementById(id);

@@ -135,7 +135,6 @@ SEAL_HOW = {"hands": "BY HAND", "claude": "BY CLAUDE", "both": "HANDS + CLAUDE"}
 
 def seal(c, w, cx, cy, r=21, rot=8):
     """Photocopier version of the gold seal: starburst, maker in the middle, how it was made underneath."""
-    who = (w.get("seal") or " & ".join(w.get("makers") or ["?"])).upper()
     how = SEAL_HOW.get(w.get("made"), str(w.get("made", "")).upper())
     c.saveState()
     c.translate(cx, cy)
@@ -156,11 +155,27 @@ def seal(c, w, cx, cy, r=21, rot=8):
     c.setFillColor(black)
     c.setFont("Mono-Bold", 3.6)
     c.drawCentredString(0, r * 0.38, "MADE BY")
-    fs = 9  # shrink the maker's name until it fits inside the inner ring
-    while fs > 3.4 and c.stringWidth(who, "Sans-Bold", fs) > r * 1.3:
-        fs -= 0.2
-    c.setFont("Sans-Bold", fs)
-    c.drawCentredString(0, -fs * 0.35, who)
+    # One maker to a line, "&" small in front of the second and third, at the largest size where every line fits
+    # the inner ring at its own height, between "MADE BY" and the how-it-was-made line.
+    names = [w["seal"]] if w.get("seal") else (w.get("makers") or ["?"])
+    lines = [(k > 0, str(n).upper()) for k, n in enumerate(names)]
+    ri, top, bot = r * 0.74 - 1.2, r * 0.38 - 1.6, -r * 0.52 + 3.6
+    width = lambda amp, t, fs: c.stringWidth(t, "Sans-Bold", fs) + (c.stringWidth("& ", "Sans-Bold", fs * 0.62) if amp else 0)
+    fs = 9
+    while fs > 2.6:
+        pitch, cap = fs * 1.0, fs * 0.72
+        base0 = (top + bot) / 2 + ((len(lines) - 1) * pitch - cap) / 2          # first line's baseline, block centred in the space
+        ys = [base0 - k * pitch for k in range(len(lines))]
+        if ys[0] + cap <= top and ys[-1] >= bot and all(
+                width(amp, t, fs) / 2 <= math.sqrt(max(0, ri * ri - max(abs(y), abs(y + cap)) ** 2)) for (amp, t), y in zip(lines, ys)):
+            break
+        fs -= 0.1
+    for (amp, t), y in zip(lines, ys):
+        tw = width(amp, t, fs)
+        x = -tw / 2
+        if amp:
+            c.setFont("Sans-Bold", fs * 0.62); c.drawString(x, y, "& "); x += c.stringWidth("& ", "Sans-Bold", fs * 0.62)
+        c.setFont("Sans-Bold", fs); c.drawString(x, y, t)
     hs = 3.6
     while hs > 2.4 and c.stringWidth(how, "Mono-Bold", hs) > r * 1.05:
         hs -= 0.1
