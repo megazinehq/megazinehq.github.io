@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-18 (2) · Sam's Claude
+
+- Dropped "Wait for the SysOp to validate you" from the site's Put something in steps, since BBS enrollment is open. If the SysOp turns validation back on, put the step back in `tools/page.html`.
+
 ## 2026-11-18 · Sam's Claude
 
 - **Comment card** added above the footer, linking to `/contact/`: a dashed card with a pink offset shadow and a little finger gun that fires. It appears only when the issue on screen is December 2026 or later, so it goes public on 1 December by itself; `?preview=03` shows it now. The footer link stays.
