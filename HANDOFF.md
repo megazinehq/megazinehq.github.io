@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-17 (2) · Sam's Claude
+
+- **Metamers** moved from December to the February draft (Issue 05, now Animal Sanctuary and Metamers). December is seven pieces again; its PDFs rebuilt.
+
 ## 2026-11-17 · Sam's Claude
 
 - **Gabor Grove** added to December (Sam, Emma; both; toy; Open link to `samuelling.github.io/GaborGrove/`, loads). Emma contributed her likeness: the face tab is her, with her consent per Sam. Blurb from Sam's notes; the paper prints only the first sentence. December now has eight pieces.

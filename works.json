@@ -60,7 +60,6 @@
         "flyharp",
         "shred-hole",
         "musicbox",
-        "metamers",
         "gain-control",
         "splatterhouse",
         "fingergun-captcha",
@@ -85,7 +84,8 @@
       "theme": "",
       "draft": true,
       "works": [
-        "animal-sanctuary"
+        "animal-sanctuary",
+        "metamers"
       ]
     }
   ],
