@@ -63,7 +63,8 @@
         "metamers",
         "gain-control",
         "splatterhouse",
-        "fingergun-captcha"
+        "fingergun-captcha",
+        "gabor-grove"
       ]
     },
     {
@@ -881,6 +882,24 @@
         {
           "label": "Write to us",
           "url": "https://megazine.org/contact/"
+        }
+      ]
+    },
+    {
+      "id": "gabor-grove",
+      "title": "Gabor Grove",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam",
+        "Emma"
+      ],
+      "platform": "Web",
+      "blurb": "A mushroom grove drawn in tiny striped wave patches instead of soft blobs, their stripes slowly turning across the whole scene. Other tabs build a striped wave out of smaller striped waves, as deep as you dare, and a face drawn the same way. Sliders reshape every patch; there is a red-and-blue 3D mode and a split screen for a phone headset.",
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://samuelling.github.io/GaborGrove/"
         }
       ]
     }

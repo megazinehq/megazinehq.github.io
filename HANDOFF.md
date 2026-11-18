@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-17 · Sam's Claude
+
+- **Gabor Grove** added to December (Sam, Emma; both; toy; Open link to `samuelling.github.io/GaborGrove/`, loads). Emma contributed her likeness: the face tab is her, with her consent per Sam. Blurb from Sam's notes; the paper prints only the first sentence. December now has eight pieces.
+
 ## 2026-11-16 (12) · Sam's Claude
 
 - Seals with more than one maker were hard to read (all names on one shrinking line). Now one name to a line with a small "&", each line sized to the inner ring, on the site (`sealSVG` in `tools/page.html`) and the paper (`seal()` in `tools/make_sheet.py`). PDFs for Issues 01–03 rebuilt so any reprint gets it. A `seal` override still prints on one line.
