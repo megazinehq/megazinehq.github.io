@@ -296,6 +296,18 @@ dialog#book[open] { display: grid; place-items: center; }
 .submit .steps { margin: 10px 0 14px; padding-left: 1.4em; display: grid; gap: 4px; max-width: 46ch; }
 .submit .steps li::marker { font: 700 .85em var(--type); color: var(--blue); }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 12px; }
+#comment-card { padding-block: 34px 40px; }
+.ccard { position: relative; display: grid; gap: 8px; justify-items: start; padding: 22px 120px 22px 22px; color: inherit; text-decoration: none;
+  background: var(--sheet); border: 2px dashed var(--toner); border-radius: 6px; box-shadow: 6px 6px 0 var(--pink); transition: transform .15s, box-shadow .15s; }
+.ccard:hover, .ccard:focus-visible { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--pink); }
+.ccard .cc-tag { font: 700 .75rem/1 var(--type); letter-spacing: .14em; text-transform: uppercase; color: var(--pink); }
+.ccard .cc-h { font: 400 clamp(1.5rem, 4vw, 2rem)/1 var(--display); }
+.ccard .cc-p { max-width: 34rem; color: var(--muted); }
+.ccard .btn { margin-top: 6px; }
+.ccard:hover .btn { background: var(--blue); border-color: var(--blue); }
+.ccard .cc-gun { position: absolute; right: 18px; top: 50%; width: 92px; height: 92px; margin-top: -46px; color: var(--toner); transform: rotate(-8deg); }
+@media (max-width: 560px) { .ccard { padding-right: 22px; } .ccard .cc-tag, .ccard .cc-h { padding-right: 56px; } .ccard .cc-gun { width: 52px; height: 52px; top: 10px; margin-top: 0; right: 10px; } }
+@media (prefers-reduced-motion: reduce) { .ccard, .ccard:hover { transition: none; transform: none; } }
 footer .sendc { color: inherit; opacity: .7; text-decoration: underline dotted; text-underline-offset: 3px; margin-left: 10px; }
 footer .sendc:hover, footer .sendc:focus-visible { opacity: 1; }
 footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400 .85rem/1.5 var(--type); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
@@ -398,6 +410,17 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         <div class="legend" id="legend"></div>
       </div>
     </div>
+  </section>
+
+  <!-- The comment card: the contact page, shown from the December 2026 issue on (and in previews of it). -->
+  <section class="wrap" aria-labelledby="cc-h" id="comment-card" hidden>
+    <a class="ccard" href="contact/">
+      <span class="cc-tag">Comment card</span>
+      <span class="cc-h" id="cc-h">Write to the editors</span>
+      <span class="cc-p">A question, a hello, a thing you made. No account needed: shoot your way in with a finger gun, or your head, and it lands in our inbox.</span>
+      <span class="btn primary">Send a comment →</span>
+      <svg class="cc-gun" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M30 32H52Q56 32 56 36Q56 40 52 40H32" fill="var(--sheet)"/><path d="M12 32H32V50Q32 54 28 54H18Q12 54 12 48Z" fill="var(--pink)"/><path d="M32 44H25M32 49H25"/><g><path d="M14 32V20Q14 16 18 16Q22 16 22 20V32" fill="var(--sheet)"/><animateTransform attributeName="transform" type="rotate" values="0 18 32;0 18 32;68 18 32;68 18 32;0 18 32" keyTimes="0;.42;.5;.8;1" dur="2.4s" repeatCount="indefinite"/></g><path d="M60 30l3 -3M61 36h3M60 42l3 3" stroke="var(--pink)" opacity="0"><animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;.48;.52;.7;1" dur="2.4s" repeatCount="indefinite"/></path></svg>
+    </a>
   </section>
 </main>
 
@@ -534,6 +557,8 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     if (copy) track(`/scan/copy-${parseInt(copy, 10)}`, `Scan: back cover${asked ? " · issue " + issue.id : ""}`, true);
     if (!peek) track(isBack ? `/issue/${issue.id}` : "/", isBack ? `Back issue ${issue.id}` : document.title, false);
 
+    // the comment card shows from the December 2026 issue on
+    document.getElementById("comment-card").hidden = !((issue.month || "") >= "2026-12");
     window.xmasLights && window.xmasLights(issue.decor ? issue.decor === "lights" : /-12$/.test(issue.month || ""));   // every December gets the lights unless its decor says otherwise
     $("issue-line").textContent = `Issue ${issue.id} · ${issue.date}`;
     $("issue-theme").textContent = data.zine.tagline || "";

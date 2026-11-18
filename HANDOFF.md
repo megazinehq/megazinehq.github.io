@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-18 · Sam's Claude
+
+- **Comment card** added above the footer, linking to `/contact/`: a dashed card with a pink offset shadow and a little finger gun that fires. It appears only when the issue on screen is December 2026 or later, so it goes public on 1 December by itself; `?preview=03` shows it now. The footer link stays.
+
 ## 2026-11-17 (2) · Sam's Claude
 
 - **Metamers** moved from December to the February draft (Issue 05, now Animal Sanctuary and Metamers). December is seven pieces again; its PDFs rebuilt.
