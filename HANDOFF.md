@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-19 · Sam's Claude
+
+- **MouthBreeder** added to the February draft (Issue 05: Animal Sanctuary, Metamers, MouthBreeder). Sam; both; kind art; Visit link to `samuelling.github.io/MouthBreeder/` (loads; the fake company inside is called Corpora Meridian). Its photos of people are free stock, per Sam. Sam paused work on it on 18 Nov, so it may still change before February.
+
 ## 2026-11-18 (2) · Sam's Claude
 
 - Dropped "Wait for the SysOp to validate you" from the site's Put something in steps, since BBS enrollment is open. If the SysOp turns validation back on, put the step back in `tools/page.html`.

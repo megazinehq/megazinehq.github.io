@@ -85,7 +85,8 @@
       "draft": true,
       "works": [
         "animal-sanctuary",
-        "metamers"
+        "metamers",
+        "mouthbreeder"
       ]
     }
   ],
@@ -900,6 +901,23 @@
         {
           "label": "Open",
           "url": "https://samuelling.github.io/GaborGrove/"
+        }
+      ]
+    },
+    {
+      "id": "mouthbreeder",
+      "title": "MouthBreeder",
+      "kind": "art",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "A slick corporate website for a company selling synergy, deliverables and growth, every link working. Dig a little and the business turns out to be human teeth, from sources it would rather not discuss. The deeper you click, the more teeth there are, until there is nothing else.",
+      "links": [
+        {
+          "label": "Visit",
+          "url": "https://samuelling.github.io/MouthBreeder/"
         }
       ]
     }
