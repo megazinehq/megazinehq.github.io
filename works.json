@@ -63,6 +63,8 @@
         "gain-control",
         "splatterhouse",
         "fingergun-captcha",
+        "invisible-hands",
+        "mega-cv",
         "gabor-grove"
       ]
     },
@@ -937,6 +939,45 @@
         {
           "label": "Visit",
           "url": "https://samuelling.github.io/Chamber/"
+        }
+      ]
+    },
+    {
+      "id": "invisible-hands",
+      "title": "Invisible Hands",
+      "kind": "tool",
+      "made": "both",
+      "makers": [
+        "Sam",
+        "Matt"
+      ],
+      "platform": "Web",
+      "blurb": "Reach into someone else’s app and turn its knobs, from anywhere. Apps list the controls they’d let a stranger move, and anyone in the same room can set them, swing them or fire envelopes at them, and hear the apps’ own wiggles coming back. There’s a kit for putting it in your own app, by hand or by handing a page of instructions to Claude.",
+      "links": [
+        {
+          "label": "Try it",
+          "url": "https://samuelling.github.io/InvisibleHands/"
+        },
+        {
+          "label": "Docs",
+          "url": "https://samuelling.github.io/InvisibleHands/docs/"
+        }
+      ]
+    },
+    {
+      "id": "mega-cv",
+      "title": "MEGA·CV",
+      "kind": "sound",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web",
+      "blurb": "A modular synthesizer for sound and pictures in the browser, patched with a matrix of pins. Any audio signal can drive any video setting, and its Hands module sends signals out to other people’s apps over the internet and brings theirs back.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://crumplabsandbox.github.io/mega-cv/"
         }
       ]
     }

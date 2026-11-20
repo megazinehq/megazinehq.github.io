@@ -158,6 +158,11 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const grid = $("grid"), stage = $("stage"), ret = $("reticle"), verify = $("verify");
 
+  // ?about=hands-key fills the message with the form for asking for an Invisible Hands key
+  if (new URLSearchParams(location.search).get("about") === "hands-key" && !$("msg").value) {
+    $("msg").value = "Invisible Hands key, please\nApp: \nWhere it lives (https://… or \"a program\" for a native key): \nWhat it moves or listens to: \nRoughly how much (now and then / a performance / always on): \n";
+  }
+
   // ---------- one round: nine moving squares and one kind of thing to shoot. With a Worker, this page never learns
   // which squares are right: the Worker draws them and keeps the answer. In preview the page draws its own. ----------
   const ASK = { animal: "an animal", vehicle: "a vehicle", plant: "a plant", instrument: "an instrument" };

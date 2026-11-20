@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-20 · Sam's Claude
+
+- December gains **Invisible Hands** (Sam and Matt; both; tool; Try it → `samuelling.github.io/InvisibleHands/`, Docs → `/docs/`) and **MEGA·CV** (Matt; both, per Sam; sound; Play → `crumplabsandbox.github.io/mega-cv/`, loads). They share page 6; Gabor Grove moved to page 7. December PDFs rebuilt. The Invisible Hands site isn't live until GitHub Pages is switched on for that repo (Sam's step); December opens 1 Dec, so there's time. Matt: check the MEGA·CV blurb.
+- `/contact/?about=hands-key` pre-fills the message for asking for an Invisible Hands key; docs updated.
+
 ## 2026-11-19 (2) · Sam's Claude
 
 - February: **MouthBreeder swapped for Chamber** (`samuelling.github.io/Chamber/`, loads; Sam and Matt; both; art): a chamber-of-commerce directory of fifty hidden-theme sites, MouthBreeder among them, remixable side by side. The `mouthbreeder` entry is kept but hidden. February is now Animal Sanctuary, Metamers, Chamber.
