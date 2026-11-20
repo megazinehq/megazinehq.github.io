@@ -86,7 +86,7 @@
       "works": [
         "animal-sanctuary",
         "metamers",
-        "mouthbreeder"
+        "chamber"
       ]
     }
   ],
@@ -918,6 +918,25 @@
         {
           "label": "Visit",
           "url": "https://samuelling.github.io/MouthBreeder/"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "chamber",
+      "title": "Chamber",
+      "kind": "art",
+      "made": "both",
+      "makers": [
+        "Sam",
+        "Matt"
+      ],
+      "platform": "Web",
+      "blurb": "The member directory of a small-town chamber of commerce, fifty polished local businesses in all. Each one is hiding an obsession it would rather you not notice, and only a few have opened their doors so far. Open two members in side-by-side tabs and they start to bleed into each other.",
+      "links": [
+        {
+          "label": "Visit",
+          "url": "https://samuelling.github.io/Chamber/"
         }
       ]
     }

@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-19 (2) · Sam's Claude
+
+- February: **MouthBreeder swapped for Chamber** (`samuelling.github.io/Chamber/`, loads; Sam and Matt; both; art): a chamber-of-commerce directory of fifty hidden-theme sites, MouthBreeder among them, remixable side by side. The `mouthbreeder` entry is kept but hidden. February is now Animal Sanctuary, Metamers, Chamber.
+
 ## 2026-11-19 · Sam's Claude
 
 - **MouthBreeder** added to the February draft (Issue 05: Animal Sanctuary, Metamers, MouthBreeder). Sam; both; kind art; Visit link to `samuelling.github.io/MouthBreeder/` (loads; the fake company inside is called Corpora Meridian). Its photos of people are free stock, per Sam. Sam paused work on it on 18 Nov, so it may still change before February.
