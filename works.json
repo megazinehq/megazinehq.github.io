@@ -66,7 +66,8 @@
         "invisible-hands",
         "mega-cv",
         "gabor-grove",
-        "chamber"
+        "chamber",
+        "pencil"
       ]
     },
     {
@@ -982,6 +983,23 @@
         {
           "label": "Play",
           "url": "https://crumplabsandbox.github.io/mega-cv/"
+        }
+      ]
+    },
+    {
+      "id": "pencil",
+      "title": "Pencil",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web",
+      "blurb": "A simulated pencil that wears down as it writes, page after page. Each notebook was filled by a pair of Claude agents, and you can watch it happen at up to 500 times speed while the tip dulls, the eraser shrinks and the pencil gets sharpened shorter.",
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://crumplabsandbox.github.io/pencil/"
         }
       ]
     }

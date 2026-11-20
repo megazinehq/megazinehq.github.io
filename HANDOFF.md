@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-20 (5) · Sam's Claude
+
+- **Pencil** (Matt; both, per Sam; toy; Open → `crumplabsandbox.github.io/pencil/`, loads) added to December, which is now eleven pieces. Blurb from the page; Matt, tweak it if it's off. December PDFs rebuilt.
+
 ## 2026-11-20 (4) · Sam's Claude
 
 - **Chamber** (the Meridian Chamber of Commerce) moved from the February draft to December, at Sam's request. December is ten pieces; February is Animal Sanctuary and Metamers. December PDFs rebuilt. Retitled **Chamber of Commerce** (id stays `chamber`).
