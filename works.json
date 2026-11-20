@@ -65,7 +65,8 @@
         "fingergun-captcha",
         "invisible-hands",
         "mega-cv",
-        "gabor-grove"
+        "gabor-grove",
+        "chamber"
       ]
     },
     {
@@ -87,8 +88,7 @@
       "draft": true,
       "works": [
         "animal-sanctuary",
-        "metamers",
-        "chamber"
+        "metamers"
       ]
     }
   ],

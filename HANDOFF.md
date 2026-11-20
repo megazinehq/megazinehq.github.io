@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-20 (4) · Sam's Claude
+
+- **Chamber** (the Meridian Chamber of Commerce) moved from the February draft to December, at Sam's request. December is ten pieces; February is Animal Sanctuary and Metamers. December PDFs rebuilt.
+
 ## 2026-11-20 (3) · Sam's Claude
 
 - For Matt (MEGA·CV, not this repo): MEGA·CV still vendors the first Invisible Hands library (pings every 10 s, re-sends outputs every 2 s, no batching). Swapping `js/net/invisible-hands.js` for the current one from samuelling/InvisibleHands (same API) cuts its relay traffic several-fold; its 5 s keepalive in `hands.js` could go too. Opening MEGA·CV with `?room=` and auto-adding a Hands module would make the control center's 'Pop in MEGA·CV' one click.
