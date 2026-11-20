@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-20 (4) · Sam's Claude
 
-- **Chamber** (the Meridian Chamber of Commerce) moved from the February draft to December, at Sam's request. December is ten pieces; February is Animal Sanctuary and Metamers. December PDFs rebuilt.
+- **Chamber** (the Meridian Chamber of Commerce) moved from the February draft to December, at Sam's request. December is ten pieces; February is Animal Sanctuary and Metamers. December PDFs rebuilt. Retitled **Chamber of Commerce** (id stays `chamber`).
 
 ## 2026-11-20 (3) · Sam's Claude
 
