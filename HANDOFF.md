@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-20 (6) · Sam's Claude
+
+- **Mushroom Walk** (Matt; both, per Sam; sound; Walk → `crumplabsandbox.github.io/mushroom-substrate/plugins/walk/`, plus a Mushroom Substrate button for the whole site; both load) added to December. December is now **twelve, a full booklet**: a 13th piece would turn on the back-side poster (print duplex). PDFs rebuilt.
+
 ## 2026-11-20 (5) · Sam's Claude
 
 - **Pencil** (Matt; both, per Sam; toy; Open → `crumplabsandbox.github.io/pencil/`, loads) added to December, which is now eleven pieces. Blurb from the page; Matt, tweak it if it's off. December PDFs rebuilt.

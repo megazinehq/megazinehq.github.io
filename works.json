@@ -67,7 +67,8 @@
         "mega-cv",
         "gabor-grove",
         "chamber",
-        "pencil"
+        "pencil",
+        "mushroom-walk"
       ]
     },
     {
@@ -1000,6 +1001,27 @@
         {
           "label": "Open",
           "url": "https://crumplabsandbox.github.io/pencil/"
+        }
+      ]
+    },
+    {
+      "id": "mushroom-walk",
+      "title": "Mushroom Walk",
+      "kind": "sound",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web",
+      "blurb": "An endless world to walk through where mushrooms grow everywhere and every one of them is a little synthesizer. You hear whichever ones are near you, each from where it stands, so headphones help. It sits inside a larger site of fungus simulators, with a species browser and more instruments built on the same models.",
+      "links": [
+        {
+          "label": "Walk",
+          "url": "https://crumplabsandbox.github.io/mushroom-substrate/plugins/walk/"
+        },
+        {
+          "label": "Mushroom Substrate",
+          "url": "https://crumplabsandbox.github.io/mushroom-substrate/"
         }
       ]
     }
