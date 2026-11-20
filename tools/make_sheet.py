@@ -202,6 +202,35 @@ def first_sentence(t):
     return t if i < 0 else t[: i + 1]
 
 
+def ih_mark(c, x, y, size):
+    """The Invisible Hands mark, one-ink version (paper is black and white): a knob with its pointer cut out and two dotted
+    fingertips, drawn in a size x size box with its lower-left corner at x, y. From samuelling.github.io/InvisibleHands/brand/."""
+    k = size / 32.0
+    cx, cy = x + 16 * k, y + 16 * k
+    c.saveState()
+    c.setFillColor(black)
+    c.circle(cx, cy, 10.6 * k, stroke=0, fill=1)
+    c.setStrokeColor(white); c.setLineWidth(3 * k); c.setLineCap(1)
+    ang = math.radians(52.0)
+    c.line(cx, cy, cx + 7.4 * k * math.cos(ang), cy + 7.4 * k * math.sin(ang))
+    c.setFillColor(black)
+    for a0, a1 in ((110, 68), (36, -6)):                      # the fingertips: dots along two arcs of radius 14.2
+        n = max(2, round(abs(a1 - a0) * math.pi / 180 * 14.2 / 3.7))
+        for i in range(n + 1):
+            t = math.radians(a0 + (a1 - a0) * i / n)
+            c.circle(cx + 14.2 * k * math.cos(t), cy + 14.2 * k * math.sin(t), 1.1 * k, stroke=0, fill=1)
+    c.restoreState()
+
+
+def ih_badge(c, right, y):
+    """Mark plus HANDS, right-aligned at `right`, baseline about y. Returns its bottom."""
+    c.setFont("Mono-Bold", 6.2)
+    tw = c.stringWidth("HANDS", "Mono-Bold", 6.2)
+    c.drawString(right - tw, y, "HANDS")
+    ih_mark(c, right - tw - 12.5, y - 3.2, 11)
+    return y - 4
+
+
 def work_block(c, wid, y_top, qr_size, big=False):
     """A work clipping. Big: full blurb, QR below. Small: first sentence, QR to the right. Returns bottom y."""
     w = WORKS[wid]
@@ -225,6 +254,8 @@ def work_block(c, wid, y_top, qr_size, big=False):
         yq = y - 8 - qr_size
         c.drawImage(qr_img(url), x, yq, qr_size, qr_size)
         ty = yq - 11
+        if w.get("hands"):
+            ih_badge(c, x + cw, ty)
         for text, strong in cta[:3]:
             c.setFont("Mono-Bold" if strong else "Mono", 7)
             c.drawString(x, ty, text)
@@ -248,7 +279,10 @@ def work_block(c, wid, y_top, qr_size, big=False):
             text = text.rsplit(" ", 1)[0]
         c.setFont(font, 6.8)
         c.drawString(x, ty, text)
-    return min(ty - 3, qtop - qr_size)
+    bottom = qtop - qr_size
+    if w.get("hands"):                                  # lower right of the panel's piece, under its code
+        bottom = ih_badge(c, x + cw, bottom - 9)
+    return min(ty - 3, bottom)
 
 
 # ---------------------------------------------------------------- panels

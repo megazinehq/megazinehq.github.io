@@ -206,6 +206,15 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--pink); outline-
 main { overflow-x: clip; }
 .credit { font: 400 .8rem/1.4 var(--type); color: var(--muted); margin: 0; }
 .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
+/* Invisible Hands badge, bottom right of a card. Its inks are the mark's own, not megaZINE's blue and pink. */
+:root { --ih-teal: #00838A; --ih-flame: #FF5A1F; --ih-cut: #F2EFE6; --ih-tips: #16181B; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ih-teal: #2FB3B0; --ih-flame: #FF7A45; --ih-cut: #101217; --ih-tips: #ECEBE5; } }
+:root[data-theme="dark"] { --ih-teal: #2FB3B0; --ih-flame: #FF7A45; --ih-cut: #101217; --ih-tips: #ECEBE5; }
+.ih-badge { margin-left: auto; align-self: flex-end; display: inline-flex; align-items: center; gap: 5px; padding: 3px 7px 3px 4px; border: 1.5px solid var(--ih-teal); border-radius: 999px;
+  font: 700 .7rem/1 "Courier Prime", var(--type); letter-spacing: .08em; text-transform: uppercase; color: var(--ih-teal); text-decoration: none; background: var(--sheet); }
+.ih-badge .ih-mark { width: 24px; height: 24px; flex: none; }
+.ih-badge:hover, .ih-badge:focus-visible { background: var(--ih-teal); color: var(--sheet); }
+.ih-badge:hover .ih-mark { --ih-cut: var(--ih-teal); --ih-tips: var(--sheet); }
 .btn {
   font: 700 .82rem/1 var(--type); text-decoration: none;
   padding: 9px 12px; border: 1.5px solid var(--toner); color: var(--toner); background: transparent;
@@ -503,6 +512,11 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     if (!l.url) return `<span class="btn pending" title="${esc(l.status || "Coming soon")}">${esc(l.label)} · ${esc(l.status || "soon")}</span>`;
     return `<a class="btn${primary ? " primary" : ""}" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`;
   }
+  // The Invisible Hands mark (from samuelling.github.io/InvisibleHands/brand/: teal knob, flame second ink a hair out of
+  // register, the pointer cut in paper, two dotted fingertips), on a card whose piece others can play over Invisible Hands.
+  const IH_MARK = `<svg class="ih-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="17.5" cy="17.5" r="10.6" fill="var(--ih-flame)"/><circle cx="16" cy="16" r="10.6" fill="var(--ih-teal)"/><path d="M16 16L20.56 10.17" stroke="var(--ih-cut)" stroke-width="3" stroke-linecap="round"/><path d="M11.14 2.66A14.2 14.2 0 0 1 21.32 2.83M27.49 7.65A14.2 14.2 0 0 1 30.12 17.48" fill="none" stroke="var(--ih-tips)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="0.1 3.6"/></svg>`;
+  const IH_BADGE = `<a class="ih-badge" href="https://samuelling.github.io/InvisibleHands/" target="_blank" rel="noopener" title="Others can turn its knobs, over Invisible Hands">${IH_MARK}<span>Hands</span></a>`;
+
   function creditHTML(w, withMakers) {
     const bits = [];
     if (w.idea) bits.push("Idea: " + esc(w.idea));
@@ -611,7 +625,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
           ${w.image ? `<img class="art" src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy">` : ""}
           <p class="blurb">${esc(w.blurb)}</p>
           ${creditHTML(w)}
-          <div class="links">${w.book ? `<button type="button" class="btn primary" data-book="${esc(w.id)}">${esc(w.book.label || "Open the book")} ▸</button>${w.book.pdf ? `<a class="btn" href="${esc(w.book.pdf)}" download>Download PDF ↓</a>` : ""}` : ""}${(w.links || []).map((l, j) => linkHTML(l, j === 0 && !w.book)).join("")}</div>
+          <div class="links">${w.book ? `<button type="button" class="btn primary" data-book="${esc(w.id)}">${esc(w.book.label || "Open the book")} ▸</button>${w.book.pdf ? `<a class="btn" href="${esc(w.book.pdf)}" download>Download PDF ↓</a>` : ""}` : ""}${(w.links || []).map((l, j) => linkHTML(l, j === 0 && !w.book)).join("")}${w.hands ? IH_BADGE : ""}</div>
         </article>`;
       }).join("");
     }

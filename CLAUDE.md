@@ -70,6 +70,7 @@ Never guess `made`. Ask.
 - `"book": {"label": "Open the book", "pages": [{"src": "media/x-1.jpg", "alt": "..."}], "pdf": "media/x.pdf"}` makes the card open a popup picture book (page-turn, arrow keys, swipe) with an optional PDF download. `?go=<id>` for a book with no live link opens the book on the site; the paper's code says "Open the book".
 - `"hidden": true` keeps a piece off the site entirely (still being built, or pulled for now) without losing its entry. Take it out of every issue's `works` list too. There is no workshop list any more.
 - Credit kids' ideas with `"idea": "Name"` (first names only).
+- `"hands": true` means the piece can be played over Invisible Hands (it has the library in it). It puts the Invisible Hands mark with "Hands" at the lower right of its card on the site (in the mark's own teal and flame, linking to the Invisible Hands site) and, in one ink, under its code on the paper. Only set it on pieces that really have Invisible Hands in them: the mark is a promise.
 
 ## Issues
 

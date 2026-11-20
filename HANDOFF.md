@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-20 (7) · Sam's Claude
+
+- New `"hands": true` field: an Invisible Hands badge (the IH mark + "Hands", per the IH brand page) at the lower right of the card on the site, and the one-ink mark under the code on the paper. Set on Invisible Hands, MEGA·CV, FlyHarp, Gabor Grove, Splatterhaus, Frisky and Chamber of Commerce (each page loads the IH library; MEGA·CV per Matt's install). PDFs for Issues 01–03 rebuilt, so Frisky's reprints carry it too.
+- **Mushroom Walk retitled Mushroom Substrate** (id stays `mushroom-walk`): Visit → the whole Substrate site (the paper's code goes there), plus a Mushroom Walk button. First sentence shortened so the back cover fits.
+
 ## 2026-11-20 (6) · Sam's Claude
 
 - **Mushroom Walk** (Matt; both, per Sam; sound; Walk → `crumplabsandbox.github.io/mushroom-substrate/plugins/walk/`, plus a Mushroom Substrate button for the whole site; both load) added to December. December is now **twelve, a full booklet**: a 13th piece would turn on the back-side poster (print duplex). PDFs rebuilt.

@@ -65,6 +65,8 @@ Work entries can also carry a `book` (a popup picture book, optional PDF): see C
 
 `makers` and `made` print the gold seal: "MADE BY MATT · BY HAND". With more than one maker, the seal puts one name to a line ("SAM / & MATT / & JENN"), sized to fit, on the site and the paper; three is the comfortable most. `image` is optional (paintings). Add `"hidden": true` to keep a piece off the site (still being built, or pulled for now) without deleting its entry.
 
+`"hands": true` on a work marks a piece that can be played over Invisible Hands: the Invisible Hands mark and "Hands" sit at the lower right of its card (linking to the Invisible Hands site), and in one ink under its code on the paper. The mark follows the guidelines at `samuelling.github.io/InvisibleHands/brand/`; set it only where Invisible Hands is really built in.
+
 To feature it in an issue, add its `id` to that issue's `works` list (the paper fits 24: 12 in the folded booklet, 12 more on the back of the sheet).
 
 ## Monthly issues and back issues

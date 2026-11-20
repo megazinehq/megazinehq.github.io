@@ -596,7 +596,8 @@
           "label": "Play",
           "url": "https://samuelling.github.io/Musicbox/"
         }
-      ]
+      ],
+      "hands": true
     },
     {
       "id": "cognitive-hands",
@@ -835,7 +836,8 @@
           "label": "Play",
           "url": "https://samuelling.github.io/FlyHarp/"
         }
-      ]
+      ],
+      "hands": true
     },
     {
       "id": "splatterhouse",
@@ -852,7 +854,8 @@
           "label": "Open",
           "url": "https://samuelling.github.io/Splatterhouse/"
         }
-      ]
+      ],
+      "hands": true
     },
     {
       "id": "liveskratch",
@@ -906,7 +909,8 @@
           "label": "Open",
           "url": "https://samuelling.github.io/GaborGrove/"
         }
-      ]
+      ],
+      "hands": true
     },
     {
       "id": "mouthbreeder",
@@ -942,7 +946,8 @@
           "label": "Visit",
           "url": "https://samuelling.github.io/Chamber/"
         }
-      ]
+      ],
+      "hands": true
     },
     {
       "id": "invisible-hands",
@@ -968,7 +973,8 @@
           "label": "Docs",
           "url": "https://samuelling.github.io/InvisibleHands/docs/"
         }
-      ]
+      ],
+      "hands": true
     },
     {
       "id": "mega-cv",
@@ -985,7 +991,8 @@
           "label": "Play",
           "url": "https://crumplabsandbox.github.io/mega-cv/"
         }
-      ]
+      ],
+      "hands": true
     },
     {
       "id": "pencil",
@@ -1006,22 +1013,22 @@
     },
     {
       "id": "mushroom-walk",
-      "title": "Mushroom Walk",
+      "title": "Mushroom Substrate",
       "kind": "sound",
       "made": "both",
       "makers": [
         "Matt"
       ],
       "platform": "Web",
-      "blurb": "An endless world to walk through where mushrooms grow everywhere and every one of them is a little synthesizer. You hear whichever ones are near you, each from where it stands, so headphones help. It sits inside a larger site of fungus simulators, with a species browser and more instruments built on the same models.",
+      "blurb": "Simulators of how fungi grow, from one thread to a forest floor. Up to a hundred kinds of mushroom load into them, and synthesizers and other instruments are built on the same models. Mushroom Walk is an endless world where mushrooms grow everywhere and each one is an instrument you hear from where it stands; headphones help.",
       "links": [
         {
-          "label": "Walk",
-          "url": "https://crumplabsandbox.github.io/mushroom-substrate/plugins/walk/"
+          "label": "Visit",
+          "url": "https://crumplabsandbox.github.io/mushroom-substrate/"
         },
         {
-          "label": "Mushroom Substrate",
-          "url": "https://crumplabsandbox.github.io/mushroom-substrate/"
+          "label": "Mushroom Walk",
+          "url": "https://crumplabsandbox.github.io/mushroom-substrate/plugins/walk/"
         }
       ]
     }
