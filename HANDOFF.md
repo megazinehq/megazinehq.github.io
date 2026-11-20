@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-20 (8) · Sam's Claude
+
+- Shred Hole gets a second button, **See the pile** → `worlds.megazine.org/?visit=shred-pile`, which opens World Builder and flies the camera to the Shred Pile (checked). The paper's code still goes to Shred Hole itself.
+
 ## 2026-11-20 (7) · Sam's Claude
 
 - New `"hands": true` field: an Invisible Hands badge (the IH mark + "Hands", per the IH brand page) at the lower right of the card on the site, and the one-ink mark under the code on the paper. Set on Invisible Hands, MEGA·CV, FlyHarp, Gabor Grove, Splatterhaus, Frisky and Chamber of Commerce (each page loads the IH library; MEGA·CV per Matt's install). PDFs for Issues 01–03 rebuilt, so Frisky's reprints carry it too.
