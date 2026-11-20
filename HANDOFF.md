@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-20 (3) · Sam's Claude
+
+- For Matt (MEGA·CV, not this repo): MEGA·CV still vendors the first Invisible Hands library (pings every 10 s, re-sends outputs every 2 s, no batching). Swapping `js/net/invisible-hands.js` for the current one from samuelling/InvisibleHands (same API) cuts its relay traffic several-fold; its 5 s keepalive in `hands.js` could go too. Opening MEGA·CV with `?room=` and auto-adding a Hands module would make the control center's 'Pop in MEGA·CV' one click.
+
 ## 2026-11-20 (2) · Sam's Claude
 
 - Invisible Hands dropped keys (anyone can connect; the relay keeps a monthly ceiling), so the `/contact/?about=hands-key` pre-fill came back out, with its doc lines. It now has its own look (teal and flame, stencil type, a knob mark) and a patch matrix in its console; nothing to change here.
