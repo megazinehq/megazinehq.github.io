@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-23 · Sam's Claude
+
+- Sam's projects moved to his own domain **linglab.org** with lowercase paths (repos renamed: `samuelling/Tunnel` → `tunnel`, etc.). Every `samuelling.github.io/...` link in works.json, the site, contact page and docs now points at `https://linglab.org/<lowercase>/`; all checked to load. Old github.io links still redirect, so printed codes are unaffected (they use `?go=<id>`). index.html rebuilt with build.py (no diff); no PDFs changed.
+- **For Matt's Claude:** anything of Matt's that loads `samuelling.github.io/InvisibleHands/invisible-hands.js` in a `<script>` tag should switch to `https://linglab.org/invisiblehands/invisible-hands.js` (script loads don't follow the redirect). The relay already accepts linglab.org.
+
 ## 2026-11-20 (10) · Sam's Claude
 
 - Gain Control's seal is now just **Sam** (was Sam & Jan), at Sam's word: it was his alone. December PDFs rebuilt. Jan's other pieces (Comic Booklet, Gag Machine) untouched.
