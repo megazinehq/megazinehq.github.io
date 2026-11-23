@@ -108,7 +108,7 @@
       "links": [
         {
           "label": "Play in browser",
-          "url": "https://samuelling.github.io/Townies/"
+          "url": "https://linglab.org/townies/"
         },
         {
           "label": "Mac app (.dmg)",
@@ -151,7 +151,7 @@
       "links": [
         {
           "label": "Look out the window",
-          "url": "https://samuelling.github.io/Big-Apple-Sam/"
+          "url": "https://linglab.org/big-apple-sam/"
         },
         {
           "label": "Mac screen saver",
@@ -172,11 +172,11 @@
       "links": [
         {
           "label": "Start surfing",
-          "url": "https://samuelling.github.io/Big-Apple-Sam/web/"
+          "url": "https://linglab.org/big-apple-sam/web/"
         },
         {
           "label": "See the city",
-          "url": "https://samuelling.github.io/Big-Apple-Sam/"
+          "url": "https://linglab.org/big-apple-sam/"
         }
       ]
     },
@@ -193,7 +193,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/DemoVoyager/magnitude/"
+          "url": "https://linglab.org/demovoyager/magnitude/"
         }
       ]
     },
@@ -210,7 +210,7 @@
       "links": [
         {
           "label": "Dial in",
-          "url": "https://samuelling.github.io/BBS/"
+          "url": "https://linglab.org/bbs/"
         }
       ]
     },
@@ -227,7 +227,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/Decay-Envelope/"
+          "url": "https://linglab.org/decay-envelope/"
         }
       ]
     },
@@ -246,7 +246,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/Brick-Ninja/"
+          "url": "https://linglab.org/brick-ninja/"
         }
       ]
     },
@@ -263,7 +263,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/toilet-goalie/"
+          "url": "https://linglab.org/toilet-goalie/"
         }
       ]
     },
@@ -280,7 +280,7 @@
       "links": [
         {
           "label": "Listen",
-          "url": "https://samuelling.github.io/Bell-weathered/"
+          "url": "https://linglab.org/bell-weathered/"
         },
         {
           "label": "norns script (.zip)",
@@ -347,7 +347,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/Animal-Sanctuary/"
+          "url": "https://linglab.org/animal-sanctuary/"
         }
       ]
     },
@@ -505,7 +505,7 @@
       "links": [
         {
           "label": "Press the button",
-          "url": "https://samuelling.github.io/LargeLingModel/"
+          "url": "https://linglab.org/largelingmodel/"
         }
       ]
     },
@@ -539,7 +539,7 @@
       "links": [
         {
           "label": "Open on your phone",
-          "url": "https://samuelling.github.io/skipper/"
+          "url": "https://linglab.org/skipper/"
         }
       ]
     },
@@ -556,7 +556,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/Chopper/"
+          "url": "https://linglab.org/chopper/"
         },
         {
           "label": "Mac app (.dmg)",
@@ -577,7 +577,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/Orbitakt/play/"
+          "url": "https://linglab.org/orbitakt/play/"
         }
       ]
     },
@@ -594,7 +594,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/Musicbox/"
+          "url": "https://linglab.org/musicbox/"
         }
       ],
       "hands": true
@@ -710,7 +710,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/Tunnel/"
+          "url": "https://linglab.org/tunnel/"
         },
         {
           "label": "See the pile",
@@ -731,15 +731,15 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/GainControl/"
+          "url": "https://linglab.org/gaincontrol/"
         },
         {
           "label": "Play the wiki version",
-          "url": "https://samuelling.github.io/GainControl/game/index.html?branch=wiki"
+          "url": "https://linglab.org/gaincontrol/game/index.html?branch=wiki"
         },
         {
           "label": "Script Room",
-          "url": "https://samuelling.github.io/GainControl/game/script.html?branch=wiki"
+          "url": "https://linglab.org/gaincontrol/game/script.html?branch=wiki"
         },
         {
           "label": "Mac app (.dmg)",
@@ -760,7 +760,7 @@
       "links": [
         {
           "label": "Open",
-          "url": "https://samuelling.github.io/RetroSynths/"
+          "url": "https://linglab.org/retrosynths/"
         }
       ]
     },
@@ -845,7 +845,7 @@
       "links": [
         {
           "label": "Play",
-          "url": "https://samuelling.github.io/FlyHarp/"
+          "url": "https://linglab.org/flyharp/"
         }
       ],
       "hands": true
@@ -863,7 +863,7 @@
       "links": [
         {
           "label": "Open",
-          "url": "https://samuelling.github.io/Splatterhouse/"
+          "url": "https://linglab.org/splatterhouse/"
         }
       ],
       "hands": true
@@ -881,7 +881,7 @@
       "links": [
         {
           "label": "Open",
-          "url": "https://samuelling.github.io/Scratcher/"
+          "url": "https://linglab.org/scratcher/"
         }
       ]
     },
@@ -918,7 +918,7 @@
       "links": [
         {
           "label": "Open",
-          "url": "https://samuelling.github.io/GaborGrove/"
+          "url": "https://linglab.org/gaborgrove/"
         }
       ],
       "hands": true
@@ -936,7 +936,7 @@
       "links": [
         {
           "label": "Visit",
-          "url": "https://samuelling.github.io/MouthBreeder/"
+          "url": "https://linglab.org/mouthbreeder/"
         }
       ],
       "hidden": true
@@ -955,7 +955,7 @@
       "links": [
         {
           "label": "Visit",
-          "url": "https://samuelling.github.io/Chamber/"
+          "url": "https://linglab.org/chamber/"
         }
       ],
       "hands": true
@@ -974,15 +974,15 @@
       "links": [
         {
           "label": "Try it",
-          "url": "https://samuelling.github.io/InvisibleHands/"
+          "url": "https://linglab.org/invisiblehands/"
         },
         {
           "label": "Control center",
-          "url": "https://samuelling.github.io/InvisibleHands/console/"
+          "url": "https://linglab.org/invisiblehands/console/"
         },
         {
           "label": "Docs",
-          "url": "https://samuelling.github.io/InvisibleHands/docs/"
+          "url": "https://linglab.org/invisiblehands/docs/"
         }
       ],
       "hands": true

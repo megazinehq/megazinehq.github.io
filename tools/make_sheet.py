@@ -204,7 +204,7 @@ def first_sentence(t):
 
 def ih_mark(c, x, y, size):
     """The Invisible Hands mark, one-ink version (paper is black and white): a knob with its pointer cut out and two dotted
-    fingertips, drawn in a size x size box with its lower-left corner at x, y. From samuelling.github.io/InvisibleHands/brand/."""
+    fingertips, drawn in a size x size box with its lower-left corner at x, y. From linglab.org/invisiblehands/brand/."""
     k = size / 32.0
     cx, cy = x + 16 * k, y + 16 * k
     c.saveState()

@@ -403,7 +403,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
           <li>Dial in and make an account.</li>
           <li>Post in <b>megaZINE Submissions</b>, following the first message there.</li>
         </ol>
-        <p><a class="btn primary" href="https://samuelling.github.io/BBS/" target="_blank" rel="noopener">Dial in ↗</a></p>
+        <p><a class="btn primary" href="https://linglab.org/bbs/" target="_blank" rel="noopener">Dial in ↗</a></p>
       </div>
       <div>
         <h3>Get your seal</h3>
@@ -505,10 +505,10 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     if (!l.url) return `<span class="btn pending" title="${esc(l.status || "Coming soon")}">${esc(l.label)} · ${esc(l.status || "soon")}</span>`;
     return `<a class="btn${primary ? " primary" : ""}" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`;
   }
-  // The Invisible Hands mark (from samuelling.github.io/InvisibleHands/brand/: teal knob, flame second ink a hair out of
+  // The Invisible Hands mark (from linglab.org/invisiblehands/brand/: teal knob, flame second ink a hair out of
   // register, the pointer cut in paper, two dotted fingertips), on a card whose piece others can play over Invisible Hands.
   const IH_MARK = `<svg class="ih-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="17.5" cy="17.5" r="10.6" fill="var(--ih-flame)"/><circle cx="16" cy="16" r="10.6" fill="var(--ih-teal)"/><path d="M16 16L20.56 10.17" stroke="var(--ih-cut)" stroke-width="3" stroke-linecap="round"/><path d="M11.14 2.66A14.2 14.2 0 0 1 21.32 2.83M27.49 7.65A14.2 14.2 0 0 1 30.12 17.48" fill="none" stroke="var(--ih-tips)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="0.1 3.6"/></svg>`;
-  const IH_BADGE = `<a class="ih-badge" href="https://samuelling.github.io/InvisibleHands/" target="_blank" rel="noopener" title="Others can turn its knobs, over Invisible Hands">${IH_MARK}<span>Hands</span></a>`;
+  const IH_BADGE = `<a class="ih-badge" href="https://linglab.org/invisiblehands/" target="_blank" rel="noopener" title="Others can turn its knobs, over Invisible Hands">${IH_MARK}<span>Hands</span></a>`;
 
   function creditHTML(w, withMakers) {
     const bits = [];
