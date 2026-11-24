@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (8) · Sam's Claude
+
+- Advent: gifts on screen together open together; missed days at about double speed, today's at full speed. Returning visitors see nothing replay (the browser remembers); a preview link with `&fresh` wraps everything again on every load, so don't send that one around.
+
 ## 2026-11-24 (7) · Sam's Claude
 
 - December reordered so makers alternate (Sam, Matt, joint, …), at Sam's request. The `works` order is the day order.

@@ -372,32 +372,33 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
 .gift.ready:hover, .gift.opened:hover { transform: rotate(0deg) translateY(-3px); }
 .gift.ready.today .g-wrap { filter: drop-shadow(0 0 0 var(--pink)); animation: g-glow 1.6s ease-in-out infinite alternate; }
 @keyframes g-glow { to { filter: drop-shadow(0 0 2.5cqi var(--pink)); } }
+.gift.quick { --sp: .45; }
 .g-conf { position: absolute; left: 50%; top: 45%; width: 7%; height: 4%; z-index: 7; pointer-events: none; background: var(--c); }
 @media (prefers-reduced-motion: no-preference) {
   .gift.ready:not(.today) { animation: g-hop 4.5s ease-in-out var(--hop, 0s) infinite; }
   @keyframes g-hop { 0%, 86%, 100% { transform: rotate(var(--tilt)); } 90% { transform: rotate(var(--tilt)) translateY(-6%); } 94% { transform: rotate(calc(var(--tilt) + 3deg)); } }
   .gift.nope { animation: g-no .4s ease-in-out; }
   @keyframes g-no { 25% { transform: rotate(calc(var(--tilt) - 5deg)); } 50% { transform: rotate(calc(var(--tilt) + 5deg)); } 75% { transform: rotate(calc(var(--tilt) - 3deg)); } }
-  .gift.unwrapping { animation: g-shake .5s ease-in-out both; z-index: 5; }
+  .gift.unwrapping { animation: g-shake calc(.5s * var(--sp, 1)) ease-in-out both; z-index: 5; }
   @keyframes g-shake { 0%, 100% { transform: rotate(var(--tilt)) scale(1.05); } 15% { transform: rotate(calc(var(--tilt) - 9deg)) scale(1.08); }
     35% { transform: rotate(calc(var(--tilt) + 8deg)) scale(1.08); } 55% { transform: rotate(calc(var(--tilt) - 6deg)) scale(1.07); } 75% { transform: rotate(calc(var(--tilt) + 4deg)) scale(1.06); } }
-  .unwrapping .g-bow { animation: g-bow .55s .45s cubic-bezier(.3, .7, .5, 1) both; }
+  .unwrapping .g-bow { animation: g-bow calc(.55s * var(--sp, 1)) calc(.45s * var(--sp, 1)) cubic-bezier(.3, .7, .5, 1) both; }
   @keyframes g-bow { to { transform: translate(35%, -190%) rotate(250deg) scale(.6); opacity: 0; } }
-  .unwrapping .g-rv, .unwrapping .g-lrv { animation: g-ribv .3s .55s ease-in both; }
+  .unwrapping .g-rv, .unwrapping .g-lrv { animation: g-ribv calc(.3s * var(--sp, 1)) calc(.55s * var(--sp, 1)) ease-in both; }
   @keyframes g-ribv { to { transform: scaleY(0); opacity: 0; } }
-  .unwrapping .g-rh { animation: g-ribh .3s .55s ease-in both; }
+  .unwrapping .g-rh { animation: g-ribh calc(.3s * var(--sp, 1)) calc(.55s * var(--sp, 1)) ease-in both; }
   @keyframes g-ribh { to { transform: scaleX(0); opacity: 0; } }
-  .unwrapping .g-lid { animation: g-lid .6s .72s cubic-bezier(.2, .8, .4, 1) both; }
+  .unwrapping .g-lid { animation: g-lid calc(.6s * var(--sp, 1)) calc(.72s * var(--sp, 1)) cubic-bezier(.2, .8, .4, 1) both; }
   @keyframes g-lid { 35% { transform: translateY(-80%) rotate(-8deg); } 100% { transform: translate(-40%, -210%) rotate(-42deg); opacity: 0; } }
-  .unwrapping .g-half.l { animation: g-fall-l .6s .95s cubic-bezier(.5, 0, .8, .6) both; }
-  .unwrapping .g-half.r { animation: g-fall-r .6s .95s cubic-bezier(.5, 0, .8, .6) both; }
+  .unwrapping .g-half.l { animation: g-fall-l calc(.6s * var(--sp, 1)) calc(.95s * var(--sp, 1)) cubic-bezier(.5, 0, .8, .6) both; }
+  .unwrapping .g-half.r { animation: g-fall-r calc(.6s * var(--sp, 1)) calc(.95s * var(--sp, 1)) cubic-bezier(.5, 0, .8, .6) both; }
   @keyframes g-fall-l { to { transform: translate(-30%, 25%) rotate(-62deg); opacity: 0; } }
   @keyframes g-fall-r { to { transform: translate(30%, 25%) rotate(62deg); opacity: 0; } }
-  .unwrapping .g-in { display: block; animation: g-in .35s 1.05s both; }
+  .unwrapping .g-in { display: block; animation: g-in calc(.35s * var(--sp, 1)) calc(1.05s * var(--sp, 1)) both; }
   @keyframes g-in { from { opacity: 0; } to { opacity: 1; } }
-  .unwrapping .g-card { animation: g-card .65s 1.05s cubic-bezier(.3, 1.6, .5, 1) both; }
+  .unwrapping .g-card { animation: g-card calc(.65s * var(--sp, 1)) calc(1.05s * var(--sp, 1)) cubic-bezier(.3, 1.6, .5, 1) both; }
   @keyframes g-card { from { transform: translateY(45%) rotate(-4deg); } to { transform: translateY(0) rotate(-4deg); } }
-  .g-conf { animation: g-conf 1s var(--dl, .95s) cubic-bezier(.2, .7, .4, 1) both; }
+  .g-conf { animation: g-conf calc(1s * var(--sp, 1)) var(--dl, .95s) cubic-bezier(.2, .7, .4, 1) both; }
   @keyframes g-conf { 0% { transform: translate(-50%, 0) rotate(0); opacity: 0; } 8% { opacity: 1; } 100% { transform: translate(calc(-50% + var(--dx)), var(--dy)) rotate(var(--r)); opacity: 0; } }
 }
 .dday { font: 700 .72rem/1 var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--pink); }
@@ -802,10 +803,13 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
       }
       drawAll();
 
+      // Today's gift gets the full show; days the visitor missed open at about twice the speed.
       function unwrap(g) {
         const day = +g.dataset.day;
         if (!g.classList.contains("ready")) return;
         const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const sp = day === calDay ? 1 : .45;
+        if (sp < 1) g.classList.add("quick");
         g.classList.remove("ready", "nope");
         g.classList.add("unwrapping");
         if (!reduce) {
@@ -813,7 +817,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
           for (let n = 0; n < 26; n++) {
             const c = document.createElement("span"), a = Math.random() * Math.PI * 2, R = 80 + Math.random() * 140;
             c.className = "g-conf";
-            c.style.cssText = `--c:${cols[n % cols.length]};--dx:${(Math.cos(a) * R).toFixed(0)}px;--dy:${(Math.sin(a) * R - 50).toFixed(0)}px;--r:${(Math.random() * 720 - 360).toFixed(0)}deg;--dl:${(.9 + Math.random() * .15).toFixed(2)}s`;
+            c.style.cssText = `--c:${cols[n % cols.length]};--dx:${(Math.cos(a) * R).toFixed(0)}px;--dy:${(Math.sin(a) * R - 50).toFixed(0)}px;--r:${(Math.random() * 720 - 360).toFixed(0)}deg;--dl:${((.9 + Math.random() * .15) * sp).toFixed(2)}s`;
             g.appendChild(c);
           }
         }
@@ -822,7 +826,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
           const slot = $(`day-${day}`);
           if (slot) slot.outerHTML = slotHTML(day - 1, true);
           intro();
-        }, reduce ? 0 : 1700);
+        }, reduce ? 0 : 1700 * sp);
       }
       $("board").addEventListener("click", (e) => {
         const g = e.target.closest(".gift"); if (!g) return;
@@ -833,11 +837,10 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         clearTimeout(g._t); g._t = setTimeout(() => g.classList.remove("nope"), 1400);
       });
       // No clicking needed: every gift whose day has come and that this browser hasn't opened yet unwraps by itself
-      // as it comes on screen, so a first visit on the 10th opens 1 to 10 in turn. Gifts that arrive together go a beat apart.
+      // as it comes on screen, so a first visit on the 10th opens 1 to 10. Gifts that come on screen together open together.
       const waiting = [...$("board").querySelectorAll(".gift.ready")];
       if (waiting.length) {
-        let next = 0;
-        const go = (g) => { const at = Math.max(next, performance.now() + 450); next = at + 380; setTimeout(() => unwrap(g), at - performance.now()); };
+        const go = (g) => setTimeout(() => unwrap(g), 350);
         if ("IntersectionObserver" in window) {
           const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { io.unobserve(e.target); go(e.target); } }), { threshold: .6 });
           waiting.forEach((g) => io.observe(g));
