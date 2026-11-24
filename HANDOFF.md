@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (13) · Sam's Claude
+
+- **Screech** added to December, last in the list (day 19 for now): Sam, both, tool, Open → `linglab.org/screech/`, plus a dashed **App Store · soon** button (the iPhone app is in review; fill in `url` when approved, same for Witness). Sam wants it late in the month, so **insert new December pieces before `screech`**, don't append after it. December: 19 of 25.
+- Two Pages deploys failed this morning on GitHub's side (artifact uploaded, deploy step couldn't find it); re-running the workflow fixed it. If the site looks stale after a push, check `gh run list`.
+
 ## 2026-11-24 (12) · Sam's Claude
 
 - Advent gifts redrawn (Sam: "more awesome"): each is one SVG built in `giftSVG()` in `tools/page.html`, seeded by the day: three box shapes, eleven prints plus foil papers, four ribbon layouts, four bows, a swinging tag with the day number, halftone shading, an off-register second ink, twinkles. Wrapped gifts rattle now and then; today's sits on a slow sunburst; the lid pops on a burst of light. Nothing dimmed for locked days any more. Behaviour unchanged.
