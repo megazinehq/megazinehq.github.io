@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (10) · Sam's Claude
+
+- Mega-Dino's card now packages Matt's **Mega-Volcano** and **Mega-Clouds** too (three buttons; the blurb says they layer together). Mega-Clouds lives at `/Mega-Clouds/` (capitals). All three have Invisible Hands in them. Paper code still goes to Mega-Dino.
+
 ## 2026-11-24 (9) · Sam's Claude
 
 - December reordered again so Matt's pieces come earlier (Sam felt the start was too heavy on his): Mega-Dino opens on the 1st; all six of Matt's land by the 13th.

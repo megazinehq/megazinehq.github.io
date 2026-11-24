@@ -1128,11 +1128,19 @@
       ],
       "platform": "Web",
       "hands": true,
-      "blurb": "A dinosaur simulator: herds, families and hunters walking through 180 million years, from the first dinosaurs to the asteroid. Click an animal to make it call, shuffle it into a screensaver, or put one of Matt's volcanoes behind them and his clouds above.",
+      "blurb": "A dinosaur simulator: herds, families and hunters walking through 180 million years, from the first dinosaurs to the asteroid. It comes with two siblings that layer into it: Mega-Volcano, where islands rise from the sea floor, erupt, erode and sink into atolls, and Mega-Clouds, over a hundred animated skies. Click an animal to make it call, or shuffle all three into a screensaver.",
       "links": [
         {
-          "label": "Open",
+          "label": "Mega-Dino",
           "url": "https://crumplabsandbox.github.io/mega-dino/"
+        },
+        {
+          "label": "Mega-Volcano",
+          "url": "https://crumplabsandbox.github.io/mega-volcano/"
+        },
+        {
+          "label": "Mega-Clouds",
+          "url": "https://crumplabsandbox.github.io/Mega-Clouds/"
         }
       ]
     }
