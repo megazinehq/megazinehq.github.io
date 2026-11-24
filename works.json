@@ -72,7 +72,8 @@
         "mushroom-walk",
         "subtext",
         "mega-dino",
-        "retrosynths"
+        "retrosynths",
+        "witness"
       ],
       "advent": true
     },
@@ -765,6 +766,28 @@
         {
           "label": "Open",
           "url": "https://linglab.org/retrosynths/"
+        }
+      ]
+    },
+    {
+      "id": "witness",
+      "title": "Witness",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web, iPhone soon",
+      "blurb": "Pixelates your face and pitches your voice down, like a protected witness on the evening news. Swap the mosaic for a blur, a black bar or a silhouette, run the voice through a vocoder, and add a lower-third caption and live subtitles. It all runs in your browser and nothing is uploaded.",
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://linglab.org/witness/"
+        },
+        {
+          "label": "App Store",
+          "url": null,
+          "status": "soon"
         }
       ]
     },

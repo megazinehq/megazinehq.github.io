@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (4) · Sam's Claude
+
+- **Witness** added to December (day 17): Sam, both, toy, Open → `linglab.org/witness/`, plus a dashed **App Store · soon** button; fill in its `url` when the app is live. December: 17 of 25.
+
 ## 2026-11-24 (3) · Sam's Claude
 
 - Advent: each day is now a card-sized panel (a big gift until opened, then the piece's full card in place, in day order); the pop-up and the separate "unwrapped" list are gone. First visit of the day scrolls to today's gift and unwraps it.

@@ -10,7 +10,7 @@ Nothing waiting.
 
 ## Issue 03 · December 2026
 
-An advent calendar: 25 days, one piece a day, in `works` order. Days 1–16 are filled; **days 17–25 need pieces** (9 more).
+An advent calendar: 25 days, one piece a day, in `works` order. Days 1–17 are filled; **days 18–25 need pieces** (8 more). Witness's App Store link is still to come.
 
 ## Issue 04 · January 2027
 
