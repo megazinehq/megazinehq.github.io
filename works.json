@@ -75,6 +75,7 @@
         "witness",
         "gabor-grove",
         "acoustic",
+        "next-up",
         "screech"
       ],
       "advent": true
@@ -1164,6 +1165,23 @@
         {
           "label": "Mega-Clouds",
           "url": "https://crumplabsandbox.github.io/Mega-Clouds/"
+        }
+      ]
+    },
+    {
+      "id": "next-up",
+      "title": "next-up",
+      "kind": "story",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web",
+      "blurb": "A story that four Claude agents tell by building it in 3D, one turn at a time. A narrator says what happens next, a builder writes the world to match, a designer critiques how it looks, and a player decides what the Wanderer does. This run goes fifty turns, starting from a plain of silver ash and one amber light: step through it, or walk around in what they made.",
+      "links": [
+        {
+          "label": "Watch",
+          "url": "https://crumplabsandbox.github.io/next-up/?run=world-02"
         }
       ]
     }

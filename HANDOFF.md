@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (14) · Sam's Claude
+
+- Matt's **next-up** added to December as day 19 (Screech moves to 20): Matt, both, story, Watch → `crumplabsandbox.github.io/next-up/?run=world-02`. Blurb written from the run's own data (narrator, builder, designer, player; 50 turns); Matt may want to reword. December: 20 of 25.
+
 ## 2026-11-24 (13) · Sam's Claude
 
 - **Screech** added to December, last in the list (day 19 for now): Sam, both, tool, Open → `linglab.org/screech/`, plus a dashed **App Store · soon** button (the iPhone app is in review; fill in `url` when approved, same for Witness). Sam wants it late in the month, so **insert new December pieces before `screech`**, don't append after it. December: 19 of 25.
