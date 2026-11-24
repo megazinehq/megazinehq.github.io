@@ -777,7 +777,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         const label = st === "locked" ? `${sayDay(day)}: still wrapped. It opens on ${sayDay(day)}.`
           : st === "late" ? `${sayDay(day)}: still being wrapped.` : `${sayDay(day)}: unwrap it`;
         const cap = st === "locked" ? `Opens on the ${day}${["th", "st", "nd", "rd"][(day % 10 > 3 || [11, 12, 13].includes(day)) ? 0 : day % 10]}`
-          : st === "late" ? "Still being wrapped" : isToday ? "Today's gift · unwrap it" : "Unwrap it";
+          : st === "late" ? "Still being wrapped" : isToday ? "Today's gift" : "Unwrapping…";
         return `<div class="slot${isToday ? " is-today" : ""}" id="day-${day}" style="--tilt:${TILT[k % 6]}deg;--tape:${TAPE[k % 6]}deg">
           <button type="button" class="gift ${st}" data-day="${day}" aria-label="${esc(label)}"
             style="--tilt:${tilt}deg;--pat:${pat};--rib:${INK[rb]};--hop:${(r() * 4).toFixed(2)}s;--wl:${w ? Math.max(6, ...w.title.split(/\s+/).map((x) => x.length)) : 7}">
@@ -809,12 +809,10 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
       }
       drawAll();
 
-      let busy = false;
       function unwrap(g) {
         const day = +g.dataset.day;
-        if (busy) return;
+        if (!g.classList.contains("ready")) return;
         const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        busy = true;
         g.classList.remove("ready", "nope");
         g.classList.add("unwrapping");
         if (!reduce) {
@@ -828,13 +826,8 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         }
         seen.add(day); save();
         setTimeout(() => {
-          busy = false;
           const slot = $(`day-${day}`);
-          if (slot) {
-            slot.outerHTML = slotHTML(day - 1, true);
-            const card = document.getElementById(slots[day - 1].id);
-            if (card) { const b = card.querySelector("a.btn, button.btn"); if (b) b.focus({ preventScroll: true }); }
-          }
+          if (slot) slot.outerHTML = slotHTML(day - 1, true);
           intro();
         }, reduce ? 0 : 1700);
       }
@@ -846,17 +839,16 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         g.classList.remove("nope"); void g.offsetWidth; g.classList.add("nope");
         clearTimeout(g._t); g._t = setTimeout(() => g.classList.remove("nope"), 1400);
       });
-      // Today's gift unwraps by itself the first time this browser sees it: scroll to it, then unwrap once it's on screen.
-      const first = !focusId && !openBookId && calDay >= 1 && calDay <= 25 && state(calDay - 1) === "ready";
-      if (first) {
-        const g = () => $("board").querySelector(`.gift[data-day="${calDay}"]`);
-        const fire = () => setTimeout(() => { const el = g(); if (el && el.classList.contains("ready")) unwrap(el); }, 500);
-        const r = g().getBoundingClientRect();
-        if (r.top < 0 || r.bottom > innerHeight) setTimeout(() => $(`day-${calDay}`).scrollIntoView({ behavior: "smooth", block: "center" }), 700);
+      // No clicking needed: every gift whose day has come and that this browser hasn't opened yet unwraps by itself
+      // as it comes on screen, so a first visit on the 10th opens 1 to 10 in turn. Gifts that arrive together go a beat apart.
+      const waiting = [...$("board").querySelectorAll(".gift.ready")];
+      if (waiting.length) {
+        let next = 0;
+        const go = (g) => { const at = Math.max(next, performance.now() + 450); next = at + 380; setTimeout(() => unwrap(g), at - performance.now()); };
         if ("IntersectionObserver" in window) {
-          const io = new IntersectionObserver((es) => { if (es[0].isIntersecting) { io.disconnect(); fire(); } }, { threshold: .8 });
-          io.observe(g());
-        } else fire();
+          const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { io.unobserve(e.target); go(e.target); } }), { threshold: .6 });
+          waiting.forEach((g) => io.observe(g));
+        } else waiting.forEach(go);
       }
     }
 
