@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (7) · Sam's Claude
+
+- December reordered so makers alternate (Sam, Matt, joint, …), at Sam's request. The `works` order is the day order.
+
 ## 2026-11-24 (6) · Sam's Claude
 
 - **Acoustic** added to December (day 18): Sam, both, music, Play → `linglab.org/acoustic/`. December: 18 of 25.
