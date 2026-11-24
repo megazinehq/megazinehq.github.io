@@ -10,7 +10,7 @@ Nothing waiting.
 
 ## Issue 03 · December 2026
 
-Nothing waiting.
+An advent calendar: 25 days, one piece a day, in `works` order. Days 1–15 are filled; **days 16–25 need pieces** (10 more).
 
 ## Issue 04 · January 2027
 

@@ -320,6 +320,91 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
 @media (prefers-reduced-motion: reduce) {
   .clip, .clip:hover { transition: none; transform: none; }
 }
+/* Advent calendar (an issue with "advent": true): 25 wrapped gifts in day order; one more opens each day.
+   Gift paper keeps its own inks in both themes, like the gold seal. Sizes are in cqi so a gift scales as one piece. */
+.adv-intro { margin: 0 0 18px; font: 400 .92rem/1.45 var(--type); color: var(--muted); max-width: 64ch; }
+.adv-intro b { color: var(--toner); }
+.cal { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 2.6vw, 30px) clamp(8px, 2.2vw, 26px);
+  padding: clamp(22px, 3.4vw, 40px) clamp(10px, 2.6vw, 32px) clamp(16px, 2.6vw, 30px); margin: 0 0 36px;
+  background: radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--pink) 7%, transparent), transparent 40%), var(--sheet);
+  border: 2px solid var(--toner); box-shadow: 7px 7px 0 var(--pink); }
+.gift { position: relative; aspect-ratio: 1; min-width: 0; padding: 0; border: 0; background: none; color: #18181B; font: inherit; cursor: pointer;
+  container-type: inline-size; transform: rotate(var(--tilt, 0deg)); -webkit-tap-highlight-color: transparent; transition: transform .2s ease; }
+.gift:focus-visible { outline: 3px solid var(--pink); outline-offset: 4px; }
+.gift > span, .gift .g-wrap > *, .gift .g-in > * { position: absolute; display: block; }
+.g-wrap, .g-in { inset: 0; }
+.g-half, .g-lid, .g-base { background: var(--pat); border: 2px solid #18181B; }
+.g-half { top: 34%; bottom: 0; }
+.g-half.l { left: 6%; right: 50%; border-right: 0; transform-origin: 0 100%; }
+.g-half.r { left: 50%; right: 6%; border-left: 0; transform-origin: 100% 100%; }
+.g-lid { left: 1%; right: 1%; top: 19%; height: 17%; box-shadow: 0 2.5cqi 0 rgb(0 0 0 / .18); z-index: 2; }
+.g-rv, .g-lrv { left: 50%; width: 15%; margin-left: -7.5%; background: var(--rib); border-inline: 2px solid #18181B; }
+.g-rv { top: 34%; bottom: 0; transform-origin: 50% 0; }
+.g-lrv { top: 0; bottom: 0; }
+.g-rh { left: 6%; right: 6%; top: 58%; height: 13%; background: var(--rib); border-block: 2px solid #18181B; transform-origin: 50% 50%; }
+.g-bow { left: 25%; width: 50%; top: -3%; height: auto; z-index: 3; overflow: visible; }
+.g-num { right: -5%; bottom: -6%; z-index: 4; width: 34%; aspect-ratio: 1; display: grid !important; place-items: center; border-radius: 50%;
+  background: #FBFBF8; border: 2px solid #18181B; font: 400 17cqi/1 var(--display); transform: rotate(-8deg); box-shadow: 1.5cqi 1.5cqi 0 rgb(0 0 0 / .25); }
+.g-in { opacity: 0; }
+.g-base { left: 6%; right: 6%; top: 54%; bottom: 0; z-index: 2; }
+.g-base::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 18%; background: rgb(0 0 0 / .35); }
+.g-card { left: 13%; right: 13%; top: 6%; bottom: 30%; z-index: 1; display: grid !important; place-items: center; padding: 5cqi; text-align: center;
+  background: #FBFBF8; border: 2px solid #18181B; transform: rotate(-4deg); font: 400 min(11cqi, calc(78cqi / var(--wl, 7))) / 1.02 var(--display); overflow: hidden; overflow-wrap: anywhere; }
+.g-say { left: 50%; top: -14%; z-index: 6; transform: translateX(-50%); white-space: nowrap; padding: 4px 8px; background: #18181B; color: #FBFBF8;
+  font: 700 .72rem/1 var(--type); letter-spacing: .06em; opacity: 0; pointer-events: none; transition: opacity .15s; }
+.gift.nope .g-say { opacity: 1; }
+.gift.today::before { content: "Today"; position: absolute; left: -4%; bottom: 2%; z-index: 5; transform: rotate(-6deg);
+  padding: 3px 7px; background: var(--pink); color: #fff; font: 700 clamp(.55rem, 1.6vw, .72rem)/1 var(--type); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.gift.opened .g-wrap, .gift.late .g-in, .gift.locked .g-in, .gift.ready .g-in { display: none; }
+.gift.opened .g-in { opacity: 1; }
+.gift.locked { cursor: default; }
+.gift.locked .g-wrap { filter: saturate(.55); opacity: .82; }
+.gift.ready:hover, .gift.opened:hover { transform: rotate(0deg) translateY(-3px); }
+.gift.ready.today .g-wrap { filter: drop-shadow(0 0 0 var(--pink)); animation: g-glow 1.6s ease-in-out infinite alternate; }
+@keyframes g-glow { to { filter: drop-shadow(0 0 2.5cqi var(--pink)); } }
+.g-conf { position: absolute; left: 50%; top: 45%; width: 7%; height: 4%; z-index: 7; pointer-events: none; background: var(--c); }
+@media (prefers-reduced-motion: no-preference) {
+  .gift.ready:not(.today) { animation: g-hop 4.5s ease-in-out var(--hop, 0s) infinite; }
+  @keyframes g-hop { 0%, 86%, 100% { transform: rotate(var(--tilt)); } 90% { transform: rotate(var(--tilt)) translateY(-6%); } 94% { transform: rotate(calc(var(--tilt) + 3deg)); } }
+  .gift.nope { animation: g-no .4s ease-in-out; }
+  @keyframes g-no { 25% { transform: rotate(calc(var(--tilt) - 5deg)); } 50% { transform: rotate(calc(var(--tilt) + 5deg)); } 75% { transform: rotate(calc(var(--tilt) - 3deg)); } }
+  .gift.unwrapping { animation: g-shake .5s ease-in-out both; z-index: 5; }
+  @keyframes g-shake { 0%, 100% { transform: rotate(var(--tilt)) scale(1.05); } 15% { transform: rotate(calc(var(--tilt) - 9deg)) scale(1.08); }
+    35% { transform: rotate(calc(var(--tilt) + 8deg)) scale(1.08); } 55% { transform: rotate(calc(var(--tilt) - 6deg)) scale(1.07); } 75% { transform: rotate(calc(var(--tilt) + 4deg)) scale(1.06); } }
+  .unwrapping .g-bow { animation: g-bow .55s .45s cubic-bezier(.3, .7, .5, 1) both; }
+  @keyframes g-bow { to { transform: translate(35%, -190%) rotate(250deg) scale(.6); opacity: 0; } }
+  .unwrapping .g-rv, .unwrapping .g-lrv { animation: g-ribv .3s .55s ease-in both; }
+  @keyframes g-ribv { to { transform: scaleY(0); opacity: 0; } }
+  .unwrapping .g-rh { animation: g-ribh .3s .55s ease-in both; }
+  @keyframes g-ribh { to { transform: scaleX(0); opacity: 0; } }
+  .unwrapping .g-lid { animation: g-lid .6s .72s cubic-bezier(.2, .8, .4, 1) both; }
+  @keyframes g-lid { 35% { transform: translateY(-80%) rotate(-8deg); } 100% { transform: translate(-40%, -210%) rotate(-42deg); opacity: 0; } }
+  .unwrapping .g-half.l { animation: g-fall-l .6s .95s cubic-bezier(.5, 0, .8, .6) both; }
+  .unwrapping .g-half.r { animation: g-fall-r .6s .95s cubic-bezier(.5, 0, .8, .6) both; }
+  @keyframes g-fall-l { to { transform: translate(-30%, 25%) rotate(-62deg); opacity: 0; } }
+  @keyframes g-fall-r { to { transform: translate(30%, 25%) rotate(62deg); opacity: 0; } }
+  .unwrapping .g-in { display: block; animation: g-in .35s 1.05s both; }
+  @keyframes g-in { from { opacity: 0; } to { opacity: 1; } }
+  .unwrapping .g-card { animation: g-card .65s 1.05s cubic-bezier(.3, 1.6, .5, 1) both; }
+  @keyframes g-card { from { transform: translateY(45%) rotate(-4deg); } to { transform: translateY(0) rotate(-4deg); } }
+  .g-conf { animation: g-conf 1s var(--dl, .95s) cubic-bezier(.2, .7, .4, 1) both; }
+  @keyframes g-conf { 0% { transform: translate(-50%, 0) rotate(0); opacity: 0; } 8% { opacity: 1; } 100% { transform: translate(calc(-50% + var(--dx)), var(--dy)) rotate(var(--r)); opacity: 0; } }
+}
+@media (max-width: 520px) { .cal { gap: 18px 7px; } .g-num { border-width: 1.5px; } .g-half, .g-lid, .g-base, .g-card { border-width: 1.5px; } }
+.adv-sub { font: 700 .8rem/1 var(--type); letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin: 0 0 18px; }
+.dday { font: 700 .72rem/1 var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--pink); }
+/* the gift's piece, shown when it's unwrapped */
+dialog#gift-dlg { border: 0; padding: 0; background: transparent; color: var(--toner); max-width: none; max-height: none; width: 100vw; height: 100dvh; overflow: auto; }
+dialog#gift-dlg::backdrop { background: rgb(12 12 14 / .8); }
+dialog#gift-dlg[open] { display: grid; place-items: center; }
+.gf-wrap { width: min(92vw, 460px); display: grid; gap: 14px; padding-block: 28px; }
+.gf-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; font: 400 1.4rem/1 var(--display); color: #ECEDE9; }
+.gf-wrap .clip { transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  dialog#gift-dlg[open] .clip { animation: gf-pop .5s cubic-bezier(.3, 1.5, .5, 1) both; }
+  @keyframes gf-pop { from { transform: scale(.55) rotate(-6deg); opacity: 0; } to { transform: none; opacity: 1; } }
+}
+
 /* December: string lights over the logo and down the right margin (issue "decor": "lights").
    Blue bulbs at the end of the drape flicker for Hanukkah, one more for each night. */
 .mast { position: relative; }
@@ -383,6 +468,11 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
       <a class="to-backs" id="to-backs" href="#back-sect" hidden>Back issues ↓</a>
     </div>
     <div class="filters" id="filters" role="group" aria-label="Filter by kind"></div>
+    <div id="advent" hidden>
+      <p class="adv-intro" id="adv-intro" aria-live="polite"></p>
+      <div class="cal" id="cal" role="group" aria-label="Advent calendar"></div>
+      <h3 class="adv-sub" id="adv-sub" hidden>Unwrapped so far</h3>
+    </div>
     <div class="board" id="board"><p class="err">Loading the issue…</p></div>
   </section>
   <section class="wrap" aria-labelledby="back-h" id="back-sect" hidden>
@@ -429,6 +519,13 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   <span>megaZINE · edited by Sam &amp; Matt</span>
   <span>Fold it, cut it, leave it somewhere. <a class="sendc" href="contact/">Send comment</a></span>
 </footer>
+
+<dialog id="gift-dlg" aria-labelledby="gf-day">
+  <div class="gf-wrap">
+    <div class="gf-bar"><span id="gf-day"></span><button type="button" class="bk-x" id="gf-x">Close</button></div>
+    <div id="gf-card"></div>
+  </div>
+</dialog>
 
 <dialog id="book" aria-label="Picture book">
   <div class="bk-wrap">
@@ -577,11 +674,28 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     const inIssue = issue.works.map((id) => byId[id]).filter(Boolean);
     const issued = new Set(inIssue.map((w) => w.id));
 
+    // Advent calendar: the issue's works list is the day order (first = the 1st), up to 25.
+    // A day's gift can open from that day on (viewer's local time); in a back issue all are open.
+    // In a preview, &day=N pretends it is the Nth, and &fresh forgets which gifts this browser opened.
+    const advent = !!issue.advent;
+    const slots = advent ? Array.from({ length: 25 }, (_, k) => byId[issue.works[k]] || null) : [];
+    const dayOf = new Map(slots.map((w, k) => [w && w.id, k + 1]));
+    let today = 0, calDay = 0;   // calDay: the date (99 once the month is over); today: the last gift that can open
+    if (advent) {
+      const asked = parseInt(q.get("day"), 10);
+      if (peek && asked > 0) calDay = Math.min(asked, 31);
+      else if (issue.month === thisMonth) calDay = d.getDate();
+      else if (issue.month < thisMonth) calDay = 99;
+      else calDay = peek ? 1 : 0;
+      today = Math.min(calDay, 25);
+    }
+    const out = (w) => !advent || (dayOf.get(w.id) || 99) <= today;
+
     // Copy stamp, with a starting point picked by copy number.
     if (copy) {
       const n = parseInt(copy, 10);
       const run = data.zine.print_run || "?";
-      const live = inIssue.filter((w) => (w.links || []).some((l) => l.url));
+      const live = inIssue.filter((w) => out(w) && (w.links || []).some((l) => l.url));
       const b = live.length ? live[(n - 1) % live.length] : null;
       const bl = b && b.links.find((l) => l.url);
       $("stamp").innerHTML = `<span>You're holding copy ${n} of ${run}.</span>` +
@@ -601,18 +715,14 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
       drawBoard();
     });
 
-    // A fresh order on every visit, so nothing is permanently first or last,
-    // except the Street Team Pack, which always closes the stack.
-    const order = shuffled(inIssue.filter((w) => w.id !== "street-team"))
-      .concat(inIssue.filter((w) => w.id === "street-team"));
-    function drawBoard() {
-      const list = order.filter((w) => active === "all" || w.kind === active);
-      $("board").innerHTML = list.map((w, i) => {
-        const tilt = [-.7, .5, -.3, .8, -.5, .3][i % 6];
-        const tape = [-4, 3, -2, 5, -3, 2][i % 6];
-        return `<article class="clip${w.id === focusId ? " hit" : ""}" id="${esc(w.id)}" style="--tilt:${tilt}deg;--tape:${tape}deg">
+    const MONTH = (issue.date || "").split(" ")[0];
+    function cardHTML(w, i, pop) {
+      const tilt = [-.7, .5, -.3, .8, -.5, .3][i % 6];
+      const tape = [-4, 3, -2, 5, -3, 2][i % 6];
+      const day = advent && dayOf.get(w.id);
+      return `<article class="clip${w.id === focusId && !pop ? " hit" : ""}"${pop ? "" : ` id="${esc(w.id)}"`} data-w="${esc(w.id)}" style="--tilt:${tilt}deg;--tape:${tape}deg">
           ${sealSVG(w, i)}
-          <div class="meta"><span class="kind">${esc(KINDS[w.kind] || w.kind)}</span></div>
+          <div class="meta"><span class="kind">${esc(KINDS[w.kind] || w.kind)}</span>${day ? `<span class="dday">${esc(MONTH.slice(0, 3))} ${day}</span>` : ""}</div>
           <h3>${esc(w.title)}</h3>
           ${w.platform ? `<p class="plat">${esc(w.platform)}</p>` : ""}
           ${w.image ? `<img class="art" src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy">` : ""}
@@ -620,9 +730,138 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
           ${creditHTML(w)}
           <div class="links">${w.book ? `<button type="button" class="btn primary" data-book="${esc(w.id)}">${esc(w.book.label || "Open the book")} ▸</button>${w.book.pdf ? `<a class="btn" href="${esc(w.book.pdf)}" download>Download PDF ↓</a>` : ""}` : ""}${(w.links || []).map((l, j) => linkHTML(l, j === 0 && !w.book)).join("")}${w.hands ? IH_BADGE : ""}</div>
         </article>`;
-      }).join("");
     }
-    drawBoard();
+
+    // A fresh order on every visit, so nothing is permanently first or last,
+    // except the Street Team Pack, which always closes the stack. An advent issue keeps its day order.
+    let order = shuffled(inIssue.filter((w) => w.id !== "street-team"))
+      .concat(inIssue.filter((w) => w.id === "street-team"));
+    function drawBoard() {
+      const list = order.filter((w) => active === "all" || w.kind === active);
+      $("board").innerHTML = list.map((w, i) => cardHTML(w, i)).join("");
+    }
+    if (advent) setupAdvent(); else drawBoard();
+
+    function setupAdvent() {
+      $("filters").hidden = true;
+      $("advent").hidden = false;
+      const backIssue = calDay === 99;
+      const KEY = `mz-advent-${issue.id}${peek ? "-preview" : ""}`;
+      let seen = new Set();
+      try { if (peek && q.has("fresh")) localStorage.removeItem(KEY); seen = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch (e) {}
+      const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...seen])); } catch (e) {} };
+      const state = (k) => {
+        const day = k + 1;
+        if (day > today) return "locked";
+        if (!slots[k]) return "late";
+        return backIssue || seen.has(day) ? "opened" : "ready";
+      };
+      // Wrapping paper, the same for a day on every visit.
+      const INK = { red: "#D7263D", green: "#1F7A4D", blue: "#0055B3", pink: "#F2369B", gold: "#D8A83A", black: "#18181B", cream: "#F6EFE0", white: "#FBFBF8" };
+      const PAPERS = [["red", "cream", "gold"], ["green", "cream", "red"], ["blue", "white", "pink"], ["pink", "white", "gold"], ["black", "gold", "red"],
+        ["cream", "red", "green"], ["gold", "red", "blue"], ["white", "blue", "red"], ["green", "gold", "white"], ["red", "white", "green"]];
+      const PATS = [
+        (a, b) => `repeating-linear-gradient(45deg,${a} 0 6cqi,${b} 6cqi 9cqi)`,
+        (a, b) => `radial-gradient(circle,${b} 0 1.9cqi,transparent 2.3cqi) 0 0/9cqi 9cqi,${a}`,
+        (a, b) => `conic-gradient(${a} 25%,${b} 0 50%,${a} 0 75%,${b} 0) 0 0/12cqi 12cqi`,
+        (a, b) => `repeating-linear-gradient(90deg,transparent 0 5cqi,color-mix(in srgb,${b} 55%,transparent) 5cqi 7cqi),repeating-linear-gradient(0deg,${a} 0 5cqi,color-mix(in srgb,${b} 55%,${a}) 5cqi 7cqi)`,
+        (a, b) => `radial-gradient(circle at 25% 25%,${b} 0 1.2cqi,transparent 1.5cqi) 0 0/7cqi 7cqi,radial-gradient(circle at 75% 75%,${b} 0 1.2cqi,transparent 1.5cqi) 0 0/7cqi 7cqi,${a}`,
+      ];
+      const rng = (s) => () => { s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+      const BOW = `<svg class="g-bow" viewBox="0 0 60 34" aria-hidden="true"><g stroke="#18181B" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" fill="var(--rib)">
+        <path d="M28 21L19 33h-5l9-13M32 21l9 12h5l-9-13"/><path d="M30 20C21 2 4 2 6 14c2 10 16 10 24 6zM30 20C39 2 56 2 54 14c-2 10-16 10-24 6z"/><circle cx="30" cy="20" r="5"/></g></svg>`;
+      const sayDay = (day) => `${MONTH} ${day}`;
+      function giftHTML(k) {
+        const day = k + 1, w = slots[k], st = state(k), r = rng(day * 7919 + Number(issue.id || 0));
+        const [p, i, rb] = PAPERS[Math.floor(r() * PAPERS.length)];
+        const pat = PATS[Math.floor(r() * PATS.length)](INK[p], INK[i]);
+        const tilt = (r() * 7 - 3.5).toFixed(1);
+        const label = st === "locked" ? `${sayDay(day)}: still wrapped. It opens on ${sayDay(day)}.`
+          : st === "late" ? `${sayDay(day)}: still being wrapped.`
+          : st === "ready" ? `${sayDay(day)}: unwrap it` : `${sayDay(day)}: ${w.title}`;
+        return `<button type="button" class="gift ${st}${day === calDay ? " today" : ""}" data-day="${day}" aria-label="${esc(label)}"
+            style="--tilt:${tilt}deg;--pat:${pat};--rib:${INK[rb]};--hop:${(r() * 4).toFixed(2)}s;--wl:${w ? Math.max(6, ...w.title.split(/\s+/).map((x) => x.length)) : 7}">
+          <span class="g-in" aria-hidden="true"><span class="g-card">${w ? esc(w.title) : ""}</span><span class="g-base"></span></span>
+          <span class="g-wrap" aria-hidden="true"><span class="g-half l"></span><span class="g-half r"></span><span class="g-rv"></span><span class="g-rh"></span>
+            <span class="g-lid"><span class="g-lrv"></span></span>${BOW}</span>
+          <span class="g-num" aria-hidden="true">${day}</span>
+          <span class="g-say" aria-hidden="true"></span>
+        </button>`;
+      }
+      function intro() {
+        const wrapped = slots.filter((w, k) => state(k) === "ready").length;
+        let t;
+        if (backIssue) t = `An advent calendar: one piece a day, ${MONTH} 1 to 25. Every gift is open.`;
+        else if (today === 0) t = `An advent calendar: one new piece a day, ${MONTH} 1 to 25. The first gift opens on ${sayDay(1)}.`;
+        else t = `An advent calendar: one new piece a day, ${MONTH} 1 to 25. ` + (calDay > 25 ? "All 25 are out." : `Today is <b>${sayDay(calDay)}</b>.`) +
+          (wrapped ? ` ${wrapped === 1 ? "One gift is" : wrapped + " gifts are"} waiting to be unwrapped.` : calDay < 25 ? " Come back tomorrow for the next one." : "");
+        if (peek) t += ` <i>Preview as ${calDay ? sayDay(calDay) : "before the 1st"}: add &amp;day=N to try another day, &amp;fresh to wrap them all again.</i>`;
+        $("adv-intro").innerHTML = t;
+      }
+      function drawAll() {
+        $("cal").innerHTML = slots.map((w, k) => giftHTML(k)).join("");
+        const shown = slots.filter((w, k) => state(k) === "opened");
+        order = backIssue ? shown : shown.slice().reverse();
+        $("adv-sub").hidden = !order.length;
+        drawBoard();
+        intro();
+      }
+      drawAll();
+
+      function reveal(day) {
+        const w = slots[day - 1];
+        $("gf-day").textContent = sayDay(day);
+        $("gf-card").innerHTML = cardHTML(w, day, true);
+        const dlg = $("gift-dlg");
+        $("gf-x").onclick = () => dlg.close();
+        dlg.onclick = (e) => { if (e.target === dlg || e.target.classList.contains("gf-wrap")) dlg.close(); };
+        dlg.showModal();
+        $("gf-x").focus();
+      }
+      let busy = false;
+      function unwrap(g) {
+        const day = +g.dataset.day;
+        if (busy) return;
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        busy = true;
+        g.classList.remove("ready", "nope");
+        g.classList.add("unwrapping");
+        if (!reduce) {
+          const cols = ["#D7263D", "#1F7A4D", "#0055B3", "#F2369B", "#D8A83A", "#FBFBF8"];
+          for (let n = 0; n < 22; n++) {
+            const c = document.createElement("span"), a = Math.random() * Math.PI * 2, R = 60 + Math.random() * 110;
+            c.className = "g-conf";
+            c.style.cssText = `--c:${cols[n % cols.length]};--dx:${(Math.cos(a) * R).toFixed(0)}px;--dy:${(Math.sin(a) * R - 40).toFixed(0)}px;--r:${(Math.random() * 720 - 360).toFixed(0)}deg;--dl:${(.9 + Math.random() * .15).toFixed(2)}s`;
+            g.appendChild(c);
+          }
+        }
+        seen.add(day); save();
+        setTimeout(() => {
+          busy = false;
+          drawAll();
+          reveal(day);
+        }, reduce ? 0 : 1650);
+      }
+      $("cal").addEventListener("click", (e) => {
+        const g = e.target.closest(".gift"); if (!g) return;
+        const day = +g.dataset.day;
+        if (g.classList.contains("ready")) return unwrap(g);
+        if (g.classList.contains("opened")) return reveal(day);
+        g.querySelector(".g-say").textContent = g.classList.contains("late") ? "Still wrapping" : `Opens ${MONTH.slice(0, 3)} ${day}`;
+        g.classList.remove("nope"); void g.offsetWidth; g.classList.add("nope");
+        clearTimeout(g._t); g._t = setTimeout(() => g.classList.remove("nope"), 1400);
+      });
+      // Today's gift unwraps by itself the first time this browser sees it, once it is on screen.
+      const first = !focusId && !openBookId && calDay >= 1 && calDay <= 25 && state(calDay - 1) === "ready";
+      if (first) {
+        const g = () => $("cal").querySelector(`.gift[data-day="${calDay}"]`);
+        const fire = () => setTimeout(() => { const el = g(); if (el && el.classList.contains("ready")) unwrap(el); }, 600);
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver((es) => { if (es[0].isIntersecting) { io.disconnect(); fire(); } }, { threshold: .7 });
+          io.observe(g());
+        } else fire();
+      }
+    }
 
     $("legend").innerHTML = ["hands", "claude", "both"].map((m, j) => sealSVG({ seal: "You", made: m }, j)).join("");
 
@@ -684,8 +923,8 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     document.addEventListener("click", (e) => {
       const a = e.target.closest("a.btn, .stamp a");
       if (!a || a.closest("#backs")) return;
-      const card = a.closest("[id]");
-      const id = card && byId[card.id] ? card.id : "copy-start";
+      const card = a.closest("[data-w]");
+      const id = card && byId[card.dataset.w] ? card.dataset.w : "copy-start";
       track(`/click/${id}`, `Click: ${(byId[id] || {}).title || "copy start"} · ${a.textContent.replace(" ↗", "").trim()}`, true);
     });
 

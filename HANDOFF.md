@@ -2,6 +2,12 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (2) · Sam's Claude
+
+- **December is an advent calendar** (Sam and Matt's idea): `"advent": true` on Issue 03. The site shows 25 wrapped gifts; one opens a day, Dec 1–25, and the first visit that day unwraps it on its own; missed days stay wrapped until clicked; opened pieces list below as cards, newest first. The `works` order is the **day order** now (no shuffle). Docs in CLAUDE/README/MATT. Try `?preview=03&day=N&fresh`.
+- Lineup is 15 long: **days 16–25 still need pieces** (QUEUE.md). Mushroom Walk got its own day: Substrate is now id `mushroom-substrate`, Walk took `mushroom-walk` (December wasn't printed yet, so no paper codes break). Added Matt's **subtext** and **Mega-Dino** (has Invisible Hands in it, so `hands`); both marked `made: "both"` pending Matt's word.
+- Open question: the December paper still lists every piece with codes (spoils the calendar, and at 15+ it goes duplex). Sam hasn't decided what the paper should be for an advent issue.
+
 ## 2026-11-23 · Sam's Claude
 
 - Sam's projects moved to his own domain **linglab.org** with lowercase paths (repos renamed: `samuelling/Tunnel` → `tunnel`, etc.). Every `samuelling.github.io/...` link in works.json, the site, contact page and docs now points at `https://linglab.org/<lowercase>/`; all checked to load. Old github.io links still redirect, so printed codes are unaffected (they use `?go=<id>`). index.html rebuilt with build.py (no diff); no PDFs changed.
