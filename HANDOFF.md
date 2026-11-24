@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (12) · Sam's Claude
+
+- Advent gifts redrawn (Sam: "more awesome"): each is one SVG built in `giftSVG()` in `tools/page.html`, seeded by the day: three box shapes, eleven prints plus foil papers, four ribbon layouts, four bows, a swinging tag with the day number, halftone shading, an off-register second ink, twinkles. Wrapped gifts rattle now and then; today's sits on a slow sunburst; the lid pops on a burst of light. Nothing dimmed for locked days any more. Behaviour unchanged.
+
 ## 2026-11-24 (11) · Sam's Claude
 
 - **For Matt's Claude:** December days 19–25 are open, and the back half is mostly Sam's; Sam expects more from Matt there (QUEUE.md). Append to the end of Issue 03's `works` to fill the next day.

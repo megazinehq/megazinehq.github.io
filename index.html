@@ -326,16 +326,16 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   .clip, .clip:hover { transition: none; transform: none; }
 }
 /* Advent calendar (an issue with "advent": true): 25 wrapped gifts in day order; one more opens each day.
-   Gift paper keeps its own inks in both themes, like the gold seal. Sizes are in cqi so a gift scales as one piece. */
+   Gift paper keeps its own inks in both themes, like the gold seal. */
 .adv-intro { margin: 0 0 18px; font: 400 .92rem/1.45 var(--type); color: var(--muted); max-width: 64ch; }
 .adv-intro b { color: var(--toner); }
 /* each day is a panel the size of a card: a big wrapped gift until its day, then the piece's card */
-.slot { position: relative; display: grid; place-items: center; align-content: center; gap: 16px; min-width: 0; min-height: 340px; padding: 40px 18px 22px;
+.slot { position: relative; display: grid; place-items: center; align-content: center; gap: 16px; min-width: 0; min-height: 340px; padding: 44px 18px 22px;
   background: var(--sheet); border: 1px solid var(--rule); box-shadow: 0 1px 0 var(--rule); transform: rotate(var(--tilt, 0deg)); }
 .slot::before { content: ""; position: absolute; top: -9px; left: 50%; width: 74px; height: 18px; transform: translateX(-50%) rotate(var(--tape, -3deg));
   background: color-mix(in srgb, var(--blue) 22%, transparent); border: 1px solid color-mix(in srgb, var(--blue) 30%, transparent); }
 .slot.is-today { box-shadow: 0 0 0 3px var(--pink); }
-.slot .gift { width: min(66%, 230px); }
+.slot .gift { width: min(88%, 290px); }
 .s-cap { margin: 0; text-align: center; font: 700 .76rem/1.2 var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .s-cap b { display: block; margin-bottom: 6px; font: 400 1.4rem/1 var(--display); letter-spacing: 0; text-transform: none; color: var(--toner); }
 .is-today .s-cap { color: var(--pink); }
@@ -345,64 +345,65 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   .clip.fresh { animation: gf-pop .55s cubic-bezier(.3, 1.5, .5, 1) both; }
   @keyframes gf-pop { from { transform: scale(.6) rotate(-6deg); opacity: 0; } to { transform: rotate(var(--tilt, 0deg)); opacity: 1; } }
 }
-.gift { position: relative; aspect-ratio: 1; min-width: 0; padding: 0; border: 0; background: none; color: #18181B; font: inherit; cursor: pointer;
-  container-type: inline-size; transform: rotate(var(--tilt, 0deg)); -webkit-tap-highlight-color: transparent; transition: transform .2s ease; }
-.gift:focus-visible { outline: 3px solid var(--pink); outline-offset: 4px; }
-.gift > span, .gift .g-wrap > *, .gift .g-in > * { position: absolute; display: block; }
-.g-wrap, .g-in { inset: 0; }
-.g-half, .g-lid, .g-base { background: var(--pat); border: 2px solid #18181B; }
-.g-half { top: 34%; bottom: 0; }
-.g-half.l { left: 6%; right: 50%; border-right: 0; transform-origin: 0 100%; }
-.g-half.r { left: 50%; right: 6%; border-left: 0; transform-origin: 100% 100%; }
-.g-lid { left: 1%; right: 1%; top: 19%; height: 17%; box-shadow: 0 2.5cqi 0 rgb(0 0 0 / .18); z-index: 2; }
-.g-rv, .g-lrv { left: 50%; width: 15%; margin-left: -7.5%; background: var(--rib); border-inline: 2px solid #18181B; }
-.g-rv { top: 34%; bottom: 0; transform-origin: 50% 0; }
-.g-lrv { top: 0; bottom: 0; }
-.g-rh { left: 6%; right: 6%; top: 58%; height: 13%; background: var(--rib); border-block: 2px solid #18181B; transform-origin: 50% 50%; }
-.g-bow { left: 25%; width: 50%; top: -3%; height: auto; z-index: 3; overflow: visible; }
-.g-num { right: -5%; bottom: -6%; z-index: 4; width: 34%; aspect-ratio: 1; display: grid !important; place-items: center; border-radius: 50%;
-  background: #FBFBF8; border: 2px solid #18181B; font: 400 17cqi/1 var(--display); transform: rotate(-8deg); box-shadow: 1.5cqi 1.5cqi 0 rgb(0 0 0 / .25); }
-.g-in { opacity: 0; }
-.g-base { left: 6%; right: 6%; top: 54%; bottom: 0; z-index: 2; }
-.g-base::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 18%; background: rgb(0 0 0 / .35); }
-.g-card { left: 13%; right: 13%; top: 6%; bottom: 30%; z-index: 1; display: grid !important; place-items: center; padding: 5cqi; text-align: center;
-  background: #FBFBF8; border: 2px solid #18181B; transform: rotate(-4deg); font: 400 min(11cqi, calc(78cqi / var(--wl, 7))) / 1.02 var(--display); overflow: hidden; overflow-wrap: anywhere; }
-.g-say { left: 50%; top: -14%; z-index: 6; transform: translateX(-50%); white-space: nowrap; padding: 4px 8px; background: #18181B; color: #FBFBF8;
+/* A gift is one SVG in a 200 × 214 box (paper, ribbon, bow, tag), so transforms inside it are in those units. */
+@property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.gift { position: relative; z-index: 1; min-width: 0; padding: 0; border: 0; background: none; color: #18181B; font: inherit; cursor: pointer;
+  transform: rotate(var(--tilt, 0deg)); -webkit-tap-highlight-color: transparent; }
+.gift:focus-visible { outline: 3px solid var(--pink); outline-offset: 8px; }
+.gift > span { position: absolute; display: block; }
+.g-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.g-svg .g-n { font-family: var(--display); fill: #18181B; }
+.g-bow, .g-lid, .g-half, .g-rv, .g-lrv, .g-rh { transform-box: fill-box; transform-origin: 50% 50%; }
+.g-half.l { transform-origin: 0% 100%; }
+.g-half.r { transform-origin: 100% 100%; }
+.g-rv, .g-lrv { transform-origin: 50% 0%; }
+.g-tag, .g-spark, .g-rays { transform-origin: 0 0; }
+.g-rays { opacity: 0; }
+.g-say { left: 50%; top: -6%; z-index: 6; transform: translateX(-50%); white-space: nowrap; padding: 4px 8px; background: #18181B; color: #FBFBF8;
   font: 700 .72rem/1 var(--type); letter-spacing: .06em; opacity: 0; pointer-events: none; transition: opacity .15s; }
 .gift.nope .g-say { opacity: 1; }
-.gift.opened .g-wrap, .gift.late .g-in, .gift.locked .g-in, .gift.ready .g-in { display: none; }
-.gift.opened .g-in { opacity: 1; }
-.gift.locked { cursor: default; }
-.gift.locked .g-wrap { filter: saturate(.55); opacity: .82; }
-.gift.ready:hover, .gift.opened:hover { transform: rotate(0deg) translateY(-3px); }
-.gift.ready.today .g-wrap { filter: drop-shadow(0 0 0 var(--pink)); animation: g-glow 1.6s ease-in-out infinite alternate; }
-@keyframes g-glow { to { filter: drop-shadow(0 0 2.5cqi var(--pink)); } }
+.gift.locked, .gift.late { cursor: default; }
 .gift.quick { --sp: .45; }
 .g-conf { position: absolute; left: 50%; top: 45%; width: 7%; height: 4%; z-index: 7; pointer-events: none; background: var(--c); }
+/* today's gift sits on a slow sunburst */
+.slot.is-today::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-conic-gradient(from var(--ang) at 50% 44%, color-mix(in srgb, var(--pink) 20%, transparent) 0 9deg, transparent 9deg 18deg);
+  -webkit-mask: radial-gradient(circle at 50% 44%, #000 0 26%, transparent 70%); mask: radial-gradient(circle at 50% 44%, #000 0 26%, transparent 70%); }
 @media (prefers-reduced-motion: no-preference) {
-  .gift.ready:not(.today) { animation: g-hop 4.5s ease-in-out var(--hop, 0s) infinite; }
-  @keyframes g-hop { 0%, 86%, 100% { transform: rotate(var(--tilt)); } 90% { transform: rotate(var(--tilt)) translateY(-6%); } 94% { transform: rotate(calc(var(--tilt) + 3deg)); } }
-  .gift.nope { animation: g-no .4s ease-in-out; }
-  @keyframes g-no { 25% { transform: rotate(calc(var(--tilt) - 5deg)); } 50% { transform: rotate(calc(var(--tilt) + 5deg)); } 75% { transform: rotate(calc(var(--tilt) - 3deg)); } }
+  .slot.is-today::after { animation: g-sun 60s linear infinite; }
+  @keyframes g-sun { to { --ang: 360deg; } }
+  /* every so often a wrapped gift rattles, as if something inside moved */
+  .gift { animation: g-rattle var(--cyc, 9s) ease-in-out var(--hop, 0s) infinite; }
+  @keyframes g-rattle { 0%, 86%, 100% { transform: rotate(var(--tilt)); } 88% { transform: rotate(calc(var(--tilt) - 4deg)) translateY(-3%); } 91% { transform: rotate(calc(var(--tilt) + 4deg)); }
+    94% { transform: rotate(calc(var(--tilt) - 3deg)) translateY(-1.5%); } 97% { transform: rotate(calc(var(--tilt) + 2deg)); } }
+  .gift:hover, .gift.nope { animation: g-no .45s ease-in-out; }
+  @keyframes g-no { 25% { transform: rotate(calc(var(--tilt) - 5deg)) scale(1.03); } 50% { transform: rotate(calc(var(--tilt) + 5deg)) scale(1.03); } 75% { transform: rotate(calc(var(--tilt) - 3deg)); } }
+  .g-tag { animation: g-swing var(--sw, 3s) ease-in-out infinite alternate; }
+  @keyframes g-swing { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }
+  .g-spark { animation: g-twinkle var(--t, 3s) ease-in-out var(--d, 0s) infinite; }
+  @keyframes g-twinkle { 0%, 100% { transform: scale(.1) rotate(0deg); opacity: 0; } 50% { transform: scale(1) rotate(45deg); opacity: 1; } }
+  /* the unwrapping: shake, bow and tag go, ribbons pull away, lid pops on a burst of light, paper falls */
   .gift.unwrapping { animation: g-shake calc(.5s * var(--sp, 1)) ease-in-out both; z-index: 5; }
   @keyframes g-shake { 0%, 100% { transform: rotate(var(--tilt)) scale(1.05); } 15% { transform: rotate(calc(var(--tilt) - 9deg)) scale(1.08); }
     35% { transform: rotate(calc(var(--tilt) + 8deg)) scale(1.08); } 55% { transform: rotate(calc(var(--tilt) - 6deg)) scale(1.07); } 75% { transform: rotate(calc(var(--tilt) + 4deg)) scale(1.06); } }
   .unwrapping .g-bow { animation: g-bow calc(.55s * var(--sp, 1)) calc(.45s * var(--sp, 1)) cubic-bezier(.3, .7, .5, 1) both; }
-  @keyframes g-bow { to { transform: translate(35%, -190%) rotate(250deg) scale(.6); opacity: 0; } }
+  @keyframes g-bow { to { transform: translate(60px, -150px) rotate(250deg) scale(.6); opacity: 0; } }
+  .unwrapping .g-tag { animation: g-tagdrop calc(.5s * var(--sp, 1)) calc(.5s * var(--sp, 1)) ease-in both; }
+  @keyframes g-tagdrop { to { transform: translate(24px, 130px) rotate(70deg); opacity: 0; } }
   .unwrapping .g-rv, .unwrapping .g-lrv { animation: g-ribv calc(.3s * var(--sp, 1)) calc(.55s * var(--sp, 1)) ease-in both; }
   @keyframes g-ribv { to { transform: scaleY(0); opacity: 0; } }
   .unwrapping .g-rh { animation: g-ribh calc(.3s * var(--sp, 1)) calc(.55s * var(--sp, 1)) ease-in both; }
   @keyframes g-ribh { to { transform: scaleX(0); opacity: 0; } }
+  .unwrapping .g-fx, .unwrapping .g-mis, .unwrapping .g-shadow, .unwrapping .g-spark { animation: g-fade calc(.3s * var(--sp, 1)) calc(.65s * var(--sp, 1)) ease-in both; }
+  @keyframes g-fade { to { opacity: 0; } }
   .unwrapping .g-lid { animation: g-lid calc(.6s * var(--sp, 1)) calc(.72s * var(--sp, 1)) cubic-bezier(.2, .8, .4, 1) both; }
-  @keyframes g-lid { 35% { transform: translateY(-80%) rotate(-8deg); } 100% { transform: translate(-40%, -210%) rotate(-42deg); opacity: 0; } }
+  @keyframes g-lid { 35% { transform: translate(0, -40px) rotate(-8deg); } 100% { transform: translate(-70px, -190px) rotate(-42deg); opacity: 0; } }
+  .unwrapping .g-rays { animation: g-rays calc(.85s * var(--sp, 1)) calc(.8s * var(--sp, 1)) ease-out both; }
+  @keyframes g-rays { 0% { transform: scale(.1) rotate(0deg); opacity: 0; } 25% { opacity: 1; } 100% { transform: scale(1.3) rotate(40deg); opacity: 0; } }
   .unwrapping .g-half.l { animation: g-fall-l calc(.6s * var(--sp, 1)) calc(.95s * var(--sp, 1)) cubic-bezier(.5, 0, .8, .6) both; }
   .unwrapping .g-half.r { animation: g-fall-r calc(.6s * var(--sp, 1)) calc(.95s * var(--sp, 1)) cubic-bezier(.5, 0, .8, .6) both; }
-  @keyframes g-fall-l { to { transform: translate(-30%, 25%) rotate(-62deg); opacity: 0; } }
-  @keyframes g-fall-r { to { transform: translate(30%, 25%) rotate(62deg); opacity: 0; } }
-  .unwrapping .g-in { display: block; animation: g-in calc(.35s * var(--sp, 1)) calc(1.05s * var(--sp, 1)) both; }
-  @keyframes g-in { from { opacity: 0; } to { opacity: 1; } }
-  .unwrapping .g-card { animation: g-card calc(.65s * var(--sp, 1)) calc(1.05s * var(--sp, 1)) cubic-bezier(.3, 1.6, .5, 1) both; }
-  @keyframes g-card { from { transform: translateY(45%) rotate(-4deg); } to { transform: translateY(0) rotate(-4deg); } }
+  @keyframes g-fall-l { to { transform: translate(-50px, 40px) rotate(-62deg); opacity: 0; } }
+  @keyframes g-fall-r { to { transform: translate(50px, 40px) rotate(62deg); opacity: 0; } }
   .g-conf { animation: g-conf calc(1s * var(--sp, 1)) var(--dl, .95s) cubic-bezier(.2, .7, .4, 1) both; }
   @keyframes g-conf { 0% { transform: translate(-50%, 0) rotate(0); opacity: 0; } 8% { opacity: 1; } 100% { transform: translate(calc(-50% + var(--dx)), var(--dy)) rotate(var(--r)); opacity: 0; } }
 }
@@ -462,6 +463,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     </radialGradient>
     <path id="seal-top" d="M -33 0 A 33 33 0 0 1 33 0"/>
     <path id="seal-bot" d="M -39.5 0 A 39.5 39.5 0 0 0 39.5 0"/>
+    <pattern id="g-ht" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><circle cx="2.5" cy="2.5" r="1.3" fill="#18181B"/></pattern>
   </defs>
 </svg>
 
@@ -752,40 +754,112 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         if (!slots[k]) return "late";
         return backIssue || seen.has(day) ? "opened" : "ready";
       };
-      // Wrapping paper, the same for a day on every visit.
-      const INK = { red: "#D7263D", green: "#1F7A4D", blue: "#0055B3", pink: "#F2369B", gold: "#D8A83A", black: "#18181B", cream: "#F6EFE0", white: "#FBFBF8" };
-      const PAPERS = [["red", "cream", "gold"], ["green", "cream", "red"], ["blue", "white", "pink"], ["pink", "white", "gold"], ["black", "gold", "red"],
-        ["cream", "red", "green"], ["gold", "red", "blue"], ["white", "blue", "red"], ["green", "gold", "white"], ["red", "white", "green"]];
-      const PATS = [
-        (a, b) => `repeating-linear-gradient(45deg,${a} 0 6cqi,${b} 6cqi 9cqi)`,
-        (a, b) => `radial-gradient(circle,${b} 0 1.9cqi,transparent 2.3cqi) 0 0/9cqi 9cqi,${a}`,
-        (a, b) => `conic-gradient(${a} 25%,${b} 0 50%,${a} 0 75%,${b} 0) 0 0/12cqi 12cqi`,
-        (a, b) => `repeating-linear-gradient(90deg,transparent 0 5cqi,color-mix(in srgb,${b} 55%,transparent) 5cqi 7cqi),repeating-linear-gradient(0deg,${a} 0 5cqi,color-mix(in srgb,${b} 55%,${a}) 5cqi 7cqi)`,
-        (a, b) => `radial-gradient(circle at 25% 25%,${b} 0 1.2cqi,transparent 1.5cqi) 0 0/7cqi 7cqi,radial-gradient(circle at 75% 75%,${b} 0 1.2cqi,transparent 1.5cqi) 0 0/7cqi 7cqi,${a}`,
-      ];
+      // Wrapping, the same for a day on every visit. Each gift is one SVG in a 200 × 214 box: a box in one of three
+      // shapes, printed paper, a ribbon, one of four bows, a swinging tag with the day on it, and a few twinkles.
+      const OUT = "#18181B";
       const rng = (s) => () => { s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
-      const BOW = `<svg class="g-bow" viewBox="0 0 60 34" aria-hidden="true"><g stroke="#18181B" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" fill="var(--rib)">
-        <path d="M28 21L19 33h-5l9-13M32 21l9 12h5l-9-13"/><path d="M30 20C21 2 4 2 6 14c2 10 16 10 24 6zM30 20C39 2 56 2 54 14c-2 10-16 10-24 6z"/><circle cx="30" cy="20" r="5"/></g></svg>`;
+      const INK = { red: "#D7263D", green: "#1F7A4D", blue: "#0055B3", pink: "#F2369B", gold: "#E0B03C", black: "#18181B", cream: "#F6EFE0", white: "#FBFBF8",
+        teal: "#00838A", orange: "#FF5A1F", purple: "#6B3FA0", kraft: "#C9A26B", navy: "#14213D", mint: "#BFE3D0", ice: "#CFE6F5", lemon: "#F8E39A" };
+      // [paper, print, ribbon]
+      const PAPERS = [["red", "cream", "gold"], ["green", "cream", "red"], ["blue", "white", "pink"], ["pink", "white", "teal"], ["black", "gold", "red"],
+        ["cream", "red", "green"], ["gold", "red", "blue"], ["white", "blue", "red"], ["green", "gold", "white"], ["red", "white", "green"],
+        ["kraft", "white", "red"], ["navy", "lemon", "pink"], ["teal", "cream", "orange"], ["purple", "lemon", "gold"], ["mint", "green", "red"],
+        ["ice", "blue", "orange"], ["orange", "cream", "navy"], ["lemon", "pink", "blue"]];
+      // foil paper: [light, mid, dark, ribbon]
+      const FOILS = [["#FBEFB8", "#E0B03C", "#94671A", "red"], ["#F7F9FB", "#C3CAD2", "#7C848E", "blue"], ["#FFD3E8", "#F2369B", "#A31463", "black"]];
+      const f1 = (v) => (Math.round(v * 10) / 10);
+      const star5 = (cx, cy, R) => { let d = ""; for (let i = 0; i < 10; i++) { const a = Math.PI * i / 5 - Math.PI / 2, rr = i % 2 ? R * .42 : R; d += (i ? "L" : "M") + f1(cx + rr * Math.cos(a)) + " " + f1(cy + rr * Math.sin(a)); } return d + "Z"; };
+      const star4 = (s) => { const k = f1(s * .2); return `M0 ${-s}Q${k} ${-k} ${s} 0Q${k} ${k} 0 ${s}Q${-k} ${k} ${-s} 0Q${-k} ${-k} 0 ${-s}Z`; };
+      const flake = (cx, cy, R) => [0, 60, 120].map((g) => { const a = g * Math.PI / 180, dx = f1(R * Math.cos(a)), dy = f1(R * Math.sin(a)); return `M${cx - dx} ${cy - dy}L${cx + dx} ${cy + dy}`; }).join("");
+      const burst = (n, R, r0) => { let d = ""; for (let i = 0; i < n * 2; i++) { const a = Math.PI * i / n, rr = i % 2 ? r0 : R; d += (i ? "L" : "M") + f1(rr * Math.cos(a)) + " " + f1(rr * Math.sin(a)); } return d + "Z"; };
+      // prints: (print ink, accent ink) → [tile width, tile height, drawing, transform]
+      const PATS = [
+        (b) => [18, 18, `<rect width="7" height="18" fill="${b}"/>`, "rotate(45)"],
+        (b) => [20, 20, `<circle cx="5" cy="5" r="3.6" fill="${b}"/><circle cx="15" cy="15" r="3.6" fill="${b}"/>`],
+        (b) => [30, 30, `<path d="${star5(8, 9, 6.5)}${star5(23, 23, 4.5)}" fill="${b}"/>`],
+        (b) => [30, 30, `<path d="${flake(8, 8, 6)}${flake(23, 23, 4.5)}" fill="none" stroke="${b}" stroke-width="2" stroke-linecap="round"/>`],
+        (b, c) => [24, 30, `<path d="M12 3l6 9h-3l6 9H3l6-9H6z" fill="${b}"/><rect x="10.5" y="21" width="3" height="4" fill="${c}"/><circle cx="21" cy="5" r="1.6" fill="${c}"/>`],
+        (b) => [24, 14, `<path d="M-1 11L6 3l6 8 6-8 7 8" fill="none" stroke="${b}" stroke-width="3.5"/>`],
+        (b, c) => [28, 28, `<rect width="10" height="28" fill="${b}" opacity=".5"/><rect width="28" height="10" fill="${b}" opacity=".5"/><path d="M19 0v28M0 19h28" stroke="${c}" stroke-width="1.6"/>`],
+        (b, c) => [26, 26, `<rect width="9" height="26" fill="${b}"/><rect x="14" width="3" height="26" fill="${c}"/>`, "rotate(-35)"],
+        (b, c) => [34, 34, `<rect x="3" y="5" width="8" height="3" rx="1.5" fill="${b}" transform="rotate(25 7 6)"/><rect x="20" y="3" width="8" height="3" rx="1.5" fill="${c}" transform="rotate(-35 24 4)"/><rect x="12" y="17" width="8" height="3" rx="1.5" fill="${b}" transform="rotate(70 16 18)"/><rect x="24" y="22" width="8" height="3" rx="1.5" fill="${c}" transform="rotate(10 28 23)"/><circle cx="6" cy="27" r="2.2" fill="${c}"/><circle cx="30" cy="12" r="1.8" fill="${b}"/>`],
+        (b) => [22, 22, `<path d="M0 0h11v11H0zM11 11h11v11H11z" fill="${b}"/>`],
+        (b) => [24, 14, `<path d="M0 0a12 12 0 0 0 24 0M-12 7a12 12 0 0 0 24 0M12 7a12 12 0 0 0 24 0" fill="none" stroke="${b}" stroke-width="2.2"/>`],
+      ];
+      const SPARKLE = [32, 32, `<path d="${star4(6)}" transform="translate(8 8)" fill="#fff" opacity=".9"/><path d="${star4(4)}" transform="translate(24 23)" fill="#fff" opacity=".8"/>`];
+      // bows, drawn around the middle of the lid's top edge
+      const TAILS = `<path d="M-2-8L-26 18l9-1 3 8L6-4zM2-8L26 18l-9-1-3 8L-6-4z"/>`;
+      const KNOT = `<rect x="-8" y="-18" width="16" height="18" rx="5"/>`;
+      const BACK = "M0-8C-16-54-60-44-52-22-47-8-16-4 0-8zM0-8C16-54 60-44 52-22 47-8 16-4 0-8z";
+      const CURLS = ["M0-8C-6-30-30-24-34-42-36-54-20-56-20-46", "M0-8C6-30 30-24 34-42 36-54 20-56 20-46", "M0-8C-2-28-12-40-4-56 2-66 12-58 6-52", "M0-8C-20-14-40-6-50-18-56-28-44-34-40-26", "M0-8C20-14 40-6 50-18 56-28 44-34 40-26"];
+      const BOWS = [
+        () => `${TAILS}<path d="M0-8C-10-34-44-36-46-16-47 0-18 2 0-8zM0-8C10-34 44-36 46-16 47 0 18 2 0-8z"/><path d="M-7-11C-18-22-31-22-38-15M7-11C18-22 31-22 38-15" fill="none" stroke-width="2"/>${KNOT}`,
+        () => `<path d="${BACK}"/><path d="${BACK}" fill="#000" stroke="none" opacity=".2"/>${TAILS}<path d="M0-8C-14-22-42-18-41-3-40 9-14 3 0-8zM0-8C14-22 42-18 41-3 40 9 14 3 0-8z"/>${KNOT}`,
+        () => { const P = (n, cy, rx, ry, off) => Array.from({ length: n }, (_, k) => `<ellipse cx="0" cy="${cy}" rx="${rx}" ry="${ry}" transform="rotate(${k * 360 / n + off} 0 -22)"/>`).join("");
+          return `${P(10, -38, 8, 15, 0)}<circle cy="-22" r="17" fill="#000" stroke="none" opacity=".2"/>${P(6, -32, 6.5, 10, 30)}<circle cy="-22" r="6"/>`; },
+        (rib) => `${TAILS}<g fill="none" stroke-linecap="round">${CURLS.map((d) => `<path d="${d}" stroke-width="10.5"/><path d="${d}" stroke="${rib}" stroke-width="5"/>`).join("")}</g><circle cy="-9" r="8"/>`,
+      ];
+      const SHAPES = [{ x: 36, w: 128, y: 86, h: 104, lo: 9, lh: 30 }, { x: 48, w: 104, y: 66, h: 124, lo: 8, lh: 28 }, { x: 16, w: 168, y: 112, h: 78, lo: 8, lh: 28 }];
+      function giftSVG(day, r, big) {
+        const { x, w, y, h, lo, lh } = SHAPES[Math.floor(r() * SHAPES.length)];
+        const lx = x - lo, lw = w + 2 * lo, ly = y - lh + 4, id = `g${issue.id}-${day}`;
+        const foil = r() < .16 ? FOILS[Math.floor(r() * FOILS.length)] : null;
+        const [pn, bn, rn] = foil ? ["", "", foil[3]] : PAPERS[Math.floor(r() * PAPERS.length)];
+        const paper = foil ? `url(#${id}f)` : INK[pn], rib = INK[rn];
+        const [tw, th, art, tf] = foil ? SPARKLE : PATS[Math.floor(r() * PATS.length)](INK[bn], rib);
+        const plainLid = !foil && r() < .28;   // a lid in the print's ink, for contrast
+        const second = /pink|red|orange|purple/.test(pn) || (foil && foil[1] === "#F2369B") ? INK.blue : INK.pink;
+        // ribbon: a cross, one band, an off-centre cross, or a doubled thin cross
+        const lay = Math.floor(r() * 4), cx = lay === 2 ? Math.round(x + w * .3) : 100, hy = lay === 1 ? null : Math.round(y + h * (lay === 2 ? .62 : .5));
+        const bw = lay === 3 ? 8 : 22;
+        const band = (bx, by, bw2, bh, vert) => `<rect x="${bx}" y="${by}" width="${bw2}" height="${bh}" fill="${rib}" stroke="${OUT}" stroke-width="3"/>` +
+          (vert ? `<path d="M${bx + bw2 * .3} ${by + 3}V${by + bh - 3}"` : `<path d="M${bx + 3} ${by + bw2 * 0 + bh * .3}H${bx + bw2 - 3}"`) + ` stroke="#fff" stroke-width="${bw > 10 ? 2.4 : 1.4}" opacity=".45"/>`;
+        const vs = lay === 3 ? [cx - 11, cx + 3] : [cx - 11];
+        const rv = vs.map((bx) => band(bx, y, bw, h, true)).join("");
+        const lrv = vs.map((bx) => band(bx, ly, bw, lh, true)).join("");
+        const rh = hy === null ? "" : (lay === 3 ? [hy - 11, hy + 3] : [hy - 11]).map((by) => band(x, by, w, bw, false)).join("");
+        const half = (hx, hw, d) => `<rect x="${hx}" y="${y}" width="${hw}" height="${h}" fill="${paper}"/><rect x="${hx}" y="${y}" width="${hw}" height="${h}" fill="url(#${id}p)"/><path d="${d}" fill="none" stroke="${OUT}" stroke-width="3.4" stroke-linejoin="round"/>`;
+        const ta = -f1(5 + r() * 11), ns = big ? 7 : 3, sparks = Array.from({ length: ns }, (_, i) => {
+          const a = (i / ns) * Math.PI * 2 + r() * 1.4, R = 88 + r() * 16, s = f1(5 + r() * (big ? 7 : 5));
+          const sx = f1(Math.max(6, Math.min(194, 100 + R * Math.cos(a)))), sy = f1(Math.max(4, Math.min(182, 108 + R * Math.sin(a))));
+          return `<g transform="translate(${sx} ${sy})"><path class="g-spark" d="${star4(s)}" fill="${["#F8E39A", "#FBFBF8", INK.pink][i % 3]}" stroke="${OUT}" stroke-width="1.4" stroke-linejoin="round" style="--t:${f1(2 + r() * 2.6)}s;--d:${-f1(r() * 4)}s"/></g>`;
+        }).join("");
+        return `<svg class="g-svg" viewBox="0 0 200 214" aria-hidden="true" focusable="false">
+          <defs>${foil ? `<linearGradient id="${id}f" gradientUnits="userSpaceOnUse" x1="${lx}" y1="${ly}" x2="${lx + lw}" y2="190"><stop offset="0" stop-color="${foil[0]}"/><stop offset=".35" stop-color="${foil[1]}"/><stop offset=".55" stop-color="${foil[0]}"/><stop offset="1" stop-color="${foil[2]}"/></linearGradient>` : ""}
+            <pattern id="${id}p" width="${tw}" height="${th}" patternUnits="userSpaceOnUse"${tf ? ` patternTransform="${tf}"` : ""}>${art}</pattern></defs>
+          <ellipse class="g-shadow" cx="100" cy="192" rx="${w / 2 + 16}" ry="7" fill="#000" opacity=".16"/>
+          <g transform="translate(100 ${Math.round(y + h * .3)})"><path class="g-rays" d="${burst(14, 118, 52)}" fill="#F8E39A" stroke="${OUT}" stroke-width="2.4" stroke-linejoin="round"/></g>
+          <path class="g-mis" d="M${lx + 6} ${ly + 6}h${lw}v${lh}h${-lo}v${h - 4}h${-w}v${4 - h}h${-lo}z" fill="${second}"/>
+          <g class="g-half l">${half(x, 100 - x, `M100 ${y}H${x}v${h}H100`)}</g>
+          <g class="g-half r">${half(100, x + w - 100, `M100 ${y}H${x + w}v${h}H100`)}</g>
+          <g class="g-rv">${rv}</g><g class="g-rh">${rh}</g>
+          <g class="g-fx"><rect x="${x + 1.7}" y="${y + 4}" width="${w - 3.4}" height="8" fill="#000" opacity=".26"/><rect x="${f1(x + w * .76)}" y="${y + 12}" width="${f1(w * .24 - 1.7)}" height="${h - 13.7}" fill="url(#g-ht)" opacity=".42"/>
+            <rect x="${x + 6}" y="${y + 16}" width="4" height="${h - 24}" rx="2" fill="#fff" opacity=".4"/></g>
+          <g transform="translate(${x + w - 22} ${y + 4}) rotate(${ta})"><g class="g-tag" style="--sw:${f1(2.4 + r() * 1.6)}s"><path d="M0 0v14" stroke="${OUT}" stroke-width="1.8"/>
+            <g transform="translate(0 14)"><path d="M-9-9H9L19 3v39q0 5-5 5h-28q-5 0-5-5V3z" fill="#FBF3DC" stroke="${OUT}" stroke-width="3" stroke-linejoin="round"/>
+              <circle r="5.2" fill="none" stroke="${rib === INK.white || rib === INK.gold ? INK.red : rib}" stroke-width="2.4"/><circle r="2.2" fill="${OUT}"/>
+              <text class="g-n" y="${day > 9 ? 35 : 37}" text-anchor="middle" font-size="${day > 9 ? 20 : 25}">${day}</text></g></g></g>
+          <g class="g-lid"><rect x="${lx}" y="${ly}" width="${lw}" height="${lh}" fill="${plainLid ? INK[bn] : paper}"/>${plainLid ? "" : `<rect x="${lx}" y="${ly}" width="${lw}" height="${lh}" fill="url(#${id}p)"/>`}
+            <g class="g-lrv">${lrv}</g><rect x="${f1(lx + lw * .78)}" y="${ly}" width="${f1(lw * .22)}" height="${lh}" fill="url(#g-ht)" opacity=".42"/><path d="M${lx + 5} ${ly + 5}H${lx + lw * .6}" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+            <rect x="${lx}" y="${ly}" width="${lw}" height="${lh}" fill="none" stroke="${OUT}" stroke-width="3.4" stroke-linejoin="round"/></g>
+          <g transform="translate(${cx} ${ly})"><g class="g-bow" fill="${rib}" stroke="${OUT}" stroke-width="3.2" stroke-linejoin="round">${BOWS[Math.floor(r() * BOWS.length)](rib)}</g></g>
+          ${sparks}
+        </svg>`;
+      }
       const sayDay = (day) => `${MONTH} ${day}`;
       const TILT = [-.7, .5, -.3, .8, -.5, .3], TAPE = [-4, 3, -2, 5, -3, 2];
       function slotHTML(k, fresh) {
         const day = k + 1, w = slots[k], st = state(k), r = rng(day * 7919 + Number(issue.id || 0));
         if (st === "opened") return cardHTML(w, k, false, fresh ? "fresh" : "");
-        const [p, i, rb] = PAPERS[Math.floor(r() * PAPERS.length)];
-        const pat = PATS[Math.floor(r() * PATS.length)](INK[p], INK[i]);
-        const tilt = (r() * 7 - 3.5).toFixed(1);
+        const tilt = (r() * 6 - 3).toFixed(1);
         const isToday = day === calDay;
         const label = st === "locked" ? `${sayDay(day)}: still wrapped. It opens on ${sayDay(day)}.`
           : st === "late" ? `${sayDay(day)}: still being wrapped.` : `${sayDay(day)}: unwrap it`;
         const cap = st === "locked" ? `Opens on the ${day}${["th", "st", "nd", "rd"][(day % 10 > 3 || [11, 12, 13].includes(day)) ? 0 : day % 10]}`
           : st === "late" ? "Still being wrapped" : isToday ? "Today's gift" : "Unwrapping…";
         return `<div class="slot${isToday ? " is-today" : ""}" id="day-${day}" style="--tilt:${TILT[k % 6]}deg;--tape:${TAPE[k % 6]}deg">
-          <button type="button" class="gift ${st}" data-day="${day}" aria-label="${esc(label)}"
-            style="--tilt:${tilt}deg;--pat:${pat};--rib:${INK[rb]};--hop:${(r() * 4).toFixed(2)}s;--wl:${w ? Math.max(6, ...w.title.split(/\s+/).map((x) => x.length)) : 7}">
-            <span class="g-in" aria-hidden="true"><span class="g-card">${w ? esc(w.title) : ""}</span><span class="g-base"></span></span>
-            <span class="g-wrap" aria-hidden="true"><span class="g-half l"></span><span class="g-half r"></span><span class="g-rv"></span><span class="g-rh"></span>
-              <span class="g-lid"><span class="g-lrv"></span></span>${BOW}</span>
-            <span class="g-num" aria-hidden="true">${day}</span>
+          <button type="button" class="gift ${st}" data-day="${day}" aria-label="${esc(label)}" style="--tilt:${tilt}deg;--hop:${-(r() * 12).toFixed(2)}s;--cyc:${(7 + r() * 7).toFixed(1)}s">
+            ${giftSVG(day, r, isToday)}
             <span class="g-say" aria-hidden="true"></span>
           </button>
           <p class="s-cap" aria-hidden="true"><b>${esc(sayDay(day))}</b>${cap}</p>
