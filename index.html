@@ -329,10 +329,22 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
    Gift paper keeps its own inks in both themes, like the gold seal. Sizes are in cqi so a gift scales as one piece. */
 .adv-intro { margin: 0 0 18px; font: 400 .92rem/1.45 var(--type); color: var(--muted); max-width: 64ch; }
 .adv-intro b { color: var(--toner); }
-.cal { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 2.6vw, 30px) clamp(8px, 2.2vw, 26px);
-  padding: clamp(22px, 3.4vw, 40px) clamp(10px, 2.6vw, 32px) clamp(16px, 2.6vw, 30px); margin: 0 0 36px;
-  background: radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--pink) 7%, transparent), transparent 40%), var(--sheet);
-  border: 2px solid var(--toner); box-shadow: 7px 7px 0 var(--pink); }
+/* each day is a panel the size of a card: a big wrapped gift until its day, then the piece's card */
+.slot { position: relative; display: grid; place-items: center; align-content: center; gap: 16px; min-width: 0; min-height: 340px; padding: 40px 18px 22px;
+  background: var(--sheet); border: 1px solid var(--rule); box-shadow: 0 1px 0 var(--rule); transform: rotate(var(--tilt, 0deg)); }
+.slot::before { content: ""; position: absolute; top: -9px; left: 50%; width: 74px; height: 18px; transform: translateX(-50%) rotate(var(--tape, -3deg));
+  background: color-mix(in srgb, var(--blue) 22%, transparent); border: 1px solid color-mix(in srgb, var(--blue) 30%, transparent); }
+.slot.is-today { box-shadow: 0 0 0 3px var(--pink); }
+.slot .gift { width: min(66%, 230px); }
+.s-cap { margin: 0; text-align: center; font: 700 .76rem/1.2 var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.s-cap b { display: block; margin-bottom: 6px; font: 400 1.4rem/1 var(--display); letter-spacing: 0; text-transform: none; color: var(--toner); }
+.is-today .s-cap { color: var(--pink); }
+.adv-jump { font: inherit; color: var(--pink); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 640px) { .slot { min-height: 280px; } }
+@media (prefers-reduced-motion: no-preference) {
+  .clip.fresh { animation: gf-pop .55s cubic-bezier(.3, 1.5, .5, 1) both; }
+  @keyframes gf-pop { from { transform: scale(.6) rotate(-6deg); opacity: 0; } to { transform: rotate(var(--tilt, 0deg)); opacity: 1; } }
+}
 .gift { position: relative; aspect-ratio: 1; min-width: 0; padding: 0; border: 0; background: none; color: #18181B; font: inherit; cursor: pointer;
   container-type: inline-size; transform: rotate(var(--tilt, 0deg)); -webkit-tap-highlight-color: transparent; transition: transform .2s ease; }
 .gift:focus-visible { outline: 3px solid var(--pink); outline-offset: 4px; }
@@ -358,8 +370,6 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
 .g-say { left: 50%; top: -14%; z-index: 6; transform: translateX(-50%); white-space: nowrap; padding: 4px 8px; background: #18181B; color: #FBFBF8;
   font: 700 .72rem/1 var(--type); letter-spacing: .06em; opacity: 0; pointer-events: none; transition: opacity .15s; }
 .gift.nope .g-say { opacity: 1; }
-.gift.today::before { content: "Today"; position: absolute; left: -4%; bottom: 2%; z-index: 5; transform: rotate(-6deg);
-  padding: 3px 7px; background: var(--pink); color: #fff; font: 700 clamp(.55rem, 1.6vw, .72rem)/1 var(--type); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
 .gift.opened .g-wrap, .gift.late .g-in, .gift.locked .g-in, .gift.ready .g-in { display: none; }
 .gift.opened .g-in { opacity: 1; }
 .gift.locked { cursor: default; }
@@ -395,20 +405,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   .g-conf { animation: g-conf 1s var(--dl, .95s) cubic-bezier(.2, .7, .4, 1) both; }
   @keyframes g-conf { 0% { transform: translate(-50%, 0) rotate(0); opacity: 0; } 8% { opacity: 1; } 100% { transform: translate(calc(-50% + var(--dx)), var(--dy)) rotate(var(--r)); opacity: 0; } }
 }
-@media (max-width: 520px) { .cal { gap: 18px 7px; } .g-num { border-width: 1.5px; } .g-half, .g-lid, .g-base, .g-card { border-width: 1.5px; } }
-.adv-sub { font: 700 .8rem/1 var(--type); letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin: 0 0 18px; }
 .dday { font: 700 .72rem/1 var(--type); letter-spacing: .1em; text-transform: uppercase; color: var(--pink); }
-/* the gift's piece, shown when it's unwrapped */
-dialog#gift-dlg { border: 0; padding: 0; background: transparent; color: var(--toner); max-width: none; max-height: none; width: 100vw; height: 100dvh; overflow: auto; }
-dialog#gift-dlg::backdrop { background: rgb(12 12 14 / .8); }
-dialog#gift-dlg[open] { display: grid; place-items: center; }
-.gf-wrap { width: min(92vw, 460px); display: grid; gap: 14px; padding-block: 28px; }
-.gf-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; font: 400 1.4rem/1 var(--display); color: #ECEDE9; }
-.gf-wrap .clip { transform: none; }
-@media (prefers-reduced-motion: no-preference) {
-  dialog#gift-dlg[open] .clip { animation: gf-pop .5s cubic-bezier(.3, 1.5, .5, 1) both; }
-  @keyframes gf-pop { from { transform: scale(.55) rotate(-6deg); opacity: 0; } to { transform: none; opacity: 1; } }
-}
 
 /* December: string lights over the logo and down the right margin (issue "decor": "lights").
    Blue bulbs at the end of the drape flicker for Hanukkah, one more for each night. */
@@ -477,8 +474,6 @@ dialog#gift-dlg[open] { display: grid; place-items: center; }
     <div class="filters" id="filters" role="group" aria-label="Filter by kind"></div>
     <div id="advent" hidden>
       <p class="adv-intro" id="adv-intro" aria-live="polite"></p>
-      <div class="cal" id="cal" role="group" aria-label="Advent calendar"></div>
-      <h3 class="adv-sub" id="adv-sub" hidden>Unwrapped so far</h3>
     </div>
     <div class="board" id="board"><p class="err">Loading the issue…</p></div>
   </section>
@@ -526,13 +521,6 @@ dialog#gift-dlg[open] { display: grid; place-items: center; }
   <span>megaZINE · edited by Sam &amp; Matt</span>
   <span>Fold it, cut it, leave it somewhere. <a class="sendc" href="contact/">Send comment</a></span>
 </footer>
-
-<dialog id="gift-dlg" aria-labelledby="gf-day">
-  <div class="gf-wrap">
-    <div class="gf-bar"><span id="gf-day"></span><button type="button" class="bk-x" id="gf-x">Close</button></div>
-    <div id="gf-card"></div>
-  </div>
-</dialog>
 
 <dialog id="book" aria-label="Picture book">
   <div class="bk-wrap">
@@ -723,11 +711,11 @@ dialog#gift-dlg[open] { display: grid; place-items: center; }
     });
 
     const MONTH = (issue.date || "").split(" ")[0];
-    function cardHTML(w, i, pop) {
+    function cardHTML(w, i, pop, extra) {
       const tilt = [-.7, .5, -.3, .8, -.5, .3][i % 6];
       const tape = [-4, 3, -2, 5, -3, 2][i % 6];
       const day = advent && dayOf.get(w.id);
-      return `<article class="clip${w.id === focusId && !pop ? " hit" : ""}"${pop ? "" : ` id="${esc(w.id)}"`} data-w="${esc(w.id)}" style="--tilt:${tilt}deg;--tape:${tape}deg">
+      return `<article class="clip${extra ? " " + extra : ""}${w.id === focusId && !pop ? " hit" : ""}"${pop ? "" : ` id="${esc(w.id)}"`} data-w="${esc(w.id)}" style="--tilt:${tilt}deg;--tape:${tape}deg">
           ${sealSVG(w, i)}
           <div class="meta"><span class="kind">${esc(KINDS[w.kind] || w.kind)}</span>${day ? `<span class="dday">${esc(MONTH.slice(0, 3))} ${day}</span>` : ""}</div>
           <h3>${esc(w.title)}</h3>
@@ -778,22 +766,29 @@ dialog#gift-dlg[open] { display: grid; place-items: center; }
       const BOW = `<svg class="g-bow" viewBox="0 0 60 34" aria-hidden="true"><g stroke="#18181B" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" fill="var(--rib)">
         <path d="M28 21L19 33h-5l9-13M32 21l9 12h5l-9-13"/><path d="M30 20C21 2 4 2 6 14c2 10 16 10 24 6zM30 20C39 2 56 2 54 14c-2 10-16 10-24 6z"/><circle cx="30" cy="20" r="5"/></g></svg>`;
       const sayDay = (day) => `${MONTH} ${day}`;
-      function giftHTML(k) {
+      const TILT = [-.7, .5, -.3, .8, -.5, .3], TAPE = [-4, 3, -2, 5, -3, 2];
+      function slotHTML(k, fresh) {
         const day = k + 1, w = slots[k], st = state(k), r = rng(day * 7919 + Number(issue.id || 0));
+        if (st === "opened") return cardHTML(w, k, false, fresh ? "fresh" : "");
         const [p, i, rb] = PAPERS[Math.floor(r() * PAPERS.length)];
         const pat = PATS[Math.floor(r() * PATS.length)](INK[p], INK[i]);
         const tilt = (r() * 7 - 3.5).toFixed(1);
+        const isToday = day === calDay;
         const label = st === "locked" ? `${sayDay(day)}: still wrapped. It opens on ${sayDay(day)}.`
-          : st === "late" ? `${sayDay(day)}: still being wrapped.`
-          : st === "ready" ? `${sayDay(day)}: unwrap it` : `${sayDay(day)}: ${w.title}`;
-        return `<button type="button" class="gift ${st}${day === calDay ? " today" : ""}" data-day="${day}" aria-label="${esc(label)}"
+          : st === "late" ? `${sayDay(day)}: still being wrapped.` : `${sayDay(day)}: unwrap it`;
+        const cap = st === "locked" ? `Opens on the ${day}${["th", "st", "nd", "rd"][(day % 10 > 3 || [11, 12, 13].includes(day)) ? 0 : day % 10]}`
+          : st === "late" ? "Still being wrapped" : isToday ? "Today's gift · unwrap it" : "Unwrap it";
+        return `<div class="slot${isToday ? " is-today" : ""}" id="day-${day}" style="--tilt:${TILT[k % 6]}deg;--tape:${TAPE[k % 6]}deg">
+          <button type="button" class="gift ${st}" data-day="${day}" aria-label="${esc(label)}"
             style="--tilt:${tilt}deg;--pat:${pat};--rib:${INK[rb]};--hop:${(r() * 4).toFixed(2)}s;--wl:${w ? Math.max(6, ...w.title.split(/\s+/).map((x) => x.length)) : 7}">
-          <span class="g-in" aria-hidden="true"><span class="g-card">${w ? esc(w.title) : ""}</span><span class="g-base"></span></span>
-          <span class="g-wrap" aria-hidden="true"><span class="g-half l"></span><span class="g-half r"></span><span class="g-rv"></span><span class="g-rh"></span>
-            <span class="g-lid"><span class="g-lrv"></span></span>${BOW}</span>
-          <span class="g-num" aria-hidden="true">${day}</span>
-          <span class="g-say" aria-hidden="true"></span>
-        </button>`;
+            <span class="g-in" aria-hidden="true"><span class="g-card">${w ? esc(w.title) : ""}</span><span class="g-base"></span></span>
+            <span class="g-wrap" aria-hidden="true"><span class="g-half l"></span><span class="g-half r"></span><span class="g-rv"></span><span class="g-rh"></span>
+              <span class="g-lid"><span class="g-lrv"></span></span>${BOW}</span>
+            <span class="g-num" aria-hidden="true">${day}</span>
+            <span class="g-say" aria-hidden="true"></span>
+          </button>
+          <p class="s-cap" aria-hidden="true"><b>${esc(sayDay(day))}</b>${cap}</p>
+        </div>`;
       }
       function intro() {
         const wrapped = slots.filter((w, k) => state(k) === "ready").length;
@@ -802,29 +797,18 @@ dialog#gift-dlg[open] { display: grid; place-items: center; }
         else if (today === 0) t = `An advent calendar: one new piece a day, ${MONTH} 1 to 25. The first gift opens on ${sayDay(1)}.`;
         else t = `An advent calendar: one new piece a day, ${MONTH} 1 to 25. ` + (calDay > 25 ? "All 25 are out." : `Today is <b>${sayDay(calDay)}</b>.`) +
           (wrapped ? ` ${wrapped === 1 ? "One gift is" : wrapped + " gifts are"} waiting to be unwrapped.` : calDay < 25 ? " Come back tomorrow for the next one." : "");
+        if (calDay > 4 && calDay <= 25) t += ` <button type="button" class="adv-jump" id="adv-jump">Jump to today ↓</button>`;
         if (peek) t += ` <i>Preview as ${calDay ? sayDay(calDay) : "before the 1st"}: add &amp;day=N to try another day, &amp;fresh to wrap them all again.</i>`;
         $("adv-intro").innerHTML = t;
+        const j = $("adv-jump");
+        if (j) j.onclick = () => { const el = $(`day-${calDay}`) || document.getElementById(slots[calDay - 1] && slots[calDay - 1].id); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); };
       }
       function drawAll() {
-        $("cal").innerHTML = slots.map((w, k) => giftHTML(k)).join("");
-        const shown = slots.filter((w, k) => state(k) === "opened");
-        order = backIssue ? shown : shown.slice().reverse();
-        $("adv-sub").hidden = !order.length;
-        drawBoard();
+        $("board").innerHTML = slots.map((w, k) => slotHTML(k)).join("");
         intro();
       }
       drawAll();
 
-      function reveal(day) {
-        const w = slots[day - 1];
-        $("gf-day").textContent = sayDay(day);
-        $("gf-card").innerHTML = cardHTML(w, day, true);
-        const dlg = $("gift-dlg");
-        $("gf-x").onclick = () => dlg.close();
-        dlg.onclick = (e) => { if (e.target === dlg || e.target.classList.contains("gf-wrap")) dlg.close(); };
-        dlg.showModal();
-        $("gf-x").focus();
-      }
       let busy = false;
       function unwrap(g) {
         const day = +g.dataset.day;
@@ -835,36 +819,42 @@ dialog#gift-dlg[open] { display: grid; place-items: center; }
         g.classList.add("unwrapping");
         if (!reduce) {
           const cols = ["#D7263D", "#1F7A4D", "#0055B3", "#F2369B", "#D8A83A", "#FBFBF8"];
-          for (let n = 0; n < 22; n++) {
-            const c = document.createElement("span"), a = Math.random() * Math.PI * 2, R = 60 + Math.random() * 110;
+          for (let n = 0; n < 26; n++) {
+            const c = document.createElement("span"), a = Math.random() * Math.PI * 2, R = 80 + Math.random() * 140;
             c.className = "g-conf";
-            c.style.cssText = `--c:${cols[n % cols.length]};--dx:${(Math.cos(a) * R).toFixed(0)}px;--dy:${(Math.sin(a) * R - 40).toFixed(0)}px;--r:${(Math.random() * 720 - 360).toFixed(0)}deg;--dl:${(.9 + Math.random() * .15).toFixed(2)}s`;
+            c.style.cssText = `--c:${cols[n % cols.length]};--dx:${(Math.cos(a) * R).toFixed(0)}px;--dy:${(Math.sin(a) * R - 50).toFixed(0)}px;--r:${(Math.random() * 720 - 360).toFixed(0)}deg;--dl:${(.9 + Math.random() * .15).toFixed(2)}s`;
             g.appendChild(c);
           }
         }
         seen.add(day); save();
         setTimeout(() => {
           busy = false;
-          drawAll();
-          reveal(day);
-        }, reduce ? 0 : 1650);
+          const slot = $(`day-${day}`);
+          if (slot) {
+            slot.outerHTML = slotHTML(day - 1, true);
+            const card = document.getElementById(slots[day - 1].id);
+            if (card) { const b = card.querySelector("a.btn, button.btn"); if (b) b.focus({ preventScroll: true }); }
+          }
+          intro();
+        }, reduce ? 0 : 1700);
       }
-      $("cal").addEventListener("click", (e) => {
+      $("board").addEventListener("click", (e) => {
         const g = e.target.closest(".gift"); if (!g) return;
         const day = +g.dataset.day;
         if (g.classList.contains("ready")) return unwrap(g);
-        if (g.classList.contains("opened")) return reveal(day);
         g.querySelector(".g-say").textContent = g.classList.contains("late") ? "Still wrapping" : `Opens ${MONTH.slice(0, 3)} ${day}`;
         g.classList.remove("nope"); void g.offsetWidth; g.classList.add("nope");
         clearTimeout(g._t); g._t = setTimeout(() => g.classList.remove("nope"), 1400);
       });
-      // Today's gift unwraps by itself the first time this browser sees it, once it is on screen.
+      // Today's gift unwraps by itself the first time this browser sees it: scroll to it, then unwrap once it's on screen.
       const first = !focusId && !openBookId && calDay >= 1 && calDay <= 25 && state(calDay - 1) === "ready";
       if (first) {
-        const g = () => $("cal").querySelector(`.gift[data-day="${calDay}"]`);
-        const fire = () => setTimeout(() => { const el = g(); if (el && el.classList.contains("ready")) unwrap(el); }, 600);
+        const g = () => $("board").querySelector(`.gift[data-day="${calDay}"]`);
+        const fire = () => setTimeout(() => { const el = g(); if (el && el.classList.contains("ready")) unwrap(el); }, 500);
+        const r = g().getBoundingClientRect();
+        if (r.top < 0 || r.bottom > innerHeight) setTimeout(() => $(`day-${calDay}`).scrollIntoView({ behavior: "smooth", block: "center" }), 700);
         if ("IntersectionObserver" in window) {
-          const io = new IntersectionObserver((es) => { if (es[0].isIntersecting) { io.disconnect(); fire(); } }, { threshold: .7 });
+          const io = new IntersectionObserver((es) => { if (es[0].isIntersecting) { io.disconnect(); fire(); } }, { threshold: .8 });
           io.observe(g());
         } else fire();
       }

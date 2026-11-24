@@ -10,11 +10,11 @@ Nothing waiting.
 
 ## Issue 03 · December 2026
 
-An advent calendar: 25 days, one piece a day, in `works` order. Days 1–15 are filled; **days 16–25 need pieces** (10 more).
+An advent calendar: 25 days, one piece a day, in `works` order. Days 1–16 are filled; **days 17–25 need pieces** (9 more).
 
 ## Issue 04 · January 2027
 
-In `works.json` as a draft (not live until `"draft"` comes off): RetroSynths, LiveSkratch. Nothing else waiting.
+In `works.json` as a draft (not live until `"draft"` comes off): LiveSkratch (RetroSynths moved to December). Nothing else waiting.
 
 ## Issue 05 · February 2027
 

@@ -71,7 +71,8 @@
         "mushroom-substrate",
         "mushroom-walk",
         "subtext",
-        "mega-dino"
+        "mega-dino",
+        "retrosynths"
       ],
       "advent": true
     },
@@ -82,7 +83,6 @@
       "theme": "",
       "draft": true,
       "works": [
-        "retrosynths",
         "liveskratch"
       ]
     },

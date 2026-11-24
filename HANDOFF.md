@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (3) · Sam's Claude
+
+- Advent: each day is now a card-sized panel (a big gift until opened, then the piece's full card in place, in day order); the pop-up and the separate "unwrapped" list are gone. First visit of the day scrolls to today's gift and unwraps it.
+- **RetroSynths** moved from the January draft to December (day 16). December: 16 of 25; days 17–25 open.
+
 ## 2026-11-24 (2) · Sam's Claude
 
 - **December is an advent calendar** (Sam and Matt's idea): `"advent": true` on Issue 03. The site shows 25 wrapped gifts; one opens a day, Dec 1–25, and the first visit that day unwraps it on its own; missed days stay wrapped until clicked; opened pieces list below as cards, newest first. The `works` order is the **day order** now (no shuffle). Docs in CLAUDE/README/MATT. Try `?preview=03&day=N&fresh`.
