@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (9) · Sam's Claude
+
+- December reordered again so Matt's pieces come earlier (Sam felt the start was too heavy on his): Mega-Dino opens on the 1st; all six of Matt's land by the 13th.
+
 ## 2026-11-24 (8) · Sam's Claude
 
 - Advent: gifts on screen together open together; missed days at about double speed, today's at full speed. Returning visitors see nothing replay (the browser remembers); a preview link with `&fresh` wraps everything again on every load, so don't send that one around.
