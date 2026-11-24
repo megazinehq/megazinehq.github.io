@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (6) · Sam's Claude
+
+- **Acoustic** added to December (day 18): Sam, both, music, Play → `linglab.org/acoustic/`. December: 18 of 25.
+
 ## 2026-11-24 (5) · Sam's Claude
 
 - Advent: no clicking. Every gift whose day has come and that the browser hasn't opened unwraps by itself as it scrolls into view, a beat apart (first visit on the 10th opens 1–10 in turn). The auto-scroll to today is gone; "Jump to today ↓" stays.

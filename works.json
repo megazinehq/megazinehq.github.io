@@ -73,7 +73,8 @@
         "subtext",
         "mega-dino",
         "retrosynths",
-        "witness"
+        "witness",
+        "acoustic"
       ],
       "advent": true
     },
@@ -788,6 +789,23 @@
           "label": "App Store",
           "url": null,
           "status": "soon"
+        }
+      ]
+    },
+    {
+      "id": "acoustic",
+      "title": "Acoustic",
+      "kind": "music",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "A physically modelled acoustic guitar in the browser, every sound computed from strings, a pick, a bridge and a body. Play chords on a keyboard and a strumming hand plays them the way a guitarist would, with its own picking, fingerstyle patterns, slides and stray string noise.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://linglab.org/acoustic/"
         }
       ]
     },
