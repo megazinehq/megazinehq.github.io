@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (6) · Sam's Claude
+
+- Ashland (Issue 02) gets an **App Store** button for its iPhone app (`apps.apple.com/app/ashland-state-park/id6839325605`). Its paper code still goes to Play, so the printed November sheet is unchanged.
+
 ## 2026-11-25 (5) · Sam's Claude
 
 - The Briefing: Sam cleared it. The actor's rights are covered for our use, and the government seal and podium sign stay as an exception to the other-people's-names rule, since the piece is an obvious joke. The card now shows a still (`media/lab-briefing.jpg`). The blurb still doesn't name the setting.
