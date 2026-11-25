@@ -74,8 +74,8 @@
         "retrosynths",
         "witness",
         "gabor-grove",
-        "acoustic",
         "next-up",
+        "lab-briefing",
         "screech"
       ],
       "advent": true
@@ -87,7 +87,8 @@
       "theme": "",
       "draft": true,
       "works": [
-        "liveskratch"
+        "liveskratch",
+        "acoustic"
       ]
     },
     {
@@ -808,6 +809,23 @@
         {
           "label": "Play",
           "url": "https://linglab.org/acoustic/"
+        }
+      ]
+    },
+    {
+      "id": "lab-briefing",
+      "title": "The Briefing",
+      "kind": "art",
+      "made": "hands",
+      "makers": [
+        "Jan"
+      ],
+      "platform": "Video",
+      "blurb": "A spokesman at a press-briefing podium reads out the research description from Sam's lab website, word for word, with the full gravity of an address to the nation. It runs about a minute and dates from 2015.",
+      "links": [
+        {
+          "label": "Watch",
+          "url": "media/lab-briefing.mp4"
         }
       ]
     },

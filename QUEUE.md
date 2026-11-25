@@ -10,13 +10,13 @@ Nothing waiting.
 
 ## Issue 03 · December 2026
 
-An advent calendar: 25 days, one piece a day, in `works` order. Days 1–20 are filled; **days 21–25 need pieces** (5 more). Screech (day 20 for now) is meant to sit late in the month: put new pieces before it in the list, not after. Sam expects more from Matt: the back half is Sam-heavy (15–18 are Sam's), so Matt's new pieces fit best in 19–25. Witness's App Store link is still to come.
+An advent calendar: 25 days, one piece a day, in `works` order. Days 1–20 are filled; **days 21–25 need pieces** (5 more). Screech (day 20 for now) is meant to sit late in the month: put new pieces before it in the list, not after. Sam expects more from Matt: the back half is Sam-heavy, so Matt's new pieces fit best in the open days. Witness's App Store link is still to come.
 
 - **When OPUlation is approved on the App Store** (Sam, Nov 25): bundle it onto Screech's card as "two peculiar ways to talk": one over a modem protocol, one by fruit-fly courtship. Keep the work id `screech` and its day. New title along the lines of "Screech & OPUlation"; buttons: Screech web, Screech App Store, OPUlation web (`linglab.org/opulation/`), OPUlation App Store. Rewrite the blurb's first sentence to cover both. Sam, both.
 
 ## Issue 04 · January 2027
 
-In `works.json` as a draft (not live until `"draft"` comes off): LiveSkratch (RetroSynths moved to December). Nothing else waiting.
+In `works.json` as a draft (not live until `"draft"` comes off): LiveSkratch, Acoustic (moved from December). RetroSynths moved to December. Nothing else waiting.
 
 ## Issue 05 · February 2027
 

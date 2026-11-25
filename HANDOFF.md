@@ -2,6 +2,11 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (4) · Sam's Claude
+
+- **The Briefing** (`lab-briefing`) added to December, day 19 (before Screech): Jan, `made: "hands"`, a 2015 video of a hired spokesman at a press-briefing podium reading Sam's lab-website research description. Video in `media/lab-briefing.mp4` (1.3 MB, re-encoded from Sam's 32 MB .mov); the Watch button plays it. Title is a working title. **Flagged to Sam:** a real person (the actor) is on camera, and the set carries a government emblem and podium sign; no still on the card for that reason until Sam decides.
+- **Acoustic** moved from December to the January draft (Issue 04). December stays at 20 of 25 (next-up 18, The Briefing 19, Screech 20).
+
 ## 2026-11-25 (3) · Sam's Claude
 
 - Queued (QUEUE.md, December): once OPUlation is approved on the App Store, fold it into Screech's card as two peculiar ways to communicate. Nothing changed on the site yet.
