@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (11) · Sam's Claude
+
+- Sam changed his mind about pictures: the card images are gone again, The Briefing's still included. Cards are text only, and the screenshots are out of `media/` (still in git history). The Briefing's video stays. Docs say text by default.
+
 ## 2026-11-25 (10) · Sam's Claude
 
 - Re-shot the December card pictures that were mostly margin, zoomed in on the interesting part (Sam's ask): Fingergun Captcha (the squares), Mushroom Substrate (its Mushroom World plugin), subtext (the theme heatmap), next-up (the Wanderer), Witness (disguising The Briefing's spokesman), Screech (the terminal), RetroSynths (Blasta open).
