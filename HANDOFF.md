@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (10) · Sam's Claude
+
+- Re-shot the December card pictures that were mostly margin, zoomed in on the interesting part (Sam's ask): Fingergun Captcha (the squares), Mushroom Substrate (its Mushroom World plugin), subtext (the theme heatmap), next-up (the Wanderer), Witness (disguising The Briefing's spokesman), Screech (the terminal), RetroSynths (Blasta open).
+
 ## 2026-11-25 (9) · Sam's Claude
 
 - **Every card gets a picture now** (Sam). All 20 December pieces have a screenshot taken from their live links (`media/<id>.jpg`, 800×450, 11–55 KB each); Gain Control, FlyHarp, MEGA·CV and Mushroom Walk were taken past their start screens. From now on, add one with every new piece (CLAUDE.md says how). Older issues' cards are unchanged.
