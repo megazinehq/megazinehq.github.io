@@ -603,6 +603,7 @@
         "Sam"
       ],
       "platform": "Web",
+      "image": "media/musicbox.jpg",
       "blurb": "A music box in a Swiss cabin, built from its physics: wind it up, turn the crank by drawing circles on the screen, or let your pet hamster run the wheel. A comb of tuned tines does the playing, and the holiday tunes are in the box. Best heard with earbuds and Spatial Audio.",
       "links": [
         {
@@ -719,6 +720,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/shred-hole.jpg",
       "blurb": "Drop things down a tall 3D tunnel and watch a chopper fan shred them. You can type in an object and Claude builds it for you, then it goes in with the rest. The debris falls through a portal at the bottom.",
       "links": [
         {
@@ -740,6 +742,7 @@
         "Sam"
       ],
       "platform": "Web · Mac",
+      "image": "media/gain-control.jpg",
       "blurb": "A point-and-click murder mystery set in a university neuroscience department, drawn in plain black line art. It's inspired by real secret societies and by the Sierra Online and LucasArts era of point-and-click adventures: poke around the labs and offices, talk to the suspects, and work out who did it. It comes in two versions. One is the game. The other is the same game with dialogue anyone can rewrite in the Script Room, like a wiki, with every change kept and undoable; the main game stays untouched.",
       "links": [
         {
@@ -769,6 +772,7 @@
         "Sam"
       ],
       "platform": "Web",
+      "image": "media/retrosynths.jpg",
       "blurb": "A desktop toolbox of retro sound engines: game consoles, early home computers and PC sound cards, each one a synth you can play. Open an app, pick a chip, and hear the same song through the hardware of 1977 to 1998.",
       "links": [
         {
@@ -786,6 +790,7 @@
         "Sam"
       ],
       "platform": "Web, iPhone soon",
+      "image": "media/witness.jpg",
       "blurb": "Pixelates your face and pitches your voice down, like a protected witness on the evening news. Swap the mosaic for a blur, a black bar or a silhouette, run the voice through a vocoder, and add a lower-third caption and live subtitles. It all runs in your browser and nothing is uploaded.",
       "links": [
         {
@@ -843,6 +848,7 @@
         "Sam"
       ],
       "platform": "Web, iPhone",
+      "image": "media/screech.jpg",
       "blurb": "Passes secret notes between phones and computers as modem sounds. Agree on a passphrase in person, hold one device a few inches from the other, and it screeches the scrambled note across. Small photos go too, painting in from the top as they arrive, and it talks to the Modem in RetroSynths.",
       "links": [
         {
@@ -932,6 +938,7 @@
         "Sam"
       ],
       "platform": "Web",
+      "image": "media/flyharp.jpg",
       "blurb": "A synthesizer played by the fly's visual system. Point your webcam at the world, or pick a built-in scene, and the signal ripples through a model of the fruit fly's eye and brain, with each cell that fires turned into a note.",
       "links": [
         {
@@ -950,6 +957,7 @@
         "Sam"
       ],
       "platform": "Web",
+      "image": "media/splatterhouse.jpg",
       "blurb": "Hundreds of birds swarm in flocks over a meadow, dunes and a sea. The scene is built from Gaussian splats, and the birds follow real flocking algorithms. Aim with a finger gun and look around by moving your head, both tracked through your webcam, while a slow ambient pad plays underneath.",
       "links": [
         {
@@ -987,6 +995,7 @@
         "Jenn"
       ],
       "platform": "Web",
+      "image": "media/fingergun-captcha.jpg",
       "blurb": "A contact form with a gate: shoot the right moving squares, animals one time and instruments the next, with a finger gun your webcam tracks, then write to the editors. Or aim with your nose and fire by opening your mouth. No mouse allowed.",
       "links": [
         {
@@ -1005,6 +1014,7 @@
         "Emma"
       ],
       "platform": "Web",
+      "image": "media/gabor-grove.jpg",
       "blurb": "A mushroom grove drawn in tiny striped wave patches instead of soft blobs, their stripes slowly turning across the whole scene. Other tabs build a striped wave out of smaller striped waves, as deep as you dare, and a face drawn the same way. Sliders reshape every patch; there is a red-and-blue 3D mode and a split screen for a phone headset.",
       "links": [
         {
@@ -1042,6 +1052,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/chamber.jpg",
       "blurb": "The member directory of a small-town chamber of commerce, fifty polished local businesses in all. Each one is hiding an obsession it would rather you not notice, and only a few have opened their doors so far. Open two members in side-by-side tabs and they start to bleed into each other.",
       "links": [
         {
@@ -1061,6 +1072,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/invisible-hands.jpg",
       "blurb": "Reach into someone else’s app and turn its knobs, from anywhere. Apps list the controls they’d let a stranger move, and anyone in the same room can set them, swing them or fire envelopes at them, and hear the apps’ own wiggles coming back. There’s a kit for putting it in your own app, by hand or by handing a page of instructions to Claude.",
       "links": [
         {
@@ -1087,6 +1099,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/mega-cv.jpg",
       "blurb": "A modular synthesizer for sound and pictures in the browser, patched with a matrix of pins. Any audio signal can drive any video setting, and its Hands module sends signals out to other people’s apps over the internet and brings theirs back.",
       "links": [
         {
@@ -1105,6 +1118,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/pencil.jpg",
       "blurb": "A simulated pencil that wears down as it writes, page after page. Each notebook was filled by a pair of Claude agents, and you can watch it happen at up to 500 times speed while the tip dulls, the eraser shrinks and the pencil gets sharpened shorter.",
       "links": [
         {
@@ -1122,6 +1136,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/mushroom-substrate.jpg",
       "blurb": "Simulators of how fungi grow, from one thread to a forest floor. Up to a hundred kinds of mushroom load into them, and synthesizers and other instruments are built on the same models.",
       "links": [
         {
@@ -1139,6 +1154,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/mushroom-walk.jpg",
       "blurb": "An endless world where mushrooms grow everywhere, and each one is an instrument you hear from where it stands. Walk around and the music changes with where you are; headphones help.",
       "links": [
         {
@@ -1156,6 +1172,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/subtext.jpg",
       "blurb": "What two Claude agents talk about when left to talk about whatever they like. Over a hundred conversations, in rounds where later pairs are shown what earlier pairs talked about, some told to do something new, every one read through and coded by theme.",
       "links": [
         {
@@ -1173,6 +1190,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/mega-dino.jpg",
       "hands": true,
       "blurb": "A dinosaur simulator: herds, families and hunters walking through 180 million years, from the first dinosaurs to the asteroid. It comes with two siblings that layer into it: Mega-Volcano, where islands rise from the sea floor, erupt, erode and sink into atolls, and Mega-Clouds, over a hundred animated skies. Click an animal to make it call, or shuffle all three into a screensaver.",
       "links": [
@@ -1199,6 +1217,7 @@
         "Matt"
       ],
       "platform": "Web",
+      "image": "media/next-up.jpg",
       "blurb": "A story that four Claude agents tell by building it in 3D, one turn at a time. A narrator says what happens next, a builder writes the world to match, a designer critiques how it looks, and a player decides what the Wanderer does. This run goes fifty turns, starting from a plain of silver ash and one amber light: step through it, or walk around in what they made.",
       "links": [
         {

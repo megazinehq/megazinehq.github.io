@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (9) · Sam's Claude
+
+- **Every card gets a picture now** (Sam). All 20 December pieces have a screenshot taken from their live links (`media/<id>.jpg`, 800×450, 11–55 KB each); Gain Control, FlyHarp, MEGA·CV and Mushroom Walk were taken past their start screens. From now on, add one with every new piece (CLAUDE.md says how). Older issues' cards are unchanged.
+
 ## 2026-11-25 (8) · Sam's Claude
 
 - **December's paper is an advent calendar** (Sam: it's a surprise). Single-sided: the cover says "A special advent issue · 25 gifts · one a day", page 2 explains it, and pages 3–7 have 25 gifts, five per page, each with its day, a one-ink gift drawing, a scrambled title and a code to `?issue=03&gift=N`. The site scrolls to that day and counts `/scan/gift-N`. No pieces, seals or makers on the paper. Rebuild `make_sheet.py --issue 03` right before printing so days 21–25 carry their names. After printing, **don't reorder December**. Docs updated.

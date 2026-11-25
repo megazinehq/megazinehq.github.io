@@ -65,7 +65,7 @@ Never guess `made`. Ask.
 }
 ```
 
-- `image` is optional; it shows on the site's card (good for paintings). The paper is text-only.
+- `image` shows on the site's card. From December 2026 on, give every new piece one (Sam's call): a screenshot of the piece running, or a still from a video or painting, 800×450 JPG, `media/<id>.jpg`, well under 100 KB. Take it from the live link with Playwright (through the session proxy, with GL on; click past any "start" screen first) and look at it before using it. The paper doesn't use images.
 - A link with `"url": null` renders as a dashed "coming" button. The first link with a URL is where `?go=<id>` (the paper's code) sends people, unless the work has `"go": {"label": "...", "url": "..."}`, e.g. a page listing every streaming service for an album.
 - `"book": {"label": "Open the book", "pages": [{"src": "media/x-1.jpg", "alt": "..."}], "pdf": "media/x.pdf"}` makes the card open a popup picture book (page-turn, arrow keys, swipe) with an optional PDF download. `?go=<id>` for a book with no live link opens the book on the site; the paper's code says "Open the book".
 - `"hidden": true` keeps a piece off the site entirely (still being built, or pulled for now) without losing its entry. Take it out of every issue's `works` list too. There is no workshop list any more.
