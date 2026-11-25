@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (8) · Sam's Claude
+
+- **December's paper is an advent calendar** (Sam: it's a surprise). Single-sided: the cover says "A special advent issue · 25 gifts · one a day", page 2 explains it, and pages 3–7 have 25 gifts, five per page, each with its day, a one-ink gift drawing, a scrambled title and a code to `?issue=03&gift=N`. The site scrolls to that day and counts `/scan/gift-N`. No pieces, seals or makers on the paper. Rebuild `make_sheet.py --issue 03` right before printing so days 21–25 carry their names. After printing, **don't reorder December**. Docs updated.
+
 ## 2026-11-25 (7) · Sam's Claude
 
 - Paper: the front cover now has a small site code (0.72 in) beside the MEGA masthead, the same `?issue=NN&copy=N` as the back, so scans of either count as that copy's. The masthead shrinks a little to make room. Every issue's PDFs were rebuilt (01 and 02 only matter for reprints). The December page 8 overflow is still there, from Chamber's first sentence.

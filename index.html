@@ -593,6 +593,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   const hm = hash.match(/^copy-?(\d+)$/i);
   const copy = q.get("copy") || (hm ? hm[1] : null);
   const go = q.get("go");
+  const giftAsked = parseInt(q.get("gift"), 10) || 0;   // an advent gift's code on the paper: ?issue=NN&gift=N
   let openBookId = null;
   let focusId = q.get("w") || (!hm && hash ? hash : null);
 
@@ -655,6 +656,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     const issue = asked || current;
     const isBack = issue !== current;
 
+    if (giftAsked) track(`/scan/gift-${giftAsked}`, `Scan: gift ${giftAsked} · issue ${issue.id}`, true);
     if (copy) track(`/scan/copy-${parseInt(copy, 10)}`, `Scan: back cover${asked ? " · issue " + issue.id : ""}`, true);
     if (!peek) track(isBack ? `/issue/${issue.id}` : "/", isBack ? `Back issue ${issue.id}` : document.title, false);
 
@@ -917,6 +919,11 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         g.classList.remove("nope"); void g.offsetWidth; g.classList.add("nope");
         clearTimeout(g._t); g._t = setTimeout(() => g.classList.remove("nope"), 1400);
       });
+      // A gift's code on the paper lands on its day (wrapped until then).
+      if (giftAsked >= 1 && giftAsked <= 25) setTimeout(() => {
+        const el = $(`day-${giftAsked}`) || (slots[giftAsked - 1] && document.getElementById(slots[giftAsked - 1].id));
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 400);
       // No clicking needed: every gift whose day has come and that this browser hasn't opened yet unwraps by itself
       // as it comes on screen, so a first visit on the 10th opens 1 to 10. Gifts that come on screen together open together.
       const waiting = [...$("board").querySelectorAll(".gift.ready")];

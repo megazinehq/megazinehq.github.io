@@ -14,7 +14,7 @@ Imposition (landscape, 4 x 2 panels):   top row, upside down:  5 4 3 2
                                         bottom row, upright:   6 7 8 1
 Fold in half lengthwise, then into quarters, cut the centre fold between panels 3/4 and 6/7... see README.
 """
-import argparse, io, json, math, os, random
+import argparse, io, json, math, os, random, re
 from pathlib import Path
 
 import qrcode
@@ -323,6 +323,9 @@ def p_cover(c, copy, run):
     c.drawRightString(W - PAD, H - PAD - 104, ISSUE["date"].upper())
     para(c, DATA["zine"]["tagline"].lower(), ParagraphStyle("th", fontName="Sans-Italic", fontSize=13, leading=15),
          PAD, H - PAD - 114, W - 2 * PAD)
+    if ADVENT:
+        label(c, "A SPECIAL ADVENT ISSUE", PAD, H - PAD - 146, size=7.2)
+        label(c, "25 GIFTS · ONE A DAY", PAD, H - PAD - 157, size=7.2)
     if copy:
         stamp(c, f"COPY {copy:03d} / {run}", W - PAD, PAD + 4, size=8)
     else:
@@ -393,7 +396,7 @@ def p_inside_foot(c, copy, run):
 
 def p_back(c, copy, run):
     url = BASE + f"?issue={ISSUE['id']}" + (f"&copy={copy}" if copy else "")
-    extra = ISSUE["works"][11] if len(ISSUE["works"]) > 11 else None
+    extra = ISSUE["works"][11] if len(ISSUE["works"]) > 11 and not ADVENT else None
     s = 1.3 * inch if extra else W - 2 * PAD - 0.3 * inch
     label(c, "THE REST LIVES HERE", PAD, H - PAD - 8, size=8)
     yq = H - PAD - 18 - s
@@ -417,8 +420,156 @@ def p_back(c, copy, run):
         print(f"warning: page 8 overflows by {PAD + 26 - y:.0f}pt")
     c.setLineWidth(1.6)
     c.line(PAD, PAD + 20, W - PAD, PAD + 20)
-    foot = "UNFOLD IT ALL THE WAY FOR THE REST" if len(ISSUE["works"]) > 12 else "FOLD IT · CUT IT · LEAVE IT SOMEWHERE"
+    foot = "UNFOLD IT ALL THE WAY FOR THE REST" if len(ISSUE["works"]) > 12 and not ADVENT else "FOLD IT · CUT IT · LEAVE IT SOMEWHERE"
     label(c, foot, PAD, PAD + 8, size=5.9, spacing=0.6)
+
+
+# ---------------------------------------------------------------- advent issues
+# An issue with "advent": true prints as a calendar instead of a list: 25 wrapped gifts, five to a page on
+# pages 3-7, each with its day, its piece's title with the letters of each word shuffled, and a code to
+# ?issue=NN&gift=N, which lands on that day on the site (still wrapped until its day). The paper names no
+# piece and no maker, so nothing is spoiled; the site's cards carry the seals once each gift opens.
+ADVENT = bool(ISSUE.get("advent"))
+
+
+def scramble(title, day):
+    rnd = random.Random(day * 101 + int(ISSUE["id"]))
+    out = []
+    for word in re.split(r"([^A-Za-z]+)", title):
+        if len(word) < 2 or not word.isalpha():
+            out.append(word.upper() if word.isalpha() else word)
+            continue
+        letters = list(word.lower())
+        for _ in range(12):
+            rnd.shuffle(letters)
+            if "".join(letters) != word.lower():
+                break
+        out.append("".join(letters).capitalize())
+    return "".join(out)
+
+
+def gift_icon(c, x, y, s, day, style):
+    """A one-ink wrapped gift, s points wide, lower left at (x, y), with the day on a tag."""
+    bx, bw, bh = x + s * 0.06, s * 0.88, s * 0.62
+    lx, lw, lh = x, s, s * 0.2
+    c.saveState()
+    # paper: one of five prints, clipped to the box and lid
+    p = c.beginPath()
+    p.rect(bx, y, bw, bh)
+    p.rect(lx, y + bh - 1, lw, lh)
+    c.clipPath(p, stroke=0, fill=0)
+    c.setFillColor(white)
+    c.rect(lx, y, lw, bh + lh, fill=1, stroke=0)
+    c.setFillColor(LIGHT)
+    c.setStrokeColor(GREY)
+    if style == 0:                                   # diagonal stripes
+        c.setLineWidth(s * 0.06)
+        k = -s
+        while k < s * 2:
+            c.line(lx + k, y, lx + k + s, y + s)
+            k += s * 0.16
+    elif style == 1:                                 # dots
+        c.setFillColor(GREY)
+        for i in range(8):
+            for j in range(8):
+                c.circle(lx + (i + (j % 2) * 0.5) * s * 0.14, y + j * s * 0.12, s * 0.025, fill=1, stroke=0)
+    elif style == 2:                                 # checks
+        q = s * 0.11
+        for i in range(10):
+            for j in range(10):
+                if (i + j) % 2:
+                    c.rect(lx + i * q, y + j * q, q, q, fill=1, stroke=0)
+    elif style == 3:                                 # little stars
+        c.setFillColor(GREY)
+        for i in range(5):
+            for j in range(6):
+                cx, cy, r = lx + (i + (j % 2) * 0.5) * s * 0.22, y + j * s * 0.15, s * 0.04
+                pp = c.beginPath()
+                for k in range(10):
+                    a = math.pi * k / 5 - math.pi / 2
+                    rr = r if k % 2 == 0 else r * 0.42
+                    (pp.moveTo if k == 0 else pp.lineTo)(cx + rr * math.cos(a), cy - rr * math.sin(a))
+                pp.close()
+                c.drawPath(pp, fill=1, stroke=0)
+    else:                                            # solid grey
+        c.rect(lx, y, lw, bh + lh, fill=1, stroke=0)
+    c.restoreState()
+    c.saveState()
+    c.setLineWidth(1.1)
+    c.setLineJoin(1)
+    # ribbon: a white band each way, outlined
+    rw = s * 0.13
+    c.setFillColor(white)
+    c.rect(x + s / 2 - rw / 2, y, rw, bh + lh - 1, fill=1, stroke=1)
+    c.rect(bx, y + bh * 0.45 - rw / 2, bw, rw, fill=1, stroke=1)
+    c.rect(x + s / 2 - rw / 2, y + bh - 1, rw, lh, fill=1, stroke=0)
+    # box and lid outlines
+    c.setFillColor(black)
+    c.rect(bx, y, bw, bh, fill=0, stroke=1)
+    c.rect(lx, y + bh - 1, lw, lh, fill=0, stroke=1)
+    # bow: two loops and a knot
+    top, cx = y + bh - 1 + lh, x + s / 2
+    for sgn in (-1, 1):
+        pp = c.beginPath()
+        pp.moveTo(cx, top)
+        pp.curveTo(cx + sgn * s * 0.05, top + s * 0.22, cx + sgn * s * 0.34, top + s * 0.2, cx + sgn * s * 0.26, top + s * 0.04)
+        pp.curveTo(cx + sgn * s * 0.2, top - s * 0.04, cx + sgn * s * 0.06, top, cx, top)
+        c.setFillColor(white)
+        c.drawPath(pp, fill=1, stroke=1)
+    c.setFillColor(white)
+    c.circle(cx, top + s * 0.01, s * 0.05, fill=1, stroke=1)
+    # tag with the day
+    tx, ty, tw, th = x + s * 0.5, y + s * 0.03, s * 0.46, s * 0.33
+    c.setFillColor(white)
+    c.roundRect(tx, ty, tw, th, s * 0.04, fill=1, stroke=1)
+    c.setFillColor(black)
+    c.setFont("Sans-Bold", th * 0.72)
+    c.drawCentredString(tx + tw / 2, ty + th * 0.22, str(day))
+    c.restoreState()
+
+
+def p_gifts(first_day, n):
+    """Page n of an advent issue: five gifts, days first_day to first_day + 4."""
+    def draw(c, copy, run):
+        mon = ISSUE["date"].split()[0].upper()
+        label(c, f"{mon} {first_day}–{first_day + 4}", PAD, H - PAD - 7, size=7.4)
+        top, bottom = H - PAD - 16, PAD + 12
+        rh = (top - bottom) / 5
+        qs = min(rh - 6, 0.62 * inch)
+        for k in range(5):
+            day = first_day + k
+            wid = ISSUE["works"][day - 1] if day <= len(ISSUE["works"]) else None
+            y0 = top - (k + 1) * rh
+            if k:
+                rule(c, y0 + rh)
+            gs = rh - 10
+            gift_icon(c, PAD, y0 + 4, gs * 0.92, day, (day * 3 + int(ISSUE["id"])) % 5)
+            tx = PAD + gs + 6
+            tw = W - PAD - qs - 6 - tx
+            label(c, f"{mon[:3]} {day}", tx, y0 + rh - 14, size=6.2)
+            name = scramble(WORKS[wid]["title"], day) if wid else "still wrapping"
+            st = ParagraphStyle("g", fontName="Sans-Bold" if wid else "Sans-Italic", fontSize=10.5, leading=11.5)
+            while st.fontSize > 7 and c.stringWidth(name, st.fontName, st.fontSize) > tw * 2:
+                st = ParagraphStyle("g", parent=st, fontSize=st.fontSize - 0.5, leading=st.fontSize + 0.5)
+            para(c, name, st, tx, y0 + rh - 18, tw)
+            c.drawImage(qr_img(f"{BASE}?issue={ISSUE['id']}&gift={day}"), W - PAD - qs, y0 + (rh - qs) / 2, qs, qs)
+        folio(c, n)
+    return draw
+
+
+def p_advent_intro(c, copy, run):
+    y = H - PAD - 4
+    label(c, "A SPECIAL ADVENT ISSUE", PAD, y - 7, size=7.4)
+    y = para(c, "This month is an advent calendar: twenty-five things, one a day, "
+                f"{ISSUE['date'].split()[0]} 1 to 25. Inside are twenty-five wrapped gifts. Each code opens its gift "
+                "on the site, but not before its day. The names on the tags are scrambled, if you want to guess. "
+                "Come back every day for the next one.", body, PAD, y - 16, W - 2 * PAD)
+    label(c, "WHAT?", PAD, y - 14, size=7.4)
+    y = para(c, "Matt and Sam have been using Claude to make weird stuff. AI chatter is all money-making or "
+                "doom; the space in between seemed far less seen. So: strange little apps, some useless, "
+                "some real tools, some performance pieces, plus our own music and paintings. "
+                "<i>– Sysops: Sam and Matt</i>", body, PAD, y - 22, W - 2 * PAD)
+    folio(c, 2)
 
 
 # Pages 3-7 take the issue's first ten works in pairs; page 2 takes the 11th, the back cover the 12th.
@@ -428,16 +579,20 @@ for _n, _ids in zip(range(3, 8), _pairs):
     PANELS[_n] = p_works(_ids, _n)
 for _n in range(3, 8):
     PANELS.setdefault(_n, lambda c, copy, run, _n=_n: folio(c, _n))
+if ADVENT:
+    PANELS = {1: p_cover, 2: p_advent_intro, 8: p_back}
+    for _k, _n in enumerate(range(3, 8)):
+        PANELS[_n] = p_gifts(1 + 5 * _k, _n)
 LAYOUT = [[5, 4, 3, 2],  # top row, drawn upside down
           [6, 7, 8, 1]]  # bottom row
 
 # The back (only when the issue has more than 12): works 13-24 in pairs, read flat, everything upright.
-_inside = [ISSUE["works"][k:k + 2] for k in range(12, min(24, len(ISSUE["works"])), 2)]
+_inside = [] if ADVENT else [ISSUE["works"][k:k + 2] for k in range(12, min(24, len(ISSUE["works"])), 2)]
 _cells = [(0, 1), (0, 2), (0, 3), (1, 0), (1, 1), (1, 2)]
 BACK = {(0, 0): p_inside_head, (1, 3): p_inside_foot}
 for _k, (_cell, _ids) in enumerate(zip(_cells, _inside)):
     BACK[_cell] = p_works(_ids, f"inside panel {_k + 1}")
-if len(ISSUE["works"]) > 24:
+if len(ISSUE["works"]) > 24 and not ADVENT:
     print(f"note: {len(ISSUE['works']) - 24} works past 24 appear only on the site")
 
 
@@ -483,7 +638,7 @@ def sheet(c, copy=None, run=None):
     c.line(W, H, 3 * W, H)  # the one cut
     c.restoreState()
     c.showPage()
-    if len(ISSUE["works"]) > 12:
+    if len(ISSUE["works"]) > 12 and not ADVENT:
         back(c)
 
 
@@ -506,7 +661,7 @@ def main():
     for n in range(1, a.copies + 1):
         sheet(c, n, a.copies)
     c.save()
-    sides = "double-sided, print duplex" if len(ISSUE["works"]) > 12 else "single-sided"
+    sides = "double-sided, print duplex" if len(ISSUE["works"]) > 12 and not ADVENT else "single-sided"
     print(f"wrote print/issue-{iid}.pdf and print/issue-{iid}-numbered.pdf ({a.copies} copies, {sides})")
 
 
