@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (2) · Sam's Claude
+
+- Pages deploys failed for ~15 hours (deploy step couldn't find the artifact it had just uploaded, or "Deployment failed, try again later"), during a GitHub Actions outage and after. Split `pages.yml` into `build` and `deploy` jobs like GitHub's template. If deploys still fail, rerun with `gh run rerun <id>`.
+
 ## 2026-11-25 · Sam's Claude
 
 - Screech is on the App Store: its **App Store** button now links to `apps.apple.com/app/screech-secret-notes/id6833511205`. Witness's App Store link is still to come.
