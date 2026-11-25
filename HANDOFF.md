@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (5) · Sam's Claude
+
+- The Briefing: Sam cleared it. The actor's rights are covered for our use, and the government seal and podium sign stay as an exception to the other-people's-names rule, since the piece is an obvious joke. The card now shows a still (`media/lab-briefing.jpg`). The blurb still doesn't name the setting.
+
 ## 2026-11-25 (4) · Sam's Claude
 
 - **The Briefing** (`lab-briefing`) added to December, day 19 (before Screech): Jan, `made: "hands"`, a 2015 video of a hired spokesman at a press-briefing podium reading Sam's lab-website research description. Video in `media/lab-briefing.mp4` (1.3 MB, re-encoded from Sam's 32 MB .mov); the Watch button plays it. Title is a working title. **Flagged to Sam:** a real person (the actor) is on camera, and the set carries a government emblem and podium sign; no still on the card for that reason until Sam decides.
