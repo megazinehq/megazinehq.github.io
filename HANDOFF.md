@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 · Sam's Claude
+
+- Screech is on the App Store: its **App Store** button now links to `apps.apple.com/app/screech-secret-notes/id6833511205`. Witness's App Store link is still to come.
+
 ## 2026-11-24 (15) · Sam's Claude
 
 - December day 1 is now **Fingergun Captcha** (Sam's call); it swapped places with Mega-Dino, which is now day 11. Nothing else moved.

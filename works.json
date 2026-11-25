@@ -819,7 +819,7 @@
       "makers": [
         "Sam"
       ],
-      "platform": "Web, iPhone soon",
+      "platform": "Web, iPhone",
       "blurb": "Passes secret notes between phones and computers as modem sounds. Agree on a passphrase in person, hold one device a few inches from the other, and it screeches the scrambled note across. Small photos go too, painting in from the top as they arrive, and it talks to the Modem in RetroSynths.",
       "links": [
         {
@@ -828,8 +828,7 @@
         },
         {
           "label": "App Store",
-          "url": null,
-          "status": "soon"
+          "url": "https://apps.apple.com/app/screech-secret-notes/id6833511205"
         }
       ]
     },
