@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (7) · Sam's Claude
+
+- Paper: the front cover now has a small site code (0.72 in) beside the MEGA masthead, the same `?issue=NN&copy=N` as the back, so scans of either count as that copy's. The masthead shrinks a little to make room. Every issue's PDFs were rebuilt (01 and 02 only matter for reprints). The December page 8 overflow is still there, from Chamber's first sentence.
+
 ## 2026-11-25 (6) · Sam's Claude
 
 - Ashland (Issue 02) gets an **App Store** button for its iPhone app (`apps.apple.com/app/ashland-state-park/id6839325605`). Its paper code still goes to Play, so the printed November sheet is unchanged.

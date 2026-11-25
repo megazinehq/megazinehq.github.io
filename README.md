@@ -98,7 +98,7 @@ Counts go to [GoatCounter](https://www.goatcounter.com) (free for non-commercial
 | `/` | A visit to the site. |
 | `/issue/<NN>` | A visit to a back issue. |
 | `/scan/<id>` | Someone scanned that work's code on the paper. |
-| `/scan/copy-<n>` | Someone scanned the back cover of copy *n*. |
+| `/scan/copy-<n>` | Someone scanned the front or back cover of copy *n* (both carry the same code). |
 | `/click/<id>` | Someone clicked out to that work from the site. |
 
 ## Make the paper

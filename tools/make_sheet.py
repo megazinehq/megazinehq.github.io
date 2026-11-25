@@ -300,9 +300,13 @@ def p_cover(c, copy, run):
             a0 = rnd.uniform(0, 360)
             c.arc(cx - rr, cy - rr, cx + rr, cy + rr, a0, rnd.uniform(70, 160))
     c.restoreState()
+    # site code, top right beside the masthead
+    qs = 0.72 * inch
+    url = BASE + f"?issue={ISSUE['id']}" + (f"&copy={copy}" if copy else "")
+    c.drawImage(qr_img(url), W - PAD - qs, H - PAD - qs, qs, qs)
     # masthead
     big = 64
-    while c.stringWidth("MEGA", "Sans-Bold", big) > W - 2 * PAD:
+    while c.stringWidth("MEGA", "Sans-Bold", big) > W - 2 * PAD - qs - 8:
         big -= 1
     c.setFont("Sans-Bold", big)
     c.saveState()

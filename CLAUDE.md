@@ -98,7 +98,7 @@ People other than the editors submit through the BBS (repo `samuelling/BBS`, MEG
 ## Site behaviour worth knowing
 
 - An issue's cards are shuffled on every visit; the order in its `works` list only matters for the paper, except in an advent issue, where it is the day order and nothing shuffles. Exception: `street-team` (Street Team Pack) is always last, on the site and on the paper, in any issue that has it.
-- The back-cover code is `?issue=NN&copy=N`, so a copy of an old issue opens that issue; work codes (`?go=<id>`) don't depend on the issue.
+- The back-cover code is `?issue=NN&copy=N`, so a copy of an old issue opens that issue; the front cover carries the same code, small, beside the MEGA masthead (scans of either count as that copy's); work codes (`?go=<id>`) don't depend on the issue.
 - Back issues are counted in GoatCounter as `/issue/NN`.
 - Visits, paper scans (`/scan/<id>`, `/scan/copy-<n>`) and clicks out (`/click/<id>`) are counted in GoatCounter under the code in `zine.goatcounter`. Don't add other trackers or cookies.
 - `/stats/` is the editors' readers dashboard (`stats/index.html`). The deploy workflow runs hourly and on every push; its `tools/pull_stats.py` step reads GoatCounter's API with the `GOATCOUNTER_TOKEN` secret and writes `stats/stats.json` into the deployed site only. Never commit that file, and keep it to aggregate counts.
