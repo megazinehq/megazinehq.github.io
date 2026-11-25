@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (12) · Sam's Claude
+
+- December lights blink a bit more (Sam): each bulb now dips to about a quarter brightness, with a little double flicker, every 1.4–3.2 s instead of fading to 60% over 1.8–4.2 s. Hanukkah bulbs unchanged. Reduced-motion still turns it off.
+
 ## 2026-11-25 (11) · Sam's Claude
 
 - Sam changed his mind about pictures: the card images are gone again, The Briefing's still included. Cards are text only, and the screenshots are out of `media/` (still in git history). The Briefing's video stays. Docs say text by default.

@@ -417,8 +417,8 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
 :root[data-theme="dark"] .xmas { --wire: #6f9a76; }
 .xmas .wire { fill: none; stroke: var(--wire); stroke-width: 2.2; stroke-linecap: round; }
 .xmas .sock { fill: var(--wire); }
-.xmas .b { animation: bulb-twinkle var(--t, 2.6s) ease-in-out var(--d, 0s) infinite alternate; }
-@keyframes bulb-twinkle { from { opacity: 1; } to { opacity: .6; } }
+.xmas .b { animation: bulb-twinkle var(--t, 2.6s) ease-in-out var(--d, 0s) infinite; }
+@keyframes bulb-twinkle { 0%, 45% { opacity: 1; } 60% { opacity: .28; } 72% { opacity: .9; } 80% { opacity: .5; } 92%, 100% { opacity: 1; } }
 .xmas .hk-on { animation: hk-flick var(--t, 1.6s) linear var(--d, 0s) infinite; }
 @keyframes hk-flick {
   0% { opacity: 1; } 6% { opacity: .72; } 11% { opacity: .98; } 22% { opacity: .58; } 30% { opacity: 1; }
@@ -1229,7 +1229,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
       var grp = el("g", { transform: "translate(" + p.x.toFixed(1) + "," + p.y.toFixed(1) + ") rotate(" + ang.toFixed(0) + ") scale(" + (s * 1.05).toFixed(2) + ")" }, svg);
       var inner = el("g", { "class": lit === null ? "b" : lit ? "hk-on" : "hk-off" }, grp);
       inner.style.setProperty("--d", (-R() * 3).toFixed(2) + "s");
-      inner.style.setProperty("--t", (lit ? .9 + R() * 1.4 : 1.8 + R() * 2.4).toFixed(2) + "s");
+      inner.style.setProperty("--t", (lit ? .9 + R() * 1.4 : 1.4 + R() * 1.8).toFixed(2) + "s");
       el("circle", { "class": "halo", cx: 0, cy: 12, r: 15, fill: "url(#xg-" + col + ")" }, inner);
       el("rect", { "class": "sock", x: -2.8, y: -1, width: 5.6, height: 5, rx: 1.2 }, inner);
       el("path", { d: "M-4.6,4 C-6,11 -3.2,17 0,21 C3.2,17 6,11 4.6,4 Z", fill: COLORS[col] }, inner);        // a C9: wide at the cap, tapering to a rounded tip
