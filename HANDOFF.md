@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-25 (3) · Sam's Claude
+
+- Queued (QUEUE.md, December): once OPUlation is approved on the App Store, fold it into Screech's card as two peculiar ways to communicate. Nothing changed on the site yet.
+
 ## 2026-11-25 (2) · Sam's Claude
 
 - Pages deploys failed for ~15 hours (deploy step couldn't find the artifact it had just uploaded, or "Deployment failed, try again later"), during a GitHub Actions outage and after. Split `pages.yml` into `build` and `deploy` jobs like GitHub's template. If deploys still fail, rerun with `gh run rerun <id>`.
