@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-24 (15) · Sam's Claude
+
+- December day 1 is now **Fingergun Captcha** (Sam's call); it swapped places with Mega-Dino, which is now day 11. Nothing else moved.
+
 ## 2026-11-24 (14) · Sam's Claude
 
 - Matt's **next-up** added to December as day 19 (Screech moves to 20): Matt, both, story, Watch → `crumplabsandbox.github.io/next-up/?run=world-02`. Blurb written from the run's own data (narrator, builder, designer, player; 50 turns); Matt may want to reword. December: 20 of 25.
