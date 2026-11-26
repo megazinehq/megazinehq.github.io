@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-26 (5) · Sam's Claude
+
+- **Chamber of Commerce folded into Invisible Hands** (day 8) as its demo: a new button, *Demo: Chamber of Commerce*, and a sentence in the blurb. Chamber's own entry stays in `works.json` but is out of December, so days 15–20 moved up one (RetroSynths 14 … Screech 19). December: 19 of 25; days 20–25 open. Paper rebuilt.
+
 ## 2026-11-26 (4) · Sam's Claude
 
 - New link option `"video": true`: the button plays the file in a popup (`dialog#vid`) instead of opening a tab. Used for **Watch The Briefing**. Counted as a click like any other link. Docs updated.
