@@ -89,7 +89,8 @@
       "works": [
         "liveskratch",
         "acoustic",
-        "orders-of-magnitude"
+        "orders-of-magnitude",
+        "braidy"
       ]
     },
     {
@@ -204,6 +205,24 @@
         {
           "label": "Play",
           "url": "https://linglab.org/demovoyager/magnitude/"
+        }
+      ]
+    },
+    {
+      "id": "braidy",
+      "title": "Braidy",
+      "kind": "tool",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "iPad, iPhone",
+      "blurb": "Point an iPad or iPhone at the TV and it reads the game's dialogue out loud, for kids who can play but can't read yet. Each character gets a voice to match, it keeps quiet when the game is already talking, and a speech-bubble mascot called Bubble Buddy keeps them company.",
+      "links": [
+        {
+          "label": "App Store",
+          "url": null,
+          "status": "soon"
         }
       ]
     },

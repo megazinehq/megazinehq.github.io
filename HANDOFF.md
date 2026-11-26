@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-26 (2) · Sam's Claude
+
+- **Braidy** added to the January draft: Sam, both, tool, iPad/iPhone app that reads game dialogue aloud for kids who can't read yet. It has no web version, so its only button is a dashed **App Store · soon**; fill in the `url` when it's out. The blurb names no games.
+
 ## 2026-11-26 · Sam's Claude
 
 - **(M)orders of Magnitude** (`orders-of-magnitude`) added to the January draft: Sam, both, art, Open → `linglab.org/procedural/orders/` (one forest at 200 B, 2 kB, 20 kB, 200 kB and 2 MB). January: LiveSkratch, Acoustic, (M)orders.
