@@ -20,7 +20,7 @@ In `works.json` as a draft (not live until `"draft"` comes off): LiveSkratch, Ac
 
 ## Issue 05 · February 2027
 
-In `works.json` as a draft (not live until `"draft"` comes off): Animal Sanctuary, Metamers. Nothing else waiting.
+In `works.json` as a draft (not live until `"draft"` comes off): Animal Sanctuary. (Metamers went into December, bundled with The Briefing.) Nothing else waiting.
 
 ## Unassigned
 

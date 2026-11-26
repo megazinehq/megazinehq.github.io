@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-26 (3) · Sam's Claude
+
+- **The Briefing & Metamers**: Sam bundled Metamers onto The Briefing's December card (id `lab-briefing`, still day 19), two takes on Sam's lab. Seal: Jan & Sam, `made: "both"` (The Briefing is by hand, Metamers with Claude; Sam asked for one seal). Two buttons: Watch The Briefing, and Metamers. Metamers is out of the February draft; its own entry stays in `works.json` and isn't in any issue. The advent paper still needs a rebuild before printing.
+
 ## 2026-11-26 (2) · Sam's Claude
 
 - **Braidy** added to the January draft: Sam, both, tool, iPad/iPhone app that reads game dialogue aloud for kids who can't read yet. It has no web version, so its only button is a dashed **App Store · soon**; fill in the `url` when it's out. The blurb names no games.
