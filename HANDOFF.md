@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-26 (4) · Sam's Claude
+
+- New link option `"video": true`: the button plays the file in a popup (`dialog#vid`) instead of opening a tab. Used for **Watch The Briefing**. Counted as a click like any other link. Docs updated.
+
 ## 2026-11-26 (3) · Sam's Claude
 
 - **The Briefing & Metamers**: Sam bundled Metamers onto The Briefing's December card (id `lab-briefing`, still day 19), two takes on Sam's lab. Seal: Jan & Sam, `made: "both"` (The Briefing is by hand, Metamers with Claude; Sam asked for one seal). Two buttons: Watch The Briefing, and Metamers. Metamers is out of the February draft; its own entry stays in `works.json` and isn't in any issue. The advent paper still needs a rebuild before printing.

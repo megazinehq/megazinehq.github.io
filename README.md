@@ -61,7 +61,7 @@ Keep blurbs oblique about influences: don't name other people's games, films, br
 
 A link with `"url": null` shows as a dashed "coming" button. Fill the URL in later and every printed code for it starts working, no reprint needed.
 
-Work entries can also carry a `book` (a popup picture book, optional PDF): see CLAUDE.md.
+Work entries can also carry a `book` (a popup picture book, optional PDF): see CLAUDE.md. A link with `"video": true` and a video file as its `url` (`media/x.mp4`) plays in a popup on the site instead of opening a tab.
 
 `makers` and `made` print the gold seal: "MADE BY MATT · BY HAND". With more than one maker, the seal puts one name to a line ("SAM / & MATT / & JENN"), sized to fit, on the site and the paper; three is the comfortable most. `image` is optional (paintings); the cards are text by default. Add `"hidden": true` to keep a piece off the site (still being built, or pulled for now) without deleting its entry.
 
