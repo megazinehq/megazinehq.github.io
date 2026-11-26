@@ -270,6 +270,13 @@ main { overflow-x: clip; }
 }
 
 
+/* Video popup: a link with "video": true plays its file here instead of opening a tab */
+dialog#vid { border: 0; padding: 0; background: transparent; max-width: none; max-height: none; width: 100vw; height: 100dvh; overflow: hidden; }
+dialog#vid::backdrop { background: rgb(12 12 14 / .86); }
+dialog#vid[open] { display: grid; place-items: center; }
+.vd-wrap { width: min(94vw, 960px); display: grid; gap: 12px; }
+.vd-wrap video { width: 100%; max-height: 78dvh; background: #000; box-shadow: 0 22px 40px rgb(0 0 0 / .5); }
+
 /* Picture book: a popup you page through (works with a "book" in works.json) */
 dialog#book { border: 0; padding: 0; background: rgb(12 12 14 / .88); color: var(--paper); max-width: none; max-height: none; width: 100vw; height: 100dvh; overflow: hidden; }
 dialog#book::backdrop { background: rgb(12 12 14 / .82); }
@@ -525,6 +532,13 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   <span>Fold it, cut it, leave it somewhere. <a class="sendc" href="contact/">Send comment</a></span>
 </footer>
 
+<dialog id="vid" aria-labelledby="vd-title">
+  <div class="vd-wrap">
+    <div class="bk-bar"><span id="vd-title"></span><button type="button" class="bk-x" id="vd-x">Close</button></div>
+    <video id="vd-v" controls playsinline preload="none"></video>
+  </div>
+</dialog>
+
 <dialog id="book" aria-label="Picture book">
   <div class="bk-wrap">
     <div class="bk-bar"><span id="bk-title"></span><button type="button" class="bk-x" id="bk-x">Close</button></div>
@@ -598,6 +612,7 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
   let focusId = q.get("w") || (!hm && hash ? hash : null);
 
   function linkHTML(l, primary) {
+    if (l.url && l.video) return `<button type="button" class="btn${primary ? " primary" : ""}" data-video="${esc(l.url)}" data-vlabel="${esc(l.label)}">${esc(l.label)} ▸</button>`;
     if (!l.url) return `<span class="btn pending" title="${esc(l.status || "Coming soon")}">${esc(l.label)} · ${esc(l.status || "soon")}</span>`;
     return `<a class="btn${primary ? " primary" : ""}" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`;
   }
@@ -991,6 +1006,24 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
     }
     document.addEventListener("click", (e) => { const b = e.target.closest("[data-book]"); if (b) openBook(b.dataset.book); });
     if (openBookId) setTimeout(() => openBook(openBookId), 0);
+
+    // Video popups
+    (function () {
+      const dlg = $("vid"), v = $("vd-v");
+      const shut = () => dlg.close();
+      dlg.addEventListener("close", () => { v.pause(); v.removeAttribute("src"); v.load(); });
+      $("vd-x").onclick = shut;
+      dlg.onclick = (e) => { if (e.target === dlg) shut(); };
+      document.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-video]"); if (!b) return;
+        const card = b.closest("[data-w]"), id = card && card.dataset.w;
+        $("vd-title").textContent = b.dataset.vlabel.replace(/^Watch\s+/i, "");
+        v.src = b.dataset.video;
+        dlg.showModal();
+        v.play().catch(() => {});
+        if (id) track(`/click/${id}`, `Click: ${(byId[id] || {}).title} · ${b.dataset.vlabel}`, true);
+      });
+    })();
 
     // Count clicks out to each work.
     document.addEventListener("click", (e) => {

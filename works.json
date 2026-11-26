@@ -866,7 +866,8 @@
       "links": [
         {
           "label": "Watch The Briefing",
-          "url": "media/lab-briefing.mp4"
+          "url": "media/lab-briefing.mp4",
+          "video": true
         },
         {
           "label": "Press the Metamers button",

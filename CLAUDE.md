@@ -67,6 +67,7 @@ Never guess `made`. Ask.
 
 - `image` is optional; it shows on the site's card (good for paintings). Sam tried a picture on every December card and went back to text only, so don't add screenshots unless an editor asks. The paper is text-only.
 - A link with `"url": null` renders as a dashed "coming" button. The first link with a URL is where `?go=<id>` (the paper's code) sends people, unless the work has `"go": {"label": "...", "url": "..."}`, e.g. a page listing every streaming service for an album.
+- A link with `"video": true` (its `url` a video file, e.g. `media/x.mp4`) shows as a ▸ button that plays the video in a popup on the site instead of opening a tab (The Briefing). Keep videos small: re-encode to H.264 at 720p first.
 - `"book": {"label": "Open the book", "pages": [{"src": "media/x-1.jpg", "alt": "..."}], "pdf": "media/x.pdf"}` makes the card open a popup picture book (page-turn, arrow keys, swipe) with an optional PDF download. `?go=<id>` for a book with no live link opens the book on the site; the paper's code says "Open the book".
 - `"hidden": true` keeps a piece off the site entirely (still being built, or pulled for now) without losing its entry. Take it out of every issue's `works` list too. There is no workshop list any more.
 - Credit kids' ideas with `"idea": "Name"` (first names only).
