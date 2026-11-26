@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-26 · Sam's Claude
+
+- **(M)orders of Magnitude** (`orders-of-magnitude`) added to the January draft: Sam, both, art, Open → `linglab.org/procedural/orders/` (one forest at 200 B, 2 kB, 20 kB, 200 kB and 2 MB). January: LiveSkratch, Acoustic, (M)orders.
+
 ## 2026-11-25 (12) · Sam's Claude
 
 - December lights blink a bit more (Sam): each bulb now dips to about a quarter brightness, with a little double flicker, every 1.4–3.2 s instead of fading to 60% over 1.8–4.2 s. Hanukkah bulbs unchanged. Reduced-motion still turns it off.

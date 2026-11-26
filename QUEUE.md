@@ -16,7 +16,7 @@ An advent calendar: 25 days, one piece a day, in `works` order. Days 1–20 are 
 
 ## Issue 04 · January 2027
 
-In `works.json` as a draft (not live until `"draft"` comes off): LiveSkratch, Acoustic (moved from December). RetroSynths moved to December. Nothing else waiting.
+In `works.json` as a draft (not live until `"draft"` comes off): LiveSkratch, Acoustic (moved from December), (M)orders of Magnitude. RetroSynths moved to December. Nothing else waiting.
 
 ## Issue 05 · February 2027
 

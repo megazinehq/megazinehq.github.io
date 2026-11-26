@@ -88,7 +88,8 @@
       "draft": true,
       "works": [
         "liveskratch",
-        "acoustic"
+        "acoustic",
+        "orders-of-magnitude"
       ]
     },
     {
@@ -813,6 +814,23 @@
         {
           "label": "Play",
           "url": "https://linglab.org/acoustic/"
+        }
+      ]
+    },
+    {
+      "id": "orders-of-magnitude",
+      "title": "(M)orders of Magnitude",
+      "kind": "art",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "One forest, made five times, each with ten times more room than the last: 200 bytes, 2 kB, 20 kB, 200 kB and 2 MB, every page counting against its own allowance and holding no pictures or 3D models, only rules. The smallest is a line of firs from a single loop; the largest is a measured Earth you can fly over and zoom through from quarks to the cosmic web.",
+      "links": [
+        {
+          "label": "Open",
+          "url": "https://linglab.org/procedural/orders/"
         }
       ]
     },
