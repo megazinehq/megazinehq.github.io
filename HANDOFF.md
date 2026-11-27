@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-27 (2) · Sam's Claude
 
-- **Garden of Delight** (`garden-of-delight`) added as December day 21, after Screech (still day 20): Sam, `made: "both"` (Sam's Claude-built pieces; not confirmed this time), Enter → `linglab.org/blackhole/`, `hands: true` (its settings drawer has Invisible Hands). December: 21 of 25; days 22–25 open. Paper rebuilt.
+- **Garden of Delight** (`garden-of-delight`) added as December day 21, after Screech (still day 20): Sam, `made: "both"` (Sam's Claude-built pieces; not confirmed this time), Enter → `linglab.org/blackhole/` (blurb says: up to six players, guns, linked to Shred Hole as building supplies, World Builder one day), `hands: true` (its settings drawer has Invisible Hands). December: 21 of 25; days 22–25 open. Paper rebuilt.
 
 ## 2026-11-27 · Sam's Claude
 
