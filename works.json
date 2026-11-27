@@ -904,7 +904,8 @@
         "Sam"
       ],
       "platform": "Web",
-      "blurb": "A claw machine you can practice on, with the machine's mind laid open. Turn the payout cycle and coil voltage up or down, stock it with plush, keychains, capsules, card packs or a box balanced on two bars, and watch exactly when it decides to let you win. There's a stacked mini cabinet, a giant one, neighbours crowding the glass, arcade music, VR, and a mode for red-cyan 3D glasses.",
+      "hands": true,
+      "blurb": "A claw machine you can practice on, with the machine's mind laid open. Turn the payout cycle and coil voltage up or down, stock it with plush, keychains, capsules, card packs or a box balanced on two bars, and watch exactly when it decides to let you win. There's a stacked mini cabinet, a giant one, neighbours crowding the glass, arcade music, VR and a mode for red-cyan 3D glasses, and over Invisible Hands a friend can steer it or play the crooked operator.",
       "links": [
         {
           "label": "Play",
