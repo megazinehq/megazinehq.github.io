@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-27 (3) · Sam's Claude
+
+- **ClawTrainer** (`clawtrainer`) added to December **tentatively** at day 20, before Screech (now 21) and Garden of Delight (now 22), per the queue's note to keep Screech late. Sam, `made: "both"` (his Claude-built pieces; not confirmed this time), Play → `linglab.org/clawtrainer/`. Sam may still pull it: confirm before printing. December: 22 of 25; days 23–25 open. Paper rebuilt.
+
 ## 2026-11-27 (2) · Sam's Claude
 
 - **Garden of Delight** (`garden-of-delight`) added as December day 21, after Screech (still day 20): Sam, `made: "both"` (Sam's Claude-built pieces; not confirmed this time), Enter → `linglab.org/blackhole/` (blurb says: up to six players, guns, linked to Shred Hole as building supplies, World Builder one day), `hands: true` (its settings drawer has Invisible Hands). December: 21 of 25; days 22–25 open. Paper rebuilt.

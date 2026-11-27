@@ -76,6 +76,7 @@
         "mining-the-natural-world",
         "next-up",
         "lab-briefing",
+        "clawtrainer",
         "screech",
         "garden-of-delight"
       ],
@@ -891,6 +892,23 @@
         {
           "label": "Enter",
           "url": "https://linglab.org/blackhole/"
+        }
+      ]
+    },
+    {
+      "id": "clawtrainer",
+      "title": "ClawTrainer",
+      "kind": "game",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "A claw machine you can practice on, with the machine's mind laid open. Turn the payout cycle and coil voltage up or down, stock it with plush, keychains, capsules, card packs or a box balanced on two bars, and watch exactly when it decides to let you win. There's a stacked mini cabinet, a giant one, neighbours crowding the glass, arcade music, VR, and a mode for red-cyan 3D glasses.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://linglab.org/clawtrainer/"
         }
       ]
     },
