@@ -73,6 +73,7 @@
         "retrosynths",
         "witness",
         "gabor-grove",
+        "mining-the-natural-world",
         "next-up",
         "lab-briefing",
         "screech"
@@ -871,6 +872,31 @@
         {
           "label": "Press the Metamers button",
           "url": "https://linglab.org/largelingmodel/"
+        }
+      ]
+    },
+    {
+      "id": "mining-the-natural-world",
+      "title": "Mining the Natural World",
+      "kind": "tool",
+      "made": "both",
+      "makers": [
+        "Jan"
+      ],
+      "platform": "Web",
+      "blurb": "Three explorers that dig through what people have recorded about animals. Monarch Map replays every iNaturalist sighting of the monarch butterfly as a ten-second time-lapse, sorted by life stage, so migration and breeding sweep across the continent. Cicada Emergences does the same for periodical cicadas, with forecasts for broods still underground. Plumage Crossover lines up the feathers of 5,700 bird species: where the male is one color, what the female wears instead.",
+      "links": [
+        {
+          "label": "Monarch Map",
+          "url": "https://janbrascamp.github.io/monarch-map/"
+        },
+        {
+          "label": "Cicada Emergences",
+          "url": "https://janbrascamp.github.io/cicada-emergences/"
+        },
+        {
+          "label": "Plumage Crossover",
+          "url": "https://janbrascamp.github.io/plumage_dimorphism/"
         }
       ]
     },

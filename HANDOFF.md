@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-27 · Sam's Claude
+
+- **Mining the Natural World** (`mining-the-natural-world`), Jan's bundle of three data explorers, goes in at December day 17: Monarch Map, Cicada Emergences, Plumage Crossover (all on janbrascamp.github.io). Seal: Jan; Sam said "made by Jan with Claude", entered as `made: "both"`. Next Up, The Briefing and Screech each move down a day (Screech 20). December: 20 of 25; days 21–25 open. Paper rebuilt.
+
 ## 2026-11-26 (5) · Sam's Claude
 
 - **Chamber of Commerce folded into Invisible Hands** (day 8) as its demo: a new button, *Demo: Chamber of Commerce*, and a sentence in the blurb. Chamber's own entry stays in `works.json` but is out of December, so days 15–20 moved up one (RetroSynths 14 … Screech 19). December: 19 of 25; days 20–25 open. Paper rebuilt.
