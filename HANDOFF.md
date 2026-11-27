@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-27 (2) · Sam's Claude
+
+- **Garden of Delight** (`garden-of-delight`) added as December day 21, after Screech (still day 20): Sam, `made: "both"` (Sam's Claude-built pieces; not confirmed this time), Enter → `linglab.org/blackhole/`, `hands: true` (its settings drawer has Invisible Hands). December: 21 of 25; days 22–25 open. Paper rebuilt.
+
 ## 2026-11-27 · Sam's Claude
 
 - **Mining the Natural World** (`mining-the-natural-world`), Jan's bundle of three data explorers, goes in at December day 17: Monarch Map, Cicada Emergences, Plumage Crossover (all on janbrascamp.github.io). Seal: Jan; Sam said "made by Jan with Claude", entered as `made: "both"`. Next Up, The Briefing and Screech each move down a day (Screech 20). December: 20 of 25; days 21–25 open. Paper rebuilt.

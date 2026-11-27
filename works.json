@@ -76,7 +76,8 @@
         "mining-the-natural-world",
         "next-up",
         "lab-briefing",
-        "screech"
+        "screech",
+        "garden-of-delight"
       ],
       "advent": true
     },
@@ -872,6 +873,24 @@
         {
           "label": "Press the Metamers button",
           "url": "https://linglab.org/largelingmodel/"
+        }
+      ]
+    },
+    {
+      "id": "garden-of-delight",
+      "title": "Garden of Delight",
+      "kind": "game",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "hands": true,
+      "blurb": "A night garden inside a bubble drifting through space, where black holes drink the light as you walk among the plants. Plant, build a dry stone wall, and wander with up to six people at once. The sky overhead is the real one.",
+      "links": [
+        {
+          "label": "Enter",
+          "url": "https://linglab.org/blackhole/"
         }
       ]
     },
