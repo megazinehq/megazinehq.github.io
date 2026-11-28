@@ -10,6 +10,10 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 - **vibin’ for dummies is day 1 of December** (Sam): new work `vibinfordummies` (Sam, both, tool; Start → `linglab.org/vibinfordummies/`), Sam's step-by-step guide to making things with Claude for non-programmers, ending with how to submit to megaZINE. Everything else moved down a day: MEGAclaw 22, Screech 23, Garden of Delight 24, Mega-Dino 25. December is now **25 of 25**. Paper rebuilt.
 
+## 2026-11-28 · Sam's Claude
+
+- **Chamber of Commerce bundled back into Invisible Hands** (Sam), as on 2026-11-26 (5): the demo sentence and the *Demo: Chamber of Commerce* button are back on Invisible Hands (day 9), and Chamber is out of December again (its entry stays in `works.json`). Days after it moved up one. December: 23 of 25; days 24–25 open. Paper rebuilt.
+
 ## 2026-11-27 (8) · Sam's Claude
 
 - **Chamber of Commerce is its own day again** (Sam): day 10, right after Invisible Hands (day 9). Undid the bundling from 2026-11-26 (5): Invisible Hands lost the demo sentence and the *Demo: Chamber of Commerce* button. Everything after Chamber moved down a day. December: 24 of 25; day 25 open. Paper rebuilt.

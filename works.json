@@ -67,7 +67,6 @@
         "musicbox",
         "mega-cv",
         "invisible-hands",
-        "chamber",
         "mushroom-substrate",
         "gain-control",
         "splatterhouse",
@@ -1192,11 +1191,15 @@
         "Matt"
       ],
       "platform": "Web",
-      "blurb": "Reach into someone else’s app and turn its knobs, from anywhere. Apps list the controls they’d let a stranger move, and anyone in the same room can set them, swing them or fire envelopes at them, and hear the apps’ own wiggles coming back. There’s a kit for putting it in your own app, by hand or by handing a page of instructions to Claude.",
+      "blurb": "Reach into someone else’s app and turn its knobs, from anywhere. Apps list the controls they’d let a stranger move, and anyone in the same room can set them, swing them or fire envelopes at them, and hear the apps’ own wiggles coming back. The demo is Chamber of Commerce, the member directory of a small town's fifty polished businesses, each hiding an obsession; open two members side by side and they bleed into each other. There’s a kit for putting it in your own app, by hand or by handing a page of instructions to Claude.",
       "links": [
         {
           "label": "Try it",
           "url": "https://linglab.org/invisiblehands/"
+        },
+        {
+          "label": "Demo: Chamber of Commerce",
+          "url": "https://linglab.org/chamber/"
         },
         {
           "label": "Control center",
