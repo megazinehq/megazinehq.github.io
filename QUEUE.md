@@ -10,13 +10,13 @@ Nothing waiting.
 
 ## Issue 03 · December 2026
 
-An advent calendar: 25 days, one piece a day, in `works` order. Days 1–22 are filled; **days 23–25 need pieces** (3 more). ClawTrainer (day 20) is in **tentatively** (Sam, Nov 27): confirm or pull it before printing. Fill them before printing December: the paper prints "still wrapping" for empty days (their codes still work), and the day order is frozen once printed. Screech (day 20 for now) is meant to sit late in the month: put new pieces before it in the list, not after. Sam expects more from Matt: the back half is Sam-heavy, so Matt's new pieces fit best in the open days. Witness's App Store link is still to come.
+An advent calendar: 25 days, one piece a day, in `works` order. Days 1–21 are filled; **days 22–25 need pieces** (4 more). ClawTrainer (day 19) is in **tentatively** (Sam, Nov 27): confirm or pull it before printing. Fill them before printing December: the paper prints "still wrapping" for empty days (their codes still work), and the day order is frozen once printed. Screech (day 20 for now; Garden of Delight is 21) is meant to sit late in the month: put new pieces before it in the list, not after. Sam expects more from Matt: the back half is Sam-heavy, so Matt's new pieces fit best in the open days. Witness's App Store link is still to come.
 
 - **When OPUlation is approved on the App Store** (Sam, Nov 25): bundle it onto Screech's card as "two peculiar ways to talk": one over a modem protocol, one by fruit-fly courtship. Keep the work id `screech` and its day. New title along the lines of "Screech & OPUlation"; buttons: Screech web, Screech App Store, OPUlation web (`linglab.org/opulation/`), OPUlation App Store. Rewrite the blurb's first sentence to cover both. Sam, both.
 
 ## Issue 04 · January 2027
 
-In `works.json` as a draft (not live until `"draft"` comes off): LiveSkratch, Acoustic (moved from December), (M)orders of Magnitude, Braidy (App Store link to come), GlassHouse (App Store link to come once approved). RetroSynths moved to December. Nothing else waiting.
+In `works.json` as a draft (not live until `"draft"` comes off): LiveSkratch, Acoustic (moved from December), (M)orders of Magnitude, Braidy (App Store link to come), GlassHouse (App Store link to come once approved), RetroSynths (moved back from December, Nov 27). Nothing else waiting.
 
 ## Issue 05 · February 2027
 

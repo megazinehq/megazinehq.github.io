@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-27 (5) · Sam's Claude
+
+- **RetroSynths moved from December to the January draft** (Sam). December is now 21 of 25 (ClawTrainer 19, Screech 20, Garden of Delight 21); days 22–25 open. January: LiveSkratch, Acoustic, (M)orders, Braidy, GlassHouse, RetroSynths. Paper rebuilt.
+
 ## 2026-11-27 (4) · Sam's Claude
 
 - **ClawTrainer** now has Invisible Hands: `hands: true`, and the blurb's last sentence says a friend can steer it or play operator. Still tentative at day 20. Paper rebuilt.
