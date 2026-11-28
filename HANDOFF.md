@@ -4,7 +4,7 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 ## 2026-11-27 (6) · Sam's Claude
 
-- **Mega-Dino bundle split into three** (Sam): `mega-clouds` (day 9), `mega-volcano` (day 15), and `mega-dino` (day 23, the "mashup" finale; its blurb says Volcano and Clouds layer into it). Each is Matt, both, hands, one button. `mega-dino` keeps its id. December: 23 of 25; days 24–25 open. Paper rebuilt.
+- **Mega-Dino bundle split into three** (Sam): `mega-clouds` (day 5), `mega-volcano` (day 15), and `mega-dino` (day 23, the "mashup" finale; its blurb says Volcano and Clouds layer into it). Each is Matt, both, hands, one button. `mega-dino` keeps its id. December: 23 of 25; days 24–25 open. Paper rebuilt.
 
 ## 2026-11-27 (5) · Sam's Claude
 
