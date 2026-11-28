@@ -10,7 +10,7 @@ Nothing waiting.
 
 ## Issue 03 · December 2026
 
-An advent calendar: 25 days, one piece a day, in `works` order. Days 1–24 are filled; **day 25 needs a piece** (1 more). MEGAclaw (formerly ClawTrainer, day 20) is in **tentatively** (Sam, Nov 27): confirm or pull it before printing. Fill them before printing December: the paper prints "still wrapping" for empty days (their codes still work), and the day order is frozen once printed. Screech (day 21 for now), Garden of Delight (22) and the Mega-Dino mashup (23) are meant to sit late in the month: put new pieces before Screech in the list, not after. Sam expects more from Matt: the back half is Sam-heavy, so Matt's new pieces fit best in the open days. Witness's App Store link is still to come.
+An advent calendar: 25 days, one piece a day, in `works` order. **All 25 days are filled** (vibin’ for dummies went in as day 1 on Nov 27, moving everything else down a day). MEGAclaw (formerly ClawTrainer, day 22) is in **tentatively** (Sam, Nov 27): confirm or pull it before printing; pulling it leaves a day open. The day order is frozen once printed. Screech (day 23), Garden of Delight (24) and the Mega-Dino mashup (25) are meant to sit late in the month: any swap-ins go before Screech. Witness's App Store link is still to come.
 
 - **When OPUlation is approved on the App Store** (Sam, Nov 25): bundle it onto Screech's card as "two peculiar ways to talk": one over a modem protocol, one by fruit-fly courtship. Keep the work id `screech` and its day. New title along the lines of "Screech & OPUlation"; buttons: Screech web, Screech App Store, OPUlation web (`linglab.org/opulation/`), OPUlation App Store. Rewrite the blurb's first sentence to cover both. Sam, both.
 

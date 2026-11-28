@@ -57,6 +57,7 @@
       "date": "December 2026",
       "theme": "",
       "works": [
+        "vibinfordummies",
         "fingergun-captcha",
         "flyharp",
         "mega-clouds",
@@ -1362,6 +1363,23 @@
         {
           "label": "Watch",
           "url": "https://crumplabsandbox.github.io/next-up/?run=world-02"
+        }
+      ]
+    },
+    {
+      "id": "vibinfordummies",
+      "title": "vibin’ for dummies",
+      "kind": "tool",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web",
+      "blurb": "A step-by-step way into making things with Claude, for people who have never written a line of code. You start with a squeaky jelly blob, put it online, turn messy trip notes into a dashboard, then make something properly weird, in a look of your own, and send it here. Or hand the page to your own Claude and let it lead.",
+      "links": [
+        {
+          "label": "Start",
+          "url": "https://linglab.org/vibinfordummies/"
         }
       ]
     }
