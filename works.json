@@ -1255,11 +1255,19 @@
         "Matt"
       ],
       "platform": "Web",
-      "blurb": "Simulators of how fungi grow, from one thread to a forest floor. Up to a hundred kinds of mushroom load into them, and synthesizers and other instruments are built on the same models.",
+      "blurb": "Simulators of how fungi grow, from one thread to a forest floor, and it is jam-packed. Up to a hundred kinds of mushroom load into them, and synthesizers and other instruments are built on the same models. Mushroom World puts every instrument in one, with two voices, composers and three world dials for growth, wetness and warmth; Listen grows a network and plays the forces inside it back as sound.",
       "links": [
         {
           "label": "Visit",
           "url": "https://crumplabsandbox.github.io/mushroom-substrate/"
+        },
+        {
+          "label": "Mushroom World",
+          "url": "https://crumplabsandbox.github.io/mushroom-substrate/plugins/mushroom-world/"
+        },
+        {
+          "label": "Listen",
+          "url": "https://crumplabsandbox.github.io/mushroom-substrate/listen.html"
         }
       ]
     },
