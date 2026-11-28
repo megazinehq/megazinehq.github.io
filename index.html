@@ -314,6 +314,8 @@ dialog#book[open] { display: grid; place-items: center; }
 .submit .steps li::marker { font: 700 .85em var(--type); color: var(--blue); }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 12px; }
 #comment-card { padding-block: 34px 40px; }
+#tutorial-card { padding-block: 10px 0; }
+.tcard .cc-gun { transform-box: fill-box; transform-origin: 50% 100%; }
 .ccard { position: relative; display: grid; gap: 8px; justify-items: start; padding: 22px 120px 22px 22px; color: inherit; text-decoration: none;
   background: var(--sheet); border: 2px dashed var(--toner); border-radius: 6px; box-shadow: 6px 6px 0 var(--pink); transition: transform .15s, box-shadow .15s; }
 .ccard:hover, .ccard:focus-visible { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--pink); }
@@ -513,12 +515,18 @@ footer { border-top: 2px solid var(--toner); padding-block: 18px 36px; font: 400
         <p>Every piece gets a gold seal saying who made it and how. It is the one rule here.</p>
         <div class="legend" id="legend"></div>
       </div>
-      <div>
-        <h3>Never made anything?</h3>
-        <p>Start with vibin’ for dummies: a step-by-step way into making things with Claude, for people who have never written a line of code. A squeaky blob, a link to send, then something weird enough to send here.</p>
-        <p class="sub-go"><a class="btn" href="https://linglab.org/vibinfordummies/" target="_blank" rel="noopener">The tutorial ↗</a></p>
-      </div>
     </div>
+  </section>
+
+  <!-- The tutorial card: Sam's beginner guide, always shown. -->
+  <section class="wrap" aria-labelledby="tut-h" id="tutorial-card">
+    <a class="ccard tcard" href="https://linglab.org/vibinfordummies/" target="_blank" rel="noopener">
+      <span class="cc-tag">Tutorial</span>
+      <span class="cc-h" id="tut-h">Never made anything?</span>
+      <span class="cc-p">vibin’ for dummies: a step-by-step way into making things with Claude, for people who have never written a line of code. A squeaky jelly blob, a link to send, then something weird enough to put in here.</span>
+      <span class="btn primary">Start the tutorial ↗</span>
+      <svg class="cc-gun" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><g><path d="M10 50Q8 30 22 22Q32 14 42 22Q56 30 54 50Q32 56 10 50Z" fill="var(--pink)"/><circle cx="25" cy="36" r="2.2" fill="currentColor"/><circle cx="39" cy="36" r="2.2" fill="currentColor"/><path d="M28 44Q32 47 36 44"/><animateTransform attributeName="transform" type="scale" values="1 1;1.08 .9;.96 1.06;1 1" additive="sum" dur="1.8s" repeatCount="indefinite"/></g></svg>
+    </a>
   </section>
 
   <!-- The comment card: the contact page, shown from the December 2026 issue on (and in previews of it). -->

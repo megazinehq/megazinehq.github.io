@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-28 (4) · Sam's Claude
+
+- **vibin’ for dummies out of December** (Sam): it's now a **tutorial card** at the bottom of the site on every issue (`#tutorial-card` in `tools/page.html`, same style as the comment card, a squishing blob drawing), replacing the third "Never made anything?" column in Put something in. Its `works.json` entry stays, in no issue. Everything moved up a day. Then **Screech moved to the January draft** (Sam), so: MEGAclaw 20, Garden of Delight 21, Mega-Dino 22. December: 22 of 25; days 23–25 open. The OPUlation bundle plan still applies to Screech's card in January. README/MATT.md updated. Paper rebuilt.
+
 ## 2026-11-28 (3) · Sam's Claude
 
 - **Splatterhaus and FlyHarp swapped days** (Sam): Splatterhaus is now day 3, FlyHarp day 13. Paper rebuilt.
