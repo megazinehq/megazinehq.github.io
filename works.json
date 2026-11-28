@@ -65,19 +65,21 @@
         "musicbox",
         "mega-cv",
         "invisible-hands",
+        "mega-clouds",
         "mushroom-substrate",
         "gain-control",
-        "mega-dino",
         "splatterhouse",
         "mushroom-walk",
         "witness",
+        "mega-volcano",
         "gabor-grove",
         "mining-the-natural-world",
         "next-up",
         "lab-briefing",
         "clawtrainer",
         "screech",
-        "garden-of-delight"
+        "garden-of-delight",
+        "mega-dino"
       ],
       "advent": true
     },
@@ -1296,6 +1298,42 @@
       ]
     },
     {
+      "id": "mega-clouds",
+      "title": "Mega-Clouds",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web",
+      "hands": true,
+      "blurb": "Over a hundred animated skies you can drag around in 3D, from fair-weather puffs to storm towers. Press Shuffle and it becomes a screensaver. The first of three siblings that end the month stacked on top of each other.",
+      "links": [
+        {
+          "label": "Mega-Clouds",
+          "url": "https://crumplabsandbox.github.io/Mega-Clouds/"
+        }
+      ]
+    },
+    {
+      "id": "mega-volcano",
+      "title": "Mega-Volcano",
+      "kind": "toy",
+      "made": "both",
+      "makers": [
+        "Matt"
+      ],
+      "platform": "Web",
+      "hands": true,
+      "blurb": "Volcanic islands from the first eruption on the sea floor to a drowned atoll: they rise, erupt, erode and sink. Pick a scene or press Shuffle, with clouds from its sibling Mega-Clouds if you like.",
+      "links": [
+        {
+          "label": "Mega-Volcano",
+          "url": "https://crumplabsandbox.github.io/mega-volcano/"
+        }
+      ]
+    },
+    {
       "id": "mega-dino",
       "title": "Mega-Dino",
       "kind": "toy",
@@ -1305,19 +1343,11 @@
       ],
       "platform": "Web",
       "hands": true,
-      "blurb": "A dinosaur simulator: herds, families and hunters walking through 180 million years, from the first dinosaurs to the asteroid. It comes with two siblings that layer into it: Mega-Volcano, where islands rise from the sea floor, erupt, erode and sink into atolls, and Mega-Clouds, over a hundred animated skies. Click an animal to make it call, or shuffle all three into a screensaver.",
+      "blurb": "The mashup. A dinosaur simulator of herds, families and hunters walking through 180 million years, from the first dinosaurs to the asteroid, now with Mega-Volcano and Mega-Clouds from earlier this month layered in, so they walk past erupting islands under moving skies. Click an animal to make it call, or shuffle all three into a screensaver.",
       "links": [
         {
           "label": "Mega-Dino",
           "url": "https://crumplabsandbox.github.io/mega-dino/"
-        },
-        {
-          "label": "Mega-Volcano",
-          "url": "https://crumplabsandbox.github.io/mega-volcano/"
-        },
-        {
-          "label": "Mega-Clouds",
-          "url": "https://crumplabsandbox.github.io/Mega-Clouds/"
         }
       ]
     },

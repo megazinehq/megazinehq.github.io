@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-27 (6) · Sam's Claude
+
+- **Mega-Dino bundle split into three** (Sam): `mega-clouds` (day 9), `mega-volcano` (day 15), and `mega-dino` (day 23, the "mashup" finale; its blurb says Volcano and Clouds layer into it). Each is Matt, both, hands, one button. `mega-dino` keeps its id. December: 23 of 25; days 24–25 open. Paper rebuilt.
+
 ## 2026-11-27 (5) · Sam's Claude
 
 - **RetroSynths moved from December to the January draft** (Sam). December is now 21 of 25 (ClawTrainer 19, Screech 20, Garden of Delight 21); days 22–25 open. January: LiveSkratch, Acoustic, (M)orders, Braidy, GlassHouse, RetroSynths. Paper rebuilt.
