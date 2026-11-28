@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-27 (7) · Sam's Claude
+
+- **ClawTrainer renamed MEGAclaw** (Sam): title and blurb only. Id `clawtrainer` and the Play link (`linglab.org/clawtrainer/`) stay. Blurb now names the walk-in giants, the spaceman rig and the mirror. Still tentative in December; paper rebuilt (its scrambled title changed).
+
 ## 2026-11-27 (6) · Sam's Claude
 
 - **Mega-Dino bundle split into three** (Sam): `mega-clouds` (day 5), `mega-volcano` (day 15), and `mega-dino` (day 23, the "mashup" finale; its blurb says Volcano and Clouds layer into it). Each is Matt, both, hands, one button. `mega-dino` keeps its id. December: 23 of 25; days 24–25 open. Paper rebuilt.
