@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-28 (6) · Sam's Claude
+
+- **Screech & OPUlation**, bundled, back in December at day 21 (Sam), out of January. Same id `screech`; title "Screech & OPUlation", blurb covers both, buttons Screech, Screech · App Store, OPUlation (`linglab.org/opulation/`), and a dashed OPUlation · App Store (fill in when approved). Garden of Delight 22, Mega-Dino 23. December: 23 of 25; days 24–25 open. Paper rebuilt (its scrambled title changed).
+
 ## 2026-11-28 (5) · Sam's Claude
 
 - **Mushroom Substrate** (December day 10) gets two more buttons, *Mushroom World* (`plugins/mushroom-world/`) and *Listen* (`listen.html`), and a blurb that says it's jam-packed and describes both. Paper rebuilt (first sentence changed).

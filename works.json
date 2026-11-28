@@ -77,6 +77,7 @@
         "next-up",
         "lab-briefing",
         "clawtrainer",
+        "screech",
         "garden-of-delight",
         "mega-dino"
       ],
@@ -94,8 +95,7 @@
         "morders-of-magnitude",
         "braidy",
         "glasshouse",
-        "retrosynths",
-        "screech"
+        "retrosynths"
       ]
     },
     {
@@ -965,22 +965,31 @@
     },
     {
       "id": "screech",
-      "title": "Screech",
+      "title": "Screech & OPUlation",
       "kind": "tool",
       "made": "both",
       "makers": [
         "Sam"
       ],
       "platform": "Web, iPhone",
-      "blurb": "Passes secret notes between phones and computers as modem sounds. Agree on a passphrase in person, hold one device a few inches from the other, and it screeches the scrambled note across. Small photos go too, painting in from the top as they arrive, and it talks to the Modem in RetroSynths.",
+      "blurb": "Two peculiar ways to pass a secret between phones: one screeches it across as modem sounds, the other only lets it through after a proper fruit-fly courtship. In Screech you agree on a passphrase in person, hold one device a few inches from the other, and the scrambled note screeches across; small photos go too, painting in from the top. In OPUlation there's no passphrase: one phone courts, the other is courted, he taps and sings, and if she likes the song the file goes through.",
       "links": [
         {
-          "label": "Open",
+          "label": "Screech",
           "url": "https://linglab.org/screech/"
         },
         {
-          "label": "App Store",
+          "label": "Screech · App Store",
           "url": "https://apps.apple.com/app/screech-secret-notes/id6833511205"
+        },
+        {
+          "label": "OPUlation",
+          "url": "https://linglab.org/opulation/"
+        },
+        {
+          "label": "OPUlation · App Store",
+          "url": null,
+          "status": "Soon"
         }
       ]
     },
