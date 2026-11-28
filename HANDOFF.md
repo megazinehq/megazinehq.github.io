@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-27 (8) · Sam's Claude
+
+- **Chamber of Commerce is its own day again** (Sam): day 10, right after Invisible Hands (day 9). Undid the bundling from 2026-11-26 (5): Invisible Hands lost the demo sentence and the *Demo: Chamber of Commerce* button. Everything after Chamber moved down a day. December: 24 of 25; day 25 open. Paper rebuilt.
+
 ## 2026-11-27 (7) · Sam's Claude
 
 - **ClawTrainer renamed MEGAclaw** (Sam): title and blurb only. Id `clawtrainer` and the Play link (`linglab.org/clawtrainer/`) stay. Blurb now names the walk-in giants, the spaceman rig and the mirror. Still tentative in December; paper rebuilt (its scrambled title changed).
