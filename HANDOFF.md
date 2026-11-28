@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-28 (7) · Sam's Claude
+
+- **December days 1–23 confirmed** by Sam, MEGAclaw (day 20) included, so it's no longer tentative. Days 24–25 come later. No site or paper change.
+
 ## 2026-11-28 (6) · Sam's Claude
 
 - **Screech & OPUlation**, bundled, back in December at day 21 (Sam), out of January. Same id `screech`; title "Screech & OPUlation", blurb covers both, buttons Screech, Screech · App Store, OPUlation (`linglab.org/opulation/`), and a dashed OPUlation · App Store (fill in when approved). Garden of Delight 22, Mega-Dino 23. December: 23 of 25; days 24–25 open. Paper rebuilt (its scrambled title changed).

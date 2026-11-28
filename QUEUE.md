@@ -10,7 +10,7 @@ Nothing waiting.
 
 ## Issue 03 · December 2026
 
-An advent calendar: 25 days, one piece a day, in `works` order. Days 1–23 are filled; **days 24–25 need pieces** (2 more; Screech & OPUlation is day 21; Chamber of Commerce went back into Invisible Hands on Nov 28, and vibin’ for dummies moved out to a tutorial card at the bottom of the site). MEGAclaw (formerly ClawTrainer, day 20) is in **tentatively** (Sam, Nov 27): confirm or pull it before printing. The day order is frozen once printed. Screech & OPUlation (21), Garden of Delight (22) and the Mega-Dino mashup (23) are meant to sit late in the month: put new pieces before Screech. OPUlation's App Store button is a dashed "soon": fill in its `url` when Apple approves it. Witness's App Store link is still to come.
+An advent calendar: 25 days, one piece a day, in `works` order. **Days 1–23 are confirmed** (Sam, Nov 28), MEGAclaw included; **days 24–25 still need pieces**, which Sam says will come later. Screech & OPUlation (21), Garden of Delight (22) and the Mega-Dino mashup (23) are meant to sit late in the month: put new pieces before Screech, or at 24–25. The day order is frozen once printed, so print only once 24–25 are in (or accept "still wrapping" on those days; their codes still work). Still to fill in when they exist: Witness's and OPUlation's App Store links.
 
 ## Issue 04 · January 2027
 
