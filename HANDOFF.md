@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-28 (3) · Sam's Claude
+
+- **Splatterhaus and FlyHarp swapped days** (Sam): Splatterhaus is now day 3, FlyHarp day 13. Paper rebuilt.
+
 ## 2026-11-28 (2) · Sam's Claude
 
 - **Chamber of Commerce bundled back into Invisible Hands** (Sam), as on 2026-11-26 (5): the demo sentence and the *Demo: Chamber of Commerce* button are back on Invisible Hands (day 10), and Chamber is out of December again (its entry stays in `works.json`). Days after it moved up one. December: 24 of 25 (MEGAclaw 21, Screech 22, Garden of Delight 23, Mega-Dino 24); day 25 open. Paper rebuilt.
