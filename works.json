@@ -91,7 +91,7 @@
       "works": [
         "liveskratch",
         "acoustic",
-        "orders-of-magnitude",
+        "morders-of-magnitude",
         "braidy"
       ]
     },
@@ -838,7 +838,7 @@
       ]
     },
     {
-      "id": "orders-of-magnitude",
+      "id": "morders-of-magnitude",
       "title": "(M)orders of Magnitude",
       "kind": "art",
       "made": "both",
