@@ -6,6 +6,10 @@ Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per se
 
 - **ClawTrainer** now has Invisible Hands: `hands: true`, and the blurb's last sentence says a friend can steer it or play operator. Still tentative at day 20. Paper rebuilt.
 
+## 2026-11-27 (4) · Sam's Claude
+
+- **GlassHouse** (`glasshouse`) added to the January draft: Sam, both, music, Play → `linglab.org/glasshouse/`, plus a dashed **App Store · soon** button. Fill in the App Store `url` once Apple approves it (submitted Nov 27). January: LiveSkratch, Acoustic, (M)orders, Braidy, GlassHouse.
+
 ## 2026-11-27 (3) · Sam's Claude
 
 - **ClawTrainer** (`clawtrainer`) added to December **tentatively** at day 20, before Screech (now 21) and Garden of Delight (now 22), per the queue's note to keep Screech late. Sam, `made: "both"` (his Claude-built pieces; not confirmed this time), Play → `linglab.org/clawtrainer/`. Sam may still pull it: confirm before printing. December: 22 of 25; days 23–25 open. Paper rebuilt.

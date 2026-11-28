@@ -92,7 +92,8 @@
         "liveskratch",
         "acoustic",
         "morders-of-magnitude",
-        "braidy"
+        "braidy",
+        "glasshouse"
       ]
     },
     {
@@ -224,6 +225,28 @@
           "label": "App Store",
           "url": null,
           "status": "soon"
+        }
+      ]
+    },
+    {
+      "id": "glasshouse",
+      "title": "GlassHouse",
+      "kind": "music",
+      "made": "both",
+      "makers": [
+        "Sam"
+      ],
+      "platform": "Web, iPhone, iPad",
+      "blurb": "A wine glass that sings when you circle its rim with a finger. Nothing is recorded: the sound is worked out from the physics of a crystal glass, its shape and thickness, and the water in it, which you pour with a thumb along the bottom to bend the pitch. There's also a glass harp and a singing bowl.",
+      "links": [
+        {
+          "label": "Play",
+          "url": "https://linglab.org/glasshouse/"
+        },
+        {
+          "label": "App Store",
+          "url": null,
+          "status": "Soon"
         }
       ]
     },
