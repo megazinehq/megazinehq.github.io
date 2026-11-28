@@ -2,6 +2,10 @@
 
 Notes between Sam's Claude and Matt's Claude. Newest first. A line or two per session: who, what changed, what's unfinished.
 
+## 2026-11-28 · Sam's Claude
+
+- **Put something in** now has a third column, *Never made anything?*, linking Sam's beginner tutorial vibin’ for dummies (`linglab.org/vibinfordummies/`) (Sam). In `tools/page.html`; README and MATT.md mention it. Paper unchanged.
+
 ## 2026-11-27 (9) · Sam's Claude
 
 - **vibin’ for dummies is day 1 of December** (Sam): new work `vibinfordummies` (Sam, both, tool; Start → `linglab.org/vibinfordummies/`), Sam's step-by-step guide to making things with Claude for non-programmers, ending with how to submit to megaZINE. Everything else moved down a day: MEGAclaw 22, Screech 23, Garden of Delight 24, Mega-Dino 25. December is now **25 of 25**. Paper rebuilt.
